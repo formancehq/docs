@@ -1301,7 +1301,7 @@
     utility-types "^3.10.0"
     webpack "^5.61.0"
 
-"@docusaurus/plugin-content-docs@2.0.0-beta.9":
+"@docusaurus/plugin-content-docs@2.0.0-beta.9", "@docusaurus/plugin-content-docs@^2.0.0-beta.9":
   version "2.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-docs/-/plugin-content-docs-2.0.0-beta.9.tgz#53ac2b43beb0f183c8a9b8fab6201e5e8f444a67"
   integrity sha512-GC+CvqKuravPpK5fqlYJVmj9hc6nkd/c/rM2ONueFCqw2wyuH7esWL8RpMqgS0JM1qwwuRpi0Dd3R/zdOptHIQ==
@@ -1327,7 +1327,7 @@
     utility-types "^3.10.0"
     webpack "^5.61.0"
 
-"@docusaurus/plugin-content-pages@2.0.0-beta.9":
+"@docusaurus/plugin-content-pages@2.0.0-beta.9", "@docusaurus/plugin-content-pages@^2.0.0-beta.9":
   version "2.0.0-beta.9"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-content-pages/-/plugin-content-pages-2.0.0-beta.9.tgz#115309f03bae2864bb9e4cd8fae646ea2e1f31dc"
   integrity sha512-27nFHhPpZEWra6izyWgY+EkBspr3OAUUHojRXzMUKplYLZ5gIciM224PXbwLyECjpn51eaf8/2Ay+/H9BdTCBw==

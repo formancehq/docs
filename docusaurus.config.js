@@ -7,9 +7,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 /** @type {import('@docusaurus/types').Config} */
 const config = {
   title: 'Numary Hub Resources\n',
-  tagline: 'Dinosaurs are cool',
-  url: 'https://numary.github.io',
-  baseUrl: '/docs-cloud/',
+  tagline: 'The open foundation you need to build and scale money-movements within your app',
+  url: 'https://developers.numary.cloud',
+  baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
@@ -21,16 +21,11 @@ const config = {
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
+        sitemap: {},
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/facebook/docusaurus/edit/main/website/',
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl:
-            'https://github.com/facebook/docusaurus/edit/main/website/blog/',
+          editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -41,7 +36,8 @@ const config = {
       'redocusaurus',
       {
         specs: [{
-          specUrl: 'https://api.staging.app.numary.cloud/swagger.json',
+          // specUrl: 'https://api.numary.cloud/swagger.json',
+          spec: 'swagger.json',
           routePath: '/api/',
         }],
       }
@@ -59,9 +55,15 @@ const config = {
         items: [
           {
             type: 'doc',
-            docId: 'intro',
             position: 'left',
-            label: 'Tutorial',
+            docId: 'documentation',
+            label: 'Documentation',
+          },
+          {
+            type: 'doc',
+            position: 'left',
+            docId: 'guides',
+            label: 'Guides',
           },
           {to: '/api/', label: 'API', position: 'left'},
           {
@@ -78,8 +80,12 @@ const config = {
             title: 'Docs',
             items: [
               {
-                label: 'Tutorial',
-                to: '/docs/intro',
+                label: 'Documentation',
+                to: '/docs/',
+              },
+              {
+                label: 'Guides',
+                to: '/docs/guides/',
               },
             ],
           },
@@ -87,16 +93,12 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Stack Overflow',
-                href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-              },
-              {
                 label: 'Discord',
-                href: 'https://discordapp.com/invite/docusaurus',
+                href: 'https://discord.gg/xyHvcbzk4w',
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/docusaurus',
+                href: 'https://twitter.com/numaryhq',
               },
             ],
           },
@@ -104,17 +106,13 @@ const config = {
             title: 'More',
             items: [
               {
-                label: 'Blog',
-                to: '/blog',
-              },
-              {
                 label: 'GitHub',
-                href: 'https://github.com/facebook/docusaurus',
+                href: 'https://github.com/numary',
               },
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © ${new Date().getFullYear()} Numary, Inc. Built with Docusaurus.`,
       },
       prism: {
         theme: lightCodeTheme,

@@ -1,8 +1,9 @@
 ---
-sidebar_position: 1
+id: guides
+slug: /guides/
 ---
 
-# Tutorial Intro
+# Guides
 
 Let's discover **Docusaurus in less than 5 minutes**.
 
