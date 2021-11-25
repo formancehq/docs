@@ -16,6 +16,10 @@ const config = {
   organizationName: 'numary', // Usually your GitHub org/user name.
   projectName: 'docs-cloud', // Usually your repo name.
 
+  stylesheets: [
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+  ],
+
   presets: [
     [
       '@docusaurus/preset-classic',
