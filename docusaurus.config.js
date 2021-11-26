@@ -66,7 +66,7 @@ const config = {
         items: [
           {
             label: "Documentation",
-            to: "/docs/introduction/",
+            to: "/docs/introduction",
             position: "left",
           },
           {to: '/api/ledger/', label: 'Ledger API', position: 'left'},
@@ -86,7 +86,7 @@ const config = {
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/',
+                to: '/docs/introduction/',
               },
             ],
           },
