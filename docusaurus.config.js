@@ -70,16 +70,28 @@ const config = {
             items: [
               {
                 label: "Cloud",
-                to: "docs/cloud/introduction",
+                to: "/docs/cloud/introduction",
               },
               {
                 label: "Ledger",
-                to: "docs/ledger-oss/get-started/installation",
+                to: "/docs/ledger-oss/get-started/installation",
               },
             ],
           },
-          {to: '/api/ledger/', label: 'Ledger API', position: 'left'},
-          {to: '/api/cloud/', label: 'Cloud API', position: 'left'},
+          {
+            label: "API",
+            position: "left",
+            items: [
+              {
+                label: "Cloud",
+                to: "/api/cloud/",
+              },
+              {
+                label: "Ledger",
+                to: "/api/ledger/",
+              },
+            ],
+          },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',

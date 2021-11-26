@@ -59,6 +59,20 @@ const sidebars = {
           ],
         },
         {
+          label: "Guides",
+          type: "category",
+          collapsible: true,
+          collapsed: false,
+          items: [
+            "ledger-oss/guides/configuration",
+            "ledger-oss/guides/issuing-money",
+            "ledger-oss/guides/numscript",
+            "ledger-oss/guides/using-the-control-dashboard",
+            "ledger-oss/guides/materialized-transactions",
+            "ledger-oss/guides/unambiguous-monetary-notation",
+          ],
+        },
+        {
           label: "Examples",
           type: "category",
           collapsible: false,
@@ -70,8 +84,8 @@ const sidebars = {
         {
           label: "Advanced",
           type: "category",
-          collapsible: false,
-          collapsed: false,
+          collapsible: true,
+          collapsed: true,
           items: [
             "ledger-oss/advanced/architecture",
             "ledger-oss/advanced/storages",
@@ -80,16 +94,6 @@ const sidebars = {
             "ledger-oss/advanced/concurrency-model",
           ],
         },
-      ],
-    },
-    {
-      label: "Numary Cloud",
-      type: "category",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        "ledger-oss/get-started/installation",
-        "ledger-oss/get-started/your-first-transaction"
       ],
     },
   ],
