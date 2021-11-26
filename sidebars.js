@@ -19,61 +19,94 @@ const sidebars = {
       type: "doc",
     },
     {
-      label: "Getting Started",
+      label: "Ledger OSS",
       type: "category",
-      collapsible: false,
-      collapsed: false,
+      collapsible: true,
+      collapsed: true,
       items: [
-        "get-started/installation",
-        "get-started/your-first-transaction"
-      ],
-    },
-    {
-      label: "Reference",
-      type: "category",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        "reference/ledgers",
-        "reference/accounts",
-        "reference/transactions",
         {
-          label: "Numscript",
+          label: "Getting Started",
           type: "category",
-          collapsible: true,
-          collapsed: true,
+          collapsible: false,
+          collapsed: false,
           items: [
-            "reference/numscript/sources",
-            "reference/numscript/destinations",
-            "reference/numscript/variables",
-            "reference/numscript/metadata",
-            "reference/numscript/rounding",
+            "ledger-oss/get-started/installation",
+            "ledger-oss/get-started/your-first-transaction"
+          ],
+        },
+        {
+          label: "Reference",
+          type: "category",
+          collapsible: false,
+          collapsed: false,
+          items: [
+            "ledger-oss/reference/ledgers",
+            "ledger-oss/reference/accounts",
+            "ledger-oss/reference/transactions",
+            {
+              label: "Numscript",
+              type: "category",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                "ledger-oss/reference/numscript/sources",
+                "ledger-oss/reference/numscript/destinations",
+                "ledger-oss/reference/numscript/variables",
+                "ledger-oss/reference/numscript/metadata",
+                "ledger-oss/reference/numscript/rounding",
+              ],
+            },
+          ],
+        },
+        {
+          label: "Examples",
+          type: "category",
+          collapsible: false,
+          collapsed: false,
+          items: [
+            "ledger-oss/examples/in-app-currency",
+          ],
+        },
+        {
+          label: "Advanced",
+          type: "category",
+          collapsible: false,
+          collapsed: false,
+          items: [
+            "ledger-oss/advanced/architecture",
+            "ledger-oss/advanced/storages",
+            "ledger-oss/advanced/authentication",
+            "ledger-oss/advanced/running-in-production",
+            "ledger-oss/advanced/concurrency-model",
           ],
         },
       ],
     },
     {
-      label: "Examples",
+      label: "Numary Cloud",
       type: "category",
       collapsible: false,
       collapsed: false,
       items: [
-        "examples/in-app-currency",
+        "ledger-oss/get-started/installation",
+        "ledger-oss/get-started/your-first-transaction"
       ],
+    },
+  ],
+  cloud: [
+    {
+      id: "cloud/introduction",
+      type: "doc",
     },
     {
-      label: "Advanced",
+      label: "Guides",
       type: "category",
       collapsible: false,
       collapsed: false,
       items: [
-        "advanced/architecture",
-        "advanced/storages",
-        "advanced/authentication",
-        "advanced/running-in-production",
-        "advanced/concurrency-model",
-      ],
-    },
+        "cloud/guides/your-first-ledger",
+      ]
+    }
   ]
 };
 

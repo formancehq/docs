@@ -46,7 +46,7 @@ const config = {
             routePath: '/api/cloud/',
           },
           {
-            // specUrl: 'https://api.numary.cloud/swagger.json',
+            // specUrl: 'https://api.numary.cloud/swagger.ledger.json',
             spec: 'swagger.json',
             routePath: '/api/ledger/',
           }
@@ -66,8 +66,17 @@ const config = {
         items: [
           {
             label: "Documentation",
-            to: "/docs/introduction",
             position: "left",
+            items: [
+              {
+                label: "Cloud",
+                to: "docs/cloud/introduction",
+              },
+              {
+                label: "Ledger",
+                to: "docs/ledger-oss/get-started/installation",
+              },
+            ],
           },
           {to: '/api/ledger/', label: 'Ledger API', position: 'left'},
           {to: '/api/cloud/', label: 'Cloud API', position: 'left'},
