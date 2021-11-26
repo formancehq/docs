@@ -39,11 +39,18 @@ const config = {
     [
       'redocusaurus',
       {
-        specs: [{
-          // specUrl: 'https://api.numary.cloud/swagger.json',
-          spec: 'swagger.json',
-          routePath: '/api/',
-        }],
+        specs: [
+          {
+            // specUrl: 'https://api.numary.cloud/swagger.json',
+            spec: 'swagger.json',
+            routePath: '/api/cloud/',
+          },
+          {
+            // specUrl: 'https://api.numary.cloud/swagger.json',
+            spec: 'swagger.json',
+            routePath: '/api/ledger/',
+          }
+      ],
       }
     ],
   ],
@@ -58,18 +65,12 @@ const config = {
         },
         items: [
           {
-            type: 'doc',
-            position: 'left',
-            docId: 'documentation',
-            label: 'Documentation',
+            label: "Documentation",
+            to: "/docs/introduction/",
+            position: "left",
           },
-          {
-            type: 'doc',
-            position: 'left',
-            docId: 'guides',
-            label: 'Guides',
-          },
-          {to: '/api/', label: 'API', position: 'left'},
+          {to: '/api/ledger/', label: 'Ledger API', position: 'left'},
+          {to: '/api/cloud/', label: 'Cloud API', position: 'left'},
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
@@ -86,10 +87,6 @@ const config = {
               {
                 label: 'Documentation',
                 to: '/docs/',
-              },
-              {
-                label: 'Guides',
-                to: '/docs/guides/',
               },
             ],
           },
