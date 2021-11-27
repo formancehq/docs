@@ -1,6 +1,7 @@
 ---
 title: Your first transaction
 ---
+
 # Your first transaction
 
 If you followed along the previous page, you should have a Numary instance up & read to accept transactions. Woohoo! Let's get started.
@@ -46,6 +47,16 @@ send [COIN 100] (
 numary exec quickstart example.num
 ```
 
+import { NumscriptBlock } from 'react-numscript-codeblock';
+
+<NumscriptBlock script={`send [COIN 100] (
+  source = @world
+  destination = @central_bank
+)
+send [COIN 100] (
+  source = @central_bank
+  destination = @users:001
+)`}></NumscriptBlock>
 
 Assuming your call succeeded, it's time to go check the transaction. You can do so using the API or alternatively you can head to the integrated dashboard for visual confirmation, conveniently hosted at control.numary.com
 

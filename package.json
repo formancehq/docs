@@ -22,10 +22,13 @@
     "@mdx-js/react": "^1.6.21",
     "@svgr/webpack": "^5.5.0",
     "clsx": "^1.1.1",
+    "codemirror-lang-numscript": "^0.4.0",
     "file-loader": "^6.2.0",
+    "numscript-codemirror-demo": "../numscript-codemirror-demo",
     "prism-react-renderer": "^1.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-numscript-codeblock": "^0.2.0",
     "redocusaurus": "^0.5.0",
     "url-loader": "^4.1.1"
   },
