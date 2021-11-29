@@ -18,6 +18,7 @@ const config = {
 
   stylesheets: [
     "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap",
   ],
 
   presets: [
