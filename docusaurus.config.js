@@ -42,13 +42,11 @@ const config = {
       {
         specs: [
           {
-            // specUrl: 'https://api.numary.cloud/swagger.json',
-            specUrl: 'https://api.staging.app.numary.cloud/swagger.json',
+            specUrl: 'https://api.staging.app.numary.cloud/swagger2.0.json',
             routePath: '/api/cloud/',
           },
           {
-            // specUrl: 'https://api.numary.cloud/swagger.ledger.json',
-            specUrl: 'https://api.staging.app.numary.cloud/swagger.ledger.json',
+            specUrl: 'https://api.staging.app.numary.cloud/ledger/swagger.json',
             routePath: '/api/ledger/',
           }
       ],
