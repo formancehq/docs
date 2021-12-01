@@ -8848,6 +8848,11 @@ postcss@^8.2.15, postcss@^8.3.0, postcss@^8.3.11, postcss@^8.3.5, postcss@^8.3.6
     picocolors "^1.0.0"
     source-map-js "^1.0.1"
 
+posthog-docusaurus@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/posthog-docusaurus/-/posthog-docusaurus-1.0.3.tgz#bd49dd7f425bb6bce81ac49d3c251f8b0f9cd9d9"
+  integrity sha512-gvvHpKmOIcO7Sj68T2/vfYR/VfZmYoTaZO6kDZTJXQ309jdrhlrDncPr/Gjy+C0W9zaVlrOT6vvC7SdBBmvbdg==
+
 posthtml-parser@^0.10.0, posthtml-parser@^0.10.1:
   version "0.10.1"
   resolved "https://registry.yarnpkg.com/posthtml-parser/-/posthtml-parser-0.10.1.tgz#63c41931a9339cc2c32aba14f06286d98f107abf"

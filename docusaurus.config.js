@@ -21,6 +21,8 @@ const config = {
     "https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap",
   ],
 
+  plugins: ["posthog-docusaurus"],
+
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -139,7 +141,12 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
-    }),
+      posthog: {
+        apiKey: "phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om",
+        appUrl: "https://app.posthog.com",  // optional
+        enableInDevelopment: false,  // optional
+      }
+    })
 };
 
 module.exports = config;
