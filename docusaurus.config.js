@@ -69,10 +69,10 @@ const config = {
             label: "Documentation",
             position: "left",
             items: [
-              {
-                label: "Cloud",
-                to: "/docs/cloud/introduction",
-              },
+              // {
+              //   label: "Cloud",
+              //   to: "/docs/cloud/introduction",
+              // },
               {
                 label: "Ledger",
                 to: "/docs/ledger-oss/get-started/installation",
@@ -83,10 +83,10 @@ const config = {
             label: "API",
             position: "left",
             items: [
-              {
-                label: "Cloud",
-                to: "/api/cloud/",
-              },
+              // {
+              //   label: "Cloud",
+              //   to: "/api/cloud/",
+              // },
               {
                 label: "Ledger",
                 to: "/api/ledger/",
