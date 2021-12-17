@@ -108,7 +108,7 @@ const sidebars = {
       collapsible: false,
       collapsed: false,
       items: [
-        "cloud/guides/your-first-ledger",
+        "cloud/guides/how-to-send-data-to-my-ledger",
       ]
     }
   ]
