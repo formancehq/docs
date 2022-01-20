@@ -1,28 +1,28 @@
 ---
-title: How to send data to my ledger ?
+title: Getting started with Cloud Legders
 ---
-# How to send data to my ledger ?
+# Getting started with Cloud Legders
 
-## What is a ledger ?
+## Authentication
 
-## How to get a JWT Token ?
-For get a JWT Token, you need a private token. If you don't have one, you can create one in the [My Numary Cloud](https://my.numary.cloud/integrations).
+To obtain a JWT Token, you need to create an API token first, which you can create on the [Numary Cloud Dashboard](https://my.numary.cloud/integrations).
+
 ```bash
 curl --location --request POST 'https://api.numary.cloud/auth/authenticate/tokens' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "strategy": "m2m",
-    "token": "YOUR_TOKEN"
+    "token": "YOUR_API_TOKEN"
 }'
 ```
-This API call return your JWT Token. This JWT Token is valid by default for 1 hour.
+This API call will return a JWT token, which is valid for 1 hour by default.
 
-## Now, send data to your ledger
-Please, follow the steps below to send data to your ledger.
+## Sending data
 
-Replace :    
-LEDGER_SLUG = Your Ledger Slug (e.g. my-ledger)    
-YOUR_JWT_TOKEN = JWT Token you get from the previous step
+Replacing:  
+`LEDGER_SLUG` with your ledger slug, e.g. `my-ledger-a1871e`  
+`YOUR_JWT_TOKEN` with the JWT token obtained from the previous step
+
 ```shell
 curl -X POST \
 -H 'Content-Type: application/json' \
