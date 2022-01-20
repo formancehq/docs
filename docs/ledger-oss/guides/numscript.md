@@ -14,3 +14,7 @@ Numscript-based transactions can either be created by using the script endpoint,
 ```shell
 numary exec <ledger-name> script.num
 ```
+
+## Extensions
+
+[VSCode](https://marketplace.visualstudio.com/items?itemName=numary.numscript)

@@ -20,8 +20,8 @@ This API call return your JWT Token. This JWT Token is valid by default for 1 ho
 ## Now, send data to your ledger
 Please, follow the steps below to send data to your ledger.
 
-Replace :
-LEDGER_SLUG = Your Ledger Slug (e.g. my-ledger)
+Replace :    
+LEDGER_SLUG = Your Ledger Slug (e.g. my-ledger)    
 YOUR_JWT_TOKEN = JWT Token you get from the previous step
 ```shell
 curl -X POST \

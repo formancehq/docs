@@ -79,6 +79,7 @@ const sidebars = {
           collapsed: false,
           items: [
             "ledger-oss/examples/in-app-currency",
+            "ledger-oss/examples/marketplace-sales-routing",
           ],
         },
         {
@@ -108,6 +109,7 @@ const sidebars = {
       collapsible: false,
       collapsed: false,
       items: [
+        "cloud/guides/how-to-send-data-to-my-ledger",
         "cloud/guides/how-to-send-data-to-my-ledger",
       ]
     }
