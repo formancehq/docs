@@ -22,7 +22,24 @@ const config = {
   ],
 
   plugins: [
-      'posthog-docusaurus'
+    'posthog-docusaurus',
+    [
+      '@docusaurus/plugin-content-docs',
+      ({
+        id: 'ledger',
+        path: 'oss/ledger',
+        routeBasePath: 'oss/ledger',
+        editCurrentVersion: true,
+        sidebarPath: require.resolve('./sidebarsLedger.js'),
+        showLastUpdateAuthor: true,
+        showLastUpdateTime: true,
+        versions: {
+          current: {
+            label: `Latest 🚧 `,
+          },
+        },
+      }),
+    ],
   ],
 
   presets: [
@@ -32,7 +49,12 @@ const config = {
       ({
         sitemap: {},
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          versions: {
+            current: {
+              label: `Latest 🚧 `,
+            },
+          },
+          sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
           editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
@@ -61,6 +83,10 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: true,
+      },
       navbar: {
         logo: {
           alt: 'Numary Logo',
@@ -68,33 +94,45 @@ const config = {
         },
         items: [
           {
-            label: 'Documentation',
+            label: '📚 Documentation',
             position: 'left',
             items: [
               {
-                label: 'Cloud',
-                to: '/docs/cloud/introduction',
-              },
-              {
                 label: 'Ledger',
-                to: '/docs/ledger-oss/get-started/installation',
+                to: '/oss/ledger/get-started/installation',
               },
             ],
+          },
+          {
+            label: '☁️ Cloud',
+            to: '/docs/introduction',
+            position: 'left',
           },
           {
             label: 'API',
             position: 'left',
             items: [
               {
-                label: 'Cloud',
-                to: '/api/cloud/',
-              },
-              {
                 label: 'Ledger',
                 to: '/api/ledger/',
               },
+              {
+                label: 'Cloud',
+                to: '/api/cloud/',
+              },
             ],
           },
+          // {
+          //   type: 'docsVersionDropdown',
+          //   docsPluginId: 'ledger',
+          //   position: 'right',
+          //   dropdownActiveClassDisabled: true,
+          // },
+          // {
+          //   type: 'docsVersionDropdown',
+          //   position: 'right',
+          //   dropdownActiveClassDisabled: true,
+          // },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
@@ -141,7 +179,7 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        // darkTheme: darkCodeTheme,
       },
       posthog: {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
