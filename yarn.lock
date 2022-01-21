@@ -7544,7 +7544,7 @@ react-loadable-ssr-addon-v5-slorber@^1.0.1:
   dependencies:
     "@babel/runtime" "^7.10.3"
 
-react-numscript-codeblock@^0.2.4:
+react-numscript-codeblock@^0.2.0:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/react-numscript-codeblock/-/react-numscript-codeblock-0.2.4.tgz#8ef58895490cc6b489238b6303957520427781f4"
   integrity sha512-k6tHyMrf2vnKnZDWdJHYmtWGlJojDP5HKwIyGjduC3oVPaYrWXFOfBVnOMf8llQi3FgFHb3To3t1Rh0zuwv2/g==
