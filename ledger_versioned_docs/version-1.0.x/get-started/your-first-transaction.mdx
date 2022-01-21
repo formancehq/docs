@@ -49,16 +49,5 @@ send [COIN 100] (
 numary exec quickstart example.num
 ```
 
-import { NumscriptBlock } from 'react-numscript-codeblock';
-
-<NumscriptBlock script={`send [COIN 100] (
-  source = @world
-  destination = @centralbank
-)
-send [COIN 100] (
-  source = @centralbank
-  destination = @users:001
-)`}></NumscriptBlock>
-
 Assuming your call succeeded, it's time to go check the transaction. You can do so using the API or alternatively you can head to the integrated dashboard for visual confirmation, conveniently hosted at control.numary.com
 
