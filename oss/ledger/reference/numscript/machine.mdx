@@ -10,6 +10,7 @@ The intent should aways stand out; a Numscript program should never be ambiguous
 
 ## Correctness
 Monetary computations should always yield correct results, avoiding common currency rounding issues and accidental money creation or destruction.
+Executing is atomic, resulting in either all postings committed or none.
 
 ## Finiteness
 Numscript programs should always terminate and terminate predictably.
