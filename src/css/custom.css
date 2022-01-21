@@ -17,8 +17,12 @@
   --ifm-h1-font-size: 2rem;
 }
 
-[class^=h1Heading] {
-    font-size: 2rem;
+.markdown h1:first-child {
+  font-size: 2.4rem;
+}
+
+.markdown h2 {
+  font-size: 1.8rem;
 }
 
 html:not([data-theme="dark"])
