@@ -91,6 +91,7 @@ const config = {
         logo: {
           alt: 'Numary Logo',
           src: 'img/logo_numary.svg',
+          href: '/oss/ledger/get-started/installation',
         },
         items: [
           {
