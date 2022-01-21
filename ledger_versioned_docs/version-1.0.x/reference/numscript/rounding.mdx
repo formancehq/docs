@@ -18,7 +18,7 @@ In the example below:
   }
 )`}></NumscriptBlock>
 
-The @rider account will receive `COIN 50` and the @taxes account `COIN 49`. The opposite can be achieved by reversing the order of destinations:
+The `@rider` account will receive `COIN 50` and the `@taxes` account `COIN 49`. The opposite can be achieved by reversing the order of destinations:
 
 <NumscriptBlock script={`send [COIN 99] (
   source = @world
@@ -28,7 +28,7 @@ The @rider account will receive `COIN 50` and the @taxes account `COIN 49`. The 
   }
 )`}></NumscriptBlock>
 
-In a more complex example below, we are splitting 99 into 5 which would result in 19.8 allocated to each account. Numscript will first allocate 19 to every account, then attempt to distribute the remaining 4 evenly starting from @a
+In a more complex example below, we are splitting 99 into 5 which would result in 19.8 allocated to each account. Numscript will first allocate 19 to every account, then attempt to distribute the remaining 4 evenly starting from `@a`
 
 <NumscriptBlock script={`send [COIN 99] (
   source = @world
