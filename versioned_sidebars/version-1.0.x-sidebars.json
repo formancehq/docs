@@ -1,0 +1,17 @@
+{
+  "cloud": [
+    {
+      "id": "introduction",
+      "type": "doc"
+    },
+    {
+      "label": "Guides",
+      "type": "category",
+      "collapsible": false,
+      "collapsed": false,
+      "items": [
+        "guides/how-to-send-data-to-my-ledger"
+      ]
+    }
+  ]
+}
