@@ -22,52 +22,7 @@ const config = {
   ],
 
   plugins: [
-      'posthog-docusaurus',
-    [
-      '@docusaurus/plugin-client-redirects',
-      {
-        redirects: [
-          { to: '/', from: '/docs/introduction' },
-          { to: '/docs/installation-1', from: '/docs/ledger-oss/get-started/installation' },
-          { to: '/docs/your-first-transaction', from: '/docs/ledger-oss/get-started/your-first-transaction' },
-          { to: '/docs/ledgers', from: '/docs/ledger-oss/reference/ledgers' },
-          { to: '/docs/accounts', from: '/docs/ledger-oss/reference/accounts' },
-          { to: '/docs/transaction-model', from: '/docs/ledger-oss/reference/transactions' },
-          { to: '/docs/machine-instructions', from: '/docs/ledger-oss/reference/numscript/machine' },
-          { to: '/docs/sources', from: '/docs/ledger-oss/reference/numscript/sources' },
-          { to: '/docs/destinations', from: '/docs/ledger-oss/reference/numscript/destinations' },
-          { to: '/docs/injecting-variables', from: '/docs/ledger-oss/reference/numscript/variables' },
-          { to: '/docs/using-metadata', from: '/docs/ledger-oss/reference/numscript/metadata' },
-          { to: '/docs/rounding', from: '/docs/ledger-oss/reference/numscript/rounding' },
-          { to: '/docs/configuration', from: '/docs/ledger-oss/guides/configuration' },
-          { to: '/docs/creating-money', from: '/docs/ledger-oss/guides/issuing-money' },
-          { to: '/docs/numscript', from: '/docs/ledger-oss/guides/numscript' },
-          { to: '/docs/using-the-control-dashboard', from: '/docs/ledger-oss/guides/using-the-control-dashboard' },
-          { to: '/docs/materialized-transactions', from: '/docs/ledger-oss/guides/materialized-transactions' },
-          { to: '/docs/assets', from: '/docs/ledger-oss/guides/unambiguous-monetary-notation' },
-          { to: '/docs/creating-a-in-game-currency', from: '/docs/ledger-oss/examples/in-app-currency' },
-          { to: '/docs/marketplace-sales-routing', from: '/docs/ledger-oss/examples/marketplace-sales-routing' },
-          { to: '/docs/architecture', from: '/docs/ledger-oss/advanced/architecture' },
-          { to: '/docs/storages', from: '/docs/ledger-oss/advanced/storages' },
-          { to: '/docs/authentication', from: '/docs/ledger-oss/advanced/authentication' },
-          { to: '/docs/running-in-production', from: '/docs/ledger-oss/advanced/running-in-production' },
-          { to: '/docs/concurrency-model', from: '/docs/ledger-oss/advanced/concurrency-model' },
-          // { to: '/reference/get_-info-1', from: '/api/ledger/#tag/server/paths/~1_info/get' },
-          // { to: '/reference/get_-ledger-accounts', from: '/api/ledger/#/paths/~1{ledger}~1accounts/get' },
-          // { to: '/reference/get_-ledger-accounts-accountid', from: '/api/ledger/#/paths/~1{ledger}~1accounts~1{accountId}/get' },
-          // { to: '/reference/post_-ledger-accounts-accountid-metadata', from: '/api/ledger/#/paths/~1{ledger}~1accounts~1{accountId}~1metadata/post' },
-          // { to: '/reference/get_-ledger-mapping', from: '/api/ledger/#tag/contracts/paths/~1{ledger}~1mapping/get' },
-          // { to: '/reference/put_-ledger-mapping', from: '/api/ledger/#tag/mapping/paths/~1{ledger}~1mapping/put' },
-          // { to: '/reference/post_-ledger-script-1', from: '/api/ledger/#tag/script/paths/~1{ledger}~1script/post' },
-          // { to: '/reference/get_-ledger-stats', from: '/api/ledger/#tag/stats/paths/~1{ledger}~1stats/get' },
-          // { to: '/reference/get_-ledger-transactions-1', from: '/api/ledger/#tag/transactions/paths/~1{ledger}~1transactions/get' },
-          // { to: '/reference/post_-ledger-transactions-1', from: '/api/ledger/#tag/transactions/paths/~1{ledger}~1transactions/post' },
-          // { to: '/reference/get_-ledger-transactions-txid', from: '/api/ledger/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}/get' },
-          // { to: '/reference/post_-ledger-transactions-txid-metadata', from: '/api/ledger/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1metadata/post' },
-          // { to: '/reference/post_-ledger-transactions-txid-reverta', from: '/api/ledger/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1revert/post' }
-        ],
-      },
-    ],
+      'posthog-docusaurus'
   ],
 
   presets: [
