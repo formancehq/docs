@@ -8,13 +8,13 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Numary Hub Resources\n',
   tagline: 'The open foundation you need to build and scale money-movements within your app',
-  url: 'https://developers.numary.cloud',
+  url: 'https://docs.numary.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'numary', // Usually your GitHub org/user name.
-  projectName: 'docs-cloud', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
 
   stylesheets: [
     "https://fonts.googleapis.com/icon?family=Material+Icons",
