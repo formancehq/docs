@@ -17,8 +17,24 @@ Numscript programs should always terminate and terminate predictably.
 -----
 
 Here is a simple transaction example. We use multiple `send`, which will result in a single transaction with multiple postings:
-[block:html]
-{
-  "html": "<iframe style=\"width: 100%; height: 400px; border: none;\" src=\"https://play.numscript.org/numscript-embed?payload=eyJjb2RlIjoic2VuZCBbVVNELzIgNTk5XSAoXG4gIHNvdXJjZSA9IEB3b3JsZFxuICBkZXN0aW5hdGlvbiA9IEBwYXltZW50czowMDFcbilcblxuc2VuZCBbVVNELzIgNTk5XSAoXG4gIHNvdXJjZSA9IEBwYXltZW50czowMDFcbiAgZGVzdGluYXRpb24gPSBAcmlkZXM6MDIzNFxuKVxuXG5zZW5kIFtVU0QvMiA1OTldIChcbiAgc291cmNlID0gQHJpZGVzOjAyMzRcbiAgZGVzdGluYXRpb24gPSB7XG4gICAgODUlIHRvIEBkcml2ZXJzOjA0MlxuICAgIHJlbWFpbmluZyB0byB7XG4gICAgICAxMCUgdG8gQGNoYXJpdHlcbiAgICAgIHJlbWFpbmluZyB0byBAcGxhdGZvcm06ZmVlc1xuICAgIH1cbiAgfVxuKSIsImhlaWdodCI6NDAwfQ==\"></iframe>"
-}
-[/block]
+<NumscriptBlock script={`send [USD/2 599] (
+                           source = @world
+                           destination = @payments:001
+                         )
+
+                         send [USD/2 599] (
+                           source = @payments:001
+                           destination = @rides:0234
+                         )
+
+                         send [USD/2 599] (
+                           source = @rides:0234
+                           destination = {
+                             85% to @drivers:042
+                             remaining to {
+                               10% to @charity
+                               remaining to @platform:fees
+                             }
+                           }
+                         )`}>
+                         </NumscriptBlock>
