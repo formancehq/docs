@@ -49,6 +49,7 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
+                "ledger-oss/reference/numscript/machine",
                 "ledger-oss/reference/numscript/sources",
                 "ledger-oss/reference/numscript/destinations",
                 "ledger-oss/reference/numscript/variables",
