@@ -21,6 +21,17 @@
     font-size: 2rem;
 }
 
+html:not([data-theme="dark"])
+  .redocusaurus
+  .redoc-wrap
+  .api-content
+  > div
+  > div:nth-child(1)
+  > div:nth-child(2)
+  h3 {
+  color: var(--ifm-font-color-base-inverse);
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
   display: block;
