@@ -135,7 +135,7 @@ const config = {
             ],
           },
         ],
-        copyright: `Copyright © ${new Date().getFullYear()} Numary, Inc. Built with Docusaurus.`,
+        copyright: `Copyright © 2021-2022 Numaire, Inc`,
       },
       prism: {
         theme: lightCodeTheme,
