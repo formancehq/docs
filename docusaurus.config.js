@@ -172,6 +172,10 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/numary',
               },
+              {
+                label: 'Service Status',
+                href: 'https://status.numary.com',
+              },
             ],
           },
         ],
