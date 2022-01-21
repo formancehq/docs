@@ -2,9 +2,10 @@
 title: Running in production
 ---
 # Running in production
-Numary is currently in beta. During this evaluation phase:
-* Breaking changes can happen between releases
-* Critical bugs can be discovered
-* Documentation will be incomplete
+Numary is currently in release candidate. During this RC phase:
 
-The next phase beyond beta is RC. The RC will officially freeze the 1.x line API and the 1.x will mark the start of the 1 year support period.
+* Some small improvements may be added
+* Some bugs may be fixed
+* Non-breaking minute details on the API may change
+
+The RC officially freezes the 1.x line API, and the 1.x stable will mark the start of a 1 year support period.
