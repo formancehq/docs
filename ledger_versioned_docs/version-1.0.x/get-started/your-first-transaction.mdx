@@ -7,39 +7,41 @@ title: Your first transaction
 If you followed along the previous page, you should have a Numary instance up & read to accept transactions. Woohoo! Let's get started.
 
 ## Without Numscript
+
 ```shell
 curl -X POST \
--H 'Content-Type: application/json' \
--d '{
-"postings": [
-{
-"source": "world",
-"destination": "central_bank",
-"asset": "GEM",
-"amount": 100
-},
-{
-"source": "central_bank",
-"destination": "users:001",
-"asset": "GEM",
-"amount": 100
-}
-],
-"metadata": {
-"description": "Wohoo! a first transaction."
-}
-}' http://localhost:3068/quickstart/transactions
+  -H 'Content-Type: application/json' \
+  -d '{
+    "postings": [
+      {
+        "source": "world",
+        "destination": "central_bank",
+        "asset": "GEM",
+        "amount": 100
+      },
+      {
+        "source": "central_bank",
+        "destination": "users:001",
+        "asset": "GEM",
+        "amount": 100
+      }
+    ],
+    "metadata": {
+    	"description": "Wohoo! a first transaction."
+    }
+  }' http://localhost:3068/quickstart/transactions
 ```
 
 ## With Numscript
+
 ```shell
 echo "
 send [COIN 100] (
   source = @world
-  destination = @central_bank
+  destination = @centralbank
 )
 send [COIN 100] (
-  source = @central_bank
+  source = @centralbank
   destination = @users:001
 )
 " > example.num
@@ -51,10 +53,10 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 
 <NumscriptBlock script={`send [COIN 100] (
   source = @world
-  destination = @central_bank
+  destination = @centralbank
 )
 send [COIN 100] (
-  source = @central_bank
+  source = @centralbank
   destination = @users:001
 )`}></NumscriptBlock>
 
