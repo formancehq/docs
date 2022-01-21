@@ -56,7 +56,8 @@ const config = {
           },
           sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/numary/docs/edit/main/docs/',
+          //editUrl: 'https://github.com/numary/docs/edit/main/docs/',
+          routeBasePath: '/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
