@@ -17,24 +17,25 @@ Numscript programs should always terminate and terminate predictably.
 -----
 
 Here is a simple transaction example. We use multiple `send`, which will result in a single transaction with multiple postings:
-<NumscriptBlock script={`send [USD/2 599] (
-                           source = @world
-                           destination = @payments:001
-                         )
+```shell
+send [USD/2 599] (
+  source = @world
+  destination = @payments:001
+)
 
-                         send [USD/2 599] (
-                           source = @payments:001
-                           destination = @rides:0234
-                         )
+send [USD/2 599] (
+  source = @payments:001
+  destination = @rides:0234
+)
 
-                         send [USD/2 599] (
-                           source = @rides:0234
-                           destination = {
-                             85% to @drivers:042
-                             remaining to {
-                               10% to @charity
-                               remaining to @platform:fees
-                             }
-                           }
-                         )`}>
-                         </NumscriptBlock>
+send [USD/2 599] (
+  source = @rides:0234
+  destination = {
+    85% to @drivers:042
+    remaining to {
+      10% to @charity
+      remaining to @platform:fees
+    }
+  }
+)
+```
