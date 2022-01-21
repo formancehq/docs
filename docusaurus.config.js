@@ -31,8 +31,8 @@ const config = {
         routeBasePath: 'oss/ledger',
         editCurrentVersion: true,
         sidebarPath: require.resolve('./sidebarsLedger.js'),
-        showLastUpdateAuthor: true,
-        showLastUpdateTime: true,
+        showLastUpdateAuthor: false,
+        showLastUpdateTime: false,
         versions: {
           current: {
             label: `Latest 🚧 `,
