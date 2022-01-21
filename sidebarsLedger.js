@@ -13,25 +13,21 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  docs: [
-    {
-      id: "introduction",
-      type: "doc",
-    },
+  ledger: [
     {
       label: "Ledger OSS",
       type: "category",
       collapsible: true,
       collapsed: true,
-      items: [
+      items:[
         {
           label: "Getting Started",
           type: "category",
           collapsible: false,
           collapsed: false,
           items: [
-            "ledger-oss/get-started/installation",
-            "ledger-oss/get-started/your-first-transaction"
+            "get-started/installation",
+            "get-started/your-first-transaction"
           ],
         },
         {
@@ -40,20 +36,21 @@ const sidebars = {
           collapsible: false,
           collapsed: false,
           items: [
-            "ledger-oss/reference/ledgers",
-            "ledger-oss/reference/accounts",
-            "ledger-oss/reference/transactions",
+            "reference/ledgers",
+            "reference/accounts",
+            "reference/transactions",
             {
               label: "Numscript",
               type: "category",
               collapsible: true,
               collapsed: true,
               items: [
-                "ledger-oss/reference/numscript/sources",
-                "ledger-oss/reference/numscript/destinations",
-                "ledger-oss/reference/numscript/variables",
-                "ledger-oss/reference/numscript/metadata",
-                "ledger-oss/reference/numscript/rounding",
+                "reference/numscript/machine",
+                "reference/numscript/sources",
+                "reference/numscript/destinations",
+                "reference/numscript/variables",
+                "reference/numscript/metadata",
+                "reference/numscript/rounding",
               ],
             },
           ],
@@ -64,12 +61,12 @@ const sidebars = {
           collapsible: true,
           collapsed: false,
           items: [
-            "ledger-oss/guides/configuration",
-            "ledger-oss/guides/issuing-money",
-            "ledger-oss/guides/numscript",
-            "ledger-oss/guides/using-the-control-dashboard",
-            "ledger-oss/guides/materialized-transactions",
-            "ledger-oss/guides/unambiguous-monetary-notation",
+            "guides/configuration",
+            "guides/issuing-money",
+            "guides/numscript",
+            "guides/using-the-control-dashboard",
+            "guides/materialized-transactions",
+            "guides/unambiguous-monetary-notation",
           ],
         },
         {
@@ -78,7 +75,8 @@ const sidebars = {
           collapsible: false,
           collapsed: false,
           items: [
-            "ledger-oss/examples/in-app-currency",
+            "examples/in-app-currency",
+            "examples/marketplace-sales-routing",
           ],
         },
         {
@@ -87,31 +85,16 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           items: [
-            "ledger-oss/advanced/architecture",
-            "ledger-oss/advanced/storages",
-            "ledger-oss/advanced/authentication",
-            "ledger-oss/advanced/running-in-production",
-            "ledger-oss/advanced/concurrency-model",
+            "advanced/architecture",
+            "advanced/storages",
+            "advanced/authentication",
+            "advanced/running-in-production",
+            "advanced/concurrency-model",
           ],
         },
       ],
     },
   ],
-  cloud: [
-    {
-      id: "cloud/introduction",
-      type: "doc",
-    },
-    {
-      label: "Guides",
-      type: "category",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        "cloud/guides/your-first-ledger",
-      ]
-    }
-  ]
 };
 
 module.exports = sidebars;

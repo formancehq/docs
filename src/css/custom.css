@@ -14,6 +14,26 @@
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208);
   --ifm-code-font-size: 95%;
+  --ifm-h1-font-size: 2rem;
+}
+
+.markdown h1:first-child {
+  font-size: 2.4rem;
+}
+
+.markdown h2 {
+  font-size: 1.8rem;
+}
+
+html:not([data-theme="dark"])
+  .redocusaurus
+  .redoc-wrap
+  .api-content
+  > div
+  > div:nth-child(1)
+  > div:nth-child(2)
+  h3 {
+  color: var(--ifm-font-color-base-inverse);
 }
 
 .docusaurus-highlight-code-line {
@@ -25,4 +45,8 @@
 
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
+}
+
+html[data-theme='light'] footer {
+  background-color: black;
 }

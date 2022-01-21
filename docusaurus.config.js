@@ -8,20 +8,39 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Numary Hub Resources\n',
   tagline: 'The open foundation you need to build and scale money-movements within your app',
-  url: 'https://developers.numary.cloud',
+  url: 'https://docs.numary.com',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'numary', // Usually your GitHub org/user name.
-  projectName: 'docs-cloud', // Usually your repo name.
+  projectName: 'docs', // Usually your repo name.
 
   stylesheets: [
-    "https://fonts.googleapis.com/icon?family=Material+Icons",
-    "https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap",
+    'https://fonts.googleapis.com/icon?family=Material+Icons',
+    'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap',
   ],
 
-  plugins: ["posthog-docusaurus"],
+  plugins: [
+    'posthog-docusaurus',
+    [
+      '@docusaurus/plugin-content-docs',
+      ({
+        id: 'ledger',
+        path: 'oss/ledger',
+        routeBasePath: 'oss/ledger',
+        editCurrentVersion: true,
+        sidebarPath: require.resolve('./sidebarsLedger.js'),
+        showLastUpdateAuthor: false,
+        showLastUpdateTime: false,
+        versions: {
+          current: {
+            label: `Latest 🚧 `,
+          },
+        },
+      }),
+    ],
+  ],
 
   presets: [
     [
@@ -30,9 +49,14 @@ const config = {
       ({
         sitemap: {},
         docs: {
-          sidebarPath: require.resolve('./sidebars.js'),
+          versions: {
+            current: {
+              label: `Latest 🚧 `,
+            },
+          },
+          sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/numary/docs/edit/main/docs/',
+          // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -59,40 +83,57 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      colorMode: {
+        defaultMode: 'light',
+        disableSwitch: true,
+      },
       navbar: {
         logo: {
           alt: 'Numary Logo',
           src: 'img/logo_numary.svg',
+          href: '/oss/ledger/get-started/installation',
         },
         items: [
           {
-            label: "Documentation",
-            position: "left",
+            label: '📚 Documentation',
+            position: 'left',
             items: [
-              // {
-              //   label: "Cloud",
-              //   to: "/docs/cloud/introduction",
-              // },
               {
-                label: "Ledger",
-                to: "/docs/ledger-oss/get-started/installation",
+                label: 'Ledger',
+                to: '/oss/ledger/get-started/installation',
               },
             ],
           },
           {
-            label: "API",
-            position: "left",
+            label: '☁️ Cloud',
+            to: '/docs/introduction',
+            position: 'left',
+          },
+          {
+            label: 'API',
+            position: 'left',
             items: [
-              // {
-              //   label: "Cloud",
-              //   to: "/api/cloud/",
-              // },
               {
-                label: "Ledger",
-                to: "/api/ledger/",
+                label: 'Ledger',
+                to: '/api/ledger/',
+              },
+              {
+                label: 'Cloud',
+                to: '/api/cloud/',
               },
             ],
           },
+          // {
+          //   type: 'docsVersionDropdown',
+          //   docsPluginId: 'ledger',
+          //   position: 'right',
+          //   dropdownActiveClassDisabled: true,
+          // },
+          // {
+          //   type: 'docsVersionDropdown',
+          //   position: 'right',
+          //   dropdownActiveClassDisabled: true,
+          // },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
@@ -132,6 +173,10 @@ const config = {
                 label: 'GitHub',
                 href: 'https://github.com/numary',
               },
+              {
+                label: 'Service Status',
+                href: 'https://status.numary.com',
+              },
             ],
           },
         ],
@@ -139,11 +184,11 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
+        // darkTheme: darkCodeTheme,
       },
       posthog: {
-        apiKey: "phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om",
-        appUrl: "https://app.posthog.com",  // optional
+        apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
+        appUrl: 'https://app.posthog.com',  // optional
         enableInDevelopment: false,  // optional
       }
     })

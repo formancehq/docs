@@ -1,0 +1,26 @@
+---
+title: Configuration
+---
+
+# Configuration
+Numary will attempt to read its config from file and environment variables - environment variables taking precedence over the config file.
+
+## Config file
+
+Generating the config file is straightforward:
+```shell
+numary config init
+
+cd ~/.numary
+cat numary.yml
+```
+
+## Environment variables
+
+Any variable from the config file can be overwritten
+
+```shell
+NUMARY_STORAGE_DRIVER=postgres \
+NUMARY_STORAGE_POSTGRES_CONN_STRING=postgresql://localhost/dbname \
+numary server start
+```
