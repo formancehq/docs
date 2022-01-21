@@ -24,8 +24,6 @@
   padding: 0 var(--ifm-pre-padding);
 }
 
-.docu
-
 html[data-theme='dark'] .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.3);
 }
