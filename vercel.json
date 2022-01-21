@@ -1,5 +1,5 @@
 {
-  "rewrites": [
+  "redirects": [
     { "source": "/", "destination": "/docs/introduction" },
     { "source": "/docs/installation-1", "destination": "/docs/ledger-oss/get-started/installation" },
     { "source": "/docs/your-first-transaction", "destination": "/docs/ledger-oss/get-started/your-first-transaction" },
