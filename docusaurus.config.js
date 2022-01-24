@@ -51,7 +51,7 @@ const config = {
         docs: {
           versions: {
             current: {
-              label: `Latest 🚧 `,
+              label: `Latest 🚧`,
             },
           },
           sidebarPath: require.resolve('./sidebarsCloud.js'),
