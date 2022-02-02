@@ -8,9 +8,11 @@ Beyond the HTTP API, you can use one of these libraries to communicate with a Nu
 
 ## Officialy supported
 
-| Language        | Package name | Registry | Source code                         |
-|-----------------|--------------|----------|-------------------------------------|
-| Typescript / JS | numary       | NPM      | https://github.com/numary/numary-js |
+| Language        | Package name      | Registry | Source code                                 |
+|-----------------|-------------------|----------|---------------------------------------------|
+| Typescript / JS | numary            | NPM      | https://github.com/numary/numary-js         |
+| PHP             | numary-sdk-php    |          | https://github.com/numary/numary-sdk-php    |
+| Python          | numary-sdk-python |          | https://github.com/numary/numary-sdk-python |
 
 ## Community owned
 
