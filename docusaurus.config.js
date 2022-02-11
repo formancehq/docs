@@ -68,11 +68,7 @@ const config = {
       {
         specs: [
           {
-            specUrl: 'https://api.numary.cloud/swagger.json',
-            routePath: '/api/cloud/',
-          },
-          {
-            specUrl: 'https://api.numary.cloud/swagger.ledger.json',
+            specUrl: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
             routePath: '/api/ledger/',
           }
       ],
