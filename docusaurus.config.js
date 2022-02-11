@@ -72,7 +72,7 @@ const config = {
             routePath: '/api/ledger/',
           },
           {
-            specUrl: 'http://api.numary.cloud/swagger.json',
+            specUrl: 'https://api.numary.cloud/swagger.json',
             routePath: '/api/cloud/',
           }
       ],
