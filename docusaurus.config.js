@@ -112,11 +112,7 @@ const config = {
               {
                 label: 'Ledger',
                 to: '/api/ledger/',
-              },
-              {
-                label: 'Cloud',
-                to: '/api/cloud/',
-              },
+              }
             ],
           },
           // {
