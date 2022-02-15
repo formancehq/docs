@@ -90,6 +90,7 @@ const sidebars = {
             "advanced/authentication",
             "advanced/running-in-production",
             "advanced/concurrency-model",
+            "advanced/release-lifecycle",
           ],
         },
       ],
