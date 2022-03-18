@@ -33,11 +33,11 @@ const config = {
         sidebarPath: require.resolve('./sidebarsLedger.js'),
         showLastUpdateAuthor: false,
         showLastUpdateTime: false,
-        versions: {
-          current: {
-            label: `Latest 🚧 `,
-          },
-        },
+        // versions: {
+        //   current: {
+        //     label: `Latest 🚧 `,
+        //   },
+        // },
       }),
     ],
   ],
@@ -49,11 +49,11 @@ const config = {
       ({
         sitemap: {},
         docs: {
-          versions: {
-            current: {
-              label: `Latest 🚧`,
-            },
-          },
+          // versions: {
+          //   current: {
+          //     label: `Latest 🚧`,
+          //   },
+          // },
           sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
           // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
