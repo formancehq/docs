@@ -1,0 +1,12 @@
+```shell
+#/etc/yum.repos.d/numary.repo
+[numary]
+name=Numary Private Repo
+baseurl=https://yum.fury.io/numary/
+enabled=1
+gpgcheck=0
+```
+And run this command for install Numary :
+```shell
+yum update && yum install numary
+```
