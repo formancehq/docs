@@ -35,6 +35,7 @@ const sidebars = {
               collapsed: true,
               link: { type: 'doc', id: 'get-started/hello-world/index' },
               items: [
+                "get-started/hello-world/start-the-server",
                 "get-started/hello-world/your-first-transaction"
               ]
             }
