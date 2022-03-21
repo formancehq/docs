@@ -67,6 +67,7 @@ const sidebars = {
             "guides/using-the-control-dashboard",
             "guides/materialized-transactions",
             "guides/unambiguous-monetary-notation",
+            "guides/sdks",
           ],
         },
         {
