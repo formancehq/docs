@@ -25,9 +25,19 @@ const sidebars = {
           type: "category",
           collapsible: false,
           collapsed: false,
+          link: { type: 'doc', id: 'get-started/index' },
           items: [
             "get-started/installation",
-            "get-started/your-first-transaction"
+            {
+              label: "Hello World",
+              type: "category",
+              collapsible: true,
+              collapsed: true,
+              link: { type: 'doc', id: 'get-started/hello-world/index' },
+              items: [
+                "get-started/hello-world/your-first-transaction"
+              ]
+            }
           ],
         },
         {
