@@ -4,35 +4,19 @@ title: Your first transaction
 
 # Your first transaction
 
-If you followed along the previous page, you should have a Numary instance up & read to accept transactions. Woohoo! Let's get started.
+Now you have Numary Ledger up and ready to accept transactions. Woohoo! Let's get started by creating our first transaction in Numscript.
 
-## Without Numscript
+## The scenario
 
-```shell
-curl -X POST \
-  -H 'Content-Type: application/json' \
-  -d '{
-    "postings": [
-      {
-        "source": "world",
-        "destination": "central_bank",
-        "asset": "GEM",
-        "amount": 100
-      },
-      {
-        "source": "central_bank",
-        "destination": "users:001",
-        "asset": "GEM",
-        "amount": 100
-      }
-    ],
-    "metadata": {
-    	"description": "Wohoo! a first transaction."
-    }
-  }' http://localhost:3068/quickstart/transactions
-```
+Right now, the game world of Dunshire is entirely empty. We need to seed it with a little coin—and we'll do that by first creating that coin, and then transferring it to our first player, `@users:benwyatt`.
 
-## With Numscript
+In the real world, we often need to track money entering our system from the outside. We do this through a special account called `@world` that represents the world outside of our system. This account is unique in that it can never be overdrawn (unlike other accounts).
+
+So, to introduce coin into Dunshire, we'll need to transfer money from `@world` into our administrative central account. From there, we can bestow that coin upon `@users:benwyatt`.
+
+## Introducing new coin
+
+We begin by introducing new coin into the world, by transfering it from `@world` to `@centralbank`.
 
 ```shell
 echo "
@@ -40,14 +24,23 @@ send [COIN 100] (
   source = @world
   destination = @centralbank
 )
-send [COIN 100] (
-  source = @centralbank
-  destination = @users:001
-)
 " > example.num
 
 numary exec quickstart example.num
 ```
 
-Assuming your call succeeded, it's time to go check the transaction. You can do so using the API or alternatively you can head to the integrated dashboard for visual confirmation, conveniently hosted at control.numary.com
+Let's break this down a little bit to understand what's going on under the hood.
 
+Numary Ledger can track money movements through multiple ledgers. Each ledger has a name, and each transaction must be assigned to a specific ledger. In many cases, you'll only need one ledger. Sometimes though you might want more than one.
+
+In any case, we instructed Numary Ledger to use the `quickstart` ledger. That ledger didn't previously exist, so Numary Ledger helpfully created it for us.
+
+Similarly, the account `@centralbank` on ledger `quickstart` also didn't exist: By initiating a transfer to `@centralbank`, we also created that account.
+
+## Check the outcome
+
+## Get that coin to a user
+
+## What we've accomplished
+
+## Next steps
