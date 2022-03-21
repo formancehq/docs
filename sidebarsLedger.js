@@ -46,6 +46,7 @@ const sidebars = {
           collapsible: false,
           collapsed: false,
           items: [
+            "reference/installation",    
             "reference/ledgers",
             "reference/accounts",
             "reference/transactions",
