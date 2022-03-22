@@ -3,7 +3,7 @@ title: Concurrency Model
 ---
 # Concurrency Model
 
-Transations commited to the ledger are fully atomic and serialized, supported by two separate and ordered concurrency-control mechanisms preventing effectively race-conditions to happen:
+Transactions commited to the ledger are fully atomic and serialized, supported by two separate and ordered concurrency-control mechanisms preventing effectively race-conditions to happen:
 
 0. Pre-commit in-memory or Redis-based locking
 1. Optimistic locking
