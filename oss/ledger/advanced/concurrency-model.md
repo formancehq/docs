@@ -2,11 +2,18 @@
 title: Concurrency Model
 ---
 # Concurrency Model
-## Single node
 
-While we are gradually adding constructs to introduce the concept of a cluster in the ledger, Numary 1.0.x is designed to be running as a single instance on a single node.
+Transations commited to the ledger are fully atomic and serialized, supported by two separate and ordered concurrency-control mechanisms preventing effectively race-conditions to happen:
 
-Optimistic locking is used on the storage backend to ensure consistency and avoid two running ledgers of committing without seeing each other writes. This leads to two important considerations:
+0. Pre-commit in-memory or Redis-based locking
+1. Optimistic locking
 
-* zero downtime upgrades of Numary are not yet possible
-* you should avoid to run 2 instances at the same time to avoid 4.x errors
+## Transaction commit flow
+
+![flow](/img/advanced/concurrency-model.png)
+
+## Recommendation for multi-instances deployments
+
+When deploying multiple ledger instances, it is recommended to use the Redis-based shared pre-commit lock. While the optimistic lock will ultimately be there to prevent race-conditions on commit, using the shared lock will reduce such commit attempts in the first place, yielding better performance for write heavy workloads.
+
+Should the optimistic locking prevent a conflict on commit, it will surface it to the API consumer with a ([Response 409](/api/ledger/#operation/createTransaction)) - it is the responsibility of the client to retry the transaction in this case.
