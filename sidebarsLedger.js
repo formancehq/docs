@@ -36,6 +36,8 @@ const sidebars = {
               link: { type: 'doc', id: 'get-started/hello-world/index' },
               items: [
                 "get-started/hello-world/start-the-server",
+                "get-started/hello-world/introducing-money",
+                "get-started/hello-world/checking-balances",
                 "get-started/hello-world/your-first-transaction"
               ]
             }
