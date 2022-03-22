@@ -2,18 +2,18 @@
 title: Concurrency Model
 ---
 # Concurrency Model
-For Concurrency / Race Condition problems, we have two different mechanisms on the Ledger:
-- Optimistic locking
-- Lock via Redis
 
-In both cases, the goal is to not be able to write data until the transaction has been fully committed.
+Transations commited to the ledger are fully atomic and serialized, supported by two separate and ordered concurrency-control mechanisms preventing effectively race-conditions to happen:
 
-## How does the lock work in the Ledger ?
-![](/img/advanced/concurrency-model.png)
+0. Pre-commit in-memory or Redis-based locking
+1. Optimistic locking
 
-## Recommendation for a multi-instance deployment
-When deploying multiple instances of the Ledger, it is important to have a shared lock between the different instances.   
-Otherwise, you could have conflict problems.    
-However, we have integrated an Optimistic Locking system that allows to return an error if this happens. ([Response 409](/api/ledger/#operation/createTransaction))
+## Transaction commit flow
 
-To share a lock between several instances of the Ledger, you can add a Redis server / Cluster. 
+![flow](/img/advanced/concurrency-model.png)
+
+## Recommendation for multi-instances deployments
+
+When deploying multiple ledger instances, it is recommended to use the Redis-based shared pre-commit lock. While the optimistic lock will ultimately be there to prevent race-conditions on commit, using the shared lock will reduce such commit attempts in the first place, yielding better performance for write heavy workloads.
+
+Should the optimistic locking prevent a conflict on commit, it will surface it to the API consumer with a ([Response 409](/api/ledger/#operation/createTransaction)) - it is the responsibility of the client to retry the transaction in this case.
