@@ -1,6 +1,6 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/oss/ledger/get-started/installation" },
+    { "source": "/", "destination": "/oss/ledger/get-started" },
     { "source": "/docs/installation-1", "destination": "/oss/ledger/get-started/installation" },
     { "source": "/docs/your-first-transaction", "destination": "/oss/ledger/get-started/hello-world/your-first-transaction" },
     { "source": "/oss/ledger/get-started/your-first-transaction", "destination": "/oss/ledger/get-started/hello-world/your-first-transaction" },
