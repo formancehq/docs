@@ -1,6 +1,7 @@
 ---
 title: Introducing Money Into the Ledger
 ---
+import { NumscriptBlock } from 'react-numscript-codeblock';
 
 # Introducing money into the ledger
 
@@ -18,12 +19,10 @@ We begin by introducing new coin into the world, by transfering it from `@world`
 
 Create a file called `intro.num` with the following Numscript:
 
-```shell
-send [COIN 100] (
+<NumscriptBlock script={`send [COIN 100] (
   source = @world
   destination = @centralbank
-)
-```
+)`}></NumscriptBlock>
 
 This bit of Numscript encodes a _transaction_. A transaction is a description of a quantity of money sent from a source account to a destination account.
 
