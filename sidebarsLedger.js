@@ -17,8 +17,9 @@ const sidebars = {
     {
       label: "Ledger OSS",
       type: "category",
-      collapsible: true,
-      collapsed: true,
+      collapsible: false,
+      collapsed: false,
+      link: { type: 'doc', id: 'index' },
       items:[
         {
           label: "Getting Started",
@@ -61,8 +62,8 @@ const sidebars = {
         {
           label: "Examples",
           type: "category",
-          collapsible: false,
-          collapsed: false,
+          collapsible: true,
+          collapsed: true,
           items: [
             "examples/in-app-currency",
             "examples/marketplace-sales-routing",
@@ -84,8 +85,8 @@ const sidebars = {
         {
           label: "Reference",
           type: "category",
-          collapsible: false,
-          collapsed: false,
+          collapsible: true,
+          collapsed: true,
           items: [
             "reference/installation",    
             "reference/ledgers",
