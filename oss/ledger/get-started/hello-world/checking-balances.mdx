@@ -38,7 +38,15 @@ Are getting a "**Failed to connect to the ledger**" error like this?
 
 ![Failed to connect to the ledger](dashboard404.png)
 
-This indicates that either you haven't [started the Numary Ledger service](start-the-server), or you did start it but somehow it's running on a different port than expected. If you changed the default port because of a conflict, you can tell Numary Control what port you used instead.
+This indicates that either you haven't [started the Numary Ledger service](start-the-server), or you did start it but somehow it's running on a different port than expected. It could also mean that you already have a different service running on the same port Numary Ledger wants to use. If you changed the default port because of a conflict, you can tell Numary Control what port you used instead.
+
+By default, Numary Ledger uses port 3068 to host the built-in dashboard.
+
+If you need to specify a different port for Numary Ledger, you can do at the command line. For example, to use port 4242:
+
+```shell
+numary server start --ui.http.bind_address localhost:4242
+```
 
 ### No accounts or different accounts
 
