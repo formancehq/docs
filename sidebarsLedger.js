@@ -41,7 +41,8 @@ const sidebars = {
                 "get-started/hello-world/checking-balances",
                 "get-started/hello-world/your-first-transaction"
               ]
-            }
+            },
+            "get-started/getting-help"
           ],
         },
         {
