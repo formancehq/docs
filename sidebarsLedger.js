@@ -48,8 +48,8 @@ const sidebars = {
         {
           label: "Guides",
           type: "category",
-          collapsible: false,
-          collapsed: false,
+          collapsible: true,
+          collapsed: true,
           link: { type: 'doc', id: 'guides/index' },
           items: [
             "guides/configuration",
