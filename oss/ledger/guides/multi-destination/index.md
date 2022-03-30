@@ -4,10 +4,9 @@ description: Sometimes you need to split a payment across multiple destinations.
 ---
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
+import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
 
-:::info First time working through a guide?
-Make sure that you're set up properly: [Read through the prerequisites first!](/oss/ledger/guides/prerequisites).
-:::
+<Prerequisites />
 
 # Transactions with multiple destinations
 
