@@ -54,6 +54,7 @@ const sidebars = {
           items: [
             "guides/prerequisites",
             "guides/multi-destination/index",
+            "guides/multi-source/index",
           ],
         },
         // {
