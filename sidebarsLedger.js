@@ -52,6 +52,7 @@ const sidebars = {
           collapsed: true,
           link: { type: 'doc', id: 'guides/index' },
           items: [
+            "guides/prerequisites",
             "guides/multi-destination/index",
           ],
         },

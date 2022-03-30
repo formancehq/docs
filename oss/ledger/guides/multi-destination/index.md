@@ -5,6 +5,10 @@ description: Sometimes you need to split a payment across multiple destinations.
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
 
+:::info First time working through a guide?
+Make sure that you're set up properly: [Read through the prerequisites first!](/oss/ledger/guides/prerequisites).
+:::
+
 # Transactions with multiple destinations
 
 Sometimes you need to split a payment across multiple destinations. For example:
@@ -33,12 +37,12 @@ And run it with
 numary exec dunshire split.num
 ```
 
-:::caution
+:::caution Insufficient funds?
 Are you seeing
 ```
 FATA[0000] account had insufficient funds
 ```
-in your output? Make sure that the `@centralbank` account has enough funds. [Read how to introduce money into the ledger](/oss/ledger/get-started/hello-world/introducing-money).
+in your output? Then `@centralbank` account doesn't have enough funds. [Make sure you're set up properly.](/oss/ledger/guides/prerequisites).
 :::
 
 Once you've run that transaction succesfully, let's have a look at [`leslieknope`'s balance'](https://control.numary.com/accounts/users:leslieknope).
@@ -50,7 +54,7 @@ Once you've run that transaction succesfully, let's have a look at [`leslieknope
 
 First, we're sending half of the 75 coin payment to `leslieknope`. Notice that 75, being an odd number, doesn't split evenly in half. Numscript is smart about this, and rounds amounts in a way that avoids rounding errors. Because `leslieknope` is listed first, they will get the coin that remains after evenly subdividing: They will receive 38 coin.
 
-:::info
+:::info Numary Ledger uses integer math
 [Floating point numbers are too imprecise for finance](https://www.youtube.com/watch?v=yZjCQ3T5yXo). Numscript avoids this problem by only using integer math for dividing payments up. The reference docs have [more detail on about Numscript's rounding algorithm](/oss/ledger/reference/numscript/rounding/).
 :::
 
@@ -96,6 +100,6 @@ You can see that Numscript has worked out all of necessary calculations so that 
 
 Numscript offers several different mechanisms for indicating how a transaction should be split among different destinations, this guide has just been a small taste of what's possible.
 
-:::info
+:::info Dig deeper
 Want to learn more about all the different ways to split a transaction? [The reference docs](/oss/ledger/reference/numscript/destinations) have you covered!
 :::
