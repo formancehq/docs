@@ -52,7 +52,7 @@ const sidebars = {
           collapsed: true,
           link: { type: 'doc', id: 'guides/index' },
           items: [
-            "guides/multi-destination",
+            "guides/multi-destination/index",
           ],
         },
         // {

@@ -1,5 +1,6 @@
 ---
 title: Transactions with multiple destinations
+description: Sometimes you need to split a payment across multiple destinations. Learn how to do this with Numscript.
 ---
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
