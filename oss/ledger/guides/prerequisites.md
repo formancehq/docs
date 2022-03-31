@@ -42,4 +42,4 @@ This will place 1000 coins in all the accounts we will use in these guides. You 
 
 ## Resetting the Dunshire ledger
 
-If you find that you want a clean slate to start from, you can reset the Dunshire ledger in its entirety. If you followed the [Hello World tutorial](/oss/ledger/get-started/hell-world/), then Numary Ledger is using the default SQLite storage method. Thus you can delete the Dunshire ledger by deleting the corresponding SQLite file, which is stored in `~/.numary/data/numary_dunshire.db`.
+If you find that you want a clean slate to start from, you can reset the Dunshire ledger in its entirety. If you followed the [Hello World tutorial](/oss/ledger/get-started/hello-world/), then Numary Ledger is using the default SQLite storage method. Thus you can delete the Dunshire ledger by deleting the corresponding SQLite file, which is stored in `~/.numary/data/numary_dunshire.db`.
