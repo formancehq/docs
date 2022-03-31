@@ -5,6 +5,7 @@ description: Sometimes you need to split a payment across multiple destinations.
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
 import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
+import Prereqwarn from '/oss/ledger/partials/guides/_prereq_warning.mdx';
 
 <Prerequisites />
 
@@ -36,18 +37,14 @@ And run it with
 numary exec dunshire split.num
 ```
 
-:::caution Insufficient funds?
-Are you seeing
-```
-FATA[0000] account had insufficient funds
-```
-in your output? Then `@centralbank` account doesn't have enough funds. [Make sure you're set up properly.](/oss/ledger/guides/prerequisites).
-:::
+<Prereqwarn />
 
 Once you've run that transaction succesfully, let's have a look at [`leslieknope`'s balance'](https://control.numary.com/accounts/users:leslieknope).
 
 
 ![`leslieknope` gets 38 and `annperkins` gets 37 coin](multi-destination-1.png)
+
+You should be able to see, as in the image above, that `leslieknope` received 38 coins, and `annperkins` received 37 coins.
 
 ### What's going on here?
 
@@ -72,8 +69,6 @@ Let's take the previous scenario, and add a twist. Let's suppose the ledgerman n
   }
 )`}></NumscriptBlock>
 
-([Don't forget to top up the `@centralbank` account](/oss/ledger/get-started/hello-world/introducing-money) before running this script again!)
-
 But there is a problem: Scripting the transaction this way requires us to manually do the math to figure out that `leslieknope` should get 42.5% of the transaction.
 
 There's a better way: Nested destinations. Using nested destinations allows us to be clearer about our intent, and leaves much of the math off to Numscript to sort out:
@@ -88,6 +83,8 @@ There's a better way: Nested destinations. Using nested destinations allows us t
     }
   }
 )`}></NumscriptBlock>
+
+<Prereqwarn />
 
 Run this script, and then [look at `leslieknope`'s balance](https://control.numary.com/accounts/users:leslieknope).
 

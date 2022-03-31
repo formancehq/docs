@@ -12,16 +12,25 @@ The guides in this section all involve the movement of money to and from various
 
 First, create a file called `seed.num` with the following contents:
 
-<NumscriptBlock script={`send [COIN 5000] (
+<NumscriptBlock script={`send [COIN 6000] (
   source = @world
   destination = {
-    1/5 to @centralbank
-    1/5 to @users:donnameagle
-    1/5 to @users:tomhaverford
-    1/5 to @users:leslieknope
+    1/6 to @centralbank
+    1/6 to {
+      50% to @users:donnameagle
+      remaining to @users:donnameagle:chest
+    }
+    1/6 to @users:tomhaverford
+    1/6 to @users:leslieknope
+    1/6 to {
+      50/1000 to @users:andydwyer
+      remaining to @users:andydwyer:chest
+    }
     remaining to @users:annperkins
   }
 )`}></NumscriptBlock>
+
+At this point, don't worry about understanding what this Numscript does, it's only to get the Dunshire ledger set up for the following guides.
 
 Then run it with
 
