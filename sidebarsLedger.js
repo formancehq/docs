@@ -28,12 +28,21 @@ const sidebars = {
           collapsed: false,
           link: { type: 'doc', id: 'get-started/index' },
           items: [
-            "get-started/installation",
+            {
+              id: "get-started/installation",
+              customProps: {
+                icon: "💾",
+                cta: "DO THE THING",
+              },
+            },
             {
               label: "Hello World",
               type: "category",
               collapsible: true,
               collapsed: true,
+              customProps: {
+                description: 'Get started by creating your first transaction.',
+              },
               link: { type: 'doc', id: 'get-started/hello-world/index' },
               items: [
                 "get-started/hello-world/start-the-server",

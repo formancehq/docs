@@ -2,7 +2,7 @@
 title: Getting Started
 ---
 
-import DocCardList from '@theme/DocCardList';
+import {DocCardList} from '@site/src/components/DocCard';
 import {useCurrentSidebarCategory} from '@docusaurus/theme-common';
 
 Are you building an app that requires tracking the movement of money? Then you need a ledger. Numary Ledger is designed to simplify the process of integrating ledger functionality into your app or backend. In these guides we'll help you learn how to use and get the most from Numary Ledger.
@@ -12,5 +12,9 @@ Are you building an app that requires tracking the movement of money? Then you n
 If you've never used Numary Ledger before, then start by [installing Ledger](installation), and run through the [Hello World guide](hello-world) to create your first transaction.
 
 Then, once you're comfortable with the basics, move on to the [more advanced guides](/oss/ledger/guides/) to learn about the different use cases that Numary Ledger supports.
+
+<p>
+    {JSON.stringify(useCurrentSidebarCategory())}
+</p>
 
 <DocCardList items={useCurrentSidebarCategory().items}/>
