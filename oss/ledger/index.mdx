@@ -5,12 +5,7 @@ pagination_prev: null
 hide_table_of_contents: true
 ---
 
-import Button from '@mui/material/Button';
-import Card from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Grid from '@mui/material/Grid';
+import {DocCardGrid, DocCard, HighlightedDocCard} from '@site/src/components/DocCard';
 
 # Numary Ledger Developer Documentation
 
@@ -20,45 +15,21 @@ Numary Ledger lets you model complex money movements, and helps you accelerate y
 
 ## Building with Numary Ledger
 
-<Grid container spacing={2}>
+<DocCardGrid>
 
-<Grid item xs={12} sm={6} md={4}>
-    <Card>
-        <CardHeader title="📓 What Is a Ledger?"/>
-        <CardContent>
-            What is a ledger anyway, and when do you need one? Learn how tracking money flows with a ledger can accelerate your business operations.
-        </CardContent>
-        <CardActions>
-            <Button>Learn more</Button>
-        </CardActions>
-    </Card>
-</Grid>
+<DocCard headline="📓 What Is a Ledger?" cta="Learn more" link="TODO">
+    What is a ledger anyway, and when do you need one? Learn how tracking money flows with a ledger can accelerate your business operations.
+</DocCard>
 
-<Grid item xs={12} sm={6} md={4}>
-    <Card>
-        <CardHeader title="🔰 Hello, World"/>
-        <CardContent>
-            Learn how to use NumScript and Numary Ledger to track money movements in this introductory tutorial, and get a better understand of how Numary Ledger works.
-        </CardContent>
-        <CardActions>
-            <Button variant="contained" href="get-started/">Get Started</Button>
-        </CardActions>
-    </Card>
-</Grid>
+<HighlightedDocCard headline="🔰 Hello, World" cta="Get Started" link="get-started/">
+    Learn how to use NumScript and Numary Ledger to track money movements in this introductory tutorial, and get a better understand of how Numary Ledger works.
+</HighlightedDocCard>
 
-<Grid item xs={12} sm={6} md={4}>
-    <Card>
-        <CardHeader title="🚅 Go Further"/>
-        <CardContent>
-            Understand how to track complex money movements, reconcile accounts, and more in this series of focused tutorials.
-        </CardContent>
-        <CardActions>
-            <Button href="guides/">Read the Guides</Button>
-        </CardActions>
-    </Card>
-</Grid>
+<DocCard headline="🚅 Go Further" cta="Read the Guides" link="guides/">
+    Understand how to track complex money movements, reconcile accounts, and more in this series of focused tutorials.
+</DocCard>
 
-</Grid>
+</DocCardGrid>
 
 ## Getting Help
 Are you stuck? Have a technical question not well answered in these docs? Run into a problem you can't solve?
