@@ -17,57 +17,45 @@ export function DocCardGrid ({children}) {
     );
 }
 
-export function DocCard ({children, headline, icon, link}) {
-    return (
-        <Grid item xs={12} sm={6} md={4}>
-            <a href={link}>
-                <Card>
-                    <CardHeader title={icon + " " + headline}/>
+export function DocCard ({children, headline, icon, link, cta, highlight}) {
+
+    var title = headline;
+    if(!!icon)
+        title = icon + " " + headline;
+
+    let button;
+
+    let buttonstyle = 'outlined'
+    if(!!highlight) {
+        buttonstyle = 'contained'
+    }
+
+    if(cta) {
+        button = <CardActions>
+                    <Button variant={buttonstyle} href={link}>{cta}</Button>
+                 </CardActions>
+    }
+
+    let card = <Card>
+                    <CardHeader title={title}/>
                     <CardContent>
                         {children}
                     </CardContent>
+                    {button}
                 </Card>
-            </a>
+
+    if(!cta) {
+        card = <a href={link}>
+                   {card}
+               </a>
+    }
+
+    return (
+        <Grid item xs={12} sm={6} md={4}>
+            {card}
         </Grid>
     );
 } 
-
-//TODO honestly, it would be great to roll this in with the one above, too
-export function DocCardCTA ({children, headline, icon, cta, link}) {
-    return (
-        <Grid item xs={12} sm={6} md={4}>
-            <Card>
-                <CardHeader title={icon + " " + headline}/>
-                <CardContent>
-                    {children}
-                </CardContent>
-                <CardActions>
-                    <Button href={link}>{cta}</Button>
-                </CardActions>
-            </Card>
-        </Grid>
-    );
-}
-
-// TODO can we roll this into the function above with an optional parameter?
-export function HighlightedDocCardCTA ({children, headline, cta, link}) {
-    return (
-        <Grid item xs={12} sm={6} md={4}>
-            <Card>
-                <CardHeader title={icon + " " + headline}/>
-                <CardContent>
-                    {children}
-                </CardContent>
-                <CardActions>
-                    <Button variant="contained" href={link}>{cta}</Button>
-                </CardActions>
-            </Card>
-        </Grid>
-    );
-}
-
-
-
 
 // Filter categories that don't have a link.
 function filterItems(items) {
@@ -85,27 +73,21 @@ export function DocCardList({items}) {
       {filterItems(items).map((item, index) => {
         const doc = useDocById(item.docId ?? undefined);
         
-        // Category descriptions can only be added in sidebarsLedger.js as a customProp.description item. WHY!?
+        // Category descriptions and any CTAs and icons can only be added in sidebarsLedger.js as a customProp.description item. WHY!?
         let desc = doc?.description;
         if(item.type == "category") {
             desc = item.customProps.description;
         }
 
-        // if the item has a call to action, make it a button
-        if((!!item.customProps) && (!!item.customProps.cta)) {
-            return (
-            <DocCardCTA headline={item.label} icon={item.customProps ? item.customProps.icon : null} link={item.href} cta={item.customProps.cta}>
-                {desc}
-            </DocCardCTA>
-            );
-        } else {
-            return (
-            <DocCard headline={item.label} icon={item.customProps ? item.customProps.icon : null} link={item.href}>
+        return (
+            <DocCard headline={item.label}
+                     icon={item.customProps ? item.customProps.icon : null}
+                     link={item.href}
+                     cta={item.customProps ? item.customProps.cta : null}>
                 {desc}
             </DocCard>
             );
         }
-    }
 
       )}
     </DocCardGrid>
