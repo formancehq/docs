@@ -40,6 +40,10 @@ numary exec dunshire seed.num
 
 This will place 1000 coins in all the accounts we will use in these guides. You shouldn't need to, but you can always run this script as many times as necessary to ensure that all accounts are topped up with funds.
 
+## VSCode extension
+
+A [Numscript VSCode extension](https://marketplace.visualstudio.com/items?itemName=numary.numscript) is available for syntax highlighting.
+
 ## Resetting the Dunshire ledger
 
 If you find that you want a clean slate to start from, you can reset the Dunshire ledger in its entirety. If you followed the [Hello World tutorial](/oss/ledger/get-started/hello-world/), then Numary Ledger is using the default SQLite storage method. Thus you can delete the Dunshire ledger by deleting the corresponding SQLite file, which is stored in `~/.numary/data/numary_dunshire.db`.
