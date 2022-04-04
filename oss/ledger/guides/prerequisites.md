@@ -1,5 +1,6 @@
 ---
 title: Prerequisites
+description: Everything you need to get started with these guides.
 ---
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
