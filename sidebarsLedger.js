@@ -89,6 +89,13 @@ const sidebars = {
                   icon: '✖️',
                 },
             },
+            {
+                type:'doc',
+                id: 'guides/http',
+                customProps: {
+                  icon: '🕸',
+                },
+            },
           ],
         },
         // {
