@@ -118,6 +118,8 @@ The Numary Ledger API will return a `200` status code even on failure, but the J
 
 The `err` field will contain a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
 
+There is also a `details` field with a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.
+
 ## Going further
 
 This guide has just been a small taste of what's possible using the Numary Ledger API to execute Numscript. And of course the API lets you do so much more.
