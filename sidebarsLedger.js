@@ -91,7 +91,7 @@ const sidebars = {
             },
             {
                 type:'doc',
-                id: 'guides/http',
+                id: 'guides/http/index',
                 customProps: {
                   icon: '🕸',
                 },

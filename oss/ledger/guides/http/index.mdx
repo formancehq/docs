@@ -17,7 +17,7 @@ If you recall from the [Getting Started](/oss/ledger/get-started/hello-world/) s
 
 <NumscriptBlock script={`send [COIN 100] (
   source = @centralbank
-  destination = @player:benwyatt
+  destination = @user:benwyatt
 )`}></NumscriptBlock>
 
 This time, however, we're going to execute the script via Numary Ledger's built-in HTTP API.
@@ -63,6 +63,10 @@ bash: comand not found: jq
 then you do not have the `jq` command line tool installed. You'll need to [install `jq`](https://stedolan.github.io/jq/) to run the examples.
 :::
 
+If you check out [`benwyatt`'s balance in the dashboard](https://control.numary.com/accounts/user:benwyatt), you should see something like this:
+
+![User `benwyatt` receives 100 coin from `centralbank`](http-1.png)
+
 ## Breaking it down
 
 There are a lot of moving parts to this API endpoint, let's go over each in turn.
@@ -89,7 +93,7 @@ The `/{ledger}/script` endpoint expects us to `POST` some JSON describing the Nu
 
 ```json
 {
-    "plain": "send [COIN 100] (\nsource = @centralbank\ndestination = @player:benwyatt\n)\n"
+    "plain": "send [COIN 100] (\nsource = @centralbank\ndestination = @user:benwyatt\n)\n"
 }
 ```
 
