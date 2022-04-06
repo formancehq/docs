@@ -96,6 +96,13 @@ const sidebars = {
                   icon: '🕸',
                 },
             },
+            {
+                type:'doc',
+                id: 'guides/templates/index',
+                customProps: {
+                  icon: '📝',
+                },
+            },
           ],
         },
         // {
