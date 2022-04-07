@@ -103,6 +103,13 @@ const sidebars = {
                   icon: '📝',
                 },
             },
+            {
+                type:'doc',
+                id: 'guides/currencies/index',
+                customProps: {
+                  icon: '💱',
+                },
+            },
           ],
         },
         // {
