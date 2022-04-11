@@ -190,7 +190,30 @@ const config = {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
         appUrl: 'https://app.posthog.com',  // optional
         enableInDevelopment: false,  // optional
-      }
+      },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: '1GW5NWTZRQ',
+
+        // Public API key: it is safe to commit it
+        apiKey: '8444a84a17fbf516710b9f112536ea20',
+
+        indexName: 'NUMARY_LEDGER',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+        externalUrlRegex: 'docs\\.numary\\.com',
+
+        // Optional: Algolia search parameters
+        searchParameters: {},
+
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: 'search',
+
+        //... other Algolia params
+      },
     })
 };
 
