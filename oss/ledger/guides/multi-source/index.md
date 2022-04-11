@@ -7,26 +7,24 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
 import Prereqwarn from '/oss/ledger/partials/guides/_prereq_warning.mdx';
 
-<Prerequisites />
-
-# Transactions from multiple sources
-
 Sometimes you need to split a payment from multiple sources. For example:
 
 * At times there might not be enough money in an account you want to pay from. You want to specify a backup account.
 * You need to spread costs across multiple accounts. For example, you might have a special marketing fund that partially covers certain payments.
 * Your game players want to go in together on a shared purchase.
 
+<Prerequisites />
+
 ## Basic transaction splitting
 
-Since we're in the game land of Dunshire, let's consider that last case. Two users `donnameagle` and `tomhaverford` have decided [to treat themselves](https://www.youtube.com/watch?v=gSjM5B3QNlw) to a pony. The pony costs 75 coins, and they want to split the price evenly between themselves.
+Since we're in the game land of Cones of Dunshire, let's consider that last case. Two users `donnameagle` and `tomhaverford` have decided [to treat themselves](https://www.youtube.com/watch?v=gSjM5B3QNlw) to a pony, which they will buy from us. The pony costs 75 coins, and they want to split the price evenly between themselves.
 
 We can describe the transaction using Numscript. Create a file called `treat.num` with:
 
 <NumscriptBlock script={`send [COIN 75] (
   source = {
-    50% from @users:donnameagle
-    remaining from @users:tomhaverford
+    50% from @player:donnameagle
+    remaining from @player:tomhaverford
   }
   destination = @centralbank
 )`}></NumscriptBlock>
@@ -66,10 +64,10 @@ Create a file called `bills.num` with:
 
 <NumscriptBlock script={`send [COIN 100] (
   source = {
-    @users:andydwyer
-    @users:andydwyer:chest
+    @player:andydwyer
+    @player:andydwyer:chest
   }
-  destination = @users:aprilludgate
+  destination = @player:aprilludgate
 )`}></NumscriptBlock>
 
 and run it with
@@ -95,15 +93,15 @@ So, since there were only 50 coins in the first account, Numary Ledger looked at
 
 ## Nested sources
 
-`donnameagle` and `tomhaverford` are not satisfied with just one pony—they want a second pony. But this time, `donnameagle` knows she has some upcoming transactions she needs to set aside some coin for. She is only willing to pay 10 coin from her pocket. But she has some coin saved in a chest that she is willing to spend.
+`donnameagle` and `tomhaverford` are not satisfied with just one pony—they want a second pony. But this time, `donnameagle` knows she has some upcoming transactions for which she needs to set aside some coin. She is only willing to pay 10 coin from her pocket. But she has some coin saved in a chest that she is willing to spend.
 
 We could specify this new transaction as such.
 
 <NumscriptBlock script={`send [COIN 75] (
   source = {
-    max [COIN 10] from @users:donnameagle
-    37% from @users:donnameagle:chest
-    remaining from @users:tomhaverford
+    max [COIN 10] from @player:donnameagle
+    37% from @player:donnameagle:chest
+    remaining from @player:tomhaverford
   }
   destination = @centralbank
 )`}></NumscriptBlock>
@@ -117,10 +115,10 @@ There is a better way: Nested sources. Create a file called `pony2.num` with the
 <NumscriptBlock script={`send [COIN 75] (
   source = {
     50% from {
-      max [COIN 10] from @users:donnameagle
-      @users:donnameagle:chest
+      max [COIN 10] from @player:donnameagle
+      @player:donnameagle:chest
     }
-    remaining from @users:tomhaverford
+    remaining from @player:tomhaverford
   }
   destination = @centralbank
 )`}></NumscriptBlock>
@@ -145,6 +143,6 @@ Just like in the original pony purchase, we are asking Numary Ledger to split th
 
 Numscript offers several different mechanisms for indicating how a transaction should be split amfrom different sources. This guide has just been a small taste of what's possible.
 
-:::info Dig deeper
+:::tip Dig deeper
 Want to learn more about all the different ways to transact from multiple sources? [The reference docs](/oss/ledger/reference/numscript/sources) have you covered!
 :::

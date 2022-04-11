@@ -18,15 +18,15 @@ Sometimes you need to split a payment across multiple destinations. For example:
 
 ## Basic transaction splitting
 
-Since we're in the game land of Dunshire, let's consider that last case. The ledgerman wants a map of a coastal region, and is willing to pay 75 coins to someone to get it done. A group of two surveyors working together rises to the task, and creates that map. Now, the ledgerman who gave them the mission wants to split the reward between them.
+Since we're in the game land of Cones Dunshire, let's consider that last case. As the ledgerman, we want a map of a coastal region, and we're willing to pay 75 coins to someone to get it done. `leslieknope` and `annperkins`, a group of two surveyors working together, rise to the task, and create that map. Now, we want to split the reward between them.
 
 We can describe the transaction using Numscript. Create a file called `split.num` with:
 
 <NumscriptBlock script={`send [COIN 75] (
   source = @centralbank
   destination = {
-    50% to @users:leslieknope
-    remaining to @users:annperkins
+    50% to @player:leslieknope
+    remaining to @player:annperkins
   }
 )`}></NumscriptBlock>
 
@@ -57,18 +57,18 @@ Second, we're avoiding mistakes in our own calculations by telling Numscript to 
 
 ## Nested transaction splitting.
 
-Let's take the previous scenario, and add a twist. Let's suppose the ledgerman needed to withhold taxes from the payment—Dunshire imposes a flat 15% sales tax for goods and services. We could modify `split.num` to reflect a three-way transaction:
+Let's take the previous scenario, and add a twist. Let's suppose we need to withhold taxes from the payment—Dunshire imposes a flat 15% sales tax for goods and services. We could modify `split.num` to reflect a three-way transaction:
 
 <NumscriptBlock script={`send [COIN 75] (
   source = @centralbank
   destination = {
     15% to @salestax
-    43% to @users:leslieknope
-    remaining to @users:annperkins
+    43% to @player:leslieknope
+    remaining to @player:annperkins
   }
 )`}></NumscriptBlock>
 
-But there is a problem: Scripting the transaction this way requires us to manually do the math to figure out that `leslieknope` should get 42.5% of the transaction.
+But there is a problem: Scripting the transaction this way requires us to manually do the math to figure out that `leslieknope` should get 42.5% of the transaction (which we've had to round up).
 
 There's a better way: Nested destinations. Using nested destinations allows us to be clearer about our intent, and leaves much of the math off to Numscript to sort out:
 
@@ -77,8 +77,8 @@ There's a better way: Nested destinations. Using nested destinations allows us t
   destination = {
     15% to @salestax
     remaining to {
-        50% to @users:leslieknope
-        remaining to @users:annperkins
+        50% to @player:leslieknope
+        remaining to @player:annperkins
     }
   }
 )`}></NumscriptBlock>
@@ -95,6 +95,6 @@ You can see that Numscript has worked out all of necessary calculations so that 
 
 Numscript offers several different mechanisms for indicating how a transaction should be split among different destinations, this guide has just been a small taste of what's possible.
 
-:::info Dig deeper
+:::tip Dig deeper
 Want to learn more about all the different ways to split a transaction? [The reference docs](/oss/ledger/reference/numscript/destinations) have you covered!
 :::

@@ -7,7 +7,7 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 
 # Do this first: Prerequisites for using the guides
 
-The guides in this section all involve the movement of money to and from various accounts. In the real world, money should only enter your ledger from the `@world` account when real money moves into real accounts that you are tracking. However, to let you run demonstrations in the guides, we need to seed the example accounts with funds.
+The guides in this section all involve the movement of money to and from various accounts. In the real world, money should only enter your ledger from the `@world` account when real money moves into real accounts that you are tracking. However, to run the demonstrations in the guides, we need to seed the example accounts with funds.
 
 **This is not realistic** and you should as a general rule never arbitrarily create money without a corresponding movement of money in the real world!
 
@@ -18,20 +18,25 @@ First, create a file called `seed.num` with the following contents:
   destination = {
     1/6 to @centralbank
     1/6 to {
-      50% to @users:donnameagle
-      remaining to @users:donnameagle:chest
+      50% to @player:donnameagle
+      remaining to @player:donnameagle:chest
     }
-    1/6 to @users:tomhaverford
-    1/6 to @users:leslieknope
+    1/6 to @player:tomhaverford
+    1/6 to @player:leslieknope
     1/6 to {
-      50/1000 to @users:andydwyer
-      remaining to @users:andydwyer:chest
+      50/1000 to @player:andydwyer
+      remaining to @player:andydwyer:chest
     }
-    remaining to @users:annperkins
+    remaining to @player:annperkins
   }
 )`}></NumscriptBlock>
 
-At this point, don't worry about understanding what this Numscript does, it's only to get the Dunshire ledger set up for the following guides.
+
+:::info Wow, that's really complex! I don't understand.
+Broadly speaking, this Numscript will place 1000 coins in all the accounts we will use in these guides.
+
+But really, right now, **don't worry about understanding this complicated bit of Numscript**. This script is only necessary to set up the Dunshire ledger we'll use in the following guides, and there is no need to fully understand it yet.
+:::
 
 Then run it with
 
@@ -39,11 +44,11 @@ Then run it with
 numary exec dunshire seed.num
 ```
 
-This will place 1000 coins in all the accounts we will use in these guides. You shouldn't need to, but you can always run this script as many times as necessary to ensure that all accounts are topped up with funds.
+You shouldn't need to, but you can always run this script as many times as necessary to ensure that all accounts are topped up with funds.
 
 ## VSCode extension
 
-A [Numscript VSCode extension](https://marketplace.visualstudio.com/items?itemName=numary.numscript) is available for syntax highlighting.
+Do you use VSCode? Would you like to have Numscript syntax highlighting? We have a [Numscript VSCode extension](https://marketplace.visualstudio.com/items?itemName=numary.numscript) to enable Numscript syntax highlighting.
 
 ## Resetting the Dunshire ledger
 

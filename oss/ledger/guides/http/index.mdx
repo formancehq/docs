@@ -9,11 +9,12 @@ import TabItem from '@theme/TabItem';
 import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
 import Prereqwarn from '/oss/ledger/partials/guides/_prereq_warning.mdx';
 
-<Prerequisites />
 
 The `numary` command line is not the only way to execute Numscript. Numary Ledger also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
 
 Indeed, Numary Ledger's HTTP API is very powerful, and let's you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, [consult the API docs](/api/ledger).
+
+<Prerequisites />
 
 ## Executing Numscript.
 
@@ -21,10 +22,10 @@ If you recall from the [Getting Started](/oss/ledger/get-started/hello-world/) s
 
 <NumscriptBlock script={`send [COIN 100] (
   source = @centralbank
-  destination = @user:benwyatt
+  destination = @player:benwyatt
 )`}></NumscriptBlock>
 
-This time, however, we're going to execute the script via Numary Ledger's built-in HTTP API.
+In the introduction, we ran this Numscript using the command line. This time, however, we're going to execute the script via Numary Ledger's built-in HTTP API.
 
 :::tip
 
@@ -97,7 +98,7 @@ The `/{ledger}/script` endpoint expects us to `POST` some JSON describing the Nu
 
 ```json
 {
-    "plain": "send [COIN 100] (\nsource = @centralbank\ndestination = @user:benwyatt\n)\n"
+    "plain": "send [COIN 100] (\nsource = @centralbank\ndestination = @player:benwyatt\n)\n"
 }
 ```
 

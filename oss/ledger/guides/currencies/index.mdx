@@ -7,9 +7,9 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
 import Prereqwarn from '/oss/ledger/partials/guides/_prereq_warning.mdx';
 
-<Prerequisites />
-
 Numary Ledger has robust support for working in different currencies. Let's go a little deeper into how that works.
+
+<Prerequisites />
 
 ## Specifying an amount with a currency and quantity
 
@@ -24,9 +24,9 @@ This Numscript instructs Numary Ledger to transfer 100 coins to the player `benw
 
 ## Divisible currencies
 
-However, lately, the economy of Cones of Dunshire has been undergoing significant deflation, and thus coins have been appreciating in value. Because they're indivisble, small transactions among players have become difficult, and they've had to resort to making change by bartering with clumps of dirt. So the game administration has decided to introduce a new currency, the piece-of-ten (designated as `DSP` for "<u>D</u>un<u>s</u>hire <u>P</u>iece-of-Ten"), at a lower valuation. This new currency will initially trade at a rate of 10 pieces-of-ten to the coin, and as its name suggests, will itself be divisible into 10 sub-units (colloquially called "pieces-of-one" or just "pieces" for short).
+However, lately, the economy of Cones of Dunshire has been undergoing significant deflation, and thus coins have been appreciating in value. Because they're indivisble, small transactions among players have become difficult, and they've had to resort to making change by bartering with clumps of dirt. So, as ledgerman, we have decided to introduce a new currency, the piece-of-ten (designated as `DSP` for "<u>D</u>un<u>s</u>hire <u>P</u>iece-of-Ten"), at a lower valuation. This new currency will initially trade at a rate of 10 pieces-of-ten to the coin, and as its name suggests, will itself be divisible into 10 sub-units (colloquially called "pieces-of-one" or just "pieces" for short).
 
-Let's suppose that our intrepid player `benwyatt` has completed a new task for the ledgerman, but this time he's going to get paid in 1,000 pieces-of-ten instead of 100 coin. Here's what the Numscript would look like:
+Let's suppose that our intrepid player `benwyatt` has completed a new task for us, but this time we're paying him in 1,000 pieces-of-ten instead of 100 coin. Here's what the Numscript would look like:
 
 <NumscriptBlock script={`send [DSP/1 10000] (
   source = @centralbank
@@ -79,6 +79,6 @@ But when working with real-world currencies, we strongly encourage you to use [I
 
 As you can see, Numscript is set up to handle a wide range of scenarios when it comes to specifying currencies and precision.
 
-:::info Dig deeper
+:::tip Dig deeper
 Want to learn more about how Numary Ledger does integer math? [The reference docs](/oss/ledger/reference/numscript/rounding) have you covered!
 :::
