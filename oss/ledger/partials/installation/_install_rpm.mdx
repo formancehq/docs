@@ -1,12 +1,15 @@
-```shell
-#/etc/yum.repos.d/numary.repo
+Add Numary's package repository by creating a file called `/etc/yum.repos.d/numary.repo`:
+
+```shell title="/etc/yum.repos.d/numary.repo"
 [numary]
 name=Numary Private Repo
 baseurl=https://yum.fury.io/numary/
 enabled=1
 gpgcheck=0
 ```
-And run this command for install Numary :
+
+Then run this command for install Numary Ledger:
+
 ```shell
 yum update && yum install numary
 ```

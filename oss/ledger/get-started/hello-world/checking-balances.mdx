@@ -9,7 +9,7 @@ In the previous step you introduced money into the `dunshire` ledger. Now we wan
 To verify, visit [https://control.numary.com](https://control.numary.com), which is a dashboard hosted by your locally running Numary Ledger service.
 
 :::info
-The app dashboard at [https://control.numary.com](https://control.numary.com) is a clever webpage that requests data from your local Numary Ledger service via calls to localhost. No one else can see what you see on that page, this data is only being served locally.
+The app dashboard at [https://control.numary.com](https://control.numary.com) is a clever webpage that requests data from your local Numary Ledger service via calls to localhost. No one else can see what you see on that page, this data is _only_ being served locally.
 :::
 
 The dashboard landing page gives an overview of activity, and should look like this:
@@ -50,12 +50,8 @@ numary server start --ui.http.bind_address localhost:4242
 
 ### No accounts or different accounts
 
-Alternately, if you are seeing the dashboard, but it contains unexpected data, like this:
-
-![Failed to connect to the ledger](dashboard404.png)
-
-Then you have probably already been experimenting with Numary Ledger on your computer, and just don't have the right ledger selected. Click on the box in the upper-right hand corner to select the `dunshire` ledger.
+Alternately, if you are seeing the dashboard, but it contains unexpected data, then you have probably already been experimenting with Numary Ledger on your computer, and just don't have the right ledger selected. Click on the box in the upper-right hand corner to select the `dunshire` ledger.
 
 ## Next steps
 
-Now, let's start handing out some coin to our users.
+Next, let's start handing out some coin to our users.

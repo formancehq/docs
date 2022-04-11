@@ -7,15 +7,14 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
 import Prereqwarn from '/oss/ledger/partials/guides/_prereq_warning.mdx';
 
-<Prerequisites />
-
-# Transactions with multiple destinations
 
 Sometimes you need to split a payment across multiple destinations. For example:
 
 * You charged VAT on an order, and so you need to split off a percentage of a payment into a dedicated VAT account.
 * You have a marketplace, and a customer has made a single purchase of items from multiple vendors.
 * Your game players need to split the loot from a group raid.
+
+<Prerequisites />
 
 ## Basic transaction splitting
 
