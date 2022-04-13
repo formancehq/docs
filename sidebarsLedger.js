@@ -110,6 +110,13 @@ const sidebars = {
                   icon: '💴',
                 },
             },
+            {
+                type:'doc',
+                id: 'guides/metadata/index',
+                customProps: {
+                  icon: '📌',
+                },
+            },
           ],
         },
         // {
