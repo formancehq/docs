@@ -17,7 +17,7 @@ Sometimes you need to split a payment from multiple sources. For example:
 
 ## Basic transaction splitting
 
-Since we're in the game land of Cones of Dunshire, let's consider that last case. Two users `donnameagle` and `tomhaverford` have decided [to treat themselves](https://www.youtube.com/watch?v=gSjM5B3QNlw) to a pony, which they will buy from us. The pony costs 75 coins, and they want to split the price evenly between themselves.
+Since we're in the game land of Cones of Dunshire, let's consider that last case. Two players `donnameagle` and `tomhaverford` have decided [to treat themselves](https://www.youtube.com/watch?v=gSjM5B3QNlw) to a pony, which they will buy from us. The pony costs 75 coins, and they want to split the price evenly between themselves.
 
 We can describe the transaction using Numscript. Create a file called `treat.num` with:
 
@@ -37,7 +37,7 @@ numary exec dunshire treat.num
 
 <Prereqwarn />
 
-Once you've run that transaction succesfully, let's have a look at [`donnameagle`'s balance'](https://control.numary.com/accounts/users:donnameagle).
+Once you've run that transaction succesfully, let's have a look at [`donnameagle`'s balance'](https://control.numary.com/accounts/player:donnameagle).
 
 
 ![`donnameagle` paid 38 and `tomhaverford` paid 37 coin](multi-source-1.png)
@@ -77,7 +77,7 @@ numary exec dunshire bills.num
 
 <Prereqwarn />
 
-Run this script, and then [look at `andydwyer`'s balance](https://control.numary.com/accounts/users:andydwyer).
+Run this script, and then [look at `andydwyer`'s balance](https://control.numary.com/accounts/player:andydwyer).
 
 ![`andydwyer` paid 50 from his pocket and 50 from his chest](multi-source-2.png)
 
@@ -130,7 +130,7 @@ numary exec dunshire pony2.num
 
 <Prereqwarn />
 
-After running this script, and then [look at `donnameagle`'s balance](https://control.numary.com/accounts/users:donnameagle).
+After running this script, and then [look at `donnameagle`'s balance](https://control.numary.com/accounts/player:donnameagle).
 
 ![`donnameagle` paid 10 from her pocket and 28 from her chest](multi-source-3.png)
 
