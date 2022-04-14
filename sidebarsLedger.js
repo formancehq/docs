@@ -153,6 +153,7 @@ const sidebars = {
             'reference/ledgers',
             'reference/accounts',
             'reference/transactions',
+            'reference/unambiguous-monetary-notation',
             {
               label: 'Numscript',
               type: 'category',
