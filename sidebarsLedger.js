@@ -151,6 +151,8 @@ const sidebars = {
           collapsed: true,
           items: [
             'operations/architecture',
+            'operations/configuration',
+            'operations/using-the-control-dashboard',
             'operations/storages',
             'operations/authentication',
             'operations/running-in-production',
