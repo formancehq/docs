@@ -56,57 +56,57 @@ const sidebars = {
           ],
         },
         {
-          label: 'Guides',
+          label: 'Numscript',
           type: 'category',
           collapsible: true,
           collapsed: true,
-          link: { type: 'doc', id: 'guides/index' },
+          link: { type: 'doc', id: 'numscript/index' },
           items: [
             {
                 type:'doc',
-                id: 'guides/prerequisites',
+                id: 'numscript/prerequisites',
                 customProps: {
                     icon: '1️⃣',
                 },
             },
             {
                 type:'doc',
-                id: 'guides/multi-destination/index',
+                id: 'numscript/multi-destination/index',
                 customProps: {
                     icon: '➗',
                 },
             },
             {
                 type:'doc',
-                id: 'guides/multi-source/index',
+                id: 'numscript/multi-source/index',
                 customProps: {
                   icon: '✖️',
                 },
             },
             {
                 type:'doc',
-                id: 'guides/http/index',
+                id: 'numscript/http/index',
                 customProps: {
                   icon: '🕸',
                 },
             },
             {
                 type:'doc',
-                id: 'guides/templates/index',
+                id: 'numscript/templates/index',
                 customProps: {
                   icon: '📝',
                 },
             },
             {
                 type:'doc',
-                id: 'guides/currencies/index',
+                id: 'numscript/currencies/index',
                 customProps: {
                   icon: '💴',
                 },
             },
             {
                 type:'doc',
-                id: 'guides/metadata/index',
+                id: 'numscript/metadata/index',
                 customProps: {
                   icon: '📌',
                 },

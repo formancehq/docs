@@ -6,8 +6,8 @@ description: Reuse the same transaction structure with Numscript templates.
 import { NumscriptBlock } from 'react-numscript-codeblock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
-import Prerequisites from '/oss/ledger/partials/guides/_prerequisites.mdx';
-import Prereqwarn from '/oss/ledger/partials/guides/_prereq_warning.mdx';
+import Prerequisites from '/oss/ledger/partials/numscript/_prerequisites.mdx';
+import Prereqwarn from '/oss/ledger/partials/numscript/_prereq_warning.mdx';
 
 Oftentimes transactions will use the same structure over and over again, and you don't want to use hard-coded values in your Numscript. In these cases, you can use a Numscript template to describe a general kind of transaction, and then fill in the template variables at execution time.
 
@@ -89,7 +89,7 @@ A complete transaction consists of a template in Numscript and a specification o
 
 **You cannot use the command line to execute Numscript templates.**
 
-At least, not at this time. That feature is coming though! In the meantime you _can_ execute Numscript templates using Numary Ledger's built-in API server. If you've never done that before, take a moment to [read up on how to use the API server to execute Numscript](/oss/ledger/guides/http).
+At least, not at this time. That feature is coming though! In the meantime you _can_ execute Numscript templates using Numary Ledger's built-in API server. If you've never done that before, take a moment to [read up on how to use the API server to execute Numscript](/oss/ledger/numscript/http).
 
 :::
 
