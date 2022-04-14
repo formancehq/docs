@@ -145,16 +145,16 @@ const sidebars = {
           ],
         },
         {
-          label: 'Advanced',
+          label: 'Operations',
           type: 'category',
           collapsible: true,
           collapsed: true,
           items: [
-            'advanced/architecture',
-            'advanced/storages',
-            'advanced/authentication',
-            'advanced/running-in-production',
-            'advanced/concurrency-model',
+            'operations/architecture',
+            'operations/storages',
+            'operations/authentication',
+            'operations/running-in-production',
+            'operations/concurrency-model',
           ],
         },
         {
