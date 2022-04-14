@@ -140,7 +140,6 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           items: [
-            'operations/architecture',
             'operations/configuration',
             'operations/using-the-control-dashboard',
             'operations/storages',
@@ -155,6 +154,7 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           items: [
+            'reference/architecture',
             'reference/installation',    
             'reference/ledgers',
             'reference/accounts',
