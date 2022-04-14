@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Numary Hub Resources\n',
-  tagline: 'The open foundation you need to build and scale money-movements within your app',
-  url: 'https://docs.numary.com',
+  title: 'Numary Ledger\n',
+  tagline: 'The open source foundation you need to build and scale money-movements within your app',
+  url: 'https://docs.numary.com/oss/ledger',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
@@ -30,7 +30,7 @@ const config = {
         path: 'oss/ledger',
         routeBasePath: 'oss/ledger',
         editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebarsLedger.js'),
+        sidebarPath: require.resolve('./sidebar.js'),
         showLastUpdateAuthor: false,
         showLastUpdateTime: false,
         // versions: {
@@ -54,7 +54,7 @@ const config = {
           //     label: `Latest 🚧`,
           //   },
           // },
-          sidebarPath: require.resolve('./sidebarsCloud.js'),
+          // sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
           // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
@@ -69,12 +69,12 @@ const config = {
         specs: [
           {
             specUrl: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
-            routePath: '/api/ledger/',
+            routePath: '/oss/ledger/reference/api',
           },
-          {
-            specUrl: 'https://api.numary.cloud/swagger.json',
-            routePath: '/api/cloud/',
-          }
+          // {
+          //   specUrl: 'https://api.numary.cloud/swagger.json',
+          //   routePath: '/api/cloud/',
+          // }
       ],
       }
     ],
@@ -94,35 +94,35 @@ const config = {
           href: '/oss/ledger/',
         },
         items: [
-          {
-            label: '📚 Documentation',
-            position: 'left',
-            items: [
-              {
-                label: 'Ledger',
-                to: '/oss/ledger/',
-              },
-            ],
-          },
-          {
-            label: '☁️ Cloud',
-            to: '/docs/introduction',
-            position: 'left',
-          },
-          {
-            label: 'API',
-            position: 'left',
-            items: [
-              {
-                label: 'Ledger',
-                to: '/api/ledger/',
-              },
-              {
-                label: 'Cloud',
-                to: '/api/cloud/',
-              }
-            ],
-          },
+          // {
+          //   label: '📚 Documentation',
+          //   position: 'left',
+          //   items: [
+          //     {
+          //       label: 'Ledger',
+          //       to: '/oss/ledger/',
+          //     },
+          //   ],
+          // },
+          // {
+          //   label: '☁️ Cloud',
+          //   to: '/docs/introduction',
+          //   position: 'left',
+          // },
+          // {
+          //   label: 'API',
+          //   position: 'left',
+          //   items: [
+          //     {
+          //       label: 'Ledger',
+          //       to: '/api/ledger/',
+          //     },
+          //     {
+          //       label: 'Cloud',
+          //       to: '/api/cloud/',
+          //     }
+          //   ],
+          // },
           // {
           //   type: 'docsVersionDropdown',
           //   docsPluginId: 'ledger',
@@ -171,7 +171,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/numary',
+                href: 'https://github.com/numary/ledger',
               },
               {
                 label: 'Service Status',

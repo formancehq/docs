@@ -173,6 +173,11 @@ const sidebars = {
                 'reference/numscript/rounding',
               ],
             },
+            {
+              label: 'API',
+              type: 'link',
+              href: '/oss/ledger/reference/api',
+            },
           ],
         },
         {
