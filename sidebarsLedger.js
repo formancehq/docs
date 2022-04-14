@@ -135,16 +135,6 @@ const sidebars = {
         //   ],
         // },
         {
-          label: 'Examples',
-          type: 'category',
-          collapsible: true,
-          collapsed: true,
-          items: [
-            'examples/in-app-currency',
-            'examples/marketplace-sales-routing',
-          ],
-        },
-        {
           label: 'Operations',
           type: 'category',
           collapsible: true,
@@ -183,6 +173,16 @@ const sidebars = {
                 'reference/numscript/rounding',
               ],
             },
+          ],
+        },
+        {
+          label: 'Examples',
+          type: 'category',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'examples/in-app-currency',
+            'examples/marketplace-sales-routing',
           ],
         },
       ],
