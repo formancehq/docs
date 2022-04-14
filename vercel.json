@@ -27,7 +27,7 @@
     { "source": "/docs/running-in-production", "destination": "/oss/ledger/operations/running-in-production" },
     { "source": "/docs/concurrency-model", "destination": "/oss/ledger/operations/concurrency-model" },
     { "source": "/api/ledger", "destination": "/oss/ledger/reference/api"},
-    { "source": "/api/ledger/(?<path>.+)", "destination": "/oss/ledger/reference/api/:path"},
+    { "source": "/api/ledger/:path", "destination": "/oss/ledger/reference/api/:path"},
     { "source": "/reference/get_-info-1", "destination": "/api/ledger/#tag/server/paths/~1_info/get" },
     { "source": "/reference/get_-ledger-accounts", "destination": "/api/ledger/#/paths/~1{ledger}~1accounts/get" },
     { "source": "/reference/get_-ledger-accounts-accountid", "destination": "/api/ledger/#/paths/~1{ledger}~1accounts~1{accountId}/get" },
