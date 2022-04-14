@@ -118,7 +118,7 @@ const sidebars = {
           type: 'category',
           collapsible: true,
           collapsed: true,
-          // link: { type: 'doc', id: 'api/index' },
+          link: { type: 'doc', id: 'api/index' },
           items: [
             'api/sdks',
           ],

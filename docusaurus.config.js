@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: 'Numary Ledger\n',
   tagline: 'The open source foundation you need to build and scale money-movements within your app',
-  url: 'https://docs.numary.com/oss/ledger',
+  url: 'https://docs.numary.com/',
   baseUrl: '/',
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
