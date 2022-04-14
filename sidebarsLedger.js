@@ -113,21 +113,16 @@ const sidebars = {
             },
           ],
         },
-        // {
-        //   label: 'Guides',
-        //   type: 'category',
-        //   collapsible: true,
-        //   collapsed: true,
-        //   link: { type: 'doc', id: 'guides/index' },
-        //   items: [
-        //     'guides/configuration',
-        //     'guides/issuing-money',
-        //     'guides/numscript',
-        //     'guides/using-the-control-dashboard',
-        //     'guides/materialized-transactions',
-        //     'guides/unambiguous-monetary-notation',
-        //   ],
-        // },
+        {
+          label: 'Best Practices',
+          type: 'category',
+          collapsible: true,
+          collapsed: true,
+          // link: { type: 'doc', id: 'best-practices/index' },
+          items: [
+            'best-practices/currency-conversion/index',
+          ],
+        },
         {
           label: 'Operations',
           type: 'category',
