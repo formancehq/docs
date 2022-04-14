@@ -15,7 +15,7 @@
 const sidebars = {
   ledger: [
     {
-      label: 'Ledger OSS',
+      label: 'Numary Ledger',
       type: 'category',
       collapsible: false,
       collapsed: false,
