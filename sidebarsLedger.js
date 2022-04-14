@@ -21,6 +21,7 @@ const sidebars = {
       collapsed: false,
       link: { type: 'doc', id: 'index' },
       items:[
+        'help',
         {
           label: 'Getting Started',
           type: 'category',
@@ -51,13 +52,6 @@ const sidebars = {
                 'get-started/hello-world/checking-balances',
                 'get-started/hello-world/your-first-transaction'
               ]
-            },
-                        {
-              type: 'doc',
-              id: 'get-started/getting-help',
-              customProps: {
-                icon: '😓',
-              }
             },
           ],
         },
