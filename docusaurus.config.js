@@ -29,15 +29,22 @@ const config = {
         id: 'ledger',
         path: 'oss/ledger',
         routeBasePath: 'oss/ledger',
-        editCurrentVersion: true,
         sidebarPath: require.resolve('./sidebarsLedger.js'),
+        editCurrentVersion: false,
         showLastUpdateAuthor: false,
         showLastUpdateTime: false,
-        // versions: {
-        //   current: {
-        //     label: `Latest 🚧 `,
-        //   },
-        // },
+      }),
+    ],
+    [
+      '@docusaurus/plugin-content-docs',
+      ({
+        id: 'payments',
+        path: 'oss/payments',
+        routeBasePath: 'oss/payments',
+        editCurrentVersion: true,
+        sidebarPath: require.resolve('./sidebarsPayments.js'),
+        showLastUpdateAuthor: false,
+        showLastUpdateTime: false,
       }),
     ],
   ],
@@ -49,14 +56,7 @@ const config = {
       ({
         sitemap: {},
         docs: {
-          // versions: {
-          //   current: {
-          //     label: `Latest 🚧`,
-          //   },
-          // },
           sidebarPath: require.resolve('./sidebarsCloud.js'),
-          // Please change this to your repo.
-          // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -102,6 +102,10 @@ const config = {
                 label: 'Ledger',
                 to: '/oss/ledger/get-started/installation',
               },
+              {
+                label: 'Payments',
+                to: '/oss/payments/get-started/installation',
+              },
             ],
           },
           {
@@ -123,17 +127,6 @@ const config = {
               }
             ],
           },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   docsPluginId: 'ledger',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
