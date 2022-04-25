@@ -27,7 +27,8 @@ const sidebars = {
           collapsed: false,
           items: [
             "get-started/installation",
-            "get-started/your-first-transaction"
+            "get-started/your-first-transaction",
+            "get-started/upgrade"
           ],
         },
         {
