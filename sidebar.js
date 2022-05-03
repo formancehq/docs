@@ -123,16 +123,16 @@ const sidebars = {
             'api/sdks',
           ],
         },
-        {
-          label: 'Best Practices',
-          type: 'category',
-          collapsible: true,
-          collapsed: true,
-          // link: { type: 'doc', id: 'best-practices/index' },
-          items: [
-            'best-practices/currency-conversion/index',
-          ],
-        },
+        // {
+        //   label: 'Best Practices',
+        //   type: 'category',
+        //   collapsible: true,
+        //   collapsed: true,
+        //   // link: { type: 'doc', id: 'best-practices/index' },
+        //   items: [
+        //     'best-practices/currency-conversion/index',
+        //   ],
+        // },
         {
           label: 'Operations',
           type: 'category',
