@@ -38,7 +38,7 @@
     { "source": "/reference/post_-ledger-transactions-1", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions/post" },
     { "source": "/reference/get_-ledger-transactions-txid", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}/get" },
     { "source": "/reference/post_-ledger-transactions-txid-metadata", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1metadata/post" },
-    { "source": "/reference/post_-ledger-transactions-txid-reverta", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1revert/post" }
+    { "source": "/reference/post_-ledger-transactions-txid-reverta", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1revert/post" },
     { "source": "/api/ledger", "destination": "/oss/ledger/reference/api"},
     { "source": "/api/ledger/get_-info-1", "destination": "/oss/ledger/reference/api/#tag/server/paths/~1_info/get" },
     { "source": "/api/ledger/get_-ledger-accounts", "destination": "/oss/ledger/reference/api/#/paths/~1{ledger}~1accounts/get" },
