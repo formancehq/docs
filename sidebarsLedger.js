@@ -28,7 +28,6 @@ const sidebars = {
           items: [
             "get-started/installation",
             "get-started/your-first-transaction",
-            "get-started/upgrade"
           ],
         },
         {
@@ -93,6 +92,7 @@ const sidebars = {
             //"advanced/running-in-production",
             "advanced/concurrency-model",
             "advanced/env-vars",
+            "advanced/upgrade"
           ],
         },
       ],
