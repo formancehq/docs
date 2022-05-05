@@ -23,25 +23,8 @@ const config = {
 
   plugins: [
     'posthog-docusaurus',
-    [
-      '@docusaurus/plugin-content-docs',
-      ({
-        id: 'ledger',
-        path: 'oss/ledger',
-        routeBasePath: 'oss/ledger',
-        editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebar.js'),
-        showLastUpdateAuthor: false,
-        showLastUpdateTime: false,
-        // versions: {
-        //   current: {
-        //     label: `Latest 🚧 `,
-        //   },
-        // },
-      }),
-    ],
   ],
-
+  
   presets: [
     [
       '@docusaurus/preset-classic',
@@ -49,13 +32,13 @@ const config = {
       ({
         sitemap: {},
         docs: {
-          // versions: {
-          //   current: {
-          //     label: `Latest 🚧`,
-          //   },
-          // },
-          // sidebarPath: require.resolve('./sidebarsCloud.js'),
-          // Please change this to your repo.
+          id: 'ledger',
+          path: 'docs',
+          routeBasePath: 'oss/ledger',
+          editCurrentVersion: true,
+          sidebarPath: require.resolve('./sidebar.js'),
+          showLastUpdateAuthor: false,
+          showLastUpdateTime: false,
           // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
         theme: {
@@ -71,11 +54,7 @@ const config = {
             specUrl: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
             routePath: '/oss/ledger/reference/api',
           },
-          // {
-          //   specUrl: 'https://api.numary.cloud/swagger.json',
-          //   routePath: '/api/cloud/',
-          // }
-      ],
+        ],
       }
     ],
   ],
@@ -94,48 +73,8 @@ const config = {
           href: '/oss/ledger/',
         },
         items: [
-          // {
-          //   label: '📚 Documentation',
-          //   position: 'left',
-          //   items: [
-          //     {
-          //       label: 'Ledger',
-          //       to: '/oss/ledger/',
-          //     },
-          //   ],
-          // },
-          // {
-          //   label: '☁️ Cloud',
-          //   to: '/docs/introduction',
-          //   position: 'left',
-          // },
-          // {
-          //   label: 'API',
-          //   position: 'left',
-          //   items: [
-          //     {
-          //       label: 'Ledger',
-          //       to: '/api/ledger/',
-          //     },
-          //     {
-          //       label: 'Cloud',
-          //       to: '/api/cloud/',
-          //     }
-          //   ],
-          // },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   docsPluginId: 'ledger',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
           {
-            href: 'https://github.com/numary',
+            href: 'https://github.com/numary/ledger',
             label: 'GitHub',
             position: 'right',
           },
@@ -149,7 +88,7 @@ const config = {
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/introduction/',
+                to: 'https://docs.numary.com',
               },
             ],
           },
