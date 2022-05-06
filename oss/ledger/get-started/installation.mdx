@@ -1,0 +1,57 @@
+---
+title: Installation
+description: How to install Numary Ledger for development.
+customProps:
+    cta: FOOBAR
+---
+import HomebrewInstall from '../partials/installation/_install_homebrew.mdx';
+import APTInstall from '../partials/installation/_install_apt.mdx';
+import RPMInstall from '../partials/installation/_install_rpm.mdx';
+
+# Installation
+
+Interested in trying Numary Ledger out? You can install it on your local machine first.
+
+Numary Ledger is, as you'd expect, available for Linux, macOS, and Windows. 
+
+We also provide Docker images for production environments. You can learn more about all the different ways of installing Numary Ledger in the [reference documentation](/oss/ledger/reference/installation).
+
+## macOS
+<HomebrewInstall />
+
+## Linux
+
+Numary Ledger is available for APT (Debian) and RPM (RedHat) based distributions.
+
+### Install with APT (Debian, Ubuntu)
+<APTInstall />
+
+### Install with RPM (RedHat, Fedora, SUSE)
+
+<RPMInstall />
+
+## Windows
+
+[Download the pre-compiled binary ` numary_x.y.z_Windows-64bit.zip`](https://github.com/numary/ledger/releases) from GitHub (where `x.y.z` is the version number). Unzip the file, and place `numary.exe` somewhere convenient such as `C:\Program Files`.
+
+:::info
+Consider renaming the executable `numary` (without the `.exe` suffix) to make it easier to type, and so the example commands in the rest of the tutorial will work without having to edit them.
+:::
+
+## Troubleshooting
+
+You can check that Numary CLI was installed correctly by trying the following command:
+
+```shell
+numary version
+```
+
+You should see something like
+
+```
+Version: 1.4.0-beta.3 
+Date: 2022-04-08T10:18:48Z 
+Commit: ce59ebc
+```
+
+If you don't, then recheck the steps above, or [reach out to us](oss/ledger/help) to ask for help.

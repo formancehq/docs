@@ -6,11 +6,11 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Numary Hub Resources\n',
-  tagline: 'The open foundation you need to build and scale money-movements within your app',
-  url: 'https://docs.numary.com',
+  title: 'Numary Ledger\n',
+  tagline: 'The open source foundation you need to build and scale money-movements within your app',
+  url: 'https://docs.numary.com/',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
   organizationName: 'numary', // Usually your GitHub org/user name.
@@ -30,7 +30,7 @@ const config = {
         path: 'oss/ledger',
         routeBasePath: 'oss/ledger',
         editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebarsLedger.js'),
+        sidebarPath: require.resolve('./sidebar.js'),
         showLastUpdateAuthor: false,
         showLastUpdateTime: false,
         // versions: {
@@ -54,7 +54,7 @@ const config = {
           //     label: `Latest 🚧`,
           //   },
           // },
-          sidebarPath: require.resolve('./sidebarsCloud.js'),
+          // sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
           // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
         },
@@ -69,7 +69,7 @@ const config = {
         specs: [
           {
             specUrl: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
-            routePath: '/api/ledger/',
+            routePath: '/oss/ledger/reference/api',
           },
           {
             specUrl: 'https://api.numary.cloud/swagger.json',
@@ -91,7 +91,7 @@ const config = {
         logo: {
           alt: 'Numary Logo',
           src: 'img/logo_numary.svg',
-          href: '/oss/ledger/get-started/installation',
+          href: '/oss/ledger/',
         },
         items: [
           {
@@ -99,15 +99,14 @@ const config = {
             position: 'left',
             items: [
               {
-                label: 'Ledger',
-                to: '/oss/ledger/get-started/installation',
+                label: '📒 Ledger',
+                to: '/oss/ledger/',
+              },
+              {
+                label: '☁️ Cloud',
+                to: '/docs/introduction',
               },
             ],
-          },
-          {
-            label: '☁️ Cloud',
-            to: '/docs/introduction',
-            position: 'left',
           },
           {
             label: 'API',
@@ -115,7 +114,7 @@ const config = {
             items: [
               {
                 label: 'Ledger',
-                to: '/api/ledger/',
+                to: '/oss/ledger/reference/api',
               },
               {
                 label: 'Cloud',
@@ -171,7 +170,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/numary',
+                href: 'https://github.com/numary/ledger',
               },
               {
                 label: 'Service Status',
@@ -190,7 +189,30 @@ const config = {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
         appUrl: 'https://app.posthog.com',  // optional
         enableInDevelopment: false,  // optional
-      }
+      },
+      algolia: {
+        // The application ID provided by Algolia
+        appId: '1GW5NWTZRQ',
+
+        // Public API key: it is safe to commit it
+        apiKey: '8444a84a17fbf516710b9f112536ea20',
+
+        indexName: 'NUMARY_LEDGER',
+
+        // Optional: see doc section below
+        contextualSearch: true,
+
+        // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
+        externalUrlRegex: 'docs\\.numary\\.com',
+
+        // Optional: Algolia search parameters
+        searchParameters: {},
+
+        // Optional: path for search page that enabled by default (`false` to disable it)
+        searchPagePath: 'search',
+
+        //... other Algolia params
+      },
     })
 };
 
