@@ -113,16 +113,16 @@ const sidebars = {
             },
           ],
         },
-        {
-          label: 'Ledger API',
-          type: 'category',
-          collapsible: true,
-          collapsed: true,
-          link: { type: 'doc', id: 'api/index' },
-          items: [
-            'api/sdks',
-          ],
-        },
+        // {
+        //   label: 'Ledger API',
+        //   type: 'category',
+        //   collapsible: true,
+        //   collapsed: true,
+        //   link: { type: 'doc', id: 'api/index' },
+        //   items: [
+        //     'api/sdks',
+        //   ],
+        // },
         // {
         //   label: 'Best Practices',
         //   type: 'category',
@@ -146,6 +146,7 @@ const sidebars = {
             // 'operations/running-in-production',
             'operations/env-vars',
             'operations/upgrade',
+            'api/sdks'
           ],
         },
         {

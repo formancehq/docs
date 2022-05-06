@@ -114,7 +114,7 @@ const config = {
             items: [
               {
                 label: 'Ledger',
-                to: '/api/ledger/',
+                to: '/oss/ledger/reference/api',
               },
               {
                 label: 'Cloud',
@@ -122,17 +122,17 @@ const config = {
               }
             ],
           },
-          {
-            type: 'docsVersionDropdown',
-            docsPluginId: 'ledger',
-            position: 'right',
-            dropdownActiveClassDisabled: true,
-          },
-          {
-            type: 'docsVersionDropdown',
-            position: 'right',
-            dropdownActiveClassDisabled: true,
-          },
+          // {
+          //   type: 'docsVersionDropdown',
+          //   docsPluginId: 'ledger',
+          //   position: 'right',
+          //   dropdownActiveClassDisabled: true,
+          // },
+          // {
+          //   type: 'docsVersionDropdown',
+          //   position: 'right',
+          //   dropdownActiveClassDisabled: true,
+          // },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
