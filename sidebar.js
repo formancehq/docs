@@ -143,8 +143,9 @@ const sidebars = {
             'operations/using-the-control-dashboard',
             'operations/storages',
             'operations/authentication',
-            'operations/running-in-production',
-            'operations/concurrency-model',
+            // 'operations/running-in-production',
+            'operations/env-vars',
+            'operations/upgrade',
           ],
         },
         {
@@ -159,6 +160,7 @@ const sidebars = {
             'reference/accounts',
             'reference/transactions',
             'reference/unambiguous-monetary-notation',
+            'reference/concurrency-model',
             {
               label: 'Numscript',
               type: 'category',
