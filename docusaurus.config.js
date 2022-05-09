@@ -192,12 +192,12 @@ const config = {
       },
       algolia: {
         // The application ID provided by Algolia
-        appId: '1GW5NWTZRQ',
+        appId: 'IHGRMFJIIG',
 
         // Public API key: it is safe to commit it
-        apiKey: '8444a84a17fbf516710b9f112536ea20',
+        apiKey: '7864304f16ea5f9d27b7a553c83ad17a',
 
-        indexName: 'NUMARY_LEDGER',
+        indexName: 'numary',
 
         // Optional: see doc section below
         contextualSearch: true,
