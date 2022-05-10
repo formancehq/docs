@@ -48,16 +48,7 @@ const config = {
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
         sitemap: {},
-        docs: {
-          // versions: {
-          //   current: {
-          //     label: `Latest 🚧`,
-          //   },
-          // },
-          // sidebarPath: require.resolve('./sidebarsCloud.js'),
-          // Please change this to your repo.
-          // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
-        },
+        docs: false,
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
@@ -71,10 +62,6 @@ const config = {
             specUrl: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
             routePath: '/oss/ledger/reference/api',
           },
-          {
-            specUrl: 'https://api.numary.cloud/swagger.json',
-            routePath: '/api/cloud/',
-          }
       ],
       }
     ],
@@ -102,10 +89,6 @@ const config = {
                 label: '📒 Ledger',
                 to: '/oss/ledger/',
               },
-              {
-                label: '☁️ Cloud',
-                to: '/docs/introduction',
-              },
             ],
           },
           {
@@ -116,23 +99,8 @@ const config = {
                 label: 'Ledger',
                 to: '/oss/ledger/reference/api',
               },
-              {
-                label: 'Cloud',
-                to: '/api/cloud/',
-              }
             ],
           },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   docsPluginId: 'ledger',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
@@ -148,7 +116,7 @@ const config = {
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/introduction/',
+                to: '/',
               },
             ],
           },
