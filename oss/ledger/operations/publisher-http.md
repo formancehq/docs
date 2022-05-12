@@ -15,7 +15,7 @@ The following events types are available:
 
 ## Example
 
-```SHELL
+```shell
 # Publishing COMMITTED_TRANSACTIONS events
 numary server start \
   --publisher-http-enabled \
@@ -29,7 +29,7 @@ numary server start \
 
 On the receiving hand, the http body sent will be formatted as per [these structs](https://github.com/numary/ledger/blob/main/pkg/bus/message.go#L8):
 
-```JSON
+```json
 {
   "date": "2022-05-12T14:31:07.808419+02:00",
   "type": "COMMITTED_TRANSACTIONS",

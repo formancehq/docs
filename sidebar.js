@@ -146,6 +146,8 @@ const sidebars = {
             // 'operations/running-in-production',
             'operations/env-vars',
             'operations/upgrade',
+            'operations/publisher-http',
+            'operations/publisher-kafka',
             'api/sdks'
           ],
         },
