@@ -18,17 +18,17 @@ The following events types are available:
 ## Example
 
 ```shell
-# Publishing COMMITTED_TRANSACTIONS events
+# Publishing COMMITTED_TRANSACTIONS events to the default topic
 numary server start \
   --publisher-kafka-enabled \
   --publisher-kafka-broker="localhost:9092" \
-  --publisher-topic-mapping='COMMITTED_TRANSACTIONS:http://localhost:3042/numary-hook'
+  --publisher-topic-mapping='COMMITTED_TRANSACTIONS:default'
 
-# Publishing all events
+# Publishing all events to the default topic
 numary server start \
   --publisher-kafka-enabled \
   --publisher-kafka-broker="localhost:9092" \
-  --publisher-topic-mapping='*:http://localhost:3042/numary-hook'
+  --publisher-topic-mapping='*:default'
 ```
 
 On the receiving hand, the http body sent will be formatted as per [these structs](https://github.com/numary/ledger/blob/main/pkg/bus/message.go#L8):
