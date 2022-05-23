@@ -46,13 +46,13 @@ You should be able to see, as in the image above, that `donnameagle` paid 38 coi
 
 ### What's going on here?
 
-First, we're telling Numary Ledger to take half of the 75 coin payment from `donnameagle`. Notice that 75, being an odd number, doesn't split evenly in half. Numscript is smart about this, and rounds amounts in a way that avoids rounding errors. Because `donnameagle` is listed first, they will pay the coin that remains after evenly subdividing: They will pay 38 coin.
+First, we're telling Formance Ledger to take half of the 75 coin payment from `donnameagle`. Notice that 75, being an odd number, doesn't split evenly in half. Numscript is smart about this, and rounds amounts in a way that avoids rounding errors. Because `donnameagle` is listed first, they will pay the coin that remains after evenly subdividing: They will pay 38 coin.
 
 :::info
 [Floating point numbers are too imprecise for finance](https://www.youtube.com/watch?v=yZjCQ3T5yXo). Numscript avoids this problem by only using integer math for dividing payments up. The reference docs have [more detail on about Numscript's rounding algorithm](/oss/ledger/reference/numscript/rounding/).
 :::
 
-Second, we're avoiding mistakes in our own calculations by telling Numary Ledger to pay whatever remains from `tomhaverford`, after `donnameagle` pays their share, by using the `remaining` keyword. Since `donnameagle` paid 38 coin, that leaves 37 coin for `tomhaverford` to pay.
+Second, we're avoiding mistakes in our own calculations by telling Formance Ledger to pay whatever remains from `tomhaverford`, after `donnameagle` pays their share, by using the `remaining` keyword. Since `donnameagle` paid 38 coin, that leaves 37 coin for `tomhaverford` to pay.
 
 ## Specifying backup accounts
 
@@ -85,11 +85,11 @@ You should be able to see, as in the image above, that 50 coin came from `andydw
 
 ### What's going on here?
 
-In this case, we have only specified a list of accounts as the source, without any apportionment. Numary Ledger will attempt to pay the entire amount from the first account listed. If there are insufficient funds in that account, then the remainder will be applied against the next account listed, and so on. You can list as many accounts as you like to draw funds from like this.
+In this case, we have only specified a list of accounts as the source, without any apportionment. Formance Ledger will attempt to pay the entire amount from the first account listed. If there are insufficient funds in that account, then the remainder will be applied against the next account listed, and so on. You can list as many accounts as you like to draw funds from like this.
 
 If the total in all the listed accounts remains insufficient to cover the movement, the transaction will fail and no money will be moved.
 
-So, since there were only 50 coins in the first account, Numary Ledger looked at the second account, and took the remaining balance of 50 coins from it to complete the transaction.
+So, since there were only 50 coins in the first account, Formance Ledger looked at the second account, and took the remaining balance of 50 coins from it to complete the transaction.
 
 ## Nested sources
 
@@ -137,7 +137,7 @@ After running this script, and then [look at `donnameagle`'s balance](https://co
 
 ### What's going on here?
 
-Just like in the original pony purchase, we are asking Numary Ledger to split the cost 50-50 between `donnameagle` and `tomhaverford`. But, we've added a nested constraint on how we spend `donnameagle`'s coin. First, we use the `max` keyword to indicate that no more than 10 coins should be taken from her main account. Then we add a backup account—her treasure chest—to take the remainder of her share from.
+Just like in the original pony purchase, we are asking Formance Ledger to split the cost 50-50 between `donnameagle` and `tomhaverford`. But, we've added a nested constraint on how we spend `donnameagle`'s coin. First, we use the `max` keyword to indicate that no more than 10 coins should be taken from her main account. Then we add a backup account—her treasure chest—to take the remainder of her share from.
 
 ## Going further
 

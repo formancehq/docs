@@ -4,7 +4,7 @@ title: Accounts
 # Accounts
 Accounts are containers for assets. They can send and receive assets using transactions, the sum of which will determine their balances.
 
-The number of accounts in a ledger is unlimited. Accounts don't have to represent a "real" account in your bank, they can represent anything that has meaning to you. Once you grasp the idiomatic Numary way of building financial applications, you'll start using accounts to represent abstract concepts in your business logic, like a sale, a contract or a payment.
+The number of accounts in a ledger is unlimited. Accounts don't have to represent a "real" account in your bank, they can represent anything that has meaning to you. Once you grasp the idiomatic Formance way of building financial applications, you'll start using accounts to represent abstract concepts in your business logic, like a sale, a contract or a payment.
 
 Accounts do not need to be created prior being used, submitting a transaction involving it will automatically make it exist in the ledger.
 

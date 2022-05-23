@@ -6,9 +6,9 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Numary Ledger\n',
+  title: 'Formance Ledger\n',
   tagline: 'The open source foundation you need to build and scale money-movements within your app',
-  url: 'https://docs.numary.com/',
+  url: 'https://docs.formance.com/',
   baseUrl: '/',
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
@@ -56,7 +56,7 @@ const config = {
           // },
           // sidebarPath: require.resolve('./sidebarsCloud.js'),
           // Please change this to your repo.
-          // editUrl: 'https://github.com/numary/docs/edit/main/docs/',
+          // editUrl: 'https://github.com/formance/docs/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -89,7 +89,7 @@ const config = {
       },
       navbar: {
         logo: {
-          alt: 'Numary Logo',
+          alt: 'Formance Logo',
           src: 'img/logo_numary.svg',
           href: '/oss/ledger/',
         },
@@ -203,7 +203,7 @@ const config = {
         contextualSearch: true,
 
         // Optional: Specify domains where the navigation should occur through window.location instead on history.push. Useful when our Algolia config crawls multiple documentation sites and we want to navigate with window.location.href to them.
-        externalUrlRegex: 'docs\\.numary\\.com',
+        externalUrlRegex: 'docs\\.formance\\.com',
 
         // Optional: Algolia search parameters
         searchParameters: {},

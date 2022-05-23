@@ -15,7 +15,7 @@
 const sidebars = {
   ledger: [
     {
-      label: 'Numary Ledger',
+      label: 'Formance Ledger',
       type: 'category',
       collapsible: false,
       collapsed: false,

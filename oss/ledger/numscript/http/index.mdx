@@ -1,6 +1,6 @@
 ---
 title: Making requests over HTTP
-description: You can also execute Numscript with Numary Ledger's built-in API server.
+description: You can also execute Numscript with Formance Ledger's built-in API server.
 ---
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
@@ -10,9 +10,9 @@ import Prerequisites from '/oss/ledger/partials/numscript/_prerequisites.mdx';
 import Prereqwarn from '/oss/ledger/partials/numscript/_prereq_warning.mdx';
 
 
-The `numary` command line is not the only way to execute Numscript. Numary Ledger also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
+The `numary` command line is not the only way to execute Numscript. Formance Ledger also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
 
-Indeed, Numary Ledger's HTTP API is very powerful, and let's you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [guide to the Numary Ledger API](/oss/ledger/api/).
+Indeed, Formance Ledger's HTTP API is very powerful, and let's you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [guide to the Formance Ledger API](/oss/ledger/api/).
 
 <Prerequisites />
 
@@ -25,11 +25,11 @@ If you recall from the [Getting Started](/oss/ledger/get-started/hello-world/) s
   destination = @player:benwyatt
 )`}></NumscriptBlock>
 
-In the introduction, we ran this Numscript using the command line. This time, however, we're going to execute the script via Numary Ledger's built-in HTTP API.
+In the introduction, we ran this Numscript using the command line. This time, however, we're going to execute the script via Formance Ledger's built-in HTTP API.
 
 :::tip
 
-Because the Numary Ledger API is expecting JSON data, these examples are built using `jq`, a command line tool for manipulating JSON data. It's a really powerful JSON tool that should be part of your developer toolkit. [Read more](https://stedolan.github.io/jq/) about `jq` including how to install it.
+Because the Formance Ledger API is expecting JSON data, these examples are built using `jq`, a command line tool for manipulating JSON data. It's a really powerful JSON tool that should be part of your developer toolkit. [Read more](https://stedolan.github.io/jq/) about `jq` including how to install it.
 
 :::
 
@@ -78,7 +78,7 @@ There are a lot of moving parts to this API endpoint, let's go over each in turn
 
 ### The API endpoint
 
-If you are running Numary Ledger locally, the API is exposed on localhost port 3068. You can access the API using the URL schema:
+If you are running Formance Ledger locally, the API is exposed on localhost port 3068. You can access the API using the URL schema:
 
 ```
 http://localhost:3068/{ledger}/{action}
@@ -90,7 +90,7 @@ We're using the `dunshire` ledger, and we're executing a bit of Numscript, so th
 http://localhsot:3068/dunshire/script
 ```
 
-You can learn more about the available endpoints in the [guide to the Numary Ledger API](/oss/ledger/api/) in the reference docs.
+You can learn more about the available endpoints in the [guide to the Formance Ledger API](/oss/ledger/api/) in the reference docs.
 
 ### The API request
 
@@ -112,11 +112,11 @@ jq -Rs '{plain: .}' first.num
 
 **On success**
 
-The Numary Ledger API will return a `200` status code on success, and an empty JSON object in the response body.
+The Formance Ledger API will return a `200` status code on success, and an empty JSON object in the response body.
 
 **On failure**
 
-The Numary Ledger API will return a `200` status code even on failure, but the JSON object returned in the response body will have more information:
+The Formance Ledger API will return a `200` status code even on failure, but the JSON object returned in the response body will have more information:
 
 ```json
 {
@@ -131,8 +131,8 @@ There is also a `details` field with a URL. When there is an error parsing Numsc
 
 ## Going further
 
-This guide has just been a small taste of what's possible using the Numary Ledger API to execute Numscript. And of course the API lets you do so much more.
+This guide has just been a small taste of what's possible using the Formance Ledger API to execute Numscript. And of course the API lets you do so much more.
 
 :::tip Dig deeper
-Want to learn more about the Numary Ledger API? The [guide to the Numary Ledger API](/oss/ledger/api/) has you covered!
+Want to learn more about the Formance Ledger API? The [guide to the Formance Ledger API](/oss/ledger/api/) has you covered!
 :::

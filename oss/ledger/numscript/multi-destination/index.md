@@ -49,7 +49,7 @@ You should be able to see, as in the image above, that `leslieknope` received 38
 
 First, we're sending half of the 75 coin payment to `leslieknope`. Notice that 75, being an odd number, doesn't split evenly in half. Numscript is smart about this, and rounds amounts in a way that avoids rounding errors. Because `leslieknope` is listed first, they will get the coin that remains after evenly subdividing: They will receive 38 coin.
 
-:::info Numary Ledger uses integer math
+:::info Formance Ledger uses integer math
 [Floating point numbers are too imprecise for finance](https://www.youtube.com/watch?v=yZjCQ3T5yXo). Numscript avoids this problem by only using integer math for dividing payments up. The reference docs have [more detail on about Numscript's rounding algorithm](/oss/ledger/reference/numscript/rounding/).
 :::
 

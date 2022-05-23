@@ -5,7 +5,7 @@ title: Getting started with Cloud Ledgers
 
 ## Authentication
 
-To obtain a JWT Token, you need to create an API token first, which you can create on the [Numary Cloud Dashboard](https://my.numary.cloud/integrations).
+To obtain a JWT Token, you need to create an API token first, which you can create on the [Formance Cloud Dashboard](https://my.numary.cloud/integrations).
 
 ```bash
 curl --location --request POST 'https://api.numary.cloud/auth/authenticate/tokens' \

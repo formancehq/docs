@@ -5,7 +5,7 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 
 # Introducing money into the ledger
 
-Now you have Numary Ledger up and ready to accept transactions. Woohoo! Let's get started by creating our first transaction in Numscript.
+Now you have Formance Ledger up and ready to accept transactions. Woohoo! Let's get started by creating our first transaction in Numscript.
 
 Right now, your coffers in the game world of Cones of Dunshire are entirely empty. We need to seed it with a little coin so that we can distribute it to players.
 
@@ -40,14 +40,14 @@ You don't have to have a `@centralbank` account, this is just an example designe
 
 ## Executing the Numscript
 
-OK, we have our transaction described with Numscript. How do we execute the transaction against our ledger? We need to feed the Numscript to our running instance of Numary Ledger.
+OK, we have our transaction described with Numscript. How do we execute the transaction against our ledger? We need to feed the Numscript to our running instance of Formance Ledger.
 
 ```shell
 numary exec dunshire intro.num
 ```
 
 :::info
-Numary Ledger can track money movements through multiple distinct ledgers. Each ledger has a name, and each transaction must be assigned to a specific ledger. In many cases, you'll only need one ledger. Sometimes though you might want more than one. In this example, we instructed Numary Ledger to use the `dunshire` ledger for the transaction. That ledger didn't previously exist, so Numary Ledger helpfully created it for us. We'll continue to use the `dunshire` ledger throughout the docs.
+Formance Ledger can track money movements through multiple distinct ledgers. Each ledger has a name, and each transaction must be assigned to a specific ledger. In many cases, you'll only need one ledger. Sometimes though you might want more than one. In this example, we instructed Formance Ledger to use the `dunshire` ledger for the transaction. That ledger didn't previously exist, so Formance Ledger helpfully created it for us. We'll continue to use the `dunshire` ledger throughout the docs.
 :::
 
 If all goes well, you should see:
@@ -62,7 +62,7 @@ Otherwise, if you see something like:
 ```
 FATA[0000] Post "http://localhost:3068/dunshire/script": dial tcp [::1]:3068: connect: connection refused
 ```
-then the Numary Ledger service isn't running. Make sure the [server is running](start-the-server).
+then the Formance Ledger service isn't running. Make sure the [server is running](start-the-server).
 
 ## Next steps
 

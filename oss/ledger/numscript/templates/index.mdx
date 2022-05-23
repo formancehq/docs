@@ -67,7 +67,7 @@ What's great is we can save this template, and use it whenever we need to reward
 
 ## Assigning values to variables
 
-That said, we can't run this Numscript directly, as Numary Ledger can't know what values to use for our variables. When we execute a Numscript template, we also need to specify the values for each variable in a seperate JSON snippet. Suppose that we want to use the template to send 100 coin to `benwyatt` for building a cone, we can specify the values to plug into our template by creating a file called `vars.json` with this JSON object:
+That said, we can't run this Numscript directly, as Formance Ledger can't know what values to use for our variables. When we execute a Numscript template, we also need to specify the values for each variable in a seperate JSON snippet. Suppose that we want to use the template to send 100 coin to `benwyatt` for building a cone, we can specify the values to plug into our template by creating a file called `vars.json` with this JSON object:
 
 ```json title="vars.json"
 {
@@ -83,13 +83,13 @@ As you can see, the names of the keys in the JSON object correspond to the varia
 
 ## Running a Numscript template
 
-A complete transaction consists of a template in Numscript and a specification of the values in JSON. Once we have both, we can pass it to Numary Ledger for execution.
+A complete transaction consists of a template in Numscript and a specification of the values in JSON. Once we have both, we can pass it to Formance Ledger for execution.
 
 :::caution
 
 **You cannot use the command line to execute Numscript templates.**
 
-At least, not at this time. That feature is coming though! In the meantime you _can_ execute Numscript templates using Numary Ledger's built-in API server. If you've never done that before, take a moment to [read up on how to use the API server to execute Numscript](/oss/ledger/numscript/http).
+At least, not at this time. That feature is coming though! In the meantime you _can_ execute Numscript templates using Formance Ledger's built-in API server. If you've never done that before, take a moment to [read up on how to use the API server to execute Numscript](/oss/ledger/numscript/http).
 
 :::
 
@@ -133,7 +133,7 @@ bash: comand not found: jq
 then you do not have the `jq` command line tool installed. You'll need to [install `jq`](https://stedolan.github.io/jq/) to run the examples.
 :::
 
-We can now use the output from `jd` with HTTPie or cURL to send to the Numary Ledger API:
+We can now use the output from `jd` with HTTPie or cURL to send to the Formance Ledger API:
 
 <Tabs>
   <TabItem value="httpie" label="HTTPie">
@@ -166,11 +166,11 @@ http://localhost:3068/dunshire/script
 
 **On success**
 
-The Numary Ledger API will return a `200` status code on success, and an empty JSON object in the response body.
+The Formance Ledger API will return a `200` status code on success, and an empty JSON object in the response body.
 
 **On failure**
 
-The Numary Ledger API will return a `200` status code even on failure, but the JSON object returned in the response body will have more information:
+The Formance Ledger API will return a `200` status code even on failure, but the JSON object returned in the response body will have more information:
 
 ```json
 {
