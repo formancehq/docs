@@ -9,7 +9,7 @@ const FeatureList = [
     icon: 'menu_book',
     description: (
       <>
-          You will find all the documentation to use Numary Cloud or the OpenSource Ledger.
+          You will find all the documentation to use Formance Cloud or the OpenSource Ledger.
       </>
     ),
   },
@@ -18,7 +18,7 @@ const FeatureList = [
     icon: 'smart_display',
     description: (
       <>
-          You will find concrete examples of how Numary Cloud and the OpenSource Ledger are used
+          You will find concrete examples of how Formance Cloud and the OpenSource Ledger are used
       </>
     ),
   },
@@ -27,7 +27,7 @@ const FeatureList = [
       icon: 'settings',
       description: (
       <>
-          You will find all the documentation for the Numary Cloud APIs as well as for the OpenSource Ledger
+          You will find all the documentation for the Formance Cloud APIs as well as for the OpenSource Ledger
       </>
     ),
   },

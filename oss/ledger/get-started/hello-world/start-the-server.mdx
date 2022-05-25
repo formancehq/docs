@@ -1,18 +1,18 @@
 ---
-title: Start the Numary Ledger service
+title: Start the Formance Ledger service
 ---
 
-# Start the Numary Ledger service
+# Start the Formance Ledger service
 
-Numary Ledger is a service that must be running before it can process any transactions.
+Formance Ledger is a service that must be running before it can process any transactions.
 
-To start the Numary Ledger service, enter the following into your command line:
+To start the Formance Ledger service, enter the following into your command line:
 
 ```shell
 numary server start --debug
 ```
 
-Normally, you wouldn't need the `--debug` option, but for learning it can be helpful to see some verbose logging of what's going on. Without this option, Numary Ledger is generally silent.
+Normally, you wouldn't need the `--debug` option, but for learning it can be helpful to see some verbose logging of what's going on. Without this option, Formance Ledger is generally silent.
 
 Anway, if all is well, you will see a great deal of debugging output in your shell that ends like this:
 
@@ -32,7 +32,7 @@ If you see this:
 ```shell
 listen tcp 127.0.0.1:3068: bind: address already in use
 ```
-then there is already an instance of Numary running.
+then there is already an instance of Formance running.
 
 If the numary server just exits without a message, then you are probably already running an instance of the server somewhere else, _and_ you left off the `--debug` flag.
 

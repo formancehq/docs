@@ -2,7 +2,7 @@
 title: Running in production
 ---
 # Running in production
-Numary is currently in release candidate. During this RC phase:
+Formance is currently in release candidate. During this RC phase:
 
 * Some small improvements may be added
 * Some bugs may be fixed

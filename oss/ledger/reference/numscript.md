@@ -3,7 +3,7 @@ title: Using Numscript
 ---
 
 # Using Numscript
-Numscript is the built-in scripting language of Numary. The main design goal of Numscript is to make it easy & safe to model complex financial transactions.
+Numscript is the built-in scripting language of Formance. The main design goal of Numscript is to make it easy & safe to model complex financial transactions.
 
 ## Verification
 ```shell

@@ -5,10 +5,10 @@ title: Transactions
 
 An important distinction between ledger solutions is the transaction model they uses underneath.
 
-There are multiple options there, the key distinctions you'll find in the wild being the number of postings per transactions and the number of i/o per postings. Numary uses single i/o postings with multi-postings transactions.
+There are multiple options there, the key distinctions you'll find in the wild being the number of postings per transactions and the number of i/o per postings. Formance uses single i/o postings with multi-postings transactions.
 
 ## Postings
-In Numary and in general, postings model the movement of an amount of an asset from one account to another, e.g. Alice giving 100 coins to Bob:
+In Formance and in general, postings model the movement of an amount of an asset from one account to another, e.g. Alice giving 100 coins to Bob:
 ```json
 {
   "source": "alice",
@@ -19,7 +19,7 @@ In Numary and in general, postings model the movement of an amount of an asset f
 ```
 
 ## Transactions
-In Numary, transactions model the wrapping of postings with the intent of committing them atomically, e.g. Alice trading coins for gems over the counter:
+In Formance, transactions model the wrapping of postings with the intent of committing them atomically, e.g. Alice trading coins for gems over the counter:
 ```json
 {
   "postings": [
@@ -38,7 +38,7 @@ In Numary, transactions model the wrapping of postings with the intent of commit
   ]
 }
 ```
-The rationale behind single i/o postings w/ multi-postings transactions originates from Numary's goal: help developers build sound financial applications, and supported by these observations:
+The rationale behind single i/o postings w/ multi-postings transactions originates from Formance's goal: help developers build sound financial applications, and supported by these observations:
 
 * Multi-postings transactions allows the ledger to leverage atomicity to reduce the complexity on your side to handle complex transactions, e.g credit this user of X coin by funding the credit from multiple other accounts.
 

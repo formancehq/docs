@@ -58,7 +58,7 @@ numary storage upgrade {LEDGER_NAME}
 
 ### Upgrade instructions
 
-1. Download the desired version of Numary Ledger
+1. Download the desired version of Formance Ledger
 2. Using the new binary, run:
 ```
 numary storage scan
