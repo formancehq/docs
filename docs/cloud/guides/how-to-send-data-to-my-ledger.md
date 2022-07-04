@@ -1,7 +1,7 @@
 ---
-title: Getting started with Cloud Ledgers
+title: Getting started with Cloud
 ---
-# Getting started with Cloud Ledgers
+# Getting started with Cloud
 
 ## Authentication
 

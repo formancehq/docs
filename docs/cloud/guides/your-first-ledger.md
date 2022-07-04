@@ -1,4 +1,4 @@
 ---
-title: your first ledger
+title: Your first ledger
 ---
 # your first ledger

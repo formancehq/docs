@@ -74,9 +74,9 @@ export function DocCardList({items}) {
         const doc = useDocById(item.docId ?? undefined);
         
         // Category descriptions and any CTAs and icons can only be added in sidebarsLedger.js as a customProp.description item. WHY!?
-        let desc = doc?.description;
+        let desc = doc ? doc.description : '';
         if(item.type == "category") {
-            desc = item.customProps.description;
+            desc = item.customProps ? item.customProps.description : '';
         }
 
         return (
