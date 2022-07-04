@@ -62,6 +62,10 @@ const sidebars = {
           collapsible: true,
           collapsed: true,
           link: { type: 'doc', id: 'oss/ledger/numscript/index' },
+          customProps: {
+            icon: '🔢',
+            description: 'Get started by creating your first transaction.',
+          },
           items: [
             {
                 type:'doc',
@@ -137,20 +141,29 @@ const sidebars = {
     //   ],
     // },
     {
+      label: '🧵 Guides',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'oss/ledger/advanced/publisher-http',
+        'oss/ledger/advanced/publisher-kafka',
+      ],
+    },
+    {
       label: '🛠 Operations',
       type: 'category',
       collapsible: true,
       collapsed: true,
       items: [
+        'oss/ledger/operations/installation',
         'oss/ledger/operations/configuration',
-        'oss/ledger/operations/using-the-control-dashboard',
-        'oss/ledger/operations/storages',
-        'oss/ledger/operations/authentication',
-        // 'operations/running-in-production',
         'oss/ledger/operations/env-vars',
+        'oss/ledger/operations/storages',
         'oss/ledger/operations/upgrade',
-        'oss/ledger/operations/publisher-http',
-        'oss/ledger/operations/publisher-kafka',
+        'oss/ledger/operations/authentication',
+        'oss/ledger/operations/using-the-control-dashboard',
+        // 'operations/running-in-production',
         'oss/ledger/api/sdks'
       ],
     },
@@ -160,12 +173,11 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/ledger/reference/architecture',
-        'oss/ledger/reference/installation',    
         'oss/ledger/reference/ledgers',
         'oss/ledger/reference/accounts',
         'oss/ledger/reference/transactions',
         'oss/ledger/reference/unambiguous-monetary-notation',
+        'oss/ledger/reference/architecture',
         'oss/ledger/reference/concurrency-model',
         {
           label: 'Numscript',
@@ -200,17 +212,17 @@ const sidebars = {
     },
   ],
   cloud: [
-    // {
-    //   id: "introduction",
-    //   type: "doc",
-    // },
+    {
+      id: "cloud/introduction",
+      type: "doc",
+    },
     {
       label: "Guides",
       type: "category",
       collapsible: false,
       collapsed: false,
       items: [
-        'cloud/guides/how-to-send-data-to-my-ledger',
+        'cloud/guides/authentication',
       ]
     }
   ],

@@ -1,5 +1,5 @@
 ---
-title: Getting started with Cloud
+title: Authentication
 ---
 # Getting started with Cloud
 

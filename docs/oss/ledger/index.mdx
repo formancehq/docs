@@ -2,12 +2,15 @@
 title: Introduction
 pagination_next: null
 pagination_prev: null
-hide_table_of_contents: true
+# hide_table_of_contents: true
+# the above sets the doc column width to 100% when set to true,
+# landing a less-than-ideal look
+toc_min_heading_level: 3
 ---
 
 import {DocCardGrid,DocCard} from '@site/src/components/DocCard';
 
-# Formance Ledger Developer Documentation
+# Formance Developer Docs
 
 ## What is Formance Ledger?
 
@@ -17,11 +20,11 @@ Formance Ledger lets you model and record complex money movements, helping you a
 
 <DocCardGrid>
 
-<DocCard icon="🔰" headline="Hello, world" cta="Get Started" link="/oss/ledger/get-started/" highlight="true">
+<DocCard icon="1️⃣" headline="Hello, world" cta="Get Started" link="/oss/ledger/get-started/" highlight="true">
     Learn how to use Numscript and Formance Ledger to track money movements in this introductory tutorial, and get a better understand of how Formance Ledger works.
 </DocCard>
 
-<DocCard icon="🚅" headline="Go further with Numscript" cta="Learn about Numscript" link="guides/">
+<DocCard icon="🔢" headline="Go further with Numscript" cta="Learn about Numscript" link="/oss/ledger/numscript/">
     Understand how to use Numscript to track complex money movements, reconcile accounts, and more in this series of focused tutorials.
 </DocCard>
 
@@ -35,7 +38,7 @@ Come chat with us! We have [a Discord server](https://discord.com/invite/xyHvcbz
 
 Or, if you prefer, you can also [Tweet at us](https://twitter.com/numaryhq).
 
-### I found a bug!
+## I found a bug!
 
 Did you find a bug in Formance Ledger? That's great! We need your help to make it better. You can [file a bug report](https://github.com/numary/ledger/issues/new?assignees=&labels=bug&template=bug_report.md&title=) and tell us all about it.
 

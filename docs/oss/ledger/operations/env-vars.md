@@ -1,7 +1,11 @@
 ---
-title: Environment Variables
+title: Configuration Variables
 ---
-# Environment Variables
+# Configuration Variables
+
+:::info
+When using environment vars, the var name must be prefixed with `NUMARY_`. As an example, DEBUG could either be passed as `numary server start --debug` or `NUMARY_DEBUG=true numary server start`.
+:::
 
  |Flag                                   |Env var                              |Default value                    |Description                                            |
  |-                                      |-                                    |-                                |-                                                      |

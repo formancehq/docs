@@ -88,7 +88,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
-      autoCollapseSidebarCategories: true,
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+        }
+      },
       colorMode: {
         defaultMode: 'light',
         disableSwitch: true,
@@ -110,7 +114,7 @@ const config = {
               },
               {
                 label: '☁️ Cloud',
-                to: '/docs/cloud/introduction',
+                to: '/cloud/introduction',
               },
             ],
           },
@@ -147,14 +151,14 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         links: [
           {
             title: 'Docs',
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/introduction/',
+                to: '/oss/ledger',
               },
             ],
           },
@@ -179,7 +183,7 @@ const config = {
                 href: 'https://github.com/numary/ledger',
               },
               {
-                label: 'Service Status',
+                label: 'Cloud Status',
                 href: 'https://status.numary.com',
               },
             ],
