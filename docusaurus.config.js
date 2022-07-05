@@ -22,24 +22,24 @@ const config = {
   ],
 
   plugins: [
-    'posthog-docusaurus',
-    [
-      '@docusaurus/plugin-content-docs',
-      ({
-        id: 'ledger',
-        path: 'oss/ledger',
-        routeBasePath: 'oss/ledger',
-        editCurrentVersion: true,
-        sidebarPath: require.resolve('./sidebar.js'),
-        showLastUpdateAuthor: false,
-        showLastUpdateTime: false,
-        // versions: {
-        //   current: {
-        //     label: `Latest 🚧 `,
-        //   },
-        // },
-      }),
-    ],
+    // 'posthog-docusaurus',
+    // [
+    //   '@docusaurus/plugin-content-docs',
+    //   ({
+    //     id: 'ledger',
+    //     path: 'oss/ledger',
+    //     routeBasePath: 'oss/ledger',
+    //     editCurrentVersion: true,
+    //     sidebarPath: require.resolve('./sidebar.js'),
+    //     showLastUpdateAuthor: false,
+    //     showLastUpdateTime: false,
+    //     // versions: {
+    //     //   current: {
+    //     //     label: `Latest 🚧 `,
+    //     //   },
+    //     // },
+    //   }),
+    // ],
   ],
 
   presets: [
@@ -54,13 +54,18 @@ const config = {
           //     label: `Latest 🚧`,
           //   },
           // },
-          // sidebarPath: require.resolve('./sidebarsCloud.js'),
+          // path: 'oss/ledger',
+          // routeBasePath: 'oss/ledger',
+          routeBasePath: '/',
+          sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           // editUrl: 'https://github.com/formance/docs/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
         },
+        blog: false,
+        pages: false,
       }),
     ],
     [
@@ -83,6 +88,11 @@ const config = {
   themeConfig:
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
+      docs: {
+        sidebar: {
+          autoCollapseCategories: true,
+        }
+      },
       colorMode: {
         defaultMode: 'light',
         disableSwitch: true,
@@ -100,16 +110,16 @@ const config = {
             items: [
               {
                 label: '📒 Ledger',
-                to: '/oss/ledger/',
+                to: '/oss/ledger',
               },
               {
                 label: '☁️ Cloud',
-                to: '/docs/introduction',
+                to: '/cloud/introduction',
               },
             ],
           },
           {
-            label: 'API',
+            label: '⚡️ API Reference',
             position: 'left',
             items: [
               {
@@ -141,14 +151,14 @@ const config = {
         ],
       },
       footer: {
-        style: 'dark',
+        style: 'light',
         links: [
           {
             title: 'Docs',
             items: [
               {
                 label: 'Documentation',
-                to: '/docs/introduction/',
+                to: '/oss/ledger',
               },
             ],
           },
@@ -173,7 +183,7 @@ const config = {
                 href: 'https://github.com/numary/ledger',
               },
               {
-                label: 'Service Status',
+                label: 'Cloud Status',
                 href: 'https://status.numary.com',
               },
             ],

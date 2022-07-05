@@ -1,0 +1,138 @@
+---
+title: Making requests over HTTP
+description: You can also execute Numscript with Formance Ledger's built-in API server.
+---
+
+import { NumscriptBlock } from 'react-numscript-codeblock';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Prerequisites from '/docs/oss/ledger/partials/numscript/_prerequisites.mdx';
+import Prereqwarn from '/docs/oss/ledger/partials/numscript/_prereq_warning.mdx';
+
+
+The `numary` command line is not the only way to execute Numscript. Formance Ledger also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
+
+Indeed, Formance Ledger's HTTP API is very powerful, and let's you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [guide to the Formance Ledger API](/oss/ledger/api/).
+
+<Prerequisites />
+
+## Executing Numscript.
+
+If you recall from the [Getting Started](/oss/ledger/get-started/hello-world/) section, we learned how to run this Numscript from the command line. In a file called `first.num` we had:
+
+<NumscriptBlock script={`send [COIN 100] (
+  source = @centralbank
+  destination = @player:benwyatt
+)`}></NumscriptBlock>
+
+In the introduction, we ran this Numscript using the command line. This time, however, we're going to execute the script via Formance Ledger's built-in HTTP API.
+
+:::tip
+
+Because the Formance Ledger API is expecting JSON data, these examples are built using `jq`, a command line tool for manipulating JSON data. It's a really powerful JSON tool that should be part of your developer toolkit. [Read more](https://stedolan.github.io/jq/) about `jq` including how to install it.
+
+:::
+
+<Tabs>
+  <TabItem value="httpie" label="HTTPie">
+
+```shell
+jq -Rs '{plain: .}' first.num \
+| http POST http://localhost:3068/dunshire/script
+```
+
+:::info What is HTTPie?
+
+[HTTPie](https://httpie.io/) is an alternative to cURL for testing REST APIs, designed to have a simpler interface optimized for constructing API test calls. It's pretty cool, and we recommend it over cURL for testing things out. [Read more](https://httpie.io/) about HTTPie including how to install it.
+
+:::
+
+  </TabItem>
+  <TabItem value="curl" label="cURL">
+
+```shell
+jq -Rs '{plain: .}' first.num \
+| curl -H "Content-Type: application/json" \
+-X POST --data-binary @- \
+http://localhost:3068/dunshire/script
+```
+  </TabItem>
+</Tabs>
+<hr />
+
+:::danger command not found: jq
+If you receive an error like
+```shell
+bash: comand not found: jq
+```
+then you do not have the `jq` command line tool installed. You'll need to [install `jq`](https://stedolan.github.io/jq/) to run the examples.
+:::
+
+If you check out [`benwyatt`'s balance in the dashboard](https://control.numary.com/accounts/player:benwyatt), you should see something like this:
+
+![User `benwyatt` receives 100 coin from `centralbank`](http-1.png)
+
+## Breaking it down
+
+There are a lot of moving parts to this API endpoint, let's go over each in turn.
+
+### The API endpoint
+
+If you are running Formance Ledger locally, the API is exposed on localhost port 3068. You can access the API using the URL schema:
+
+```
+http://localhost:3068/{ledger}/{action}
+```
+
+We're using the `dunshire` ledger, and we're executing a bit of Numscript, so the endpoint for this example is
+
+```
+http://localhsot:3068/dunshire/script
+```
+
+You can learn more about the available endpoints in the [guide to the Formance Ledger API](/oss/ledger/api/) in the reference docs.
+
+### The API request
+
+The `/{ledger}/script` endpoint expects us to `POST` some JSON describing the Numscript to execute. To execute basic Numscript like `first.num`, only one parameter is required, called `plain`:
+
+```json
+{
+    "plain": "send [COIN 100] (\nsource = @centralbank\ndestination = @player:benwyatt\n)\n"
+}
+```
+
+The Numscript must be properly escaped as a JSON string, of course. This is where `jq` comes in handy. `jq` allows us to compose a Numscript file into a JSON object suitable for the API endpoint request. Try it out:
+
+```shell
+jq -Rs '{plain: .}' first.num
+```
+
+### The API response
+
+**On success**
+
+The Formance Ledger API will return a `200` status code on success, and an empty JSON object in the response body.
+
+**On failure**
+
+The Formance Ledger API will return a `200` status code even on failure, but the JSON object returned in the response body will have more information:
+
+```json
+{
+    "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
+    "err": "account had insufficient funds"
+}
+```
+
+The `err` field will contain a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.
+
+There is also a `details` field with a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.
+
+## Going further
+
+This guide has just been a small taste of what's possible using the Formance Ledger API to execute Numscript. And of course the API lets you do so much more.
+
+:::tip Dig deeper
+Want to learn more about the Formance Ledger API? The [guide to the Formance Ledger API](/oss/ledger/api/) has you covered!
+:::
