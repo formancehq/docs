@@ -184,7 +184,7 @@ const config = {
               },
               {
                 label: 'Cloud Status',
-                href: 'https://status.numary.com',
+                href: 'https://status.formance.com',
               },
             ],
           },
