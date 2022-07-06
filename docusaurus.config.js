@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Formance Ledger\n',
+  title: 'Formance Developer Docs',
   tagline: 'The open source foundation you need to build and scale money-movements within your app',
   url: 'https://docs.formance.com/',
   baseUrl: '/',
