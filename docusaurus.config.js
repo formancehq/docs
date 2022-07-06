@@ -111,14 +111,14 @@ const config = {
         style: 'light',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
-                label: 'Documentation',
+                label: 'Ledger',
                 to: '/oss/ledger',
               },
               {
-                label: 'Documentation',
+                label: 'Payments',
                 to: '/oss/payments',
               },
             ],
