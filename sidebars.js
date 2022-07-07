@@ -210,6 +210,15 @@ const sidebars = {
         'oss/ledger/examples/marketplace-sales-routing',
       ],
     },
+    {
+      label: 'Changelog',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'changelog/v1.5.0',
+      ],
+    },
   ],
   cloud: [
     {
