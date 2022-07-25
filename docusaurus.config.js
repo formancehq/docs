@@ -95,8 +95,26 @@ const config = {
                 to: '/oss/payments',
               },
               {
-                label: '☁️ Cloud',
-                to: '/cloud/introduction',
+                label: '☁️ Stack',
+                to: '/stack/introduction',
+              },
+            ],
+          },
+          {
+            label: '⚡️ API Reference',
+            position: 'left',
+            items: [
+              {
+                label: '☁️ Stack',
+                to: '/stack/reference/api',
+              },
+              {
+                label: '📒 Ledger',
+                to: '/oss/ledger/reference/api',
+              },
+              {
+                label: '💸 Payments',
+                to: '/oss/payments/reference/api',
               },
             ],
           },
