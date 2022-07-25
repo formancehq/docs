@@ -207,9 +207,9 @@ const sidebars = {
       ],
     },
   ],
-  cloud: [
+  stack: [
     {
-      id: "cloud/introduction",
+      id: "stack/introduction",
       type: "doc",
     },
     {
@@ -218,7 +218,7 @@ const sidebars = {
       collapsible: false,
       collapsed: false,
       items: [
-        'cloud/guides/authentication',
+        'stack/guides/authentication',
       ]
     },
     {
@@ -227,7 +227,7 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'cloud/reference/api',
+        'stack/reference/api',
       ],
     },
   ],
