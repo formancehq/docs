@@ -27,6 +27,7 @@
     "@mdx-js/react": "^1.6.21",
     "@mui/material": "^5.5.2",
     "@svgr/webpack": "^6.2.0",
+    "axios": "^0.27.2",
     "clsx": "^1.1.1",
     "codemirror-lang-numscript": "^0.4.0",
     "file-loader": "^6.2.0",
@@ -49,5 +50,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@vercel/node": "^2.5.2"
   }
 }
