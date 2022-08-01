@@ -53,5 +53,11 @@
     { "source": "/api/ledger/get_-ledger-transactions-txid", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}/get" },
     { "source": "/api/ledger/post_-ledger-transactions-txid-metadata", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1metadata/post" },
     { "source": "/api/ledger/post_-ledger-transactions-txid-reverta", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1revert/post" }
-  ]
+  ],
+  "functions": {
+    "src/api/openapi.js": {
+      "memory": 1024,
+      "maxDuration": 10
+    }
+  }
 }
