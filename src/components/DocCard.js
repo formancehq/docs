@@ -6,7 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
 import Grid from '@mui/material/Grid';
 
-import {findFirstCategoryLink, useDocById} from '@docusaurus/theme-common';
+import {findFirstCategoryLink, useDocById} from '@docusaurus/theme-common/internal';
 
 
 export function DocCardGrid ({children}) {
