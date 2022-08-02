@@ -8,6 +8,8 @@ title: Upgrade existing deployment
 
 | Target version | Minimum current version | Zero-downtime supported | Instructions                                                                                                            |
 |----------------|-------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| 1.7.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)    •    [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime) |
+| 1.7.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                 |
 | 1.6.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                 |
 | 1.6.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)    •    [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime) |
 | 1.5.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                   |
