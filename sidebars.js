@@ -233,17 +233,6 @@ const sidebars = {
   ],
   payments: [
     {
-      // label: 'Formance Ledger',
-      type: 'doc',
-      // collapsible: false,
-      // collapsed: false,
-      id: 'oss/payments/index'
-      // link: { type: 'doc', id: 'index' },
-      // items:[
-      //   'help',
-      // ],
-    },
-    {
       label: '📖 Reference',
       type: 'category',
       collapsible: true,

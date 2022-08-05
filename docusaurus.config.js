@@ -92,7 +92,7 @@ const config = {
               },
               {
                 label: '💸 Payments',
-                to: '/oss/payments',
+                to: '/oss/payments/reference/api',
               },
             ],
           },
