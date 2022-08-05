@@ -87,10 +87,6 @@ const config = {
             position: 'left',
             items: [
               {
-                label: '☁️ Stack',
-                to: '/stack/introduction',
-              },
-              {
                 label: '📒 Ledger',
                 to: '/oss/ledger',
               },
@@ -105,8 +101,8 @@ const config = {
             position: 'left',
             items: [
               {
-                label: '☁️ Stack',
-                to: '/stack/reference/api',
+                label: '☁️ Cloud',
+                to: '/cloud/reference/api',
               },
               {
                 label: '📒 Ledger',
