@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Formance Ledger\n',
+  title: 'Formance Developer Docs',
   tagline: 'The open source foundation you need to build and scale money-movements within your app',
   url: 'https://docs.formance.com/',
   baseUrl: '/',
@@ -23,23 +23,6 @@ const config = {
 
   plugins: [
     // 'posthog-docusaurus',
-    // [
-    //   '@docusaurus/plugin-content-docs',
-    //   ({
-    //     id: 'ledger',
-    //     path: 'oss/ledger',
-    //     routeBasePath: 'oss/ledger',
-    //     editCurrentVersion: true,
-    //     sidebarPath: require.resolve('./sidebar.js'),
-    //     showLastUpdateAuthor: false,
-    //     showLastUpdateTime: false,
-    //     // versions: {
-    //     //   current: {
-    //     //     label: `Latest 🚧 `,
-    //     //   },
-    //     // },
-    //   }),
-    // ],
   ],
 
   presets: [
@@ -49,17 +32,8 @@ const config = {
       ({
         sitemap: {},
         docs: {
-          // versions: {
-          //   current: {
-          //     label: `Latest 🚧`,
-          //   },
-          // },
-          // path: 'oss/ledger',
-          // routeBasePath: 'oss/ledger',
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
-          // Please change this to your repo.
-          // editUrl: 'https://github.com/formance/docs/edit/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -73,12 +47,16 @@ const config = {
       {
         specs: [
           {
-            specUrl: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
-            routePath: '/oss/ledger/reference/api',
+            spec: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
+            id: 'ledger',
           },
           {
-            specUrl: 'https://api.numary.cloud/swagger.json',
-            routePath: '/api/cloud/',
+            spec: 'https://raw.githubusercontent.com/numary/payments/main/swagger.yml',
+            id: 'payments',
+          },
+          {
+            spec: 'https://api.numary.cloud/swagger.json',
+            id: 'cloud',
           }
       ],
       }
@@ -109,12 +87,16 @@ const config = {
             position: 'left',
             items: [
               {
+                label: '☁️ Stack',
+                to: '/stack/introduction',
+              },
+              {
                 label: '📒 Ledger',
                 to: '/oss/ledger',
               },
               {
-                label: '☁️ Cloud',
-                to: '/cloud/introduction',
+                label: '💸 Payments',
+                to: '/oss/payments',
               },
             ],
           },
@@ -123,26 +105,19 @@ const config = {
             position: 'left',
             items: [
               {
-                label: 'Ledger',
+                label: '☁️ Stack',
+                to: '/stack/reference/api',
+              },
+              {
+                label: '📒 Ledger',
                 to: '/oss/ledger/reference/api',
               },
               {
-                label: 'Cloud',
-                to: '/api/cloud/',
-              }
+                label: '💸 Payments',
+                to: '/oss/payments/reference/api',
+              },
             ],
           },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   docsPluginId: 'ledger',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
-          // {
-          //   type: 'docsVersionDropdown',
-          //   position: 'right',
-          //   dropdownActiveClassDisabled: true,
-          // },
           {
             href: 'https://github.com/numary',
             label: 'GitHub',
@@ -154,11 +129,15 @@ const config = {
         style: 'light',
         links: [
           {
-            title: 'Docs',
+            title: 'Documentation',
             items: [
               {
-                label: 'Documentation',
+                label: 'Ledger',
                 to: '/oss/ledger',
+              },
+              {
+                label: 'Payments',
+                to: '/oss/payments',
               },
             ],
           },

@@ -173,6 +173,7 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
+        'oss/ledger/reference/api',
         'oss/ledger/reference/ledgers',
         'oss/ledger/reference/accounts',
         'oss/ledger/reference/transactions',
@@ -193,11 +194,6 @@ const sidebars = {
             'oss/ledger/reference/numscript/rounding',
           ],
         },
-        // {
-        //   label: '⚡️ API',
-        //   type: 'link',
-        //   href: '/oss/ledger/reference/api',
-        // },
       ],
     },
     {
@@ -211,9 +207,9 @@ const sidebars = {
       ],
     },
   ],
-  cloud: [
+  stack: [
     {
-      id: "cloud/introduction",
+      id: "stack/introduction",
       type: "doc",
     },
     {
@@ -222,10 +218,41 @@ const sidebars = {
       collapsible: false,
       collapsed: false,
       items: [
-        'cloud/guides/authentication',
+        'stack/guides/authentication',
       ]
-    }
+    },
+    {
+      label: '📖 Reference',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'stack/reference/api',
+      ],
+    },
   ],
+  payments: [
+    {
+      // label: 'Formance Ledger',
+      type: 'doc',
+      // collapsible: false,
+      // collapsed: false,
+      id: 'oss/payments/index'
+      // link: { type: 'doc', id: 'index' },
+      // items:[
+      //   'help',
+      // ],
+    },
+    {
+      label: '📖 Reference',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        'oss/payments/reference/api',
+      ],
+    },
+  ]
 };
 
 module.exports = sidebars;
