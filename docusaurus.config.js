@@ -87,6 +87,10 @@ const config = {
             position: 'left',
             items: [
               {
+                label: '⚡️ Stack',
+                to: '/stack/introduction',
+              },
+              {
                 label: '📒 Ledger',
                 to: '/oss/ledger',
               },

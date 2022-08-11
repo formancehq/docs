@@ -241,7 +241,23 @@ const sidebars = {
         'oss/payments/reference/api',
       ],
     },
-  ]
+  ],
+  stack: [
+    {
+      id: "stack/introduction",
+      type: "doc",
+    },
+    {
+      label: "Tutorials",
+      type: "category",
+      collapsible: false,
+      collapsed: false,
+      items: [
+        'stack/tutorials/installation',
+        'stack/tutorials/add-data',
+      ]
+    },
+  ],
 };
 
 module.exports = sidebars;
