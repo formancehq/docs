@@ -9,7 +9,7 @@ When using environment vars, the var name must be prefixed with `NUMARY_`. As an
 
  |Flag                                   |Env var                              |Default value                    |Description                                                                |
  |-                                      |-                                    |-                                |-                                                                          |
- |--auth-basic-credentials               |AUTH_BASIC_CREDENTIALS               |[]                               |HTTP basic auth credentials (<username>:<password>)                        |
+ |--auth-basic-credentials               |AUTH_BASIC_CREDENTIALS               |[]                               |HTTP basic auth credentials (`<username>:<password>`)                        |
  |--auth-basic-enabled                   |AUTH_BASIC_ENABLED                   |false                            |Enable basic auth                                                          |
  |--auth-bearer-audience                 |AUTH_BEARER_AUDIENCE                 |[]                               |Allowed audiences                                                          |
  |--auth-bearer-audiences-wildcard       |AUTH_BEARER_AUDIENCES_WILDCARD       |false                            |Don't check audience                                                       |
