@@ -253,10 +253,20 @@ const sidebars = {
       collapsible: false,
       collapsed: false,
       items: [
-        'stack/tutorials/installation',
+        {
+          label: 'Self-hosted',
+          type: 'category',
+          collapsible: true,
+          collapsed: false,
+          items: [
+            'stack/tutorials/deployments/helm',
+            'stack/tutorials/deployments/docker-compose'
+          ]
+        },
         'stack/tutorials/add-data',
       ]
     },
+    
   ],
 };
 

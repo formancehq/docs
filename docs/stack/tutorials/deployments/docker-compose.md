@@ -1,8 +1,5 @@
-# Installation
 
-Interested in trying Formance Stack out? You can install it on your local machine first.
-
-## Docker Compose File
+# Docker Compose
 ```yaml
 # docker-compose.yml
 ---
