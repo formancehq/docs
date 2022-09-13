@@ -26,7 +26,7 @@ title: Upgrade existing deployment
 ## Prerequisites
 
 ### Compatibility version
-Verify that you meet the upgrade path requirements above for your desired version and review the relevant [release notes](https://github.com/numary/ledger/releases) for any preparation instructions.
+Verify that you meet the upgrade path requirements above for your desired version and review the relevant [release notes](https://github.com/formancehq/ledger/releases) for any preparation instructions.
 
 ## Upgrade a multi-nodes deployment
 

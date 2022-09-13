@@ -27,7 +27,7 @@ numary server start \
   --publisher-topic-mapping='*:http://localhost:3042/numary-hook'
 ```
 
-On the receiving hand, the http body sent will be formatted as per [these structs](https://github.com/numary/ledger/blob/main/pkg/bus/message.go#L8):
+On the receiving hand, the http body sent will be formatted as per [these structs](https://github.com/formancehq/ledger/blob/main/pkg/bus/message.go#L8):
 
 ```json
 {

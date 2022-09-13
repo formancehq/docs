@@ -47,7 +47,7 @@ const config = {
       {
         specs: [
           {
-            spec: 'https://raw.githubusercontent.com/numary/ledger/main/pkg/api/controllers/swagger.yaml',
+            spec: 'https://raw.githubusercontent.com/formancehq/ledger/main/pkg/api/controllers/swagger.yaml',
             id: 'ledger',
           },
           {
@@ -155,7 +155,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/numary/ledger',
+                href: 'https://github.com/formancehq/ledger',
               },
               {
                 label: 'Cloud Status',
