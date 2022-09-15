@@ -47,7 +47,7 @@ const config = {
       {
         specs: [
           {
-            spec: 'https://raw.githubusercontent.com/formancehq/ledger/main/pkg/api/controllers/swagger.yaml',
+            spec: 'https://raw.githubusercontent.com/formancehq/numary-sdk-go/main/api/openapi.yaml',
             id: 'ledger',
           },
           {
