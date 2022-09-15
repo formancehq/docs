@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'numary', // Usually your GitHub org/user name.
+  organizationName: 'formancehq', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
   stylesheets: [
