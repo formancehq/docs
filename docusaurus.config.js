@@ -51,11 +51,11 @@ const config = {
             id: 'ledger',
           },
           {
-            spec: 'https://raw.githubusercontent.com/numary/payments/main/swagger.yml',
+            spec: 'https://raw.githubusercontent.com/formancehq/payments/main/swagger.yml',
             id: 'payments',
           },
           {
-            spec: 'https://api.numary.cloud/swagger.json',
+            spec: 'https://api.formance.cloud/swagger.json',
             id: 'cloud',
           }
       ],
@@ -115,7 +115,7 @@ const config = {
             ],
           },
           {
-            href: 'https://github.com/numary',
+            href: 'https://github.com/formancehq',
             label: 'GitHub',
             position: 'right',
           },
@@ -146,7 +146,7 @@ const config = {
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/numaryhq',
+                href: 'https://twitter.com/formancehq',
               },
             ],
           },

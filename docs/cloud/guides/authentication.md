@@ -5,10 +5,10 @@ title: Authentication
 
 ## Authentication
 
-To obtain a JWT Token, you need to create an API token first, which you can create on the [Formance Cloud Dashboard](https://my.numary.cloud/integrations).
+To obtain a JWT Token, you need to create an API token first, which you can create on the [Formance Cloud Dashboard](https://my.formance.cloud/integrations).
 
 ```bash
-curl --location --request POST 'https://api.numary.cloud/auth/authenticate/tokens' \
+curl --location --request POST 'https://api.formance.cloud/auth/authenticate/tokens' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "strategy": "m2m",
@@ -45,5 +45,5 @@ curl -X POST \
     "metadata": {
       "description": "Wohoo! a first transaction."
     }
-}' https://api.numary.cloud/ledger/LEDGER_SLUG/transactions
+}' https://api.formance.cloud/ledger/LEDGER_SLUG/transactions
 ```

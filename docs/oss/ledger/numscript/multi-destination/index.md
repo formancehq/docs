@@ -38,7 +38,7 @@ numary exec dunshire split.num
 
 <Prereqwarn />
 
-Once you've run that transaction succesfully, let's have a look at [`leslieknope`'s balance'](https://control.numary.com/accounts/player:leslieknope).
+Once you've run that transaction succesfully, let's have a look at [`leslieknope`'s balance'](https://control.formance.com/accounts/player:leslieknope).
 
 
 ![`leslieknope` gets 38 and `annperkins` gets 37 coin](multi-destination-1.png)
@@ -85,7 +85,7 @@ There's a better way: Nested destinations. Using nested destinations allows us t
 
 <Prereqwarn />
 
-Run this script, and then [look at `leslieknope`'s balance](https://control.numary.com/accounts/player:leslieknope).
+Run this script, and then [look at `leslieknope`'s balance](https://control.formance.com/accounts/player:leslieknope).
 
 ![`leslieknope` gets 38 and `annperkins` gets 37 coin](multi-destination-2.png)
 
