@@ -13,7 +13,7 @@ const config = {
   onBrokenLinks: 'warn',
   onBrokenMarkdownLinks: 'warn',
   favicon: 'img/favicon.ico',
-  organizationName: 'numary', // Usually your GitHub org/user name.
+  organizationName: 'formancehq', // Usually your GitHub org/user name.
   projectName: 'docs', // Usually your repo name.
 
   stylesheets: [
@@ -47,15 +47,15 @@ const config = {
       {
         specs: [
           {
-            spec: 'https://raw.githubusercontent.com/formancehq/ledger/main/pkg/api/controllers/swagger.yaml',
+            spec: 'https://raw.githubusercontent.com/formancehq/numary-sdk-go/main/api/openapi.yaml',
             id: 'ledger',
           },
           {
-            spec: 'https://raw.githubusercontent.com/numary/payments/main/swagger.yml',
+            spec: 'https://raw.githubusercontent.com/formancehq/payments/main/swagger.yml',
             id: 'payments',
           },
           {
-            spec: 'https://api.numary.cloud/swagger.json',
+            spec: 'https://api.formance.cloud/swagger.json',
             id: 'cloud',
           }
       ],
@@ -115,7 +115,7 @@ const config = {
             ],
           },
           {
-            href: 'https://github.com/numary',
+            href: 'https://github.com/formancehq',
             label: 'GitHub',
             position: 'right',
           },
@@ -146,7 +146,7 @@ const config = {
               },
               {
                 label: 'Twitter',
-                href: 'https://twitter.com/numaryhq',
+                href: 'https://twitter.com/formancehq',
               },
             ],
           },
