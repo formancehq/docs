@@ -67,6 +67,40 @@ You can see the `metadata` field with the details of the information we added to
 
 Metadata is arbitrary data that you can attach to a transaction (or an account! But more on that later). This data is typed, and can be a string or a number. You can retrieve (or even add to) this metadata later using the HTTP API, for integration into your own bespoke workflows.
 
+## Storing variables in metadata
+
+You can store the value of [template variables](/oss/ledger/numscript/templates/) in metadata as well. Template variables may only be of `monetary`, `account`, or `portion` types, and must be specified like the following examples:
+
+```json
+{
+  "base_fee": {
+    "type": "monetary",
+    "value": {
+      "amount": 15,
+      "asset": "COIN"
+    }
+  }
+}
+```
+
+```json
+{
+  "seller": {
+    "type": "account",
+    "value": "player:benwyatt"
+  }
+}
+```
+
+```json
+{
+  "commission": {
+    "type": "portion",
+    "value": "15/100"
+  }
+}
+```
+
 ## Going further
 
 :::info There's much more to metadata
