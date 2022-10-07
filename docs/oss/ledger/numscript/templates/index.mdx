@@ -183,6 +183,42 @@ The `err` field will contain a human-readable indication of what went wrong, for
 
 There is also a `details` field with a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.
 
+## Templates and Metadata
+
+In addition to specifying the value of variables directly, we can pull those values from [metadata](/oss/ledger/numscript/metadata/) associated with accounts.
+
+Let's suppose that we want to take a commission whenever one player transfers coin to another player. We can store the current commission rate as metadata on the `@centralbank` account, and then pull that rate in dynamically when we execute that kind of transaction with Numscript:
+
+<NumscriptBlock script={`vars {
+  portion $commission_rate = meta(@centralbank, "commission_rate")
+  monetary $amount
+  account $sender
+  account $receiver
+}
+\n
+send $amount (
+  source = $sender
+  destination = {
+    $commission_rate to @centralbank
+    remainder to $receiver
+  }
+)`}></NumscriptBlock>
+
+At execution, you'll need to specify the amount to send, and the sender and receiver accounts. Then Formance Ledger will examine the metadata on the `@centralbank` account, looking for a structure like this:
+
+```json
+{
+  "commission_rate": {
+    "type": "portion",
+    "value": "5/100"
+  }
+}
+```
+
+In this case, the metadata specifies a 5% commission on user-to-user transactions.
+
+The advantage is that you can record the variables like your commission rate in a convenient, centralized place, without having to hard code the values.
+
 ## Going further
 
 This guide has just been a small taste of what's possible using Numscript templates. Nearly any Numscript transaction can be templatized.
