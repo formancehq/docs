@@ -79,9 +79,13 @@ That said, we can't run this Numscript directly, as Formance Ledger can't know w
 }
 ```
 
-As you can see, the names of the keys in the JSON object correspond to the variables in the Numscript template. Note that because `monetary` is a compound type, we had to specify both a currency and a quantity for the variable named `$amount`. Note also that:
-* the variable names do not have the `$` prefix
-* the variable values of type `account` (`player` here) do not have the `@` prefix
+As you can see, the names of the keys in the JSON object correspond to the variables in the Numscript template. Note that because `monetary` is a compound type, we had to specify both a currency and a quantity for the variable named `$amount`.
+
+:::info
+
+The variable names do not have the `$` prefix, and the variable values of type `account` (`player` here) do not have the `@` prefix.
+
+:::
 
 ## Running a Numscript template
 
