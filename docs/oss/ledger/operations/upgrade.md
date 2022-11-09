@@ -6,22 +6,24 @@ title: Upgrade existing deployment
 
 ## Supported upgrade paths
 
-| Target version | Minimum current version | Zero-downtime supported | Instructions                                                                                                            |
-|----------------|-------------------------|-------------------------|-------------------------------------------------------------------------------------------------------------------------|
+| Target version | Minimum current version | Zero-downtime supported | Instructions                                                                                                           |
+|----------------|-------------------------|-------------------------|------------------------------------------------------------------------------------------------------------------------|
+| 1.8.x          | 1.4.x                   | No                      | [Single-node](#upgrade-a-single-node-deployment)    •    [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime) |
+| 1.8.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                |
 | 1.7.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)    •    [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime) |
-| 1.7.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                 |
-| 1.6.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                 |
+| 1.7.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                |
+| 1.6.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment)                |
 | 1.6.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)    •    [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime) |
-| 1.5.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                   |
-| 1.5.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)   |
-| 1.4.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment) • [Multi-nodes](#upgrade-a-multi-nodes-deployment)                     |
-| 1.4.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)     |
-| 1.3.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                   |
-| 1.3.x          | 1.3.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)     |
-| 1.2.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                   |
-| 1.2.x          | 1.2.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)     |
-| 1.1.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                   |
-| 1.1.x          | 1.1.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)     |
+| 1.5.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                  |
+| 1.5.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)   •   [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)  |
+| 1.4.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment) • [Multi-nodes](#upgrade-a-multi-nodes-deployment)                    |
+| 1.4.x          | 1.4.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)    |
+| 1.3.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                  |
+| 1.3.x          | 1.3.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)    |
+| 1.2.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                  |
+| 1.2.x          | 1.2.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)    |
+| 1.1.x          | 1.x                     | No                      | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment)                  |
+| 1.1.x          | 1.1.x                   | Yes                     | [Single-node](#upgrade-a-single-node-deployment)  •  [Multi-nodes](#upgrade-a-multi-nodes-deployment-zero-downtime)    |
 
 ## Prerequisites
 
