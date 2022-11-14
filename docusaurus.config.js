@@ -45,13 +45,16 @@ const config = {
     [
       'redocusaurus',
       {
+        debug: Boolean(process.env.DEBUG || process.env.CI),
         specs: [
           {
             spec: 'https://raw.githubusercontent.com/formancehq/numary-sdk-go/main/api/openapi.yaml',
+            route: '/api/ledger',
             id: 'ledger',
           },
           {
             spec: 'https://raw.githubusercontent.com/formancehq/payments/main/swagger.yml',
+            route: '/api/payments',
             id: 'payments',
           }
       ],
@@ -98,11 +101,11 @@ const config = {
             items: [
               {
                 label: '📒 Ledger',
-                to: '/oss/ledger/reference/api',
+                to: '/api/ledger',
               },
               {
                 label: '💸 Payments',
-                to: '/oss/payments/reference/api',
+                to: '/api/payments',
               },
             ],
           },
