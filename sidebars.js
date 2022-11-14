@@ -207,30 +207,6 @@ const sidebars = {
       ],
     },
   ],
-  cloud: [
-    {
-      id: "cloud/introduction",
-      type: "doc",
-    },
-    {
-      label: "Guides",
-      type: "category",
-      collapsible: false,
-      collapsed: false,
-      items: [
-        'cloud/guides/authentication',
-      ]
-    },
-    {
-      label: '📖 Reference',
-      type: 'category',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        'cloud/reference/api',
-      ],
-    },
-  ],
   payments: [
     {
       label: '📖 Reference',
