@@ -53,10 +53,6 @@ const config = {
           {
             spec: 'https://raw.githubusercontent.com/formancehq/payments/main/swagger.yml',
             id: 'payments',
-          },
-          {
-            spec: 'https://api.formance.cloud/swagger.json',
-            id: 'cloud',
           }
       ],
       }
@@ -100,10 +96,6 @@ const config = {
             label: '⚡️ API Reference',
             position: 'left',
             items: [
-              {
-                label: '☁️ Cloud',
-                to: '/cloud/reference/api',
-              },
               {
                 label: '📒 Ledger',
                 to: '/oss/ledger/reference/api',
