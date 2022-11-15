@@ -82,7 +82,7 @@ const config = {
         },
         items: [
           {
-            label: '📚 Documentation',
+            label: '📚 Product Documentation',
             position: 'left',
             items: [
               {
@@ -91,21 +91,7 @@ const config = {
               },
               {
                 label: '💸 Payments',
-                to: '/payments/reference/api',
-              },
-            ],
-          },
-          {
-            label: '⚡️ API Reference',
-            position: 'left',
-            items: [
-              {
-                label: '📒 Ledger',
-                to: '/api/ledger',
-              },
-              {
-                label: '💸 Payments',
-                to: '/api/payments',
+                to: '/payments',
               },
             ],
           },
