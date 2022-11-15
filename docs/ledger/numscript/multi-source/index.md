@@ -4,8 +4,8 @@ description: Sometimes you need to split a payment across multiple sources. Lear
 ---
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
-import Prerequisites from '/docs/oss/ledger/partials/numscript/_prerequisites.mdx';
-import Prereqwarn from '/docs/oss/ledger/partials/numscript/_prereq_warning.mdx';
+import Prerequisites from '/docs/ledger/partials/numscript/_prerequisites.mdx';
+import Prereqwarn from '/docs/ledger/partials/numscript/_prereq_warning.mdx';
 
 Sometimes you need to split a payment from multiple sources. For example:
 

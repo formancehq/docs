@@ -78,7 +78,7 @@ const config = {
         logo: {
           alt: 'Formance Logo',
           src: 'img/logo_numary.svg',
-          href: '/oss/ledger/',
+          href: '/',
         },
         items: [
           {
@@ -87,11 +87,11 @@ const config = {
             items: [
               {
                 label: '📒 Ledger',
-                to: '/oss/ledger',
+                to: '/ledger',
               },
               {
                 label: '💸 Payments',
-                to: '/oss/payments/reference/api',
+                to: '/payments/reference/api',
               },
             ],
           },
@@ -124,11 +124,11 @@ const config = {
             items: [
               {
                 label: 'Ledger',
-                to: '/oss/ledger',
+                to: '/ledger',
               },
               {
                 label: 'Payments',
-                to: '/oss/payments',
+                to: '/payments',
               },
             ],
           },
