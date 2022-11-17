@@ -41,7 +41,7 @@ But really, right now, **don't worry about understanding this complicated bit of
 Then run it with
 
 ```shell
-numary exec dunshire seed.num
+fctl ledger transactions num seed.num
 ```
 
 You shouldn't need to, but you can always run this script as many times as necessary to ensure that all accounts are topped up with funds.
