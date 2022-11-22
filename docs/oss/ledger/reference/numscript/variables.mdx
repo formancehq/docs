@@ -35,3 +35,27 @@ Injections of variables can be done at execution; the [/{ledger}/script](ref:led
 	}
 }
 ```
+
+Variables can also be pulled from account metadata
+
+<NumscriptBlock script={`vars {
+  monetary $price
+  account $payment
+  portion meta(@centralbank, "commission")
+}\n
+send $price (
+  source = @world
+  destination = {
+    $commission to @platform
+    remaining to $payment
+  }
+)`}></NumscriptBlock>
+
+Rather than passing in the commission rate as a variable at execution time as the other template variables, we are pulling it from the metadata on the `@centralbank` account. At execution, Formance Ledger will examine the `@centralbank` account, looking in its metadata for a structure like this:
+
+{
+  "commission": {
+    "type": "portion",
+    "value": "5/100"
+  }
+}
