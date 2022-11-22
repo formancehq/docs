@@ -116,6 +116,13 @@ const sidebars = {
                   icon: '📌',
                 },
             },
+            {
+                type:'doc',
+                id: 'oss/ledger/numscript/kept/index',
+                customProps: {
+                  icon: '🍕',
+                },
+            },
           ],
         }
       ],
