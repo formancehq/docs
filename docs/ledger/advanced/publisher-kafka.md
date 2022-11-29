@@ -4,9 +4,9 @@ title: Publishing to Kafka
 
 # Publishing to Kafka
 
-An integration with Kafka is available out of the box since 1.3.x. It allows you to push ledger events to a kafka broker of your choice, bringing easy and reliable extensibility. It can be enabled by setting the [configuration variables](/oss/ledger/operations/env-vars) PUBLISHER_KAFKA_ENABLED, PUBLISHER_KAFKA_BROKER and PUBLISHER_TOPIC_MAPPING.
+An integration with Kafka is available out of the box since 1.3.x. It allows you to push ledger events to a kafka broker of your choice, bringing easy and reliable extensibility. It can be enabled by setting the [configuration variables](/ledger/operations/env-vars) PUBLISHER_KAFKA_ENABLED, PUBLISHER_KAFKA_BROKER and PUBLISHER_TOPIC_MAPPING.
 
-Other [variables](/oss/ledger/operations/env-vars) are available for further authentication and configuration.
+Other [variables](/ledger/operations/env-vars) are available for further authentication and configuration.
 
 The following events types are available:
 

@@ -126,7 +126,7 @@ const sidebars = {
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/kept/index',
+                id: 'ledger/numscript/kept/index',
                 customProps: {
                   icon: '🍕',
                 },

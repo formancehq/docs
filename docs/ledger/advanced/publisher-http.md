@@ -4,7 +4,7 @@ title: Publishing to HTTP
 
 # Publishing to HTTP
 
-An HTTP publisher is available out of the box since 1.3.x. It allows you to push ledger events to an http server of your choice, in a webhook-like fashion. It can be enabled by setting the [configuration variables](/oss/ledger/operations/env-vars) PUBLISHER_HTTP_ENABLED and PUBLISHER_TOPIC_MAPPING.
+An HTTP publisher is available out of the box since 1.3.x. It allows you to push ledger events to an http server of your choice, in a webhook-like fashion. It can be enabled by setting the [configuration variables](/ledger/operations/env-vars) PUBLISHER_HTTP_ENABLED and PUBLISHER_TOPIC_MAPPING.
 
 The following events types are available:
 
