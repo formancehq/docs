@@ -1,0 +1,45 @@
+---
+title: Quick Install
+description: How to install Formance Stack for development.
+customProps:
+    cta: FOOBAR
+---
+import HomebrewInstall from '../partials/installation/_install_homebrew.mdx';
+import DockerInstall from '../partials/installation/_install_docker.mdx'
+
+# Installation
+
+Interested in trying Formance Stack out? You can install it on your local machine first.
+
+Formance Stack is, as you'd expect, available for Linux, macOS, and Windows.
+
+We also provide Docker images for production environments. You can learn more about all the different ways of installing Formance Stack in the [reference documentation](/Stack/operations/installation).
+
+## macOS & Linux
+<HomebrewInstall />
+
+## Windows
+
+[Download the pre-compiled binary ` fctl_x.y.z_Windows-64bit.zip`](https://github.com/formancehq/Stack/releases) from GitHub (where `x.y.z` is the version number). Unzip the file, and place `fctl.exe` somewhere convenient such as `C:\Program Files`.
+
+:::info
+Consider renaming the executable `fctl` (without the `.exe` suffix) to make it easier to type, and so the example commands in the rest of the tutorial will work without having to edit them.
+:::
+
+## Troubleshooting
+
+You can check that Formance CLI was installed correctly by trying the following command:
+
+```shell
+fctl version
+```
+
+You should see something like
+
+```
+Version | 0.5.0
+Date    | 2022-11-28T09:40:15Z
+Commit  | 0de953f
+```
+
+If you don't, then recheck the steps above, or [reach out to us](oss/Stack/help) to ask for help.

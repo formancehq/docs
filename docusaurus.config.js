@@ -82,20 +82,6 @@ const config = {
         },
         items: [
           {
-            label: '📚 Product Documentation',
-            position: 'left',
-            items: [
-              {
-                label: '📒 Ledger',
-                to: '/ledger',
-              },
-              {
-                label: '💸 Payments',
-                to: '/payments',
-              },
-            ],
-          },
-          {
             href: 'https://github.com/formancehq',
             label: 'GitHub',
             position: 'right',
