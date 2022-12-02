@@ -33,7 +33,7 @@ We can describe the transaction using Numscript. Create a file called `split.num
 And run it with
 
 ```shell
-numary exec dunshire split.num
+fctl ledger transactions num split.num
 ```
 
 <Prereqwarn />

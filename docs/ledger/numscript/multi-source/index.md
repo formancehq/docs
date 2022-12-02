@@ -32,7 +32,7 @@ We can describe the transaction using Numscript. Create a file called `treat.num
 And run it with
 
 ```shell
-numary exec dunshire treat.num
+fctl ledger transactions num treat.num
 ```
 
 <Prereqwarn />
@@ -72,7 +72,7 @@ Create a file called `bills.num` with:
 
 and run it with
 ```shell
-numary exec dunshire bills.num
+fctl ledger transactions num bills.num
 ```
 
 <Prereqwarn />
@@ -125,7 +125,7 @@ There is a better way: Nested sources. Create a file called `pony2.num` with the
 
 and run it with
 ```shell
-numary exec dunshire pony2.num
+fctl ledger transactions num pony2.num
 ```
 
 <Prereqwarn />
