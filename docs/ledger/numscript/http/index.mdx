@@ -1,6 +1,6 @@
 ---
 title: Making requests over HTTP
-description: You can also execute Numscript with Formance Ledger's built-in API server.
+description: You can also execute Numscript with the Formance API.
 ---
 
 import { NumscriptBlock } from 'react-numscript-codeblock';
@@ -10,11 +10,34 @@ import Prerequisites from '/docs/ledger/partials/numscript/_prerequisites.mdx';
 import Prereqwarn from '/docs/ledger/partials/numscript/_prereq_warning.mdx';
 
 
-The `numary` command line is not the only way to execute Numscript. Formance Ledger also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
+The `fctl` command line is not the only way to execute Numscript. Formance Stack also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
 
-Indeed, Formance Ledger's HTTP API is very powerful, and let's you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [guide to the Formance Ledger API](/ledger/api/).
+Indeed, Formance's HTTP API is very powerful, and lets you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [Formance Ledger API reference documentation](/ledger/reference/api).
 
 <Prerequisites />
+
+## Authenticating against the API server
+
+:::danger All Formance API calls require authentication
+Don't skip this step. It is a little complicated, but very important!
+:::
+
+To authorize API calls from the command line in a non-production environment, you need to generate a personal token. Personal tokens are only valid for use in sandbox environments, and expire after 60 minutes.
+
+```shell
+FORMANCE_TOKEN=`fctl cloud generate-personal-token`
+```
+This saves the personal token into an environment variable called `FORMANCE_TOKEN` that we can use in further command lines. We can check the contents of the envronment variable to be sure that we have a valid token like this:
+
+```shell
+echo $FORMANCE_TOKEN
+```
+
+You should see a very long string of random characters that looks like this:
+```
+YiLCJhdWQiOlsiZmN0bCJdLCJqdGkiOiIn0.CRr7dc7omdlnbR1EhVmiaV0Aw84brAhZtMIp9e3gNil0KakkSNkYqJZsJ7KGmFKPVgjEx0QDsP5LtgRLvBa8SzikjXhjdJlfJ1neoviJiifWB8xs72OSe4pvaBWOmAhAk2BECe4NEERz4sksGca7KxQFXwfCJe8NTBZZiqnDh2fj1e6Az3nJUbiwp01DOzpyMufOQaEkHS4GCUfz5f7eI62Imo2f3v9XyuM95QGYE2rozGRDnGYIvbJDCfM2MpAwcMo5ef9PsJtOpdiCTwMeydJ4ow31visNnmg4BBPiaB.tiGRqtw2Qkb7ck4zXPiwZ4P5UcHcnwuHQnhDEOP9Ua5KI3G8p2JsKXLefeAIWJWZ9oNAgejP1LABNQ8zms3Ui7ZYNBNaxk432koCKOslRDXrxOFZRh60oFsjaPBS5xg02gbBnPjap9pb90P1YiN7agciJYEm5NOKlfmZpyI7srsB4LgDxo5o8d4Sk9r3qDzZIUqT2DvD9WWqxaSHeo1ez26Othbx5y3iKk3bLQmwy7PWzmGFMds9TZ4mpx5l15qRWJdZp7JyuOAfcGc9V2w74PudDdazzXwGebTjZGdSlW7HQMxwUR0otWtfO7N7XQypeya6pB9Wm1inaiE7KsGdhw
+```
+If you see something else, such as an error message, make sure you have a sandbox environment set up first.
 
 ## Executing Numscript.
 
@@ -38,13 +61,11 @@ Because the Formance Ledger API is expecting JSON data, these examples are built
 
 ```shell
 jq -Rs '{plain: .}' first.num \
-| http POST http://localhost:3068/dunshire/script
+| http POST https://randomstuff-wxyz.sandbox.formance.cloud/api/ledger/default/script -A bearer -a $FORMANCE_TOKEN
 ```
 
 :::info What is HTTPie?
-
 [HTTPie](https://httpie.io/) is an alternative to cURL for testing REST APIs, designed to have a simpler interface optimized for constructing API test calls. It's pretty cool, and we recommend it over cURL for testing things out. [Read more](https://httpie.io/) about HTTPie including how to install it.
-
 :::
 
   </TabItem>
@@ -53,11 +74,22 @@ jq -Rs '{plain: .}' first.num \
 ```shell
 jq -Rs '{plain: .}' first.num \
 | curl -H "Content-Type: application/json" \
+-H "Authorization: Bearer ${FORMANCE_TOKEN}" \
 -X POST --data-binary @- \
-http://localhost:3068/dunshire/script
+https://randomstuff-wxyz.sandbox.formance.cloud/api/ledger/default/script
 ```
   </TabItem>
 </Tabs>
+
+:::warning Your Sandbox URI
+Don't forget to replace the domain in the example above with the correct domain for your sandbox. If you ever forget it, you can always find it again with
+
+```shell
+fctl sandbox show --name dunshire
+```
+:::
+
+
 <hr />
 
 :::danger command not found: jq
@@ -68,7 +100,7 @@ bash: comand not found: jq
 then you do not have the `jq` command line tool installed. You'll need to [install `jq`](https://stedolan.github.io/jq/) to run the examples.
 :::
 
-If you check out [`benwyatt`'s balance in the dashboard](https://control.formance.com/accounts/player:benwyatt), you should see something like this:
+If you check out `benwyatt`'s balance in the dashboard, you should see something like this:
 
 ![User `benwyatt` receives 100 coin from `centralbank`](http-1.png)
 
@@ -78,16 +110,16 @@ There are a lot of moving parts to this API endpoint, let's go over each in turn
 
 ### The API endpoint
 
-If you are running Formance Ledger locally, the API is exposed on localhost port 3068. You can access the API using the URL schema:
+The schema for API endpoints looks like this:
 
 ```
-http://localhost:3068/{ledger}/{action}
+https://randomstuff-wxyz.sandbox.formance.cloud/api/ledger/{ledger-name}/{action}
 ```
 
-We're using the `dunshire` ledger, and we're executing a bit of Numscript, so the endpoint for this example is
+We're using the `default` ledger, and we're executing a bit of Numscript with the `script` action, so the endpoint for this example is
 
 ```
-http://localhsot:3068/dunshire/script
+https://randomstuff-wxyz.sandbox.formance.cloud/api/ledger/default/script
 ```
 
 You can learn more about the available endpoints in the [guide to the Formance Ledger API](/ledger/api/) in the reference docs.
@@ -112,7 +144,7 @@ jq -Rs '{plain: .}' first.num
 
 **On success**
 
-The Formance Ledger API will return a `200` status code on success, and an empty JSON object in the response body.
+The Formance Ledger API will return a `200` status code on success, and a JSON object describing the results of the transaction in the response body.
 
 **On failure**
 
