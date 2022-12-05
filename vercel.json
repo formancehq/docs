@@ -1,6 +1,7 @@
 {
   "redirects": [
-    { "source": "/", "destination": "/oss/ledger/" },
+    { "source": "/oss/:path*/", "destination": "/:path*/"},
+    { "source": "/oss/:path*", "destination": "/:path*"},
     { "source": "/docs/installation-1", "destination": "/oss/ledger/get-started/installation" },
     { "source": "/docs/your-first-transaction", "destination": "/oss/ledger/get-started/hello-world/your-first-transaction" },
     { "source": "/oss/ledger/get-started/your-first-transaction", "destination": "/oss/ledger/get-started/hello-world/your-first-transaction" },

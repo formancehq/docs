@@ -13,13 +13,21 @@
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
+  main: [
+    {
+      label: 'Formance Stack',
+      type: 'doc',
+      id: 'index'
+    }
+  ],
+
   ledger: [
     {
-      // label: 'Formance Ledger',
+      label: 'Formance Ledger',
       type: 'doc',
       // collapsible: false,
       // collapsed: false,
-      id: 'oss/ledger/index'
+      id: 'ledger/index'
       // link: { type: 'doc', id: 'index' },
       // items:[
       //   'help',
@@ -30,11 +38,11 @@ const sidebars = {
       type: 'category',
       collapsible: true,
       collapsed: false,
-      link: { type: 'doc', id: 'oss/ledger/get-started/index' },
+      link: { type: 'doc', id: 'ledger/get-started/index' },
       items: [
         {
           type: 'doc',
-          id: 'oss/ledger/get-started/installation',
+          id: 'ledger/get-started/installation',
           customProps: {
             icon: '💾',
           }
@@ -48,12 +56,12 @@ const sidebars = {
             icon: '👋🏾',
             description: 'Get started by creating your first transaction.',
           },
-          link: { type: 'doc', id: 'oss/ledger/get-started/hello-world/index' },
+          link: { type: 'doc', id: 'ledger/get-started/hello-world/index' },
           items: [
-            'oss/ledger/get-started/hello-world/start-the-server',
-            'oss/ledger/get-started/hello-world/introducing-money',
-            'oss/ledger/get-started/hello-world/checking-balances',
-            'oss/ledger/get-started/hello-world/your-first-transaction'
+            'ledger/get-started/hello-world/start-the-server',
+            'ledger/get-started/hello-world/introducing-money',
+            'ledger/get-started/hello-world/checking-balances',
+            'ledger/get-started/hello-world/your-first-transaction'
           ]
         },
         {
@@ -61,7 +69,7 @@ const sidebars = {
           type: 'category',
           collapsible: true,
           collapsed: true,
-          link: { type: 'doc', id: 'oss/ledger/numscript/index' },
+          link: { type: 'doc', id: 'ledger/numscript/index' },
           customProps: {
             icon: '🔢',
             description: 'Get started by creating your first transaction.',
@@ -69,56 +77,56 @@ const sidebars = {
           items: [
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/prerequisites',
+                id: 'ledger/numscript/prerequisites',
                 customProps: {
                     icon: '1️⃣',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/multi-destination/index',
+                id: 'ledger/numscript/multi-destination/index',
                 customProps: {
                     icon: '➗',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/multi-source/index',
+                id: 'ledger/numscript/multi-source/index',
                 customProps: {
                   icon: '✖️',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/http/index',
+                id: 'ledger/numscript/http/index',
                 customProps: {
                   icon: '🕸',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/templates/index',
+                id: 'ledger/numscript/templates/index',
                 customProps: {
                   icon: '📝',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/currencies/index',
+                id: 'ledger/numscript/currencies/index',
                 customProps: {
                   icon: '💴',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/metadata/index',
+                id: 'ledger/numscript/metadata/index',
                 customProps: {
                   icon: '📌',
                 },
             },
             {
                 type:'doc',
-                id: 'oss/ledger/numscript/kept/index',
+                id: 'ledger/numscript/kept/index',
                 customProps: {
                   icon: '🍕',
                 },
@@ -153,8 +161,8 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/ledger/advanced/publisher-http',
-        'oss/ledger/advanced/publisher-kafka',
+        'ledger/advanced/publisher-http',
+        'ledger/advanced/publisher-kafka',
       ],
     },
     {
@@ -163,15 +171,15 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/ledger/operations/installation',
-        'oss/ledger/operations/configuration',
-        'oss/ledger/operations/env-vars',
-        'oss/ledger/operations/storages',
-        'oss/ledger/operations/upgrade',
-        'oss/ledger/operations/authentication',
-        'oss/ledger/operations/using-the-control-dashboard',
+        'ledger/operations/installation',
+        'ledger/operations/configuration',
+        'ledger/operations/env-vars',
+        'ledger/operations/storages',
+        'ledger/operations/upgrade',
+        'ledger/operations/authentication',
+        'ledger/operations/using-the-control-dashboard',
         // 'operations/running-in-production',
-        'oss/ledger/api/sdks'
+        'ledger/api/sdks'
       ],
     },
     {
@@ -180,25 +188,25 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/ledger/reference/api',
-        'oss/ledger/reference/ledgers',
-        'oss/ledger/reference/accounts',
-        'oss/ledger/reference/transactions',
-        'oss/ledger/reference/unambiguous-monetary-notation',
-        'oss/ledger/reference/architecture',
-        'oss/ledger/reference/concurrency-model',
+        'ledger/reference/api',
+        'ledger/reference/ledgers',
+        'ledger/reference/accounts',
+        'ledger/reference/transactions',
+        'ledger/reference/unambiguous-monetary-notation',
+        'ledger/reference/architecture',
+        'ledger/reference/concurrency-model',
         {
           label: 'Numscript',
           type: 'category',
           collapsible: true,
           collapsed: true,
           items: [
-            'oss/ledger/reference/numscript/machine',
-            'oss/ledger/reference/numscript/sources',
-            'oss/ledger/reference/numscript/destinations',
-            'oss/ledger/reference/numscript/variables',
-            'oss/ledger/reference/numscript/metadata',
-            'oss/ledger/reference/numscript/rounding',
+            'ledger/reference/numscript/machine',
+            'ledger/reference/numscript/sources',
+            'ledger/reference/numscript/destinations',
+            'ledger/reference/numscript/variables',
+            'ledger/reference/numscript/metadata',
+            'ledger/reference/numscript/rounding',
           ],
         },
       ],
@@ -209,19 +217,24 @@ const sidebars = {
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/ledger/examples/in-app-currency',
-        'oss/ledger/examples/marketplace-sales-routing',
+        'ledger/examples/in-app-currency',
+        'ledger/examples/marketplace-sales-routing',
       ],
     },
   ],
   payments: [
+    {
+      label: 'Formance Payments',
+      type: 'doc',
+      id: 'payments/index'
+    },
     {
       label: '📖 Reference',
       type: 'category',
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/payments/reference/api',
+        'payments/reference/api',
       ],
     },
   ]

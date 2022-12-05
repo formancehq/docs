@@ -78,34 +78,20 @@ const config = {
         logo: {
           alt: 'Formance Logo',
           src: 'img/logo_numary.svg',
-          href: '/oss/ledger/',
+          href: '/',
         },
         items: [
           {
-            label: '📚 Documentation',
+            label: '📚 Product Documentation',
             position: 'left',
             items: [
               {
                 label: '📒 Ledger',
-                to: '/oss/ledger',
+                to: '/ledger',
               },
               {
                 label: '💸 Payments',
-                to: '/oss/payments/reference/api',
-              },
-            ],
-          },
-          {
-            label: '⚡️ API Reference',
-            position: 'left',
-            items: [
-              {
-                label: '📒 Ledger',
-                to: '/api/ledger',
-              },
-              {
-                label: '💸 Payments',
-                to: '/api/payments',
+                to: '/payments',
               },
             ],
           },
@@ -124,11 +110,11 @@ const config = {
             items: [
               {
                 label: 'Ledger',
-                to: '/oss/ledger',
+                to: '/ledger',
               },
               {
                 label: 'Payments',
-                to: '/oss/payments',
+                to: '/payments',
               },
             ],
           },
