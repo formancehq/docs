@@ -188,7 +188,6 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
-                'ledger/reference/api',
                 'ledger/reference/ledgers',
                 'ledger/reference/accounts',
                 'ledger/reference/transactions',
@@ -233,15 +232,6 @@ const sidebars = {
               type: 'doc',
               id: 'payments/index',
               label: 'Introduction'
-            },
-            {
-              label: 'Reference',
-              type: 'category',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                'payments/reference/api',
-              ],
             },
           ]
         },

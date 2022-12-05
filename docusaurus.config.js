@@ -52,16 +52,6 @@ const config = {
             spec: './openapi/v0.2.8.json',
             route: '/api/stack/v0.2.8',
             id: 'stack',
-          },
-          {
-            spec: 'https://raw.githubusercontent.com/formancehq/numary-sdk-go/main/api/openapi.yaml',
-            route: '/api/ledger',
-            id: 'ledger',
-          },
-          {
-            spec: 'https://raw.githubusercontent.com/formancehq/payments/main/swagger.yml',
-            route: '/api/payments',
-            id: 'payments',
           }
       ],
       }
@@ -88,6 +78,16 @@ const config = {
           href: '/',
         },
         items: [
+          {
+            label: '⚡️ Stack API Reference',
+            position: 'right',
+            items: [
+              {
+                label: 'v0.2.8',
+                to: '/api/stack/v0.2.8',
+              }
+            ],
+          },
           {
             href: 'https://github.com/formancehq',
             label: 'GitHub',
