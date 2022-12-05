@@ -43,26 +43,50 @@ You don't have to have a `@centralbank` account, this is just an example designe
 OK, we have our transaction described with Numscript. How do we execute the transaction against our ledger? We need to feed the Numscript to our running instance of Formance Ledger.
 
 ```shell
-numary exec dunshire intro.num
+fctl ledger transactions num intro.num
 ```
-
-:::info
-Formance Ledger can track money movements through multiple distinct ledgers. Each ledger has a name, and each transaction must be assigned to a specific ledger. In many cases, you'll only need one ledger. Sometimes though you might want more than one. In this example, we instructed Formance Ledger to use the `dunshire` ledger for the transaction. That ledger didn't previously exist, so Formance Ledger helpfully created it for us. We'll continue to use the `dunshire` ledger throughout the docs.
-:::
 
 If all goes well, you should see:
+
 ```
-Script ran successfully ✅
+ID        | 0                   
+Reference |                     
+Date      | 2022-11-17T10:20:55Z
+
+Source | Destination | Asset | Amount
+world  | centralbank | COIN  | 100   
+
+Account     | Asset | Movement | Final balance
+centralbank | COIN  | +100     | 100          
+world       | COIN  | -100     | -100         
+
+Metadata : <empty>
 ```
-Congratulations! You've now got money in your ledger.
+
+Congratulations! You've now got money in your ledger. Let's take note of the transaction ID at the very top of the output, in this case ID `0`.
 
 ## Troubleshooting
 
 Otherwise, if you see something like:
 ```
-FATA[0000] Post "http://localhost:3068/dunshire/script": dial tcp [::1]:3068: connect: connection refused
+  ERROR   found more than one stack and no stack specified
 ```
-then the Formance Ledger service isn't running. Make sure the [server is running](start-the-server).
+
+then you have more than one sandbox, and you need to specify which one to use.
+
+:::info Formance Stack
+
+Formance Stacks are cloud-hosted instances that give you access to a full range of financial tools beyond just Ledger. A Stack can be a sandbox, or a production environment. For now, we're only talking about sandboxes, but Formance Stack makes it easy to move your sandbox into a production environment that scales as you do.
+
+:::
+
+If you have more than one sandbox, you'll need to specify which one to send the transactions to with
+
+```shell
+fctl ledger transactions --stack wxyz num intro.num
+``` 
+
+where you should replace `wxyz` with the ID of the sandbox you want to use.
 
 ## Next steps
 

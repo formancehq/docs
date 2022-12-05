@@ -37,16 +37,31 @@ Account names can contain symbols like `:`, and so we are using the convention `
 Once again, we have our transaction described with Numscript, and we are going to execute it against the `dunshire` ledger.
 
 ```shell
-numary exec dunshire first.num
+fctl ledger transactions num first.num
 ```
 
 You should see this in response:
 
-```shell
-Script ran successfully ✅
+```
+ID        | 1                   
+Reference |                     
+Date      | 2022-11-17T11:33:51Z
+
+Source      | Destination     | Asset | Amount
+centralbank | player:benwyatt | COIN  | 100   
+
+Account         | Asset | Movement | Final balance
+centralbank     | COIN  | -100     | 0            
+player:benwyatt | COIN  | +100     | 100          
+
+Metadata : <empty>
 ```
 
-And we can visit [the Formance dashboard](https://control.formance.com/accounts/player:benwyatt) to verify the transaction:
+And if you visit the Formance dashboard to verify the transaction, clicking on the transactions tab will show:
+
+![now we have two transactions](transactions2.png)
+
+Which shows that the new transaction has been added to the ledger. Click on the `▸` icon next to transaction ID `1` to dig a little deeper:
 
 ![benwyatt has 100 coin](benwyatt1.png)
 
@@ -55,12 +70,12 @@ And we can visit [the Formance dashboard](https://control.formance.com/accounts/
 The transaction described in `first.num` can be executed more than once. Let's say we want to send another 100 coin to account `@player:benwyatt`. We can just execute the same Numscript again. Give it a try:
 
 ```shell
-numary exec dunshire first.num
+fctl ledger transactions num first.num
 ```
 
 This time, however, we get a different result:
 ```
-FATA[0000] account had insufficient funds
+  ERROR   account had insufficient funds
 ```
 
 That's because `@centralbank` had only 100 coin in it to begin with, and we'd already transferred all of that out.
