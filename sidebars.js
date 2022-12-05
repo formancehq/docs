@@ -22,7 +22,7 @@ const sidebars = {
       id: 'index'
     },
     {
-      label: '🪁 Tutorials',
+      label: 'Tutorials',
       type: 'category',
       collapsible: true,
       collapsed: true,
@@ -31,7 +31,7 @@ const sidebars = {
           type: 'doc',
           id: 'stack/tutorials/installation',
           customProps: {
-            icon: '💾',
+            // icon: '💾',
           }
         },
       ],
@@ -51,10 +51,10 @@ const sidebars = {
             {
               type: 'doc',
               id: 'ledger/index',
-              label: '📒 Introduction'
+              label: 'Introduction'
             },
             {
-              label: '🪁 Tutorials',
+              label: 'Tutorials',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -64,7 +64,7 @@ const sidebars = {
                   type: 'doc',
                   id: 'ledger/get-started/installation',
                   customProps: {
-                    icon: '💾',
+                    // icon: '💾',
                   }
                 },
                 {
@@ -73,7 +73,7 @@ const sidebars = {
                   collapsible: true,
                   collapsed: true,
                   customProps: {
-                    icon: '👋🏾',
+                    // icon: '👋🏾',
                     description: 'Get started by creating your first transaction.',
                   },
                   link: { type: 'doc', id: 'ledger/get-started/hello-world/index' },
@@ -91,7 +91,7 @@ const sidebars = {
                   collapsed: true,
                   link: { type: 'doc', id: 'ledger/numscript/index' },
                   customProps: {
-                    icon: '🔢',
+                    // icon: '🔢',
                     description: 'Get started by creating your first transaction.',
                   },
                   items: [
@@ -99,56 +99,56 @@ const sidebars = {
                         type:'doc',
                         id: 'ledger/numscript/prerequisites',
                         customProps: {
-                            icon: '1️⃣',
+                            // icon: '1️⃣',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/multi-destination/index',
                         customProps: {
-                            icon: '➗',
+                            // icon: '➗',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/multi-source/index',
                         customProps: {
-                          icon: '✖️',
+                          // icon: '✖️',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/http/index',
                         customProps: {
-                          icon: '🕸',
+                          // icon: '🕸',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/templates/index',
                         customProps: {
-                          icon: '📝',
+                          // icon: '📝',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/currencies/index',
                         customProps: {
-                          icon: '💴',
+                          // icon: '💴',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/metadata/index',
                         customProps: {
-                          icon: '📌',
+                          // icon: '📌',
                         },
                     },
                     {
                         type:'doc',
                         id: 'ledger/numscript/kept/index',
                         customProps: {
-                          icon: '🍕',
+                          // icon: '🍕',
                         },
                     },
                   ],
@@ -156,7 +156,7 @@ const sidebars = {
               ],
             },
             {
-              label: '🧵 Guides',
+              label: 'Guides',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -166,7 +166,7 @@ const sidebars = {
               ],
             },
             {
-              label: '🛠 Operations',
+              label: 'Operations',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -183,7 +183,7 @@ const sidebars = {
               ],
             },
             {
-              label: '📖 Reference',
+              label: 'Reference',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -212,7 +212,7 @@ const sidebars = {
               ],
             },
             {
-              label: '🛵 Examples',
+              label: 'Examples',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -232,10 +232,10 @@ const sidebars = {
             {
               type: 'doc',
               id: 'payments/index',
-              label: '💸 Introduction'
+              label: 'Introduction'
             },
             {
-              label: '📖 Reference',
+              label: 'Reference',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -243,6 +243,28 @@ const sidebars = {
                 'payments/reference/api',
               ],
             },
+          ]
+        },
+        {
+          label: 'Wallets',
+          type: 'category',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'wallets/index',
+              label: 'Introduction'
+            },
+            // {
+            //   label: 'Reference',
+            //   type: 'category',
+            //   collapsible: true,
+            //   collapsed: true,
+            //   items: [
+            //     'wallets/reference/api',
+            //   ],
+            // },
           ]
         }
       ]

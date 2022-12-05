@@ -19,6 +19,7 @@ const config = {
   stylesheets: [
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap',
+    'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap',
   ],
 
   plugins: [
@@ -75,6 +76,7 @@ const config = {
         disableSwitch: true,
       },
       navbar: {
+        // style: 'light',
         logo: {
           alt: 'Formance Logo',
           src: 'img/logo_numary.svg',
@@ -135,7 +137,7 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        // darkTheme: darkCodeTheme,
+        darkTheme: darkCodeTheme,
       },
       posthog: {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
