@@ -49,6 +49,11 @@ const config = {
         debug: Boolean(process.env.DEBUG || process.env.CI),
         specs: [
           {
+            spec: './openapi/v0.2.8.json',
+            route: '/api/stack/v0.2.8',
+            id: 'stack',
+          },
+          {
             spec: 'https://raw.githubusercontent.com/formancehq/numary-sdk-go/main/api/openapi.yaml',
             route: '/api/ledger',
             id: 'ledger',
