@@ -78,7 +78,7 @@ const sidebars = {
                   },
                   link: { type: 'doc', id: 'ledger/get-started/hello-world/index' },
                   items: [
-                    'ledger/get-started/hello-world/start-the-server',
+                    // 'ledger/get-started/hello-world/start-the-server',
                     'ledger/get-started/hello-world/introducing-money',
                     'ledger/get-started/hello-world/checking-balances',
                     'ledger/get-started/hello-world/your-first-transaction'
