@@ -317,15 +317,9 @@ const sidebars = {
           ],
         },
         // {
-        //   type: 'category',
-        //   label: 'Conventions',
-        //   items: [
-        //     {
-        //       type: 'doc',
-        //       id: 'stack/unambiguous-monetary-notation',
-        //       label: 'Monetary Notation',
-        //     }
-        //   ],
+        //   type: 'doc',
+        //   id: 'stack/telemetry/index',
+        //   label: 'Telemetry',
         // },
       ],
     },
