@@ -272,6 +272,11 @@ const sidebars = {
       items: [
         {
           type: 'doc',
+          id: 'stack/architecture',
+          label: 'Architecture',
+        },
+        {
+          type: 'doc',
           id: 'stack/authentication/index',
           label: 'Authentication',
         },
@@ -304,6 +309,11 @@ const sidebars = {
               id: 'stack/reference/helm',
               label: 'Kubernetes / Helm',
             },
+            {
+              type: 'doc',
+              id: 'stack/reference/production',
+              label: 'Production checklist',
+            }
           ],
         },
         // {
