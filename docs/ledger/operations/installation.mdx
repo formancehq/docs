@@ -1,23 +1,26 @@
 ---
 title: Installation
 ---
-
 import HomebrewInstall from '../partials/installation/_install_homebrew.mdx';
 import DockerInstall from '../partials/installation/_install_docker.mdx';
 import DockerComposeInstall from '../partials/installation/_install_docker_compose.mdx';
 import APTInstall from '../partials/installation/_install_apt.mdx';
 import RPMInstall from '../partials/installation/_install_rpm.mdx';
 
-
 # Installation
 
-Formance CLI is available as pre-compiled binaries for Linux, macOS and Windows. You can install it using the installers below, or download a release binary from the [releases page](https://github.com/formancehq/ledger/releases).
-```shell
-# check your installation
-numary version
+Formance Ledger is available as pre-compiled binaries for Linux, macOS and Windows. You can install it using the installers below, or download a release binary from the [releases page](https://github.com/formancehq/ledger/releases).
 
-# start the instance
-numary server start
+:::info
+For historical reasons, the Formance Ledger packages and binaries are named `numary`. This name will change in the future, though the `numary` command will remain available for backwards compatibility.
+:::
+
+### Checking for potential existing installation
+
+It is always good measure to make sure you don't have an existing installation of Formance Ledger before installing a new one. You can check for an existing installation by running the following command:
+
+```shell
+numary version
 ```
 
 ### Homebrew

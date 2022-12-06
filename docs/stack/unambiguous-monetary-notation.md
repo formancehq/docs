@@ -4,7 +4,9 @@ title: Unambiguous Monetary Notation
 
 # Unambiguous Monetary Notation
 
-While you can use any `[A-Z]{1,16}(\/\d{1,6})` asset in your transactions, it is encouraged to use the Unambiguous Monetary Notation if you're dealing with ISO 4217 currencies.
+The Formance Stack uses a unified way of representing monetary values across all its services and components. We call this unified representation the _Unambiguous Monetary Notation_, or UMN for short.
+
+While you can use any `[A-Z]{1,16}(\/\d{1,6})` asset in your transactions, it is encouraged to use UMN if you're dealing with any of the standardized [ISO-4217](https://en.wikipedia.org/wiki/ISO_4217) currencies.
 
 ## Specification
 

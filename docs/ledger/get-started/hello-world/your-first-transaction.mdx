@@ -80,17 +80,18 @@ This time, however, we get a different result:
 
 That's because `@centralbank` had only 100 coin in it to begin with, and we'd already transferred all of that out.
 
-:::caution
+:::info
 Accounts in Formance Ledger cannot go negative! (Except for the special `@world` account).
 :::
 
-Transactions described in Numscript are **not** idempotent! Executing the same transaction twice tells Formance Ledger to make two distinct transfers.
+:::info
+Transactions described in Numscript are **not** idempotent by default. Executing the same transaction twice tells Formance Ledger to make two distinct transfers.
+:::
 
 ## Congratulations
 
 You've now seen the basics of Formance Ledger, and you can:
 
-* Start the Formance Ledger service on your local computer
 * Introduce money into a ledger using the special `@world` account
 * Create and transfer money between accounts using Numscript
 * Check account existence, balances, and transaction histories using the built-in dashboard

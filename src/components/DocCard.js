@@ -37,8 +37,7 @@ function Card({title, cta, children}) {
 
 export function DocCard({children, headline, icon, link, cta, highlight}) {
   var title = headline;
-  if(!!icon)
-    title = icon + " " + headline;
+  cta = cta || "Read more";
 
   let buttonstyle = 'outlined'
   if(!!highlight) {

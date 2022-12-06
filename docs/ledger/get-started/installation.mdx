@@ -1,47 +1,28 @@
 ---
 title: Quick Install
 description: How to install Formance Ledger for development.
-customProps:
-    cta: FOOBAR
 ---
-import HomebrewInstall from '../partials/installation/_install_homebrew.mdx';
-import APTInstall from '../partials/installation/_install_apt.mdx';
-import RPMInstall from '../partials/installation/_install_rpm.mdx';
-import DockerInstall from '../partials/installation/_install_docker.mdx'
+import HomebrewStackInstall from '../../fctl/partials/_install_homebrew.mdx';
+import BinaryInstall from '../../fctl/partials/_install_binary.mdx';
 
 # Installation
 
-Interested in trying Formance Ledger out? The best way is to create a cloud sandbox using the Formance CLI.
+Interested in trying Formance Ledger out? The simplest way is to create yourself a Cloud Sandbox using the Formance CLI.
 
-Formance CLI is a command-line tool for creating and managing Ledger instances in the cloud. And, as you'd expect, it's available for Linux, macOS, and Windows.
+Formance CLI is a command-line tool for creating and managing Formance deployments in the cloud. It will give you access for free to a whole Formance Stack in the cloud, including a Formance Ledger service. And, as you'd expect, it's available for Linux, macOS, and Windows.
 
-You can learn more about all the different ways of installing Formance Ledger in the [reference documentation](/ledger/operations/installation).
+Formance Ledger can also be used and installed as a standalone component without the whole Formance Stack. You can find more details about installing it this way the ledger [installation reference](/ledger/operations/installation).
 
-## macOS
-<HomebrewInstall />
+## Homebrew
+<HomebrewStackInstall />
 
-## Linux
+## Binary
 
-Formance CLI is available for APT (Debian) and RPM (RedHat) based distributions.
+<BinaryInstall />
 
-### Install with APT (Debian, Ubuntu)
-<APTInstall />
-
-### Install with RPM (RedHat, Fedora, SUSE)
-
-<RPMInstall />
-
-## Windows
-
-[Download the pre-compiled binary ` numary_x.y.z_Windows-64bit.zip`](https://github.com/formancehq/ledger/releases) from GitHub (where `x.y.z` is the version number). Unzip the file, and place `numary.exe` somewhere convenient such as `C:\Program Files`.
-
-:::info
+<!-- :::info
 Consider renaming the executable `numary` (without the `.exe` suffix) to make it easier to type, and so the example commands in the rest of the tutorial will work without having to edit them.
-:::
-
-## Docker
-
-<DockerInstall />
+::: -->
 
 ## Troubleshooting
 
@@ -54,12 +35,12 @@ fctl version
 You should see something like
 
 ```
-Version | 0.4.2
+Version | 0.5.1
 Date    | 2022-11-14T11:09:43Z
 Commit  | 9fe16ac
 ```
 
-If you don't, then recheck the steps above, or [reach out to us](ledger/help) to ask for help.
+If you don't, then recheck the steps above, or [reach out to us](/help) to ask for help.
 
 
 ## Logging In

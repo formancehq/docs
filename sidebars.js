@@ -17,12 +17,12 @@ const { Collapse } = require('@material-ui/core');
 const sidebars = {
   main: [
     {
-      label: 'Formance Stack',
+      label: 'Introduction',
       type: 'doc',
       id: 'index'
     },
     {
-      label: 'Tutorials',
+      label: 'Getting Started',
       type: 'category',
       collapsible: true,
       collapsed: true,
@@ -34,10 +34,15 @@ const sidebars = {
             // icon: '💾',
           }
         },
+        {
+          type: 'doc',
+          id: 'help',
+          label: 'Getting Help',
+        }
       ],
     },
     {
-      label: 'Services',
+      label: 'Services Reference',
       type: 'category',
       collapsible: true,
       collapsed: false,
@@ -191,7 +196,6 @@ const sidebars = {
                 'ledger/reference/ledgers',
                 'ledger/reference/accounts',
                 'ledger/reference/transactions',
-                'ledger/reference/unambiguous-monetary-notation',
                 'ledger/reference/architecture',
                 'ledger/reference/concurrency-model',
                 {
@@ -210,16 +214,16 @@ const sidebars = {
                 },
               ],
             },
-            {
-              label: 'Examples',
-              type: 'category',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                'ledger/examples/in-app-currency',
-                'ledger/examples/marketplace-sales-routing',
-              ],
-            },
+            // {
+            //   label: 'Examples',
+            //   type: 'category',
+            //   collapsible: true,
+            //   collapsed: true,
+            //   items: [
+            //     'ledger/examples/in-app-currency',
+            //     'ledger/examples/marketplace-sales-routing',
+            //   ],
+            // },
           ],
         },
         {
@@ -246,18 +250,98 @@ const sidebars = {
               id: 'wallets/index',
               label: 'Introduction'
             },
-            // {
-            //   label: 'Reference',
-            //   type: 'category',
-            //   collapsible: true,
-            //   collapsed: true,
-            //   items: [
-            //     'wallets/reference/api',
-            //   ],
-            // },
           ]
-        }
+        },
       ]
+    },
+    {
+      label: 'Stack Reference',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          id: 'stack/authentication/index',
+          label: 'Authentication',
+        },
+        {
+          type: 'doc',
+          id: 'stack/sdk/index',
+          label: 'SDKs',
+        },
+        {
+          type: 'doc',
+          id: 'stack/webhooks/index',
+          label: 'Webhooks',
+        },
+        {
+          type: 'doc',
+          id: 'stack/unambiguous-monetary-notation',
+          label: 'Monetary Notation',
+        },
+        {
+          type: 'category',
+          label: 'Deployment',
+          items: [
+            {
+              type: 'doc',
+              id: 'stack/reference/docker',
+              label: 'Docker',
+            },
+            {
+              type: 'doc',
+              id: 'stack/reference/helm',
+              label: 'Kubernetes / Helm',
+            },
+          ],
+        },
+        // {
+        //   type: 'category',
+        //   label: 'Conventions',
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       id: 'stack/unambiguous-monetary-notation',
+        //       label: 'Monetary Notation',
+        //     }
+        //   ],
+        // },
+      ],
+    },
+    {
+      label: 'Cloud',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          id: 'stack/fctl',
+          label: 'Formance CLI',
+        },
+        {
+          type: 'doc',
+          id: 'cloud/sandboxes',
+          label: 'Cloud Sandbox',
+        },
+        {
+          type: 'doc',
+          id: 'cloud/authentication',
+          label: 'Authentication',
+        },
+        // {
+        //   type: 'category',
+        //   label: 'Conventions',
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       id: 'stack/unambiguous-monetary-notation',
+        //       label: 'Monetary Notation',
+        //     }
+        //   ],
+        // },
+      ],
     },
   ],
 };

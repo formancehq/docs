@@ -50,7 +50,7 @@ const config = {
         specs: [
           {
             spec: './openapi/v0.2.8.json',
-            route: '/api/stack/v0.2.8',
+            route: '/api/stack',
             id: 'stack',
           }
       ],
@@ -84,12 +84,17 @@ const config = {
             items: [
               {
                 label: 'v0.2.8',
-                to: '/api/stack/v0.2.8',
+                to: '/api/stack',
               }
             ],
           },
           {
-            href: 'https://github.com/formancehq',
+            label: 'Use-cases Library',
+            position: 'right',
+            href: 'https://www.formance.com/use-cases-library',
+          },
+          {
+            href: 'https://github.com/formancehq/stack',
             label: 'GitHub',
             position: 'right',
           },
@@ -115,8 +120,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Discord',
-                href: 'https://discord.gg/xyHvcbzk4w',
+                label: 'Slack',
+                href: 'https://bit.ly/formance-slack',
               },
               {
                 label: 'Twitter',
@@ -129,7 +134,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/formancehq/ledger',
+                href: 'https://github.com/formancehq/stack',
               },
               {
                 label: 'Cloud Status',

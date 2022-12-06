@@ -8,11 +8,12 @@ import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import Prerequisites from '/docs/ledger/partials/numscript/_prerequisites.mdx';
 import Prereqwarn from '/docs/ledger/partials/numscript/_prereq_warning.mdx';
+import CloudToken from '../../../fctl/partials/_cloud_token.mdx';
 
 
 The `fctl` command line is not the only way to execute Numscript. Formance Stack also exposes an HTTP API that accepts Numscript. This makes it much easier to integrate Numscript into your existing codebase.
 
-Indeed, Formance's HTTP API is very powerful, and lets you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [Formance Ledger API reference documentation](/ledger/reference/api).
+Indeed, Formance's HTTP API is very powerful, and lets you accomplish more than just executing Numscript. You can check account balances, verify transactions, and more. For now, let's focus on executing transactions using Numscript. If you want to learn more about the full range of functionality, consult the [Formance Ledger API reference documentation](/api/stack).
 
 <Prerequisites />
 
@@ -24,9 +25,8 @@ Don't skip this step. It is a little complicated, but very important!
 
 To authorize API calls from the command line in a non-production environment, you need to generate a personal token. Personal tokens are only valid for use in sandbox environments, and expire after 60 minutes.
 
-```shell
-FORMANCE_TOKEN=`fctl cloud generate-personal-token`
-```
+<CloudToken />
+
 This saves the personal token into an environment variable called `FORMANCE_TOKEN` that we can use in further command lines. We can check the contents of the envronment variable to be sure that we have a valid token like this:
 
 ```shell

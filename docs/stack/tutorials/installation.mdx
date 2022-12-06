@@ -1,30 +1,24 @@
 ---
 title: Quick Install
 description: How to install Formance Stack for development.
-customProps:
-    cta: FOOBAR
 ---
-import HomebrewInstall from '../partials/installation/_install_homebrew.mdx';
-import DockerInstall from '../partials/installation/_install_docker.mdx'
+import HomebrewInstall from '../../fctl/partials/_install_homebrew.mdx';
+import BinaryInstall from '../../fctl/partials/_install_binary.mdx';
 
 # Installation
 
-Interested in trying Formance Stack out? You can install it on your local machine first.
+Interested in trying Formance Stack out? The simplest way is to create yourself a cloud sandbox using fctl, the.
+Formance CLI for creating and managing Ledger instances in the cloud. And, as you'd expect, it's available for Linux, macOS, and Windows.
 
-Formance Stack is, as you'd expect, available for Linux, macOS, and Windows.
+We also provide Docker images and Helm charts for local and cloud native deployments. You can learn more about all the different ways of installing Formance Stack in the reference [installation page](/stack/reference/docker).
 
-We also provide Docker images for production environments. You can learn more about all the different ways of installing Formance Stack in the [reference documentation](/Stack/operations/installation).
+## Homebrew
 
-## macOS & Linux
 <HomebrewInstall />
 
-## Windows
+## Binary
 
-[Download the pre-compiled binary ` fctl_x.y.z_Windows-64bit.zip`](https://github.com/formancehq/Stack/releases) from GitHub (where `x.y.z` is the version number). Unzip the file, and place `fctl.exe` somewhere convenient such as `C:\Program Files`.
-
-:::info
-Consider renaming the executable `fctl` (without the `.exe` suffix) to make it easier to type, and so the example commands in the rest of the tutorial will work without having to edit them.
-:::
+<BinaryInstall />
 
 ## Troubleshooting
 
@@ -37,7 +31,7 @@ fctl version
 You should see something like
 
 ```
-Version | 0.5.0
+Version | 0.5.1
 Date    | 2022-11-28T09:40:15Z
 Commit  | 0de953f
 ```
