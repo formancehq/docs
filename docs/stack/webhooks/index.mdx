@@ -1,7 +1,5 @@
 ---
 title: Introduction to Formance Webhooks
-pagination_next: null
-pagination_prev: null
 ---
 import {StackCmd} from '@site/src/components/StackCmd';
 import Tabs from '@theme/Tabs';
@@ -57,41 +55,43 @@ And can be verified using the following code:
 
 <Tabs>
 
-	<TabItem value="go" label="Go">
-		```go
-		package example
+<TabItem value="go" label="Go">
 
-		import (
-			"io"
-			"net/http"
-			"strconv"
+```go
+package example
 
-			"github.com/formancehq/webhooks/pkg/security"
-		)
+import (
+	"io"
+	"net/http"
+	"strconv"
 
-		func VerifyWebhook(r *http.Request, mySecret string) (bool, error) {
-			id := r.Header.Get("formance-webhook-id")
-			ts := r.Header.Get("formance-webhook-timestamp")
-			signatures := r.Header.Get("formance-webhook-signature")
-			timeInt, err := strconv.ParseInt(ts, 10, 64)
-			if err != nil {
-				return false, err
-			}
+	"github.com/formancehq/webhooks/pkg/security"
+)
 
-			payload, err := io.ReadAll(r.Body)
-			if err != nil {
-				return false, err
-			}
+func VerifyWebhook(r *http.Request, mySecret string) (bool, error) {
+	id := r.Header.Get("formance-webhook-id")
+	ts := r.Header.Get("formance-webhook-timestamp")
+	signatures := r.Header.Get("formance-webhook-signature")
+	timeInt, err := strconv.ParseInt(ts, 10, 64)
+	if err != nil {
+		return false, err
+	}
 
-			isVerified, err := security.Verify(signatures, id, timeInt, mySecret, payload)
-			if err != nil {
-				return false, err
-			}
+	payload, err := io.ReadAll(r.Body)
+	if err != nil {
+		return false, err
+	}
 
-			return isVerified, nil
-		}
+	isVerified, err := security.Verify(signatures, id, timeInt, mySecret, payload)
+	if err != nil {
+		return false, err
+	}
 
-		```
-	</TabItem>
+	return isVerified, nil
+}
+
+```
+
+</TabItem>
 
 </Tabs>

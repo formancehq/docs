@@ -171,7 +171,7 @@ const sidebars = {
               ],
             },
             {
-              label: 'Operations',
+              label: 'Deployment',
               type: 'category',
               collapsible: true,
               collapsed: true,
@@ -293,11 +293,11 @@ const sidebars = {
         {
           type: 'doc',
           id: 'stack/unambiguous-monetary-notation',
-          label: 'Monetary Notation',
+          label: 'Monetary Notation (UMN)',
         },
         {
           type: 'category',
-          label: 'Deployment',
+          label: 'Self-hosting',
           items: [
             {
               type: 'doc',

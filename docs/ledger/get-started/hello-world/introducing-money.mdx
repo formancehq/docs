@@ -7,6 +7,10 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 
 Now you have Formance Ledger up and ready to accept transactions. Woohoo! Let's get started by creating our first transaction in Numscript.
 
+:::info
+Numscript is a powerful scripting language for describing transactions. It's a great way to get started with Formance Ledger, but you can also use the transactions API to send transactions directly in plain json. We'll talk more about that in a later step.
+:::
+
 Right now, your coffers in the game world of Cones of Dunshire are entirely empty. We need to seed it with a little coin so that we can distribute it to players.
 
 Of course, in the real world, we can't just create money. Money enters our accounts from the outside world, and we need a way to track that in our ledger. We do this through a special account called `@world`. This account represents the world outside of our system. It is unique in that it can never be overdrawn (unlike other accounts). This allows us to represent movements of money into our system by transferring money from the `@world` account to the account that actually received the money.
@@ -33,9 +37,7 @@ This bit of Numscript encodes a _transaction_. A transaction is a description of
 * `destination = @centralbank` means the money should go to our `@centralbank` account. In our case, we just want a central store for Dunshire coin, but in your situation you might have multiple accounts that can receive money from. You can name these accounts however you like.
 
 :::info
-
 You don't have to have a `@centralbank` account, this is just an example designed to keep things simple. In your case, payments might land in a variety of accounts. This is no problem. You can transfer money from `@world` into any account.
-
 :::
 
 ## Executing the Numscript

@@ -1,11 +1,13 @@
 ---
-title: Configuration Variables
+title: Configuration variables
+hide_table_of_contents: true
 ---
-# Configuration Variables
 
 :::info
-When using environment vars, the var name must be prefixed with `NUMARY_`. As an example, DEBUG could either be passed as `numary server start --debug` or `NUMARY_DEBUG=true numary server start`.
+When using environment vars, the var name must be prefixed with `NUMARY_`.  
+As an example, DEBUG could either be passed as `numary server start --debug` or `NUMARY_DEBUG=true numary server start`.
 :::
+
 
  |Flag                                   |Env var                              |Default value                    |Description                                                                |
  |-                                      |-                                    |-                                |-                                                                          |
