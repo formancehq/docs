@@ -237,6 +237,16 @@ const sidebars = {
               id: 'payments/index',
               label: 'Introduction'
             },
+            {
+              type: 'doc',
+              id: 'payments/connectors/index',
+              label: 'Connectors'
+            },
+            {
+              type: 'doc',
+              id: 'payments/connectors/framework',
+              label: 'Framework',
+            },
           ]
         },
         {
