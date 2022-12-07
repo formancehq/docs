@@ -49,8 +49,8 @@ const config = {
         debug: Boolean(process.env.DEBUG || process.env.CI),
         specs: [
           {
-            spec: './openapi/v0.2.8.json',
-            route: '/api/stack',
+            spec: './openapi/v1.0.json',
+            route: '/api/stack/v1.0',
             id: 'stack',
           }
       ],
@@ -83,8 +83,8 @@ const config = {
             position: 'right',
             items: [
               {
-                label: 'v0.2.8',
-                to: '/api/stack',
+                label: 'v1.0',
+                to: '/api/stack/v1.0',
               }
             ],
           },

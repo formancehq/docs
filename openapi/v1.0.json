@@ -12,7 +12,7 @@
       "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
       "altText": "Formance"
     },
-    "version": "v0.2.8"
+    "version": "v1.0.0-beta.2"
   },
   "servers": [
     {
@@ -594,7 +594,7 @@
     "/api/ledger/_info": {
       "get": {
         "tags": [
-          "Server"
+          "server"
         ],
         "summary": "Show server information.",
         "operationId": "getInfo",
@@ -617,7 +617,7 @@
         "summary": "Count the accounts from a ledger.",
         "operationId": "countAccounts",
         "tags": [
-          "Accounts"
+          "accounts"
         ],
         "parameters": [
           {
@@ -670,7 +670,7 @@
         "description": "List accounts from a ledger, sorted by address in descending order.",
         "operationId": "listAccounts",
         "tags": [
-          "Accounts"
+          "accounts"
         ],
         "parameters": [
           {
@@ -754,7 +754,7 @@
           {
             "name": "pagination_token",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when the pagination token is set.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results. \nSet to the value of previous for the previous page of results.\nNo other parameters can be set when the pagination token is set.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -828,7 +828,7 @@
         "summary": "Get account by its address.",
         "operationId": "getAccount",
         "tags": [
-          "Accounts"
+          "accounts"
         ],
         "parameters": [
           {
@@ -902,7 +902,7 @@
         "summary": "Add metadata to an account.",
         "operationId": "addMetadataToAccount",
         "tags": [
-          "Accounts"
+          "accounts"
         ],
         "parameters": [
           {
@@ -964,6 +964,28 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error_code"
+                  ],
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "example": "CONFLICT"
+                    },
+                    "error_message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -971,7 +993,7 @@
     "/api/ledger/{ledger}/mapping": {
       "get": {
         "tags": [
-          "Mapping"
+          "mapping"
         ],
         "operationId": "getMapping",
         "summary": "Get the mapping of a ledger.",
@@ -1002,7 +1024,7 @@
       },
       "put": {
         "tags": [
-          "Mapping"
+          "mapping"
         ],
         "operationId": "updateMapping",
         "summary": "Update the mapping of a ledger.",
@@ -1044,9 +1066,8 @@
     },
     "/api/ledger/{ledger}/script": {
       "post": {
-        "deprecated": true,
         "tags": [
-          "Script"
+          "script"
         ],
         "operationId": "runScript",
         "summary": "Execute a Numscript.",
@@ -1072,22 +1093,67 @@
           }
         ],
         "requestBody": {
-          "required": true,
           "content": {
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/Script"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "On success, it will return a 200 status code, and the resulting transaction under the `transaction` field.\n\nOn failure, it will also return a 200 status code, and the following fields:\n  - `details`: contains a URL. When there is an error parsing Numscript, the result can be difficult to read—the provided URL will render the error in an easy-to-read format.\n  - `error_code`: contains the string code of the error\n  - `error_message`: contains a human-readable indication of what went wrong, for example that an account had insufficient funds, or that there was an error in the provided Numscript.\n",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ScriptResult"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error_code"
+                  ],
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "example": "VALIDATION"
+                    },
+                    "error_message": {
+                      "type": "string",
+                      "example": "invalid payload"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error_code"
+                  ],
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "example": "CONFLICT"
+                    },
+                    "error_message": {
+                      "type": "string"
+                    }
+                  }
                 }
               }
             }
@@ -1098,7 +1164,7 @@
     "/api/ledger/{ledger}/stats": {
       "get": {
         "tags": [
-          "Stats"
+          "stats"
         ],
         "operationId": "readStats",
         "summary": "Get Stats",
@@ -1132,7 +1198,7 @@
     "/api/ledger/{ledger}/transactions": {
       "head": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "summary": "Count the transactions from a ledger.",
         "operationId": "countTransactions",
@@ -1184,23 +1250,6 @@
             }
           },
           {
-            "name": "start_time",
-            "in": "query",
-            "description": "Filter transactions that occurred after this timestamp.\nThe format is RFC3339 and is inclusive (for example, 12:00:01 includes the first second of the minute).\n",
-            "schema": {
-              "type": "string",
-              "example": null
-            }
-          },
-          {
-            "name": "end_time",
-            "in": "query",
-            "description": "Filter transactions that occurred before this timestamp.\nThe format is RFC3339 and is exclusive (for example, 12:00:01 excludes the first second of the minute).\n",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
             "name": "metadata",
             "in": "query",
             "description": "Filter transactions by metadata key value pairs. Nested objects can be used as seen in the example below.",
@@ -1228,7 +1277,7 @@
       },
       "get": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "summary": "List transactions from a ledger.",
         "description": "List transactions from a ledger, sorted by txid in descending order.",
@@ -1277,7 +1326,7 @@
           {
             "name": "account",
             "in": "query",
-            "description": "Filter transactions with postings involving given account, either as source or destination (regular expression placed between ^ and $).",
+            "description": "Find transactions with postings involving given account, either as source or destination.",
             "schema": {
               "type": "string",
               "example": "users:001"
@@ -1286,7 +1335,7 @@
           {
             "name": "source",
             "in": "query",
-            "description": "Filter transactions with postings involving given account at source (regular expression placed between ^ and $).",
+            "description": "Find transactions with postings involving given account at source.",
             "schema": {
               "type": "string",
               "example": "users:001"
@@ -1295,7 +1344,7 @@
           {
             "name": "destination",
             "in": "query",
-            "description": "Filter transactions with postings involving given account at destination (regular expression placed between ^ and $).",
+            "description": "Find transactions with postings involving given account at destination.",
             "schema": {
               "type": "string",
               "example": "users:001"
@@ -1321,7 +1370,7 @@
           {
             "name": "pagination_token",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when the pagination token is set.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results. \nSet to the value of previous for the previous page of results.\nNo other parameters can be set when the pagination token is set.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1404,7 +1453,7 @@
       },
       "post": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "summary": "Create a new transaction to a ledger.",
         "operationId": "createTransaction",
@@ -1430,19 +1479,28 @@
           }
         ],
         "requestBody": {
-          "required": true,
-          "description": "The request body must contain one of the following objects:\n  - `postings`: suitable for simple transactions\n  - `script`: enabling more complex transactions with Numscript\n",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/PostTransaction"
+                "$ref": "#/components/schemas/TransactionData"
               }
             }
-          }
+          },
+          "required": true
         },
         "responses": {
           "200": {
             "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TransactionsResponse"
+                }
+              }
+            }
+          },
+          "304": {
+            "description": "Not modified (when preview is enabled)",
             "content": {
               "application/json": {
                 "schema": {
@@ -1503,7 +1561,7 @@
     "/api/ledger/{ledger}/transactions/{txid}": {
       "get": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "summary": "Get transaction from a ledger by its ID.",
         "operationId": "getTransaction",
@@ -1592,7 +1650,7 @@
     "/api/ledger/{ledger}/transactions/{txid}/metadata": {
       "post": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "summary": "Set the metadata of a transaction by its ID.",
         "operationId": "addMetadataOnTransaction",
@@ -1678,6 +1736,28 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error_code"
+                  ],
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "example": "CONFLICT"
+                    },
+                    "error_message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1685,7 +1765,7 @@
     "/api/ledger/{ledger}/transactions/{txid}/revert": {
       "post": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "operationId": "revertTransaction",
         "summary": "Revert a ledger transaction by its ID.",
@@ -1767,6 +1847,28 @@
                 }
               }
             }
+          },
+          "409": {
+            "description": "Conflict",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "required": [
+                    "error_code"
+                  ],
+                  "properties": {
+                    "error_code": {
+                      "type": "string",
+                      "example": "CONFLICT"
+                    },
+                    "error_message": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -1774,7 +1876,7 @@
     "/api/ledger/{ledger}/transactions/batch": {
       "post": {
         "tags": [
-          "Transactions"
+          "transactions"
         ],
         "summary": "Create a new batch of transactions to a ledger.",
         "operationId": "CreateTransactions",
@@ -1863,7 +1965,7 @@
     "/api/ledger/{ledger}/balances": {
       "get": {
         "tags": [
-          "Balances"
+          "balances"
         ],
         "summary": "Get the balances from a ledger's account",
         "operationId": "getBalances",
@@ -1899,7 +2001,7 @@
           {
             "name": "pagination_token",
             "in": "query",
-            "description": "Parameter used in pagination requests.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.",
+            "description": "Parameter used in pagination requests. \nSet to the value of next for the next page of results. \nSet to the value of previous for the previous page of results.",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1972,7 +2074,7 @@
     "/api/ledger/{ledger}/aggregate/balances": {
       "get": {
         "tags": [
-          "Balances"
+          "balances"
         ],
         "summary": "Get the aggregated balances from selected accounts",
         "operationId": "getBalancesAggregated",
@@ -2392,6 +2494,31 @@
         }
       }
     },
+    "/api/payments/connectors/stripe/transfer": {
+      "post": {
+        "summary": "Transfer funds between Stripe accounts",
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "connectorsStripeTransfer",
+        "description": "Execute a transfer between two Stripe accounts",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/StripeTransferRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Transfer has been executed"
+          }
+        }
+      }
+    },
     "/api/search/": {
       "post": {
         "summary": "Search",
@@ -2412,14 +2539,7 @@
         },
         "responses": {
           "200": {
-            "description": "Success",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Response"
-                }
-              }
-            }
+            "description": "Success"
           }
         }
       }
@@ -3085,8 +3205,7 @@
         "type": "object",
         "properties": {
           "details": {
-            "type": "string",
-            "example": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9"
+            "type": "string"
           },
           "error_code": {
             "type": "string",
@@ -3094,14 +3213,11 @@
               "INTERNAL",
               "INSUFFICIENT_FUND",
               "COMPILATION_FAILED",
-              "NO_SCRIPT",
-              "METADATA_OVERRIDE"
-            ],
-            "example": "INSUFFICIENT_FUND"
+              "NO_SCRIPT"
+            ]
           },
           "error_message": {
-            "type": "string",
-            "example": "account had insufficient funds"
+            "type": "string"
           },
           "transaction": {
             "$ref": "#/components/schemas/Transaction"
@@ -3275,6 +3391,14 @@
       "Script": {
         "type": "object",
         "properties": {
+          "reference": {
+            "type": "string",
+            "example": "order_1234",
+            "description": "Reference to attach to the generated transaction"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/ledgerMetadata"
+          },
           "plain": {
             "type": "string",
             "example": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n"
@@ -3287,14 +3411,6 @@
                 "user": "users:042"
               }
             }
-          },
-          "reference": {
-            "type": "string",
-            "example": "order_1234",
-            "description": "Reference to attach to the generated transaction"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/ledgerMetadata"
           }
         },
         "required": [
@@ -3376,49 +3492,6 @@
           }
         }
       },
-      "PostTransaction": {
-        "type": "object",
-        "properties": {
-          "timestamp": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "postings": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Posting"
-            }
-          },
-          "script": {
-            "type": "object",
-            "properties": {
-              "plain": {
-                "type": "string",
-                "example": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n"
-              },
-              "vars": {
-                "type": "object",
-                "properties": {},
-                "example": {
-                  "vars": {
-                    "user": "users:042"
-                  }
-                }
-              }
-            },
-            "required": [
-              "plain"
-            ]
-          },
-          "reference": {
-            "type": "string",
-            "example": "ref:001"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/ledgerMetadata"
-          }
-        }
-      },
       "Stats": {
         "type": "object",
         "properties": {
@@ -3442,7 +3515,7 @@
         "properties": {
           "page_size": {
             "type": "integer",
-            "example": 15
+            "example": 1
           },
           "has_more": {
             "type": "boolean",
@@ -3454,7 +3527,7 @@
           },
           "next": {
             "type": "string",
-            "example": ""
+            "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
           }
         }
       },
@@ -3929,6 +4002,30 @@
           "disabled": {
             "type": "boolean",
             "example": false
+          }
+        }
+      },
+      "StripeTransferRequest": {
+        "type": "object",
+        "properties": {
+          "amount": {
+            "type": "integer",
+            "example": 100
+          },
+          "asset": {
+            "type": "string",
+            "example": "USD"
+          },
+          "destination": {
+            "type": "string",
+            "example": "acct_1Gqj58KZcSIg2N2q"
+          },
+          "metadata": {
+            "type": "object",
+            "description": "A set of key/value pairs that you can attach to a transfer object.\nIt can be useful for storing additional information about the transfer in a structured format.\n",
+            "example": {
+              "order_id": "6735"
+            }
           }
         }
       },
