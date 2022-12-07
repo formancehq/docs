@@ -282,19 +282,19 @@ const sidebars = {
             },
           ]
         },
-        {
-          label: 'Wallets',
-          type: 'category',
-          collapsible: true,
-          collapsed: true,
-          items: [
-            {
-              type: 'doc',
-              id: 'wallets/index',
-              label: 'Introduction'
-            },
-          ]
-        },
+        // {
+        //   label: 'Wallets',
+        //   type: 'category',
+        //   collapsible: true,
+        //   collapsed: true,
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       id: 'wallets/index',
+        //       label: 'Introduction'
+        //     },
+        //   ]
+        // },
       ]
     },
     {
