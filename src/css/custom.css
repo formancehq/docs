@@ -4,11 +4,17 @@
  * work well for content-centric websites.
  */
 
- @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap');
+@import url('./fonts.css');
 
 /* You can override the default Infima variables here. */
 :root {
-  /* --ifm-color-primary: #ff3cd1; */
+  --ifm-font-color-base: hsla(220, 22%, 26%, 1);
+  --ifm-font-family-base: 'Inter', sans-serif;
+  --ifm-heading-font-family: 'Machina';
+  --ifm-breadcrumb-font-family: 'Machina';
+  --ifm-heading-font-weight: 500;
+  /* --ifm-color-primary: hsla(160, 40%, 50%, 1); */
   /* --ifm-color-primary: #6FE385;
   --ifm-color-primary-dark: rgb(33, 175, 144);
   --ifm-color-primary-darker: rgb(31, 165, 136);

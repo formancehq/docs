@@ -9,222 +9,388 @@
  Create as many sidebars as you want.
  */
 
+const { Collapse } = require('@material-ui/core');
+
 // @ts-check
 
 /** @type {import('@docusaurus/plugin-content-docs').SidebarsConfig} */
 const sidebars = {
-  ledger: [
+  main: [
     {
-      // label: 'Formance Ledger',
+      label: 'Introduction',
       type: 'doc',
-      // collapsible: false,
-      // collapsed: false,
-      id: 'oss/ledger/index'
-      // link: { type: 'doc', id: 'index' },
-      // items:[
-      //   'help',
-      // ],
+      id: 'index'
     },
     {
-      label: '🪁 Tutorials',
+      label: 'Getting Started',
       type: 'category',
       collapsible: true,
-      collapsed: false,
-      link: { type: 'doc', id: 'oss/ledger/get-started/index' },
+      collapsed: true,
       items: [
         {
           type: 'doc',
-          id: 'oss/ledger/get-started/installation',
+          id: 'stack/tutorials/installation',
           customProps: {
-            icon: '💾',
+            // icon: '💾',
           }
         },
         {
-          label: 'Hello World',
-          type: 'category',
-          collapsible: true,
-          collapsed: true,
-          customProps: {
-            icon: '👋🏾',
-            description: 'Get started by creating your first transaction.',
-          },
-          link: { type: 'doc', id: 'oss/ledger/get-started/hello-world/index' },
-          items: [
-            'oss/ledger/get-started/hello-world/start-the-server',
-            'oss/ledger/get-started/hello-world/introducing-money',
-            'oss/ledger/get-started/hello-world/checking-balances',
-            'oss/ledger/get-started/hello-world/your-first-transaction'
-          ]
-        },
-        {
-          label: 'Mastering Numscript',
-          type: 'category',
-          collapsible: true,
-          collapsed: true,
-          link: { type: 'doc', id: 'oss/ledger/numscript/index' },
-          customProps: {
-            icon: '🔢',
-            description: 'Get started by creating your first transaction.',
-          },
-          items: [
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/prerequisites',
-                customProps: {
-                    icon: '1️⃣',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/multi-destination/index',
-                customProps: {
-                    icon: '➗',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/multi-source/index',
-                customProps: {
-                  icon: '✖️',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/http/index',
-                customProps: {
-                  icon: '🕸',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/templates/index',
-                customProps: {
-                  icon: '📝',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/currencies/index',
-                customProps: {
-                  icon: '💴',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/metadata/index',
-                customProps: {
-                  icon: '📌',
-                },
-            },
-            {
-                type:'doc',
-                id: 'oss/ledger/numscript/kept/index',
-                customProps: {
-                  icon: '🍕',
-                },
-            },
-          ],
+          type: 'doc',
+          id: 'help',
+          label: 'Getting Help',
         }
       ],
     },
-    // {
-    //   label: 'Ledger API',
-    //   type: 'category',
-    //   collapsible: true,
-    //   collapsed: true,
-    //   link: { type: 'doc', id: 'api/index' },
-    //   items: [
-    //     'api/sdks',
-    //   ],
-    // },
-    // {
-    //   label: 'Best Practices',
-    //   type: 'category',
-    //   collapsible: true,
-    //   collapsed: true,
-    //   // link: { type: 'doc', id: 'best-practices/index' },
-    //   items: [
-    //     'best-practices/currency-conversion/index',
-    //   ],
-    // },
     {
-      label: '🧵 Guides',
+      label: 'Services Reference',
       type: 'category',
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       items: [
-        'oss/ledger/advanced/publisher-http',
-        'oss/ledger/advanced/publisher-kafka',
-      ],
-    },
-    {
-      label: '🛠 Operations',
-      type: 'category',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        'oss/ledger/operations/installation',
-        'oss/ledger/operations/configuration',
-        'oss/ledger/operations/env-vars',
-        'oss/ledger/operations/storages',
-        'oss/ledger/operations/upgrade',
-        'oss/ledger/operations/authentication',
-        'oss/ledger/operations/using-the-control-dashboard',
-        // 'operations/running-in-production',
-        'oss/ledger/api/sdks'
-      ],
-    },
-    {
-      label: '📖 Reference',
-      type: 'category',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        'oss/ledger/reference/api',
-        'oss/ledger/reference/ledgers',
-        'oss/ledger/reference/accounts',
-        'oss/ledger/reference/transactions',
-        'oss/ledger/reference/unambiguous-monetary-notation',
-        'oss/ledger/reference/architecture',
-        'oss/ledger/reference/concurrency-model',
         {
-          label: 'Numscript',
+          label: 'Ledger',
           type: 'category',
           collapsible: true,
           collapsed: true,
           items: [
-            'oss/ledger/reference/numscript/machine',
-            'oss/ledger/reference/numscript/sources',
-            'oss/ledger/reference/numscript/destinations',
-            'oss/ledger/reference/numscript/variables',
-            'oss/ledger/reference/numscript/metadata',
-            'oss/ledger/reference/numscript/rounding',
+            {
+              type: 'doc',
+              id: 'ledger/index',
+              label: 'Introduction'
+            },
+            {
+              label: 'Tutorials',
+              type: 'category',
+              collapsible: true,
+              collapsed: true,
+              link: { type: 'doc', id: 'ledger/get-started/index' },
+              items: [
+                {
+                  type: 'doc',
+                  id: 'ledger/get-started/installation',
+                  customProps: {
+                    // icon: '💾',
+                  }
+                },
+                {
+                  label: 'Hello World',
+                  type: 'category',
+                  collapsible: true,
+                  collapsed: true,
+                  customProps: {
+                    // icon: '👋🏾',
+                    description: 'Get started by creating your first transaction.',
+                  },
+                  link: { type: 'doc', id: 'ledger/get-started/hello-world/index' },
+                  items: [
+                    // 'ledger/get-started/hello-world/start-the-server',
+                    'ledger/get-started/hello-world/introducing-money',
+                    'ledger/get-started/hello-world/checking-balances',
+                    'ledger/get-started/hello-world/your-first-transaction'
+                  ]
+                },
+                {
+                  label: 'Mastering Numscript',
+                  type: 'category',
+                  collapsible: true,
+                  collapsed: true,
+                  link: { type: 'doc', id: 'ledger/numscript/index' },
+                  customProps: {
+                    // icon: '🔢',
+                    description: 'Get started by creating your first transaction.',
+                  },
+                  items: [
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/prerequisites',
+                        customProps: {
+                            // icon: '1️⃣',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/multi-destination/index',
+                        customProps: {
+                            // icon: '➗',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/multi-source/index',
+                        customProps: {
+                          // icon: '✖️',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/http/index',
+                        customProps: {
+                          // icon: '🕸',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/templates/index',
+                        customProps: {
+                          // icon: '📝',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/currencies/index',
+                        customProps: {
+                          // icon: '💴',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/metadata/index',
+                        customProps: {
+                          // icon: '📌',
+                        },
+                    },
+                    {
+                        type:'doc',
+                        id: 'ledger/numscript/kept/index',
+                        customProps: {
+                          // icon: '🍕',
+                        },
+                    },
+                  ],
+                }
+              ],
+            },
+            {
+              label: 'Guides',
+              type: 'category',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'ledger/advanced/publisher-http',
+                'ledger/advanced/publisher-kafka',
+              ],
+            },
+            {
+              label: 'Deployment',
+              type: 'category',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'ledger/operations/installation',
+                'ledger/operations/configuration',
+                'ledger/operations/env-vars',
+                'ledger/operations/storages',
+                'ledger/operations/upgrade',
+                'ledger/operations/authentication',
+                'ledger/operations/using-the-control-dashboard',
+                // 'operations/running-in-production',
+                'ledger/api/sdks'
+              ],
+            },
+            {
+              label: 'Reference',
+              type: 'category',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                'ledger/reference/ledgers',
+                'ledger/reference/accounts',
+                'ledger/reference/transactions',
+                'ledger/reference/architecture',
+                'ledger/reference/concurrency-model',
+                {
+                  label: 'Numscript',
+                  type: 'category',
+                  collapsible: true,
+                  collapsed: true,
+                  items: [
+                    'ledger/reference/numscript/machine',
+                    'ledger/reference/numscript/sources',
+                    'ledger/reference/numscript/destinations',
+                    'ledger/reference/numscript/variables',
+                    'ledger/reference/numscript/metadata',
+                    'ledger/reference/numscript/rounding',
+                  ],
+                },
+              ],
+            },
+            // {
+            //   label: 'Examples',
+            //   type: 'category',
+            //   collapsible: true,
+            //   collapsed: true,
+            //   items: [
+            //     'ledger/examples/in-app-currency',
+            //     'ledger/examples/marketplace-sales-routing',
+            //   ],
+            // },
           ],
         },
-      ],
+        {
+          label: 'Payments',
+          type: 'category',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'payments/index',
+              label: 'Introduction'
+            },
+            {
+              type: 'category',
+              label: 'Available Connectors',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'payments/connectors/index',
+                // label: 'Connectors'
+              },
+              items: [
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/stripe',
+                  label: 'Stripe',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/modulr',
+                  label: 'Modulr',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/wise',
+                  label: 'Wise',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/currencycloud',
+                  label: 'CurrencyCloud',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/bankingcircle',
+                  label: 'BankingCircle',
+                }
+              ],
+            },
+            {
+              type: 'doc',
+              id: 'payments/connectors/framework',
+              label: 'Framework',
+            },
+          ]
+        },
+        // {
+        //   label: 'Wallets',
+        //   type: 'category',
+        //   collapsible: true,
+        //   collapsed: true,
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       id: 'wallets/index',
+        //       label: 'Introduction'
+        //     },
+        //   ]
+        // },
+      ]
     },
     {
-      label: '🛵 Examples',
+      label: 'Stack Reference',
       type: 'category',
       collapsible: true,
       collapsed: true,
       items: [
-        'oss/ledger/examples/in-app-currency',
-        'oss/ledger/examples/marketplace-sales-routing',
+        {
+          type: 'doc',
+          id: 'stack/architecture',
+          label: 'Architecture',
+        },
+        {
+          type: 'doc',
+          id: 'stack/authentication/index',
+          label: 'Authentication',
+        },
+        {
+          type: 'doc',
+          id: 'stack/sdk/index',
+          label: 'SDKs',
+        },
+        {
+          type: 'doc',
+          id: 'stack/webhooks/index',
+          label: 'Webhooks',
+        },
+        {
+          type: 'doc',
+          id: 'stack/unambiguous-monetary-notation',
+          label: 'Monetary Notation (UMN)',
+        },
+        {
+          type: 'category',
+          label: 'Self-hosting',
+          items: [
+            {
+              type: 'doc',
+              id: 'stack/reference/docker',
+              label: 'Docker',
+            },
+            {
+              type: 'doc',
+              id: 'stack/reference/helm',
+              label: 'Kubernetes / Helm',
+            },
+            {
+              type: 'doc',
+              id: 'stack/reference/production',
+              label: 'Production checklist',
+            }
+          ],
+        },
+        // {
+        //   type: 'doc',
+        //   id: 'stack/telemetry/index',
+        //   label: 'Telemetry',
+        // },
+      ],
+    },
+    {
+      label: 'Cloud',
+      type: 'category',
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: 'doc',
+          id: 'stack/fctl',
+          label: 'Formance CLI',
+        },
+        {
+          type: 'doc',
+          id: 'cloud/sandboxes',
+          label: 'Cloud Sandbox',
+        },
+        {
+          type: 'doc',
+          id: 'cloud/authentication',
+          label: 'Authentication',
+        },
+        // {
+        //   type: 'category',
+        //   label: 'Conventions',
+        //   items: [
+        //     {
+        //       type: 'doc',
+        //       id: 'stack/unambiguous-monetary-notation',
+        //       label: 'Monetary Notation',
+        //     }
+        //   ],
+        // },
       ],
     },
   ],
-  payments: [
-    {
-      label: '📖 Reference',
-      type: 'category',
-      collapsible: true,
-      collapsed: true,
-      items: [
-        'oss/payments/reference/api',
-      ],
-    },
-  ]
 };
 
 module.exports = sidebars;

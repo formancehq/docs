@@ -19,6 +19,7 @@ const config = {
   stylesheets: [
     'https://fonts.googleapis.com/icon?family=Material+Icons',
     'https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap',
+    'https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600&display=swap',
   ],
 
   plugins: [
@@ -48,14 +49,9 @@ const config = {
         debug: Boolean(process.env.DEBUG || process.env.CI),
         specs: [
           {
-            spec: 'https://raw.githubusercontent.com/formancehq/numary-sdk-go/main/api/openapi.yaml',
-            route: '/api/ledger',
-            id: 'ledger',
-          },
-          {
-            spec: 'https://raw.githubusercontent.com/formancehq/payments/main/swagger.yml',
-            route: '/api/payments',
-            id: 'payments',
+            spec: './openapi/v0.2.8.json',
+            route: '/api/stack',
+            id: 'stack',
           }
       ],
       }
@@ -75,42 +71,30 @@ const config = {
         disableSwitch: true,
       },
       navbar: {
+        // style: 'light',
         logo: {
           alt: 'Formance Logo',
           src: 'img/logo_numary.svg',
-          href: '/oss/ledger/',
+          href: '/',
         },
         items: [
           {
-            label: '📚 Documentation',
-            position: 'left',
+            label: '⚡️ Stack API Reference',
+            position: 'right',
             items: [
               {
-                label: '📒 Ledger',
-                to: '/oss/ledger',
-              },
-              {
-                label: '💸 Payments',
-                to: '/oss/payments/reference/api',
-              },
+                label: 'v0.2.8',
+                to: '/api/stack',
+              }
             ],
           },
           {
-            label: '⚡️ API Reference',
-            position: 'left',
-            items: [
-              {
-                label: '📒 Ledger',
-                to: '/api/ledger',
-              },
-              {
-                label: '💸 Payments',
-                to: '/api/payments',
-              },
-            ],
+            label: 'Use-cases Library',
+            position: 'right',
+            href: 'https://www.formance.com/use-cases-library',
           },
           {
-            href: 'https://github.com/formancehq',
+            href: 'https://github.com/formancehq/stack',
             label: 'GitHub',
             position: 'right',
           },
@@ -124,11 +108,11 @@ const config = {
             items: [
               {
                 label: 'Ledger',
-                to: '/oss/ledger',
+                to: '/ledger',
               },
               {
                 label: 'Payments',
-                to: '/oss/payments',
+                to: '/payments',
               },
             ],
           },
@@ -136,8 +120,8 @@ const config = {
             title: 'Community',
             items: [
               {
-                label: 'Discord',
-                href: 'https://discord.gg/xyHvcbzk4w',
+                label: 'Slack',
+                href: 'https://bit.ly/formance-slack',
               },
               {
                 label: 'Twitter',
@@ -150,7 +134,7 @@ const config = {
             items: [
               {
                 label: 'GitHub',
-                href: 'https://github.com/formancehq/ledger',
+                href: 'https://github.com/formancehq/stack',
               },
               {
                 label: 'Cloud Status',
@@ -163,7 +147,7 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        // darkTheme: darkCodeTheme,
+        darkTheme: darkCodeTheme,
       },
       posthog: {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
