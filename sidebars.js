@@ -238,9 +238,42 @@ const sidebars = {
               label: 'Introduction'
             },
             {
-              type: 'doc',
-              id: 'payments/connectors/index',
-              label: 'Connectors'
+              type: 'category',
+              label: 'Available Connectors',
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: 'doc',
+                id: 'payments/connectors/index',
+                // label: 'Connectors'
+              },
+              items: [
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/stripe',
+                  label: 'Stripe',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/modulr',
+                  label: 'Modulr',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/wise',
+                  label: 'Wise',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/currencycloud',
+                  label: 'CurrencyCloud',
+                },
+                {
+                  type: 'doc',
+                  id: 'payments/connectors/bankingcircle',
+                  label: 'BankingCircle',
+                }
+              ],
             },
             {
               type: 'doc',
