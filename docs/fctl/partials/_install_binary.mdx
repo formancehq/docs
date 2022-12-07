@@ -8,13 +8,12 @@ Binaries for fctl are available for Linux, macOS, and Windows. You can download 
 <TabItem value="linux" label="Linux">
 
 ```shell
-VERSION="0.5.1" \
-ARCH="amd64" \ # or arm64
-curl -O https://github.com/formancehq/fctl/releases/download/v$VERSION/fctl_linux-$ARCH.tar.gz \
-&& tar -xvf fctl_linux-$ARCH.tar.gz \
+# You can use either amd64 for x86_64 or arm64 for ARM
+ARCH="amd64"; curl -L -o fctl.tar.gz "https://github.com/formancehq/fctl/releases/download/v0.5.1/fctl_linux-$ARCH.tar.gz" \
+&& tar -xvf fctl.tar.gz \
 && sudo mv fctl /usr/local/bin \
 && chmod +x /usr/local/bin/fctl \
-&& rm fctl_linux-$ARCH.tar.gz
+&& rm fctl.tar.gz
 ```
 
 </TabItem>
@@ -22,13 +21,12 @@ curl -O https://github.com/formancehq/fctl/releases/download/v$VERSION/fctl_linu
 <TabItem value="macos" label="macOS">
 
 ```shell
-VERSION="0.5.1" \
-ARCH="amd64" \ # or arm64 for M1
-curl -O https://github.com/formancehq/fctl/releases/download/v$VERSION/fctl_darwin-$ARCH.tar.gz \
-&& tar -xvf fctl_darwin-$ARCH.tar.gz \
+# You can use either amd64 for x86_64 or arm64 for ARM
+ARCH="amd64"; curl -L -o fctl.tar.gz "https://github.com/formancehq/fctl/releases/download/v0.5.1/fctl_darwin-$ARCH.tar.gz" \
+&& tar -xvf fctl.tar.gz \
 && sudo mv fctl /usr/local/bin \
 && chmod +x /usr/local/bin/fctl \
-&& rm fctl_darwin-$ARCH.tar.gz
+&& rm fctl.tar.gz
 ```
 
 </TabItem>
