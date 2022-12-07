@@ -342,11 +342,11 @@ const sidebars = {
               id: 'stack/reference/helm',
               label: 'Kubernetes / Helm',
             },
-            {
-              type: 'doc',
-              id: 'stack/reference/production',
-              label: 'Production checklist',
-            }
+            // {
+            //   type: 'doc',
+            //   id: 'stack/reference/production',
+            //   label: 'Production checklist',
+            // }
           ],
         },
         // {
