@@ -31,12 +31,15 @@
     "clsx": "^1.2.1",
     "codemirror-lang-numscript": "^0.4.0",
     "file-loader": "^6.2.0",
+    "hast-util-is-element": "1.1.0",
     "posthog-docusaurus": "^2.0.0",
     "prism-react-renderer": "^1.3.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-numscript-codeblock": "0.2.4",
+    "react-numscript-codeblock": "0.2.3",
     "redocusaurus": "^1.4.0",
+    "rehype-katex": "5",
+    "remark-math": "3",
     "url-loader": "^4.1.1"
   },
   "browserslist": {

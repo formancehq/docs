@@ -166,8 +166,12 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
-                'ledger/advanced/publisher-http',
-                'ledger/advanced/publisher-kafka',
+                {
+                  type: 'doc',
+                  id: 'ledger/advanced/publisher',
+                  label: 'Publishing to HTTP / Kafka'
+                },
+                // 'ledger/advanced/double-entry',
               ],
             },
             {

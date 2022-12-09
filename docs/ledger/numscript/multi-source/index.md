@@ -37,7 +37,7 @@ fctl ledger transactions num treat.num
 
 <Prereqwarn />
 
-Once you've run that transaction succesfully, let's have a look at [`donnameagle`'s balance'](https://control.formance.com/accounts/player:donnameagle).
+Once you've run that transaction succesfully, let's have a look at `donnameagle`'s balance:
 
 
 ![`donnameagle` paid 38 and `tomhaverford` paid 37 coin](multi-source-1.png)

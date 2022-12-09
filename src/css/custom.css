@@ -32,7 +32,11 @@
 }
 
 .markdown h2 {
-  font-size: 1.6rem;
+  font-size: 1.75rem;
+}
+
+.markdown h3 {
+  font-size: 1.4rem;
 }
 
 html:not([data-theme="dark"])

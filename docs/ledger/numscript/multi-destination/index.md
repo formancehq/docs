@@ -38,7 +38,7 @@ fctl ledger transactions num split.num
 
 <Prereqwarn />
 
-Once you've run that transaction succesfully, let's have a look at [`leslieknope`'s balance'](https://control.formance.com/accounts/player:leslieknope).
+Once you've run that transaction succesfully, let's have a look at `leslieknope`'s balance:
 
 
 ![`leslieknope` gets 38 and `annperkins` gets 37 coin](multi-destination-1.png)

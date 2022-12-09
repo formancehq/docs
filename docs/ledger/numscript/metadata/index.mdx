@@ -38,7 +38,7 @@ fctl ledger transactions num metadata.num
 
 <Prereqwarn /> 
 
-Once you've run that transaction succesfully, let's have a look at [`leslieknope`'s balance'](https://control.formance.com/accounts/player:leslieknope) to find that transaction. It should be the topmost one listed. Click the details arrow to the right of the transaction to get more details.
+Once you've run that transaction succesfully, let's have a look at `leslieknope`'s balance to find that transaction. It should be the topmost one listed. Click the details arrow to the right of the transaction to get more details.
 
 ![Where to find the detail arrow](metadata-1.png)
 
@@ -67,44 +67,6 @@ You can see the `metadata` field with the details of the information we added to
 
 Metadata is arbitrary data that you can attach to a transaction (or an account! But more on that later). This data is typed, and can be a string or a number. You can retrieve (or even add to) this metadata later using the HTTP API, for integration into your own bespoke workflows.
 
-## Storing variables in metadata
-
-You can store the value of [template variables](/ledger/numscript/templates/) in metadata as well. Template variables may only be of `monetary`, `account`, or `portion` types, and must be specified like the following examples:
-
-```json
-{
-  "base_fee": {
-    "type": "monetary",
-    "value": {
-      "amount": 15,
-      "asset": "COIN"
-    }
-  }
-}
-```
-
-```json
-{
-  "seller": {
-    "type": "account",
-    "value": "player:benwyatt"
-  }
-}
-```
-
-```json
-{
-  "commission": {
-    "type": "portion",
-    "value": "15/100"
-  }
-}
-```
-
 ## Going further
 
-:::info There's much more to metadata
-
-Formance Ledger allows you to also add metadata to accounts. This metadata can be used to construct much more sophisticated transactions, with variables that bind to specific metadata at execution time. At the moment, we don't have documentation for how to use these feature, but expect them soon.
-
-:::
+Formance Ledger allows you to also add metadata to accounts. This metadata can be used to construct much more sophisticated transactions, with variables that bind to specific metadata at execution time. For more details on that usage, please refer to the Numscript metadata [reference](/ledger/reference/numscript/metadata).
