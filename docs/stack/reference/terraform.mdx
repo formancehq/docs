@@ -1,0 +1,29 @@
+---
+title: Formance Stack on AWS with Terraform
+description: How to install Formance Stack on AWS with Terraform
+---
+
+import Warning from '../partials/installation/_complexity_warning.mdx';
+
+To ease the installation of Formance Stack on AWS, we provide a full example of a deployment on Amazon Web Services that you can use to deploy the stack on your AWS account.
+
+You can find the Terraform code on [GitHub](https://github.com/formancehq/stack-terraform-aws-example).
+
+<Warning/>
+
+## Prerequisites
+
+To install Formance Stack on AWS, you need to have:
+- An AWS account
+- A MongoDB Atlas account
+
+## Installation
+
+Clone the repository and simply run:
+
+```bash
+terraform init
+terraform apply
+```
+
+It will install all the components on ECS, a PostgreSQL database on RDS, a MongoDB database on MongoDB Atlas, a MSK instance, an OpenSearch instance and all the basics like Security Groups, Cloudwatch and ALB.
