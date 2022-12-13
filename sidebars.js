@@ -211,6 +211,7 @@ const sidebars = {
                     'ledger/reference/numscript/machine',
                     'ledger/reference/numscript/sources',
                     'ledger/reference/numscript/destinations',
+                    'ledger/reference/numscript/overdraft',
                     'ledger/reference/numscript/variables',
                     'ledger/reference/numscript/metadata',
                     'ledger/reference/numscript/rounding',

@@ -81,11 +81,11 @@ This time, however, we get a different result:
 That's because `@centralbank` had only 100 coin in it to begin with, and we'd already transferred all of that out.
 
 :::info
-Accounts in Formance Ledger cannot go negative! (Except for the special `@world` account).
+Accounts in Formance Ledger cannot go negative by default, except for the special `@world` account. For more details on to build transactions that can make accounts go negative, please refer to the [overdraft](/ledger/reference/numscript/overdraft) section.
 :::
 
 :::info
-Transactions described in Numscript are **not** idempotent by default. Executing the same transaction twice tells Formance Ledger to make two distinct transfers.
+Transactions described in Numscript are not idempotent by default. Executing the same transaction twice tells Formance Ledger to make two distinct transfers.
 :::
 
 ## Congratulations

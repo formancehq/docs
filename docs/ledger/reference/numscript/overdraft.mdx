@@ -1,0 +1,58 @@
+---
+title: Overdrafts
+---
+import { NumscriptBlock } from 'react-numscript-codeblock';
+
+In the introductory tutorial, we used `@world` as the default account to source funds into our ledger. The built-in world account is a good and simple way of representing the outside world in the abstract, and can help reduce complexity in your ledger by providing a single point of contact for all funds being created or destroyed. In real-life, however, it is sometimes useful to be able to make some internal balances go negative. This is where the concept of overdraft comes in.
+
+## When to use overdraft
+
+Overdraft is a feature that allows you to represent a balance that can go negative, with fine-grained control over how much it can go negative. It is usually useful in the following cases:
+
+* You want to keep track of indidual users and sub-accounts debts, e.g. a user of you fintech app with a credit line or a marketplace merchant
+* You want to represent transactions with funds being sourced from specific external accounts, e.g. an external bank account or payment processor balance
+
+## Using overdraft
+
+<NumscriptBlock script={`send [USD/2 500] (
+  source = {
+    @users:42:main
+    @users:42:overdraft allowing overdraft up to [USD/2 200]
+    @users:42:credit allowing overdraft up to [USD/2 1000]
+  }
+  destination = @users:100
+)`}></NumscriptBlock>
+
+
+:::info
+Accounts overdraft capability is, as of now, only available in Numscript-modeled transactions.
+:::
+
+## Pulling limit from account
+
+It is possible to use metadata variable injection to pull the overdraft limit directly from the account we are using in transaction.
+
+<NumscriptBlock script={`vars {
+  monetary $limit = meta(@users:42, "overdraft_limit")
+}\n
+send [USD/2 500] (
+  source = {
+    @users:42:main
+    @users:42:overdraft allowing overdraft up to $limit
+  }
+  destination = @users:100
+)`}></NumscriptBlock>
+
+In such case, we would need to set the `overdraft_limit` metadata variable on the account first, according to the format described in the detailed [metadata](/ledger/reference/numscript/metadata) section.
+
+```json
+  {
+    "coupon_value": {
+      "type": "monetary",
+      "value": {
+        "amount": 100,
+        "asset": "USD"
+      }
+    }
+  }
+  ```
