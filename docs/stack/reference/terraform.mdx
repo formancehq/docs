@@ -5,25 +5,49 @@ description: How to install Formance Stack on AWS with Terraform
 
 import Warning from '../partials/installation/_complexity_warning.mdx';
 
-To ease the installation of Formance Stack on AWS, we provide a full example of a deployment on Amazon Web Services that you can use to deploy the stack on your AWS account.
-
-You can find the Terraform code on [GitHub](https://github.com/formancehq/stack-terraform-aws-example).
+To provide a quick way to get started with the Formance Stack on AWS, we provide here an example of an ECS-based deployment with Terraform provisioning.
 
 <Warning/>
 
 ## Prerequisites
 
-To install Formance Stack on AWS, you need to have:
-- An AWS account
-- A MongoDB Atlas account
+To use this Terraform template, you just need to have:
+
+* Terraform installed on your machine
+* an AWS account ready to be used
 
 ## Installation
 
-Clone the repository and simply run:
+The Terraform template is distributed as this Github [repository](https://github.com/formancehq/stack-terraform-aws-example). Clone the repo to your machine, and simply run:
 
 ```bash
 terraform init
 terraform apply
 ```
 
-It will install all the components on ECS, a PostgreSQL database on RDS, a MongoDB database on MongoDB Atlas, a MSK instance, an OpenSearch instance and all the basics like Security Groups, Cloudwatch and ALB.
+Terraform will then proceed to provision the following:
+
+* an ECS cluster
+* a PostgreSQL RDS database
+* an MSK instance
+* an OpenSearch instance
+
+Along with all the underlying basics like Security Groups, Cloudwatch and ALB resources. It will then deploy the Formance Stack services on top of this newly created infrastructure.
+
+
+## Infrastructure upgrade
+
+To upgrade the provisioned infrastructure, you can simply run in the repo directory:
+
+```bash
+git pull origin main
+terraform apply
+```
+
+:::caution
+This will upgrade **both** the infrastructure and the Formance Stack services. If you want to upgrade only the infrastructure, you can refer to the section below to run specific versions of the Formance Stack services.
+:::
+
+## Running specific services versions
+
+This repo is provisionned with pre-defined versions of the Formance Stack services. If you want to run a specific version of a service, you can simply edit the [task definition](https://github.com/formancehq/stack-terraform-aws-example/tree/main/task-definitions) of the service for which you want to specify the version.

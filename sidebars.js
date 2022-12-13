@@ -344,7 +344,12 @@ const sidebars = {
             {
               type: 'doc',
               id: 'stack/reference/helm',
-              label: 'Kubernetes / Helm',
+              label: 'Kubernetes with Helm',
+            },
+            {
+              type: 'doc',
+              id: 'stack/reference/terraform',
+              label: 'ECS with Terraform',
             },
             // {
             //   type: 'doc',
