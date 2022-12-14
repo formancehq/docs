@@ -2,6 +2,8 @@
   "redirects": [
     { "source": "/oss/:path*/", "destination": "/:path*/"},
     { "source": "/oss/:path*", "destination": "/:path*"},
+    { "source": "/ledger/reference/api", "destination": "/api/stack/v1.0" },
+    { "source": "/payments/reference/api", "destination": "/api/stack/v1.0" },
     { "source": "/docs/installation-1", "destination": "/oss/ledger/get-started/installation" },
     { "source": "/docs/your-first-transaction", "destination": "/oss/ledger/get-started/hello-world/your-first-transaction" },
     { "source": "/oss/ledger/get-started/your-first-transaction", "destination": "/oss/ledger/get-started/hello-world/your-first-transaction" },
