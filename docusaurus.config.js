@@ -125,6 +125,10 @@ const config = {
                 label: 'Payments',
                 to: '/payments',
               },
+              {
+                label: 'Wallets',
+                to: '/wallets',
+              },
             ],
           },
           {
