@@ -286,19 +286,66 @@ const sidebars = {
             },
           ]
         },
-        // {
-        //   label: 'Wallets',
-        //   type: 'category',
-        //   collapsible: true,
-        //   collapsed: true,
-        //   items: [
-        //     {
-        //       type: 'doc',
-        //       id: 'wallets/index',
-        //       label: 'Introduction'
-        //     },
-        //   ]
-        // },
+        {
+          label: 'Wallets',
+          type: 'category',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'doc',
+              id: 'wallets/index',
+              label: 'Introduction'
+            },
+            // {
+            //   type: 'doc',
+            //   id: 'wallets/model',
+            // },
+            {
+              type: 'doc',
+              id: 'wallets/creation',
+              label: 'Creating wallets',
+            },
+            {
+              type: 'category',
+              label: 'Managing funds',
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: 'doc',
+                  id: 'wallets/funds/adding-funds',
+                  label: 'Adding funds',
+                },
+                {
+                  type: 'doc',
+                  id: 'wallets/funds/spending-funds',
+                  label: 'Spending funds',
+                },
+                {
+                  type: 'doc',
+                  id: 'wallets/funds/holds',
+                  label: 'Hold and confirm',
+                },
+                {
+                  type: 'doc',
+                  id: 'wallets/funds/expirable-funds',
+                  label: 'Expirable funds',
+                },
+                {
+                  type: 'doc',
+                  id: 'wallets/funds/funds-reserve',
+                  label: 'Reserved funds',
+                }
+              ],
+            },
+            {
+              type: 'doc',
+              id: 'wallets/configuration',
+              label: 'Configuration',
+            }
+          ]
+        },
       ]
     },
     {
