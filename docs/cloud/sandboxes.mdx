@@ -27,7 +27,7 @@ fctl login
 Now, let's create a sandbox.
 
 ```shell
-fctl sandbox create playground
+fctl stack create playground
 ```
 
 Make sure to let the command a few seconds to complete. This will create a sandbox with the name `playground`. You can use any name you want. The sandbox will be created in your account and you will be automatically logged in to it.
@@ -35,8 +35,8 @@ Make sure to let the command a few seconds to complete. This will create a sandb
 You can now check that your sandbox was created successfully by running the following command.
 
 ```shell
-fctl sandbox list
-fctl sandbox show --name=playground
+fctl stack list
+fctl stack show --name=playground
 ```
 
 ## Using your Sandbox
@@ -57,5 +57,5 @@ fctl ledger transactions list --ledger=quickstart
 Once you are done playing with your sandbox, you can delete it to free up resources. Accounts have a limitation of 2 sandboxes at any given time, so make sure to delete sandboxes that you are not using.
 
 ```shell
-fctl sandbox delete --name=playground
+fctl stack delete --name=playground
 ```
