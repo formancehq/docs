@@ -118,7 +118,8 @@ The statement takes a string-type key and a value which can be of any type, eith
 
 ## Writing metadata to a transaction
 
-Metadata can be written to a transaction using the `set_tx_meta("key", _value_)` statement. The statement takes a string-type key and a value which can be of type `monetary`, `account` or `portion`, either as a variable or a literal.
+Metadata can be written to a transaction using the `set_tx_meta("key", _value_)` statement. 
+The statement takes a string-type key and a value which can be of any type, either as a variable or a literal.
 
 <NumscriptBlock script={`set_tx_meta("order_fee", [USD/2 100])
 set_tx_meta("tax", 20/100)
