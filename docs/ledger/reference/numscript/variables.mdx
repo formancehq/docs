@@ -6,35 +6,78 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 # Variables
 Hardcoded values are great for quick prototyping and iteration, but chances are that you will at some point need to inject some variables into your Numscript files.
 
-All core types can be defined as variables and used in the script body:
+Here is an example using definitions of all the supported variable types:
 
 <NumscriptBlock script={`vars {
   monetary $price
-  account $payment
+  account $trade
   portion $commission
+  asset $pair
+  number $id
+  string $reference
 }\n
 send $price (
   source = @world
   destination = {
     $commission to @platform
-    remaining to $payment
+    remaining to $trade
   }
-)`}></NumscriptBlock>
+)\n
+set_tx_meta("asset", $asset)
+set_tx_meta("id", $id)
+set_tx_meta("reference", $reference)
+`}></NumscriptBlock>
 
-Injections of variables can be done at execution, the `/{ledger}/script` endpoint providing a `vars` parameter to inject such variables:
+Injections of variables can be done at execution, by using the `POST /{ledger}/transactions` endpoint.
+The `script.vars` field in the request body is used to inject variable values:
 
 ```json
 {
-  "vars": {
-    "price": {
-      "amount": 100,
-      "asset": "USD/2"
-  	},
-   	"payment": "payments:108391JJA",
-    "commission": "15/100"
+  "script": {
+    "vars": {
+      "price": {
+        "amount": 100,
+        "asset": "USD/2"
+      },
+      "trade": "trades:108391999",
+      "commission": "15%",
+      "pair": "EUR/2",
+      "id": 108391999,
+      "reference": "USD/EUR:108391999",
+    }
 	}
 }
 ```
+
+Variable names must be lowercase and start with at least one letter or `_`.
+They can contain letters, digits, and `_`.
+
+## Account type
+
+This type represents account names. They must start with at least one letter or `_`.
+They can contain letters, digits, `_`, and `:`.
+
+## Asset type
+
+This type represents asset names. They can contain uppercase letters, digits and `/`.
+
+## Monetary type
+
+This type represents an positive integer amount associated with an asset. 
+```json
+{
+  "amount": 100,
+  "asset": "USD/2"
+}
+```
+
+## Portion type
+
+This type represents portions of monetary values.
+They can be expressed in 2 differents ways:
+* As percentage: `15%`
+* As fraction: `15/100`
+Their computed values must be between 0 and 1.
 
 :::info
 Variables can also be pulled from account metadata, as per described in the [metadata](/ledger/reference/numscript/metadata) section in the next page.
