@@ -71,6 +71,23 @@ This type represents an positive integer amount associated with an asset.
 }
 ```
 
+It is possible to pull the balance of an account and inject it in a monetary variable by using the the `balance(_account_, _asset_)` statement.
+The balance pulled needs to be non-negative, or the script will fail to execute. Here is an example:
+
+<NumscriptBlock script={`vars {
+  monetary $initial = balance(@A, USD/2)
+}
+send [USD/2 100] (
+  source = {
+    @A
+    @C
+  }
+  destination = {
+    max $initial to @B
+    remaining to @D
+  }
+)`}></NumscriptBlock>
+
 ## Portion type
 
 This type represents portions of monetary values.
