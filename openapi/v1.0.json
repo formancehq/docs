@@ -12,7 +12,7 @@
       "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
       "altText": "Formance"
     },
-    "version": "v1.0.0-beta.3"
+    "version": "v1.0.0-rc.5"
   },
   "servers": [
     {
@@ -36,6 +36,24 @@
     }
   ],
   "paths": {
+    "/api/auth/_info": {
+      "get": {
+        "summary": "Get server info",
+        "operationId": "getServerInfo",
+        "responses": {
+          "200": {
+            "description": "Server information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/auth/clients": {
       "get": {
         "summary": "List clients",
@@ -2288,14 +2306,7 @@
             "description": "The connector code",
             "in": "path",
             "schema": {
-              "type": "string",
-              "enum": [
-                "stripe",
-                "dummypay",
-                "wise",
-                "modulr",
-                "currencycloud"
-              ]
+              "$ref": "#/components/schemas/Connectors"
             },
             "required": true
           }
@@ -2329,10 +2340,7 @@
             "description": "The connector code",
             "in": "path",
             "schema": {
-              "type": "string",
-              "enum": [
-                "stripe"
-              ]
+              "$ref": "#/components/schemas/Connectors"
             },
             "required": true
           }
@@ -2358,10 +2366,7 @@
             "description": "The connector code",
             "in": "path",
             "schema": {
-              "type": "string",
-              "enum": [
-                "stripe"
-              ]
+              "$ref": "#/components/schemas/Connectors"
             },
             "required": true
           }
@@ -2394,10 +2399,7 @@
             "description": "The connector code",
             "in": "path",
             "schema": {
-              "type": "string",
-              "enum": [
-                "stripe"
-              ]
+              "$ref": "#/components/schemas/Connectors"
             },
             "required": true
           }
@@ -2423,10 +2425,7 @@
             "description": "The connector code",
             "in": "path",
             "schema": {
-              "type": "string",
-              "enum": [
-                "stripe"
-              ]
+              "$ref": "#/components/schemas/Connectors"
             },
             "required": true
           }
@@ -2439,7 +2438,26 @@
                 "schema": {
                   "type": "array",
                   "items": {
-                    "$ref": "#/components/schemas/ConnectorTask"
+                    "oneOf": [
+                      {
+                        "$ref": "#/components/schemas/TaskDescriptorStripe"
+                      },
+                      {
+                        "$ref": "#/components/schemas/TaskDescriptorWise"
+                      },
+                      {
+                        "$ref": "#/components/schemas/TaskDescriptorCurrencyCloud"
+                      },
+                      {
+                        "$ref": "#/components/schemas/TaskDescriptorDummyPay"
+                      },
+                      {
+                        "$ref": "#/components/schemas/TaskDescriptorModulr"
+                      },
+                      {
+                        "$ref": "#/components/schemas/TaskDescriptorBankingCircle"
+                      }
+                    ]
                   }
                 }
               }
@@ -2462,10 +2480,7 @@
             "description": "The connector code",
             "in": "path",
             "schema": {
-              "type": "string",
-              "enum": [
-                "stripe"
-              ]
+              "$ref": "#/components/schemas/Connectors"
             },
             "required": true
           },
@@ -2486,7 +2501,26 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ConnectorTask"
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/TaskDescriptorStripe"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TaskDescriptorWise"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TaskDescriptorCurrencyCloud"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TaskDescriptorDummyPay"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TaskDescriptorModulr"
+                    },
+                    {
+                      "$ref": "#/components/schemas/TaskDescriptorBankingCircle"
+                    }
+                  ]
                 }
               }
             }
@@ -2519,6 +2553,24 @@
         }
       }
     },
+    "/api/search/_info": {
+      "get": {
+        "summary": "Get server info",
+        "operationId": "searchgetServerInfo",
+        "responses": {
+          "200": {
+            "description": "Server information",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ServerInfo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/search/": {
       "post": {
         "summary": "Search",
@@ -2539,7 +2591,14 @@
         },
         "responses": {
           "200": {
-            "description": "Success"
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Response"
+                }
+              }
+            }
           }
         }
       }
@@ -2580,33 +2639,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "type": "object",
-                  "required": [
-                    "cursor"
-                  ],
-                  "properties": {
-                    "cursor": {
-                      "allOf": [
-                        {
-                          "$ref": "#/components/schemas/webhooksCursor"
-                        },
-                        {
-                          "type": "object",
-                          "properties": {
-                            "data": {
-                              "type": "array",
-                              "items": {
-                                "$ref": "#/components/schemas/webhooksConfig"
-                              }
-                            }
-                          },
-                          "required": [
-                            "data"
-                          ]
-                        }
-                      ]
-                    }
-                  }
+                  "$ref": "#/components/schemas/ConfigsResponse"
                 }
               }
             }
@@ -2614,9 +2647,9 @@
         }
       },
       "post": {
-        "summary": "Insert a new config\n",
-        "description": "Insert a new config.\n\nThe endpoint should be a valid https URL and be unique.\n\nThe secret is the endpoint's verification secret.\nIf not passed or empty, a secret is automatically generated.\nThe format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)\n\nAll eventTypes are converted to lower-case when inserted.\n",
-        "operationId": "insertOneConfig",
+        "summary": "Insert a new config",
+        "description": "Insert a new webhooks config.\n\nThe endpoint should be a valid https URL and be unique.\n\nThe secret is the endpoint's verification secret.\nIf not passed or empty, a secret is automatically generated.\nThe format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)\n\nAll eventTypes are converted to lower-case when inserted.\n",
+        "operationId": "insertConfig",
         "tags": [
           "Webhooks"
         ],
@@ -2658,7 +2691,8 @@
     "/api/webhooks/configs/{id}": {
       "delete": {
         "summary": "Delete one config",
-        "operationId": "deleteOneConfig",
+        "description": "Delete a webhooks config by ID.",
+        "operationId": "deleteConfig",
         "tags": [
           "Webhooks"
         ],
@@ -2685,8 +2719,8 @@
     "/api/webhooks/configs/{id}/test": {
       "get": {
         "summary": "Test one config",
-        "description": "Test one config by sending a webhook to its endpoint.\n",
-        "operationId": "testOneConfig",
+        "description": "Test a config by sending a webhook to its endpoint.",
+        "operationId": "testConfig",
         "tags": [
           "Webhooks"
         ],
@@ -2719,7 +2753,8 @@
     "/api/webhooks/configs/{id}/activate": {
       "put": {
         "summary": "Activate one config",
-        "operationId": "activateOneConfig",
+        "description": "Activate a webhooks config by ID, to start receiving webhooks to its endpoint.",
+        "operationId": "activateConfig",
         "tags": [
           "Webhooks"
         ],
@@ -2756,7 +2791,8 @@
     "/api/webhooks/configs/{id}/deactivate": {
       "put": {
         "summary": "Deactivate one config",
-        "operationId": "deactivateOneConfig",
+        "description": "Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.",
+        "operationId": "deactivateConfig",
         "tags": [
           "Webhooks"
         ],
@@ -2793,8 +2829,8 @@
     "/api/webhooks/configs/{id}/secret/change": {
       "put": {
         "summary": "Change the signing secret of a config",
-        "description": "Change the signing secret of the endpoint of a config.\n\nIf not passed or empty, a secret is automatically generated.\nThe format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)\n",
-        "operationId": "changeOneConfigSecret",
+        "description": "Change the signing secret of the endpoint of a webhooks config.\n\nIf not passed or empty, a secret is automatically generated.\nThe format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)\n",
+        "operationId": "changeConfigSecret",
         "tags": [
           "Webhooks"
         ],
@@ -2802,16 +2838,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "type": "object",
-                "properties": {
-                  "secret": {
-                    "type": "string",
-                    "example": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"
-                  }
-                },
-                "required": [
-                  "secret"
-                ]
+                "$ref": "#/components/schemas/ConfigChangeSecret"
               }
             }
           }
@@ -3137,6 +3164,17 @@
             "items": {
               "$ref": "#/components/schemas/User"
             }
+          }
+        }
+      },
+      "ServerInfo": {
+        "type": "object",
+        "required": [
+          "version"
+        ],
+        "properties": {
+          "version": {
+            "type": "string"
           }
         }
       },
@@ -3673,6 +3711,17 @@
           }
         }
       },
+      "Connectors": {
+        "type": "string",
+        "enum": [
+          "STRIPE",
+          "DUMMY-PAY",
+          "SIE",
+          "MODULR",
+          "CURRENCY-CLOUD",
+          "BANKING-CIRCLE"
+        ]
+      },
       "ConnectorConfig": {
         "oneOf": [
           {
@@ -3692,13 +3741,6 @@
           },
           {
             "$ref": "#/components/schemas/BankingCircleConfig"
-          }
-        ]
-      },
-      "ConnectorTask": {
-        "oneOf": [
-          {
-            "$ref": "#/components/schemas/StripeTask"
           }
         ]
       },
@@ -4029,6 +4071,309 @@
           }
         }
       },
+      "TaskDescriptorStripe": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The connector code",
+            "example": "stripe"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date when the task was created",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "The task status",
+            "example": "stopped",
+            "enum": [
+              "stopped",
+              "pending",
+              "terminated",
+              "active",
+              "failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message if the task failed",
+            "example": "Error: Something went wrong"
+          },
+          "state": {
+            "type": "object",
+            "description": "The task state",
+            "example": {}
+          },
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "main": {
+                "type": "boolean"
+              },
+              "account": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TaskDescriptorWise": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The connector code",
+            "example": "stripe"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date when the task was created",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "The task status",
+            "example": "stopped",
+            "enum": [
+              "stopped",
+              "pending",
+              "terminated",
+              "active",
+              "failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message if the task failed",
+            "example": "Error: Something went wrong"
+          },
+          "state": {
+            "type": "object",
+            "description": "The task state",
+            "example": {}
+          },
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "profileID": {
+                "type": "integer"
+              }
+            }
+          }
+        }
+      },
+      "TaskDescriptorModulr": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The connector code",
+            "example": "stripe"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date when the task was created",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "The task status",
+            "example": "stopped",
+            "enum": [
+              "stopped",
+              "pending",
+              "terminated",
+              "active",
+              "failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message if the task failed",
+            "example": "Error: Something went wrong"
+          },
+          "state": {
+            "type": "object",
+            "description": "The task state",
+            "example": {}
+          },
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "accountID": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TaskDescriptorDummyPay": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The connector code",
+            "example": "stripe"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date when the task was created",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "The task status",
+            "example": "stopped",
+            "enum": [
+              "stopped",
+              "pending",
+              "terminated",
+              "active",
+              "failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message if the task failed",
+            "example": "Error: Something went wrong"
+          },
+          "state": {
+            "type": "object",
+            "description": "The task state",
+            "example": {}
+          },
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              },
+              "fileName": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TaskDescriptorCurrencyCloud": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The connector code",
+            "example": "stripe"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date when the task was created",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "The task status",
+            "example": "stopped",
+            "enum": [
+              "stopped",
+              "pending",
+              "terminated",
+              "active",
+              "failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message if the task failed",
+            "example": "Error: Something went wrong"
+          },
+          "state": {
+            "type": "object",
+            "description": "The task state",
+            "example": {}
+          },
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "TaskDescriptorBankingCircle": {
+        "type": "object",
+        "properties": {
+          "provider": {
+            "type": "string",
+            "description": "The connector code",
+            "example": "stripe"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "The date when the task was created",
+            "example": "2020-01-01T00:00:00.000Z"
+          },
+          "status": {
+            "type": "string",
+            "description": "The task status",
+            "example": "stopped",
+            "enum": [
+              "stopped",
+              "pending",
+              "terminated",
+              "active",
+              "failed"
+            ]
+          },
+          "error": {
+            "type": "string",
+            "description": "The error message if the task failed",
+            "example": "Error: Something went wrong"
+          },
+          "state": {
+            "type": "object",
+            "description": "The task state",
+            "example": {}
+          },
+          "descriptor": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "key": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
       "Query": {
         "properties": {
           "ledgers": {
@@ -4111,6 +4456,11 @@
         "type": "object"
       },
       "ConfigUser": {
+        "type": "object",
+        "required": [
+          "endpoint",
+          "eventTypes"
+        ],
         "properties": {
           "endpoint": {
             "type": "string",
@@ -4133,8 +4483,41 @@
           }
         }
       },
+      "ConfigsResponse": {
+        "type": "object",
+        "required": [
+          "cursor"
+        ],
+        "properties": {
+          "cursor": {
+            "$ref": "#/components/schemas/webhooksCursor"
+          }
+        }
+      },
+      "webhooksCursor": {
+        "type": "object",
+        "required": [
+          "hasMore",
+          "data"
+        ],
+        "properties": {
+          "hasMore": {
+            "type": "boolean",
+            "example": false
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/webhooksConfig"
+            }
+          }
+        }
+      },
       "ConfigResponse": {
         "type": "object",
+        "required": [
+          "data"
+        ],
         "properties": {
           "data": {
             "$ref": "#/components/schemas/webhooksConfig"
@@ -4172,18 +4555,28 @@
           },
           "createdAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2022-07-20T07:31:40Z"
+            "format": "date-time"
           },
-          "modifiedAt": {
+          "updatedAt": {
             "type": "string",
-            "format": "date-time",
-            "example": "2022-07-20T08:32:59Z"
+            "format": "date-time"
+          }
+        }
+      },
+      "ConfigChangeSecret": {
+        "type": "object",
+        "properties": {
+          "secret": {
+            "type": "string",
+            "example": "V0bivxRWveaoz08afqjU6Ko/jwO0Cb+3"
           }
         }
       },
       "AttemptResponse": {
         "type": "object",
+        "required": [
+          "data"
+        ],
         "properties": {
           "data": {
             "$ref": "#/components/schemas/Attempt"
@@ -4192,11 +4585,19 @@
       },
       "Attempt": {
         "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
           "webhookID": {
             "type": "string",
-            "example": "4997257d-dfb6-445b-929c-cbe2ab182818"
+            "format": "uuid"
           },
-          "date": {
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
             "type": "string",
             "format": "date-time"
           },
@@ -4222,15 +4623,6 @@
           "nextRetryAfter": {
             "type": "string",
             "format": "date-time"
-          }
-        }
-      },
-      "webhooksCursor": {
-        "type": "object",
-        "properties": {
-          "has_more": {
-            "type": "boolean",
-            "example": false
           }
         }
       }
