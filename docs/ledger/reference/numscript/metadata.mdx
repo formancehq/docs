@@ -5,13 +5,14 @@ import { NumscriptBlock } from 'react-numscript-codeblock';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-Numscript transactions can interact with metadata, both on transactions and accounts. Metadata can either be read from (to initialize variables) or written to.
+Numscript transactions can interact with metadata, both on transactions and accounts.
 
-## Account metadata
+## Accounts metadata
 
-Structured account metadata can be injected in Numscript variables. In the example below, we inject the `coupon_value` metadata from the coupon account:
+### Reading metadata to initialize a variable
 
-### Variable initializating with meta
+Structured account metadata can be injected in Numscript variables during initialization. 
+In the example below, we inject the monetary value stored under the metadata key `"coupon_value"` from the `coupon` account:
 
 <NumscriptBlock script={`vars {
   account  $coupon
@@ -23,11 +24,48 @@ send $value (
   destination = $wallet
 )`}></NumscriptBlock>
 
-Metadata injected in variables need to be typed, either as a `monetary`, `account` or `portion`. The type of the metadata is directly read from the value of the key `type` of the object stored under the metadata key, and its value is read from the value of the key `value`.
-
-An example is worth a thousand of repetitions of the words key and value:
+Metadata injected in variables need to be typed, and its type is directly read from the value of the key `type` of the object stored under the metadata key.
+Its value is read from the value of the key `value`. Here are all the available types:
 
 <Tabs>
+  <TabItem value="number" label="Number">
+
+  ```json
+  {
+    "amount": {
+      "type": "number",
+      "value": 1000
+    }
+  }
+  ```
+
+  </TabItem>
+
+  <TabItem value="string" label="String">
+
+  ```json
+  {
+    "reference": {
+      "type": "string",
+      "value": "82HHON80ILP"
+    }
+  }
+  ```
+
+  </TabItem>
+
+  <TabItem value="asset" label="Asset">
+
+  ```json
+  {
+    "currency": {
+      "type": "asset",
+      "value": "USD/2"
+    }
+  }
+  ```
+
+  </TabItem>
 
   <TabItem value="monetary" label="Monetary">
 
@@ -36,8 +74,8 @@ An example is worth a thousand of repetitions of the words key and value:
     "coupon_value": {
       "type": "monetary",
       "value": {
-        "amount": 100,
-        "asset": "USD"
+        "amount": 1000,
+        "asset": "USD/2"
       }
     }
   }
@@ -55,6 +93,7 @@ An example is worth a thousand of repetitions of the words key and value:
     }
   }
   ```
+
   </TabItem>
 
   <TabItem value="portion" label="Portion">
@@ -63,24 +102,24 @@ An example is worth a thousand of repetitions of the words key and value:
   {
     "commission": {
       "type": "portion",
-      "value": "15/100"
+      "value": "15.5%"
     }
   }
   ```
 
   </TabItem>
-
 </Tabs>
 
-<!-- ### Using set_account_meta
+### Writing account metadata during a transaction
 
-Metadata can be written to an account using the `set_account_meta("key", _value_)` statement. The statement takes a string-type key and a value which can be of type `monetary`, `account` or `portion`, either as a variable or a literal. -->
+Metadata can be written to an account using the `set_account_meta(_account_, "key", _value_)` statement. 
+The statement takes a string-type key and a value which can be of any type, either as a variable or a literal.
 
-## Transaction metadata
 
-### Using set_tx_meta
+## Writing metadata to a transaction
 
-Metadata can be written to a transaction using the `set_tx_meta("key", _value_)` statement. The statement takes a string-type key and a value which can be of type `monetary`, `account` or `portion`, either as a variable or a literal.
+Metadata can be written to a transaction using the `set_tx_meta("key", _value_)` statement. 
+The statement takes a string-type key and a value which can be of any type, either as a variable or a literal.
 
 <NumscriptBlock script={`set_tx_meta("order_fee", [USD/2 100])
 set_tx_meta("tax", 20/100)
@@ -94,6 +133,7 @@ set_tx_meta("commission", $commission)`}></NumscriptBlock>
   account $merchant = meta($order, "merchant")
   monetary $fee
   portion $commission
+  string $ref
 }\n
 send $fee (
   source = @orders:1234
@@ -106,6 +146,23 @@ send [USD/2 *] (
     remaining to $merchant
   }
 )\n
+set_account_meta($order, "reference", $ref)
 set_tx_meta("order_fee", $fee)
 set_tx_meta("tax", 20/100)
 set_tx_meta("commission", $commission)\n`}></NumscriptBlock>
+
+```json
+{
+  "script": {
+    "vars": {
+      "order": "orders:186HH78UH",
+      "fee": {
+        "amount": 1000,
+        "asset": "USD/2"
+      },
+      "commission": "15.5%",
+      "reference": "108IUYGI",
+    }
+  }
+}
+```
