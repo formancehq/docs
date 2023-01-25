@@ -11,7 +11,7 @@ To verify, you'll need to open the dashboard URI for your sandbox to see details
 :::info
 If you can't remember your sandbox domain just type
 ```shell
-fctl sandbox show --name dunshire
+fctl stack show --name dunshire
 ```
 to find it again.
 :::
@@ -41,7 +41,7 @@ Here we can see that indeed, `@centralbank` holds a balance of 100 coin, and tha
 If you are seeing the dashboard, but it contains unexpected data, then you have probably already been experimenting with Formance Ledger, and don't have the right sandbox selected. Double check the URI in your browser against the output from
 
 ```shell
-fctl sandbox show --name dunshire
+fctl stack show --name dunshire
 ```
 
 ## Next steps

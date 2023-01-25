@@ -1,8 +1,10 @@
 # Formance Developer Docs
 
-This documentation is based on Docusaurus 2.
+This repository holds the main markdown files behind [docs.formance.com](https://docs.formance.com)
 
 ### Installation & Development
+
+This documentation is based on Docusaurus version 2
 
 ```SHELL
 yarn
