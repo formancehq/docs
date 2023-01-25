@@ -287,7 +287,7 @@ const sidebars = {
           ]
         },
         {
-          label: 'Wallets',
+          label: 'Wallets (beta)',
           type: 'category',
           collapsible: true,
           collapsed: true,
@@ -327,16 +327,16 @@ const sidebars = {
                   id: 'wallets/funds/holds',
                   label: 'Hold and confirm',
                 },
-                {
-                  type: 'doc',
-                  id: 'wallets/funds/expirable-funds',
-                  label: 'Expirable funds',
-                },
-                {
-                  type: 'doc',
-                  id: 'wallets/funds/funds-reserve',
-                  label: 'Reserved funds',
-                }
+                // {
+                //   type: 'doc',
+                //   id: 'wallets/funds/expirable-funds',
+                //   label: 'Expirable funds',
+                // },
+                // {
+                //   type: 'doc',
+                //   id: 'wallets/funds/funds-reserve',
+                //   label: 'Reserved funds',
+                // }
               ],
             },
             {

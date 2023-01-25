@@ -32,9 +32,11 @@ When issuing a credit, you can specify the funding source of the credit by setti
     "amount": 100,
     "asset": "USD/2"
   },
-  "source": {
-    "ledger": "main",
-    "account": "orders:1234"
-  }
+  "sources": [
+    {
+      "type": "account",
+      "identifier": "orders:1234"
+    }
+  ]
 }
 ```
