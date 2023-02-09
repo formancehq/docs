@@ -421,7 +421,12 @@ const sidebars = {
         {
           type: 'doc',
           id: 'cloud/sandboxes',
-          label: 'Cloud Sandbox',
+          label: 'Sandbox environment',
+        },
+        {
+          type: 'doc',
+          id: 'cloud/production',
+          label: 'Production environment',
         },
         {
           type: 'doc',
