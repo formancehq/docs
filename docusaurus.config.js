@@ -85,7 +85,7 @@ const config = {
         // style: 'light',
         logo: {
           alt: 'Formance Logo',
-          src: 'img/logo_numary.svg',
+          src: 'img/logo.svg',
           href: '/',
         },
         items: [
@@ -108,6 +108,11 @@ const config = {
             href: 'https://github.com/formancehq/stack',
             label: 'GitHub',
             position: 'right',
+          },
+          {
+            label: 'Go to Website',
+            position: 'right',
+            href: 'https://www.formance.com/',
           },
         ],
       },
