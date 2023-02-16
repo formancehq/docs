@@ -171,7 +171,11 @@ const sidebars = {
                   id: 'ledger/advanced/publisher',
                   label: 'Publishing to HTTP / Kafka'
                 },
-                // 'ledger/advanced/double-entry',
+                {
+                  type: 'doc',
+                  id: 'ledger/advanced/currency-conversion',
+                  label: 'Currency Conversions',
+                },
               ],
             },
             {
