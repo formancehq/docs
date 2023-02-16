@@ -173,8 +173,8 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'ledger/advanced/currency-conversion',
-                  label: 'Currency Conversions',
+                  id: 'ledger/advanced/asset-conversion',
+                  label: 'Currency conversion',
                 },
               ],
             },
