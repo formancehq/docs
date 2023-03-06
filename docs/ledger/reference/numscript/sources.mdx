@@ -80,15 +80,3 @@ Source blocks can be nested with a combination of recursive ordered / portioned 
   }
   destination = @orders:001
 )`}></NumscriptBlock>
-
-## Account balance as source
-
-In addition to the above, you can also use the balance of an account as a source:
-
-<NumscriptBlock script={`
-  monetary $foo = balance(@order:1234, USD/2)
-  
-  send [$foo] (
-  source = @user:abc
-  destination = @world
-)`}></NumscriptBlock>
