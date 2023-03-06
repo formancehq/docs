@@ -177,12 +177,8 @@ const config = {
         enableInDevelopment: false,  // optional
       },
       algolia: {
-        // The application ID provided by Algolia
         appId: 'IHGRMFJIIG',
-
-        // Public API key: it is safe to commit it
         apiKey: '7864304f16ea5f9d27b7a553c83ad17a',
-
         indexName: 'numary',
 
         // Optional: see doc section below
