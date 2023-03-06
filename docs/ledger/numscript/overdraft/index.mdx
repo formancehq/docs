@@ -1,0 +1,34 @@
+---
+title: Overdrafts
+description: To better represent your flows, it can be useful to allow transactions to go into overdraft. This article explains how to do that.
+---
+
+import { NumscriptBlock } from 'react-numscript-codeblock';
+import Prerequisites from '/docs/ledger/partials/numscript/_prerequisites.mdx';
+import Prereqwarn from '/docs/ledger/partials/numscript/_prereq_warning.mdx';
+
+Sometimes you want to allow a transaction to put an account into overdraft. For example if you have 100$ in your bank account and you buy a 200$ item, you will have a negative balance of 100$ until you pay your next paycheck. This is called an overdraft.
+Another situation likely to happen is linked to refunds, penalties or even coupons. The way you can represent some of these flows is by allowing some accounts/transactions to go in negative values, to represent your loss. 
+
+<Prerequisites />
+
+## Allow an account to go into overdraft without limits
+
+The `kept` keyword allows you to specify a transaction that only moves a portion of the transaction amount. As a very basic example of the functionality, imagine that we need to send 15% of a 100 coin transaction from the `centralbank` to `leslieknope`. We could hard-code the 15% fee into our Numscript like this:
+
+<NumscriptBlock script={`send [CONE 15] (
+  source = @player:leslieknope allowing unbounded overdraft
+  destination = @player:annperkins 
+)`}></NumscriptBlock>
+
+## Allow an account to go into overdraft up to a certain amount
+
+This is a great way to handle a simple case where an account need to go into negative. But sometimes we have business rules in place about negative accounts, for example the account player:leslieknope:cones can only allow overdraft up to 5 cones, because if a player go into more than 5 cones in debt, he will lose the game.
+
+<NumscriptBlock script={`send [COIN 100] (
+  source = @player:leslieknope allowing overdraft up to [CONE 5]
+  destination = @player:annperkins 
+	}
+)`}></NumscriptBlock>
+
+The user `annperkins` will receive 5 cones in total, even if leslieknope only has 3 cones available. This would put her account balance at a negative 2 cones. 
