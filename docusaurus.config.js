@@ -2,7 +2,7 @@
 // Note: type annotations allow type checking and IDEs autocompletion
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/duotoneDark');
+const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 const math = require('remark-math');
 const katex = require('rehype-katex');
 
@@ -167,7 +167,6 @@ const config = {
       },
       prism: {
         theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
       },
       posthog: {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',

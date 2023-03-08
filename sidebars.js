@@ -400,8 +400,8 @@ const sidebars = {
               items: [
                 {
                   type: 'doc',
-                  id: 'orchestration/examples/stripe-payout',
-                  label: 'Ledger to Stripe Payout',
+                  id: 'orchestration/examples/ledger-to-ledger',
+                  label: 'Ledger to Ledger',
                 },
                 {
                   type: 'doc',
@@ -410,8 +410,8 @@ const sidebars = {
                 },
                 {
                   type: 'doc',
-                  id: 'orchestration/examples/ledger-to-ledger',
-                  label: 'Ledger (A) to Ledger (B)',
+                  id: 'orchestration/examples/stripe-payout',
+                  label: 'Ledger to Payout',
                 }
               ],
             }

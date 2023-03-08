@@ -8,7 +8,7 @@ There are occurences where you want to transfer value from one ledger to another
 
 Fortunately for us, Flows provide a way to do this that takes care of the underlying details for us.
 
-## Example
+## Workflow definition
 
 ```yaml
 ---
@@ -25,7 +25,7 @@ stages:
         ledger: "flows-demo-001"
     amount:
       asset: "USD/2"
-      value: 100
+      amount: 100
 # now let's transfer that value to our second ledger
 - send:
     source:
@@ -39,7 +39,27 @@ stages:
         ledger: "flows-demo-002"
     amount:
       asset: "USD/2"
-      value: 100
+      amount: 100
+```
+
+## Running the workflow
+
+Let's save the above workflow to a file called `ledger-to-ledger.yaml` and run it:
+
+```shell
+fctl orchestration workflows create ledger-to-ledger.yaml
+```
+
+Let's check the status of the workflow:
+
+```shell
+fctl orchestration workflows run <workflow-id>
+```
+
+We can now check the status of the workflow instance:
+
+```
+fctl orchestration workflows instances show <workflow-instance-id>
 ```
 
 ## Notes
