@@ -40,7 +40,9 @@ const config = {
       '@docusaurus/preset-classic',
       /** @type {import('@docusaurus/preset-classic').Options} */
       ({
-        sitemap: {},
+        sitemap: {
+          filename: 'sitemap.xml',
+        },
         docs: {
           routeBasePath: '/',
           sidebarPath: require.resolve('./sidebars.js'),
@@ -166,7 +168,7 @@ const config = {
         copyright: `Copyright © 2021-2022 Numaire, Inc`,
       },
       prism: {
-        theme: lightCodeTheme,
+        theme: darkCodeTheme,
       },
       posthog: {
         apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
@@ -174,12 +176,8 @@ const config = {
         enableInDevelopment: false,  // optional
       },
       algolia: {
-        // The application ID provided by Algolia
         appId: 'IHGRMFJIIG',
-
-        // Public API key: it is safe to commit it
         apiKey: '7864304f16ea5f9d27b7a553c83ad17a',
-
         indexName: 'numary',
 
         // Optional: see doc section below

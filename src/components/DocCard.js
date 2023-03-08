@@ -13,7 +13,7 @@ export function DocCardGrid({children}) {
   );
 }
 
-function Card({title, cta, children}) {
+function Card({title, icon, cta, children}) {
   return (
     <Box sx={{
       height: '100%',
@@ -22,9 +22,18 @@ function Card({title, cta, children}) {
       border: `solid 1px var(--ifm-color-secondary)`,
       borderRadius: 2,
     }}>
-      <div className="card__header">
+      <Box className='card__header' sx={{
+        display: 'flex',
+        alignItems: 'center',
+      }}>
+        {icon && <Box sx={{
+          width: 36,
+          mr: 1,
+        }}>
+          <img src={icon} />
+        </Box>}
         <h3>{title}</h3>
-      </div>
+      </Box>
       <div className="card__body">{children}</div>
       {cta && (
         <div className="card__footer">
@@ -48,7 +57,7 @@ export function DocCard({children, headline, icon, link, cta, highlight}) {
     <Card title={title} cta={{
       text: cta,
       link: link,
-    }}>
+    }} icon={icon}>
       {children}
     </Card>
   );
