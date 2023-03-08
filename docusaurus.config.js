@@ -104,7 +104,7 @@ const config = {
           {
             label: 'Use-cases Library',
             position: 'right',
-            href: 'https://www.formance.com/use-cases-library',
+            href: 'https://www.formance.com/use-cases',
           },
           {
             href: 'https://github.com/formancehq/stack',
