@@ -11,7 +11,7 @@ numary check script.num
 ``` -->
 
 ## Execution
-Numscript-based transactions can either be created by using the script endpoint, or by using the command 
+Numscript-based transactions can either be created by using the script endpoint, or by using the command
 ```shell
 fctl ledger transactions num script.num
 ```

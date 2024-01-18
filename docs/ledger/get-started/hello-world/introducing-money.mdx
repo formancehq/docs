@@ -1,13 +1,16 @@
 ---
 title: Introducing Money Into the Ledger
 ---
-import { NumscriptBlock } from 'react-numscript-codeblock';
 
 # Introducing money into the ledger
 
+:::info
+Before moving on, make sure you have a running instance of Formance Ledger. If you don't, go back to the [previous step](/guides/newSandbox) and follow the instructions there.
+:::
+
 Now you have Formance Ledger up and ready to accept transactions. Woohoo! Let's get started by creating our first transaction in Numscript.
 
-:::info
+:::tip
 Numscript is a powerful scripting language for describing transactions. It's a great way to get started with Formance Ledger, but you can also use the transactions API to send transactions directly in plain json. We'll talk more about that in a later step.
 :::
 
@@ -23,10 +26,12 @@ We begin by introducing new coin into the world, by transfering it from `@world`
 
 Create a file called `intro.num` with the following Numscript:
 
-<NumscriptBlock script={`send [COIN 100] (
+```
+send [COIN 100] (
   source = @world
   destination = @centralbank
-)`}></NumscriptBlock>
+)
+```
 
 This bit of Numscript encodes a _transaction_. A transaction is a description of a quantity of money sent from a source account to a destination account.
 
@@ -51,16 +56,16 @@ fctl ledger transactions num intro.num
 If all goes well, you should see:
 
 ```
-ID        | 0                   
-Reference |                     
+ID        | 0
+Reference |
 Date      | 2022-11-17T10:20:55Z
 
 Source | Destination | Asset | Amount
-world  | centralbank | COIN  | 100   
+world  | centralbank | COIN  | 100
 
 Account     | Asset | Movement | Final balance
-centralbank | COIN  | +100     | 100          
-world       | COIN  | -100     | -100         
+centralbank | COIN  | +100     | 100
+world       | COIN  | -100     | -100
 
 Metadata : <empty>
 ```
@@ -76,9 +81,9 @@ Otherwise, if you see something like:
 
 then you have more than one sandbox, and you need to specify which one to use.
 
-:::info Formance Stack
+:::info Formance Platform
 
-Formance Stacks are cloud-hosted instances that give you access to a full range of financial tools beyond just Ledger. A Stack can be a sandbox, or a production environment. For now, we're only talking about sandboxes, but Formance Stack makes it easy to move your sandbox into a production environment that scales as you do.
+Formance Platforms are cloud-hosted instances that give you access to a full range of financial tools beyond just Ledger. A Stack can be a sandbox, or a production environment. For now, we're only talking about sandboxes, but Formance Platform makes it easy to move your sandbox into a production environment that scales as you do.
 
 :::
 
@@ -86,7 +91,7 @@ If you have more than one sandbox, you'll need to specify which one to send the 
 
 ```shell
 fctl ledger transactions --stack wxyz num intro.num
-``` 
+```
 
 where you should replace `wxyz` with the ID of the sandbox you want to use.
 

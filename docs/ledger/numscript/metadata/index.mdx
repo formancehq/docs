@@ -3,9 +3,8 @@ title: Adding metadata to transactions
 description: You can add custom metadata to transactions in Numscript, which can be made available to external services.
 ---
 
-import { NumscriptBlock } from 'react-numscript-codeblock';
-import Prerequisites from '/docs/ledger/partials/numscript/_prerequisites.mdx';
-import Prereqwarn from '/docs/ledger/partials/numscript/_prereq_warning.mdx';
+import Prerequisites from '@site/docs/ledger/partials/numscript/_prerequisites.mdx';
+import Prereqwarn from '@site/docs/ledger/partials/numscript/_prereq_warning.mdx';
 
 
 Sometimes you need to include more information with a transaction. For example:
@@ -22,13 +21,14 @@ In the game land of Cones Dunshire, building cones is a central part of playing 
 
 Player `leslieknope` just spent 100 coin to build a minor cone. Let's create that transaction, and flag it with metadata. Create a file called `metadata.num`:
 
-<NumscriptBlock script={`send [COIN 100] (
+```numscript
+send [COIN 100] (
   source = @player:leslieknope
   destination = @centrabank
 )
 set_tx_meta("for_cone", "true")
 set_tx_meta("cone_size", 15)
-`}></NumscriptBlock>
+```
 
 And run it with
 
@@ -36,7 +36,7 @@ And run it with
 fctl ledger transactions num metadata.num
 ```
 
-<Prereqwarn /> 
+<Prereqwarn />
 
 Once you've run that transaction succesfully, let's have a look at `leslieknope`'s balance to find that transaction. It should be the topmost one listed. Click the details arrow to the right of the transaction to get more details.
 
@@ -65,8 +65,23 @@ You can see the `metadata` field with the details of the information we added to
 
 ### What's going on here?
 
-Metadata is arbitrary data that you can attach to a transaction (or an account! But more on that later). This data is typed, and can be a string or a number. You can retrieve (or even add to) this metadata later using the HTTP API, for integration into your own bespoke workflows.
+Metadata is arbitrary data that you can attach to a transaction or an account. This data is typed, and can be a string or a number. You can retrieve (or even add to) this metadata later using the HTTP API, for integration into your own bespoke workflows.
+
+## Attaching account metadata
+
+You can also add metadata to an account during a transaction, like this:
+
+```numscript
+send [COIN 100] (
+  source = @player:leslieknope
+  destination = @centrabank
+)
+set_tx_meta("for_cone", "true")
+set_tx_meta("cone_size", 15)
+set_account_meta(@player:leslieknope, "overdraft", "false")
+```
+
 
 ## Going further
 
-Formance Ledger allows you to also add metadata to accounts. This metadata can be used to construct much more sophisticated transactions, with variables that bind to specific metadata at execution time. For more details on that usage, please refer to the Numscript metadata [reference](/ledger/reference/numscript/metadata).
+Formance Ledger enables you to add metadata to accounts as well. This metadata can be utilized to create more complex transactions, incorporating variables that are bound to specific metadata during execution. For further information on this application, kindly consult the Numscript metadata [reference](/ledger/reference/numscript/metadata).

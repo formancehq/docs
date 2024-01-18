@@ -55,6 +55,10 @@
     { "source": "/api/ledger/post_-ledger-transactions-1", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions/post" },
     { "source": "/api/ledger/get_-ledger-transactions-txid", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}/get" },
     { "source": "/api/ledger/post_-ledger-transactions-txid-metadata", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1metadata/post" },
-    { "source": "/api/ledger/post_-ledger-transactions-txid-reverta", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1revert/post" }
+    { "source": "/api/ledger/post_-ledger-transactions-txid-reverta", "destination": "/oss/ledger/reference/api/#tag/transactions/paths/~1{ledger}~1transactions~1{txid}~1revert/post" },
+    { "source": "/stack/reference/operator", "destination": "/deployment/introduction" },
+    { "source": "/stack/reference/helm", "destination": "/deployment/introduction" },
+    { "source": "/stack/reference/docker", "destination": "/deployment/introduction" },
+    { "source": "/api/stack/v1.0", "destination": "/api" }
   ]
 }
