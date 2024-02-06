@@ -60,11 +60,11 @@ export default async function createConfig() {
             remarkPlugins: [math],
             rehypePlugins: [katex],
             disableVersioning: false,
-            lastVersion: 'current',
+            lastVersion: 'v1.10',
             versions: {
               current: {
                 label: 'v2.0',
-              }
+              },
             }
           },
           theme: {
