@@ -81,14 +81,14 @@ export default async function createConfig() {
           config: path.join(__dirname, 'redocly.yaml'),
           specs: [
             {
-              spec: './openapi/v1.11.json',
-              route: '/api/v1.11',
-              id: 'api-v1-11',
+              spec: './openapi/v1.10.json',
+              route: '/api/v1.10',
+              id: 'api-v1-10',
             },
             {
               spec: './openapi/v2.0.json',
               route: '/api/v2.0',
-              id: 'api-v2',
+              id: 'api-v2-0',
             }
           ],
         }
