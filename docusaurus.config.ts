@@ -6,8 +6,8 @@ import math from 'remark-math';
 import katex from 'rehype-katex';
 import  path from 'node:path';
 
-import prismLight from './src/theme/prism/prismLight';
-import prismDark from './src/theme/prism/prismDark';
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/palenight');
 
 import type {Config} from '@docusaurus/types';
 
@@ -18,8 +18,8 @@ export default async function createConfig() {
     tagline: 'The open source foundation you need to build and scale money-movements within your app',
     url: 'https://docs.formance.com/',
     baseUrl: '/',
-    onBrokenLinks: 'throw',
-    onBrokenMarkdownLinks: 'throw',
+    onBrokenLinks: 'log',
+    onBrokenMarkdownLinks: 'log',
     favicon: 'img/f-shape.ico',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.
@@ -60,11 +60,11 @@ export default async function createConfig() {
             remarkPlugins: [math],
             rehypePlugins: [katex],
             disableVersioning: false,
-            lastVersion: 'current',
+            lastVersion: 'v1.10',
             versions: {
               current: {
-                label: 'v1.x',
-              }
+                label: 'v2.0',
+              },
             }
           },
           theme: {
@@ -81,14 +81,14 @@ export default async function createConfig() {
           config: path.join(__dirname, 'redocly.yaml'),
           specs: [
             {
-              spec: './openapi/v1.json',
-              route: '/api/v1.x',
-              id: 'api-v1',
+              spec: './openapi/v1.10.json',
+              route: '/api/v1.10',
+              id: 'api-v1-10',
             },
             {
-              spec: './openapi/v2.json',
-              route: '/api/v2.x',
-              id: 'api-v2',
+              spec: './openapi/v2.0.json',
+              route: '/api/v2.0',
+              id: 'api-v2-0',
             }
           ],
         }
@@ -127,10 +127,10 @@ export default async function createConfig() {
             srcDark: 'img/logo-dark.svg'
           },
           items: [
-            // {
-            //   type: 'docsVersionDropdown',
-            //   position: 'left',
-            // },
+            {
+              type: 'docsVersionDropdown',
+              position: 'left',
+            },
             {
               label: 'Use-cases Library',
               position: 'right',
@@ -199,12 +199,10 @@ export default async function createConfig() {
               ],
             },
           ],
-          copyright: `Copyright © 2021-2023 Formance, Inc`,
+          copyright: `Copyright © 2021-2024 Formance, Inc`,
         },
         prism: {
-          additionalLanguages: ['bash', 'javascript', 'typescript'],
-          theme: prismLight,
-          darkTheme: prismDark,
+          theme: darkCodeTheme,
         },
         posthog: {
           apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',

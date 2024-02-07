@@ -12,7 +12,7 @@
       "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
       "altText": "Formance"
     },
-    "version": "v2.0.0-beta.6"
+    "version": "v2.0"
   },
   "servers": [
     {
@@ -81,6 +81,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "listClients",
         "responses": {
           "200": {
@@ -101,6 +102,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "createClient",
         "requestBody": {
           "content": {
@@ -132,6 +134,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "readClient",
         "parameters": [
           {
@@ -163,6 +166,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "updateClient",
         "requestBody": {
           "content": {
@@ -203,6 +207,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "deleteClient",
         "parameters": [
           {
@@ -229,6 +234,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "createSecret",
         "parameters": [
           {
@@ -271,6 +277,7 @@
           "Auth",
           "Clients"
         ],
+        "x-speakeasy-group": "auth",
         "operationId": "deleteSecret",
         "parameters": [
           {
@@ -306,6 +313,7 @@
           "Auth",
           "Users"
         ],
+        "x-speakeasy-group": "auth",
         "description": "List users",
         "operationId": "listUsers",
         "responses": {
@@ -329,6 +337,7 @@
           "Auth",
           "Users"
         ],
+        "x-speakeasy-group": "auth",
         "description": "Read user",
         "operationId": "readUser",
         "parameters": [
@@ -362,6 +371,7 @@
           "Ledger",
           "Server"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Show server information",
         "operationId": "getInfo",
         "responses": {
@@ -395,6 +405,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -439,6 +450,7 @@
           "Ledger",
           "Accounts"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -505,6 +517,7 @@
           "Ledger",
           "Accounts"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -673,6 +686,7 @@
           "Ledger",
           "Accounts"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -727,6 +741,7 @@
           "Ledger",
           "Accounts"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -804,6 +819,7 @@
           "Ledger",
           "Mapping"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "getMapping",
         "summary": "Get the mapping of a ledger",
         "parameters": [
@@ -846,6 +862,7 @@
           "Ledger",
           "Mapping"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "updateMapping",
         "summary": "Update the mapping of a ledger",
         "parameters": [
@@ -901,6 +918,7 @@
           "Ledger",
           "Script"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "runScript",
         "summary": "Execute a Numscript",
         "description": "This route is deprecated, and has been merged into `POST /{ledger}/transactions`.\n",
@@ -955,6 +973,7 @@
           "Ledger",
           "Stats"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "readStats",
         "summary": "Get statistics from a ledger",
         "description": "Get statistics from a ledger. (aggregate metrics on accounts and transactions)\n",
@@ -1000,6 +1019,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Count the transactions from a ledger",
         "operationId": "countTransactions",
         "parameters": [
@@ -1132,6 +1152,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "List transactions from a ledger",
         "description": "List transactions from a ledger, sorted by txid in descending order.",
         "operationId": "listTransactions",
@@ -1319,6 +1340,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Create a new transaction to a ledger",
         "operationId": "createTransaction",
         "parameters": [
@@ -1393,6 +1415,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Get transaction from a ledger by its ID",
         "operationId": "getTransaction",
         "parameters": [
@@ -1449,6 +1472,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Set the metadata of a transaction by its ID",
         "operationId": "addMetadataOnTransaction",
         "parameters": [
@@ -1509,6 +1533,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "revertTransaction",
         "summary": "Revert a ledger transaction by its ID",
         "parameters": [
@@ -1574,6 +1599,7 @@
           "Ledger",
           "Transactions"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Create a new batch of transactions to a ledger",
         "operationId": "CreateTransactions",
         "parameters": [
@@ -1628,6 +1654,7 @@
           "Ledger",
           "Balances"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Get the balances from a ledger's account",
         "operationId": "getBalances",
         "parameters": [
@@ -1710,6 +1737,7 @@
           "Ledger",
           "Balances"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Get the aggregated balances from selected accounts",
         "operationId": "getBalancesAggregated",
         "parameters": [
@@ -1730,6 +1758,15 @@
             "schema": {
               "type": "string",
               "example": "users:001"
+            }
+          },
+          {
+            "name": "use_insertion_date",
+            "in": "query",
+            "description": "Use insertion date instead of effective date",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -1763,6 +1800,7 @@
           "Ledger",
           "Logs"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "List the logs from a ledger",
         "description": "List the logs from a ledger, sorted by ID in descending order.",
         "operationId": "listLogs",
@@ -1904,6 +1942,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Show server information",
         "operationId": "v2GetInfo",
         "responses": {
@@ -1960,6 +1999,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "responses": {
           "200": {
             "description": "OK",
@@ -2003,6 +2043,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "responses": {
           "200": {
             "description": "OK",
@@ -2032,6 +2073,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2075,6 +2117,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2124,6 +2167,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2186,6 +2230,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2249,6 +2294,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2352,6 +2398,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2424,6 +2471,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2519,6 +2567,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Delete metadata by key",
         "parameters": [
           {
@@ -2564,6 +2613,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "v2ReadStats",
         "summary": "Get statistics from a ledger",
         "description": "Get statistics from a ledger. (aggregate metrics on accounts and transactions)\n",
@@ -2608,6 +2658,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Count the transactions from a ledger",
         "operationId": "v2CountTransactions",
         "parameters": [
@@ -2670,6 +2721,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "List transactions from a ledger",
         "description": "List transactions from a ledger, sorted by id in descending order.",
         "operationId": "v2ListTransactions",
@@ -2782,6 +2834,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Create a new transaction to a ledger",
         "operationId": "v2CreateTransaction",
         "parameters": [
@@ -2863,6 +2916,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Get transaction from a ledger by its ID",
         "operationId": "v2GetTransaction",
         "parameters": [
@@ -2947,6 +3001,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Set the metadata of a transaction by its ID",
         "operationId": "v2AddMetadataOnTransaction",
         "parameters": [
@@ -3046,6 +3101,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -3113,6 +3169,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "operationId": "v2RevertTransaction",
         "summary": "Revert a ledger transaction by its ID",
         "parameters": [
@@ -3187,6 +3244,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "Get the aggregated balances from selected accounts",
         "operationId": "v2GetBalancesAggregated",
         "parameters": [
@@ -3207,6 +3265,15 @@
             "schema": {
               "type": "string",
               "format": "date-time"
+            }
+          },
+          {
+            "name": "use_insertion_date",
+            "in": "query",
+            "description": "Use insertion date instead of effective date",
+            "required": false,
+            "schema": {
+              "type": "boolean"
             }
           }
         ],
@@ -3249,6 +3316,7 @@
         "tags": [
           "Ledger"
         ],
+        "x-speakeasy-group": "ledger",
         "summary": "List the logs from a ledger",
         "description": "List the logs from a ledger, sorted by ID in descending order.",
         "operationId": "v2ListLogs",
@@ -3520,6 +3588,29 @@
         ],
         "requestBody": {
           "$ref": "#/components/requestBodies/UpdateTransferInitiationStatus"
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          }
+        }
+      }
+    },
+    "/api/payments/transfer-initiations/{transferId}/reverse": {
+      "post": {
+        "summary": "Reverse a transfer initiation",
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "reverseTransferInitiation",
+        "description": "Reverse transfer initiation",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/TransferId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ReverseTransferInitiation"
         },
         "responses": {
           "204": {
@@ -3869,6 +3960,28 @@
             "$ref": "#/components/parameters/BankAccountId"
           }
         ],
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/BankAccount"
+          }
+        }
+      }
+    },
+    "/api/payments/bank-accounts/{bankAccountId}/forward": {
+      "post": {
+        "summary": "Forward a bank account to a connector",
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "forwardBankAccount",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BankAccountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/ForwardBankAccount"
+        },
         "responses": {
           "200": {
             "$ref": "#/components/responses/BankAccount"
@@ -7971,8 +8084,8 @@
           "state": {
             "type": "string",
             "enum": [
-              "to do",
-              "done"
+              "TO DO",
+              "DONE"
             ]
           }
         }
@@ -8655,8 +8768,8 @@
           "state": {
             "type": "string",
             "enum": [
-              "to do",
-              "done"
+              "TO DO",
+              "DONE"
             ]
           }
         }
@@ -9566,7 +9679,13 @@
           "PROCESSED",
           "FAILED",
           "REJECTED",
-          "VALIDATED"
+          "VALIDATED",
+          "ASK_RETRIED",
+          "ASK_REVERSED",
+          "REVERSE_PROCESSING",
+          "REVERSE_FAILED",
+          "PARTIALLY_REVERSED",
+          "REVERSED"
         ]
       },
       "ConnectorConfig": {
@@ -9959,7 +10078,6 @@
           "id",
           "reference",
           "createdAt",
-          "updatedAt",
           "scheduledAt",
           "description",
           "sourceAccountID",
@@ -9967,6 +10085,7 @@
           "connectorID",
           "type",
           "amount",
+          "initialAmount",
           "asset",
           "status",
           "error"
@@ -9980,10 +10099,6 @@
             "type": "string"
           },
           "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
             "type": "string",
             "format": "date-time"
           },
@@ -10014,6 +10129,10 @@
             "type": "integer",
             "format": "bigint"
           },
+          "initialAmount": {
+            "type": "integer",
+            "format": "bigint"
+          },
           "asset": {
             "type": "string",
             "example": "USD"
@@ -10036,6 +10155,43 @@
             "items": {
               "$ref": "#/components/schemas/TransferInitiationPayments"
             }
+          },
+          "relatedAdjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TransferInitiationAdjusments"
+            }
+          }
+        }
+      },
+      "TransferInitiationAdjusments": {
+        "type": "object",
+        "required": [
+          "adjustmentID",
+          "createdAt",
+          "status",
+          "error"
+        ],
+        "properties": {
+          "adjustmentID": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TransferInitiationStatus"
+          },
+          "error": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
           }
         }
       },
@@ -10067,12 +10223,16 @@
         "type": "object",
         "required": [
           "id",
+          "name",
           "createdAt",
           "country",
           "connectorID"
         ],
         "properties": {
           "id": {
+            "type": "string"
+          },
+          "name": {
             "type": "string"
           },
           "createdAt": {
@@ -10100,8 +10260,42 @@
           "swiftBicCode": {
             "type": "string"
           },
+          "adjustments": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/BankAccountAdjustment"
+            }
+          },
           "metadata": {
             "$ref": "#/components/schemas/BankAccountMetadata"
+          }
+        }
+      },
+      "BankAccountAdjustment": {
+        "type": "object",
+        "required": [
+          "id",
+          "createdAt",
+          "connectorID",
+          "provider",
+          "accountID"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "provider": {
+            "type": "string"
+          },
+          "connectorID": {
+            "type": "string"
+          },
+          "accountID": {
+            "type": "string"
           }
         }
       },
@@ -10198,13 +10392,20 @@
       "PaymentAdjustment": {
         "type": "object",
         "required": [
-          "status",
+          "reference",
+          "createdAt",
           "amount",
-          "date",
-          "raw",
-          "absolute"
+          "status",
+          "raw"
         ],
         "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
           "status": {
             "$ref": "#/components/schemas/PaymentStatus"
           },
@@ -10214,15 +10415,8 @@
             "minimum": 0,
             "example": 100
           },
-          "date": {
-            "type": "string",
-            "format": "date-time"
-          },
           "raw": {
             "type": "object"
-          },
-          "absolute": {
-            "type": "boolean"
           }
         }
       },
@@ -10681,6 +10875,17 @@
           }
         }
       },
+      "ForwardBankAccountRequest": {
+        "type": "object",
+        "required": [
+          "connectorID"
+        ],
+        "properties": {
+          "connectorID": {
+            "type": "string"
+          }
+        }
+      },
       "BankAccountRequest": {
         "type": "object",
         "required": [
@@ -10857,6 +11062,40 @@
           }
         }
       },
+      "ReverseTransferInitiationRequest": {
+        "type": "object",
+        "required": [
+          "reference",
+          "description",
+          "amount",
+          "asset",
+          "metadata"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string",
+            "example": "XXX"
+          },
+          "description": {
+            "type": "string"
+          },
+          "amount": {
+            "type": "integer",
+            "format": "bigint"
+          },
+          "asset": {
+            "type": "string",
+            "example": "USD"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "nullable": true
+          }
+        }
+      },
       "UpdateTransferInitiationStatusRequest": {
         "type": "object",
         "required": [
@@ -10923,6 +11162,10 @@
           "FAILED",
           "EXPIRED",
           "REFUNDED",
+          "REFUNDED_FAILURE",
+          "DISPUTE",
+          "DISPUTE_WON",
+          "DISPUTE_LOST",
           "OTHER"
         ]
       },
@@ -11046,6 +11289,10 @@
           "eventTypes"
         ],
         "properties": {
+          "name": {
+            "type": "string",
+            "example": "customer_payment"
+          },
           "endpoint": {
             "type": "string",
             "example": "https://example.com"
@@ -15610,6 +15857,16 @@
           }
         }
       },
+      "ForwardBankAccount": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ForwardBankAccountRequest"
+            }
+          }
+        }
+      },
       "BankAccount": {
         "required": true,
         "content": {
@@ -15626,6 +15883,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/UpdateTransferInitiationStatusRequest"
+            }
+          }
+        }
+      },
+      "ReverseTransferInitiation": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ReverseTransferInitiationRequest"
             }
           }
         }
