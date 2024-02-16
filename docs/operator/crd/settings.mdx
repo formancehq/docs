@@ -1,0 +1,62 @@
+---
+title: Settings
+description: How to use CRD settings
+---
+The Settings CRD is one of the most important CRDs in Operator v2. It enables all the necessary adjustments so that the Operator can adapt to your usage and environment.
+
+The process is always the same: you create a YAML file, submit it to Kubernetes, and the Operator takes care of the rest.
+All the values present in the `Metadata` section are not used by the Operator. Conversely, the `Spec` section is used to define the Operator's parameters.
+You will always find 3 parameters there:
+- **stacks**: which allows defining the stacks that should use this configuration (you can put a * to indicate that all stacks should use this configuration)
+- **key**: Which allows defining the key of the configuration (you can put a * so that it applies to all services)
+- **value**: which allows defining the value of the configuration
+
+## Define PostgreSQL clusters
+In this example, we will set up a configuration for a PostgreSQL cluster that will be used only by the `formance-dev` stack but will apply to all the modules of this stack.
+Thus, the different modules of the Stack will use this PostgreSQL cluster while being isolated in their own database.
+
+:::info
+This database is created following the format: `{stackName}-{module}`
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
+  name: formance-dev-postgres-uri
+spec:
+  key: postgres.*.uri
+  stacks:
+    - 'formance-dev'
+  value: postgresql://formance:formance@postgresql.formance-system.svc:5432?disableSSLMode=true
+```
+
+## Define module resource requests
+In this example, we will set up a configuration for the resource requests of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
+  name: formance-dev-resource-requests
+spec:
+  key: deployments.*.containers.*.resource-requirements.requests
+  stacks:
+    - 'formance-dev'
+  value: cpu=10m,memory=100Mi
+```
+
+## Define a Broker
+In this example, we will set up a configuration for the Broker of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
+  name: formance-dev-broker
+spec:
+  key: broker.dsn
+  stacks:
+    - 'formance-dev'
+  value: nats://nats.formance-system.svc:4222?replicas=3
+```

@@ -4,37 +4,21 @@ title: Cluster preparation
 
 Before creating our region and deploying the Formance Operator, let's make sure that our cluster is ready to host our operator and have the required following items below in place.
 
-## Ingress controller
+## Ingress controller (optional)
 
-The Formance Operator requires an ingress controller to be present on the cluster. The recommended ingress controller is [Traefik](https://doc.traefik.io/traefik/), which is also the one used by Formance Cloud. SSL will need to be enabled, either on the ingress controller itself or on a load balancer in front of it.
+If you want to expose your stacks outside of your Kubernetes cluster, you'll need an Ingress Controller. At Formance, we use Traefik as our Ingress Controller, but you can use another Ingress Controller without any issues.
+
+SSL certificate management can be done either at the level of your LoadBalancer upstream of the Ingress Controller or directly by your Ingress Controller.
 
 :::info
 As the Formance Operator will create standard `Ingress` objects to be picked up, alternative ingress controllers can work just as great but might require additional configuration not covered in this setup guide.
 :::
 
-## Certificates management
-
-The operator requires [Cert-Manager](https://cert-manager.io/docs/installation/helm/) to run, and to be available on the cluster prior to installing the operator. Make sure to install it now if it's not already set up on your cluster.
-
-:::tip
-Default installations of cert-manager should have resources being shown when listed with
-`kubectl get all -n cert-manager`
-:::
-
 ## Stateful dependencies
 
-In order to function properly, stacks deployed within your private region will need the following stateful dependencies.
+To function properly, the Formance Modules deployed in your Kubernetes cluster will need certain dependencies among the following stateful dependencies.
 
-<!-- * A PostgreSQL instance
-* An Elasticsearch or OpenSearch instance
-* A Temporal deployment (optional)
-
-The recommended way to spin up these dependencies is to use your cloud provider's managed services. -->
-
-### NATS
-
-<!-- :::info
-::: -->
+### NATS (optional)
 
 _Version 2.6 or higher with Jetstream is required._
 
@@ -53,7 +37,7 @@ _Version 14 or higher is required._
 
 The recommended way to spin up a PostgreSQL deployment is to use your cloud provider's managed services. It is recommended to start with a small instance and scale up as needed, starting with for example a `db.m4.large` sizing on AWS.
 
-### Elasticsearch
+### Elasticsearch (optional)
 
 _Version 7.10 or higher is required._
 

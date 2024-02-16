@@ -1,0 +1,43 @@
+---
+title: Agent Deployment
+---
+The agent allows linking your Kubernetes Cluster to your Formance Organization. To do this, you need to add an agent to your cluster that will manage the Operator through the CRDs.
+
+## Setup
+
+We can now install the Formance Operator on our cluster using Helm, and bind it to our private region. We will first create a values file, with the following keys:
+
+<!-- agent, operator  -->
+
+* `REGION_ID`
+  * The private region identifier, as per given by fctl
+* `REGION_SECRET`
+  * The private region secret, as per given by fctl
+* `REGION_URL`
+  * The base URL you want to assign to your private region
+  * The URL must begin with the http schema (eg: https://sandbox.formance.cloud)
+  * Stacks created in this region will be assigned a subdomain in the form of `https://{organisationID}—{stackID}.{REGION_URL}`
+
+:::info
+Subdomains of `REGION_URL` will need to be publicly accessible in order to function properly with fctl and the Formance Cloud console.
+:::
+
+```yaml
+# region.values.yaml
+agent:
+  agent:
+    id: "REGION_ID"
+    baseUrl: "REGION_URL"
+    authentication:
+        clientID: "REGION_ID"
+        clientSecret: "REGION_SECRET"
+```
+
+With this file in place, we can deploy our private region using Helm:
+
+```bash
+helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
+--version 2.0.0 \
+--namespace formance-system \
+--values region.values.yaml
+```
