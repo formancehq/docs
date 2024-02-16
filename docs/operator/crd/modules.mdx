@@ -1,0 +1,60 @@
+---
+title: Modules
+---
+The operator is completely modular in its usage. Each Module brings a different set of features and can be enabled or disabled as needed.
+We will create together the first Kubernetes objects to deploy the modules of your choice.
+
+## Define Stack Object
+The first object that needs to be created is the Stack object. This allows linking the different modules and deploying them together.
+
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#stack).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Stack
+metadata:
+  name: formance-dev
+spec:
+  versionsFromFile: v2.0
+```
+
+During the deployment of the Operator and for its future upgrades, the Versions files are automatically updated following the semver pattern.
+It is possible to specify a specific version by using the `versionFromFile` field in the Stack file.
+
+## Define Gateway Object
+The Gateway's role is to centralize all incoming connections to your stack. If you need to expose your Stack to the outside, it is necessary to route all the traffic through it.
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Gateway
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```
+
+## Define Ledger Object
+The second object that needs to be created is the Ledger object. This allows to define the different modules that will be deployed.
+
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#ledger).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Ledger
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```
+
+If you wish to activate another Module on your Stack, you must follow the same pattern.

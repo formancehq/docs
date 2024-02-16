@@ -518,67 +518,69 @@ const sidebars = {
       },
       items: [
         {
-          type: 'category',
-          label: 'Formance Cloud',
-          link: { type: 'doc', id: 'deployment/cloud/intro' },
-          items: [
-            {
-              type: 'doc',
-              id: 'deployment/cloud/regions',
-              label: 'Regions',
-            },
-          ]
-        },
-        {
-          type: 'category',
-          label: 'Formance CloudPrem',
-          link: { type: 'doc', id: 'deployment/cloudprem/intro' },
-          items: [
-            {
-              type: 'doc',
-              id: 'deployment/cloudprem/cluster-config',
-            },
-            {
-              type: 'doc',
-              id: 'deployment/cloudprem/private-regions',
-            },
-            {
-              type: 'doc',
-              id: 'deployment/cloudprem/operator',
-            },
-            {
-              type: 'doc',
-              id: 'deployment/cloudprem/usage',
-            },
-          ],
-        },
-        {
-          type: 'category',
-          label: 'Formance Elements',
-          link: {
-            type: 'doc',
-            id: 'deployment/elements/intro',
-          },
-          items: [
-            {
-              type: 'doc',
-              id: 'deployment/elements/cluster-config',
-            },
-            {
-              type: 'doc',
-              id: 'deployment/elements/operator',
-            }
-          ],
-        },
-        {
-          label: 'K8S operator manual',
+          label: 'Formance Cloud Solutions',
           type: 'category',
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: 'doc',
-              id: 'operator/crd',
+              id: 'deployment/cloud/intro'
+            },
+            {
+              type: 'category',
+              label: 'Formance CloudPrem',
+              items: [
+                { type: 'doc', id: 'deployment/cloudprem/intro' },
+                {
+                  type: 'doc',
+                  id: 'deployment/cloudprem/private-regions',
+                },
+                {
+                  type: 'doc',
+                  id: 'deployment/cloudprem/agent',
+                },
+                {
+                  type: 'doc',
+                  id: 'deployment/cloudprem/usage',
+                },
+              ],
+            },
+          ],
+        },
+        {
+          label: 'Operator',
+          type: 'category',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            {
+              type: 'category',
+              label: 'Installation',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'operator/installation/requirements',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/installation/deployments',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Custom Resources Definition',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'operator/crd/settings',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules',
+                },
+              ],
             },
             {
               type: 'doc',
@@ -586,22 +588,9 @@ const sidebars = {
               label: 'Upgrade',
             },
             {
-              type: 'category',
-              label: 'Configuration',
-              items: [
-                {
-                  type: 'doc',
-                  id: 'operator/configuration/debug',
-                },
-                {
-                  type: 'doc',
-                  id: 'operator/configuration/disable-service',
-                },
-                {
-                  type: 'doc',
-                  id: 'operator/configuration/disable-stack',
-                },
-              ],
+              type: 'doc',
+              id: 'operator/crd',
+              label: 'CRD Definition',
             }
           ],
         },

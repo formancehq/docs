@@ -1,0 +1,51 @@
+---
+title: Operator deployment
+description: How to install Formance Platform on K8S with Operator
+---
+import Warning from '../../stack/partials/installation/_complexity_warning.mdx';
+
+The deployment of resources is orchestrated by the Formance Kubernetes Operator, which is driven by the CRDs present in the Kubernetes Cluster and reconciles them against the current state of the cluster.
+
+This essentially means that the operator will be creating and maintaining pods, services, and other resources on your cluster for you. It is also the last mile of this setup guide before we get to actually use our Formance Stack — let's get started!
+
+## Setup
+
+We can now install the Formance Operator on our cluster using Helm.
+
+We can deploy our Formance Operator using Helm:
+
+```bash
+helm install regions oci://ghcr.io/formancehq/helm/regions \
+--version 2.0.0 \
+--namespace formance-system \
+--create-namespace
+```
+
+Due to a limitation of Helm, the Versions CRD cannot be created at the same time as the installation of the Operator. You must launch an upgrade of the operator for this with the following command:
+```bash
+helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
+--version 2.0.0 \
+--namespace formance-system \
+--create-namespace
+```
+
+### Demo
+If you want to have a sample deployment, you can use our Demo Helm chart which will deploy all the necessary resources to install Formance on your cluster.
+This will install the following components:
+- Gateway
+- Ledger
+- Payments
+
+```bash
+helm upgrade --install demo oci://ghcr.io/formancehq/helm/demo \
+--version 2.0.0 \
+--namespace formance-system \
+--create-namespace
+```
+
+You can verify that the installation was successful by using the following command:
+```bash
+kubectl get pods,svc -n formance-dev
+```
+
+**Your Operator is now successfully installed and ready to use.**

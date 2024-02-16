@@ -6,10 +6,11 @@ It is good practice to keep the operator up to date with the latest [releases](h
 
 The operator can be upgraded by running the following command:
 
+You can download the latest version of Formance directly from [our github repo](https://github.com/formancehq/stack/releases).
 ```bash
 helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
---version 0.5.0 \
---namespace formance-system \
+--version LATEST_RELEASE \
+--namespace formance-system
 ```
 
 Once the upgrade is complete, you can verify the operator is running the latest version with the usual `kubectl` commands:
@@ -17,3 +18,25 @@ Once the upgrade is complete, you can verify the operator is running the latest 
 ```bash
 kubectl -n formance-system describe deployments operator
 ```
+
+## Updating from Operator v1 to Operator v2
+
+If you wish to update the operator from version 1 to version 2, we have managed the major steps of the migration for you.
+Thus, the Configuration CRD from v1 will be migrated to the Settings CRD of v2, and the same will happen for the Versions CRD.
+
+All the Stack CRDs will also be split and migrated to the different Module CRDs of v2.
+
+However, it is important to note that the Stack CRDs from v1 will not be deleted, and the Operator will replicate each change to the v2 objects.
+Therefore, after the migration, you will have both v1 and v2 objects in your cluster. We recommend deleting the v1 objects once you are sure that the migration went smoothly.
+
+To migrate the operator from version 1 to version 2, you simply need to update the operator with the following command:
+
+```bash
+helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
+--version LATEST_RELEASE \
+--namespace formance-system
+```
+
+As soon as Operator v2 starts, it will begin migrating v1 objects to v2 objects, then create the new associated resources. All steps have been designed to be carried out without any service interruption. However, we recommend performing this update in Staging before doing it in Production.
+
+If you encounter any issues, do not hesitate to contact us. We will be happy to help you with the migration process.
