@@ -16,17 +16,19 @@ We can deploy our Formance Operator using Helm:
 
 ```bash
 helm install regions oci://ghcr.io/formancehq/helm/regions \
---version 2.0.0 \
+--version v2.0.0-rc.8 \
 --namespace formance-system \
---create-namespace
+--create-namespace \
+--set agent.enabled=false
 ```
 
 Due to a limitation of Helm, the Versions CRD cannot be created at the same time as the installation of the Operator. You must launch an upgrade of the operator for this with the following command:
 ```bash
 helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
---version 2.0.0 \
+--version v2.0.0-rc.8 \
 --namespace formance-system \
---create-namespace
+--create-namespace \
+--set agent.enabled=false
 ```
 
 ### Demo
