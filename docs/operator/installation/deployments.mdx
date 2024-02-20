@@ -18,8 +18,7 @@ We can deploy our Formance Operator using Helm:
 helm install regions oci://ghcr.io/formancehq/helm/regions \
 --version v2.0.0-rc.8 \
 --namespace formance-system \
---create-namespace \
---set agent.enabled=false
+--create-namespace
 ```
 
 Due to a limitation of Helm, the Versions CRD cannot be created at the same time as the installation of the Operator. You must launch an upgrade of the operator for this with the following command:
@@ -27,8 +26,7 @@ Due to a limitation of Helm, the Versions CRD cannot be created at the same time
 helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
 --version v2.0.0-rc.8 \
 --namespace formance-system \
---create-namespace \
---set agent.enabled=false
+--create-namespace
 ```
 
 ### Demo
@@ -37,6 +35,7 @@ This will install the following components:
 - Gateway
 - Ledger
 - Payments
+- Ledger
 
 ```bash
 helm upgrade --install demo oci://ghcr.io/formancehq/helm/demo \
