@@ -1,0 +1,30 @@
+---
+title: NATS
+description: Setup NATS
+---
+
+# NATS
+
+_Version 2.6 or higher with Jetstream is required._
+
+The recommended way to spin up a NATS deployment is through the official NATS helm [chart](https://artifacthub.io/packages/helm/nats/nats).
+
+:::info
+Depending on your setup, you may need to activate Jetsream mode on your NATS deployment manually. Jetstream is required for the resources deployed by the Formance Operator to function properly.
+:::
+
+## Create the NATS settings
+
+In this example, we will set up a configuration for the Broker of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
+  name: formance-dev-broker
+spec:
+  key: broker.dsn
+  stacks:
+    - 'formance-dev'
+  value: nats://nats.formance-system.svc:4222?replicas=3
+```
