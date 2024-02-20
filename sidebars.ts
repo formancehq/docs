@@ -613,6 +613,24 @@ const sidebars = {
               id: 'operator/crd/settings',
             },
             {
+              type: "category",
+              label: "Infrastructure services",
+              items: [
+                {
+                  type: "doc",
+                  id: "operator/infra/postgres",
+                },
+                {
+                  type: "doc",
+                  id: "operator/infra/nats",
+                },
+                {
+                  type: "doc",
+                  id: "operator/infra/elasticsearch",
+                },
+              ],
+            },
+            {
               type: 'doc',
               id: 'operator/upgrade',
               label: 'Upgrade',

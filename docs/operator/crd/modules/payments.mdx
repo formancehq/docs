@@ -1,15 +1,14 @@
 ---
 title: Payments
 ---
-import PostgreSQL from '@site/docs/operator/partials/postgresql.mdx';
-import Nats from '@site/docs/operator/partials/nats.mdx';
 
 Formance Payments is a unified API that abstracts over multiple different payment providers like Stripe and Wise, simplifying the process of building money flows that stitch multiple payment providers together.
 
 ## Requirements
 
-<PostgreSQL />
-<Nats />
+Formance Payments requires:
+- **PostgreSQL**: See configuration guide [here](/next/operator/infra/postgres).
+- (Optional) **NATS**: See configuration guide [here](/next/operator/infra/nats).
 
 ## Payments Object
 
