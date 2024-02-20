@@ -21,10 +21,10 @@ In this example, we will set up a configuration for the Broker of the `formance-
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
-  name: formance-dev-broker
+  name: formance-dev-es
 spec:
   key: elasticsearch.dsn
   stacks:
     - 'formance-dev'
-  value: <your ES DSN here>
+  value: https://es.formance-system.svc:443?
 ```

@@ -628,6 +628,10 @@ const sidebars = {
                   type: "doc",
                   id: "operator/infra/elasticsearch",
                 },
+                {
+                  type: "doc",
+                  id: "operator/infra/temporal",
+                },
               ],
             },
             {
