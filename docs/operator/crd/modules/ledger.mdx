@@ -1,0 +1,27 @@
+---
+title: Ledger
+---
+import PostgreSQL from '@site/docs/operator/partials/postgresql.mdx';
+import Nats from '@site/docs/operator/partials/nats.mdx';
+
+Formance Ledger is a real-time money tracking microservice that lets you model and record complex financial transactions. It offers atomic, multi-posting transactions and is programmable using Numscript, a dedicated DSL (Domain Specific Language) to model and templatize such transactions.
+
+## Requirements
+
+<PostgreSQL />
+<Nats />
+
+## Ledger Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Ledger
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```

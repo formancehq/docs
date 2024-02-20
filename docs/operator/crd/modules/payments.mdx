@@ -1,0 +1,27 @@
+---
+title: Payments
+---
+import PostgreSQL from '@site/docs/operator/partials/postgresql.mdx';
+import Nats from '@site/docs/operator/partials/nats.mdx';
+
+Formance Payments is a unified API that abstracts over multiple different payment providers like Stripe and Wise, simplifying the process of building money flows that stitch multiple payment providers together.
+
+## Requirements
+
+<PostgreSQL />
+<Nats />
+
+## Payments Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Payments
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```
