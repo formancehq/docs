@@ -1,0 +1,36 @@
+---
+title: Orchestration
+---
+import PostgreSQL from '@site/docs/operator/partials/postgresql.mdx';
+import Nats from '@site/docs/operator/partials/nats.mdx';
+import Temporal from '@site/docs/operator/partials/temporal.mdx';
+import EE from '@site/docs/operator/partials/ee.mdx';
+
+<EE />
+Formance Flows is a handy service that lets you quickly set up end-to-end money flows, without the headache of piecing together APIs and untangling complex systems.
+
+With a clever compatibility model, you can easily move value between different ledgers, wallets, and payment processors. Plus, Formance Flows takes care of translating and interpreting the transactions for you.
+
+On top of that, Formance Flows comes with flexible workflow capabilities, so you can create complex flows that account for delays or external events, as well as retry and fallback options. All of this helps make your financial management smoother and stress-free.
+
+
+## Requirements
+
+<PostgreSQL />
+<Nats />
+<Temporal />
+
+## Orchestration Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Orchestration
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```

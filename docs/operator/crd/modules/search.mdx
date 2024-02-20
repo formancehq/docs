@@ -1,0 +1,25 @@
+---
+title: Search
+---
+import Elasticsearch from '@site/docs/operator/partials/elasticsearch.mdx';
+import EE from '@site/docs/operator/partials/ee.mdx';
+
+<EE />
+## Requirements
+
+<Elasticsearch />
+
+## Search Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Search
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```

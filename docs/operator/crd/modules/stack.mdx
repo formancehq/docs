@@ -1,0 +1,22 @@
+---
+title: Stack
+---
+## Stack Object
+The first object that needs to be created is the Stack object. This allows linking the different modules and deploying them together.
+
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#stack).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Stack
+metadata:
+  name: formance-dev
+spec:
+  versionsFromFile: v2.0
+```
+
+During the deployment of the Operator and for its future upgrades, the Versions files are automatically updated following the semver pattern.
+It is possible to specify a specific version by using the `versionFromFile` field in the Stack file.
