@@ -1,0 +1,26 @@
+---
+title: Payments
+---
+
+Formance Payments is a unified API that abstracts over multiple different payment providers like Stripe and Wise, simplifying the process of building money flows that stitch multiple payment providers together.
+
+## Requirements
+
+Formance Payments requires:
+- **PostgreSQL**: See configuration guide [here](/next/operator/infra/postgres).
+- (Optional) **Broker**: See configuration guide [here](/next/operator/infra/broker).
+
+## Payments Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#payments).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Payments
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```

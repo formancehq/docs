@@ -1,7 +1,6 @@
 ---
-title: Cluster preparation
+title: Requirements
 ---
-
 Before creating our region and deploying the Formance Operator, let's make sure that our cluster is ready to host our operator and have the required following items below in place.
 
 ## Ingress controller (optional)
@@ -18,45 +17,12 @@ As the Formance Operator will create standard `Ingress` objects to be picked up,
 
 To function properly, the Formance Modules deployed in your Kubernetes cluster will need certain dependencies among the following stateful dependencies.
 
-### NATS (optional)
-
-_Version 2.6 or higher with Jetstream is required._
-
-The recommended way to spin up a NATS deployment is through the official NATS helm [chart](https://artifacthub.io/packages/helm/nats/nats).
-
-:::info
-Depending on your setup, you may need to activate Jetsream mode on your NATS deployment manually. Jetstream is required for the resources deployed by the Formance Operator to function properly.
-:::
-
-### PostgreSQL
-
-_Version 14 or higher is required._
-
-<!-- :::info
-::: -->
-
-The recommended way to spin up a PostgreSQL deployment is to use your cloud provider's managed services. It is recommended to start with a small instance and scale up as needed, starting with for example a `db.m4.large` sizing on AWS.
-
-### Elasticsearch (optional)
-
-_Version 7.10 or higher is required._
-
-<!-- :::info
-::: -->
-
-The recommended way to spin up an Elasticsearch / OpenSearch deployment is to use your cloud provider's managed service, or Elastic Cloud itself.
-
-:::info
-If using Elastic Cloud, make sure to use a deployment in a network with low latency to your cluster.
-:::
-
-### Temporal (optional)
-
-:::info
-Using Temporal is only required for stacks using the flows service. It can be ommitted now if you don't plan on using it yet, and added at a later time.
-:::
-
-The recommended way to spin up a Temporal deployment is through Temporal Cloud, or by using the official Temporal helm [chart](https://github.com/temporalio/helm-charts).
+The list of dependencies changes according to the modules you wish to deploy.
+Within the module, you will find the following dependencies:
+- PostgreSQL
+- NATS / Kafka
+- ElasticSearch
+- Temporal
 
 ## Summary
 

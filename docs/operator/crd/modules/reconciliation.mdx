@@ -1,0 +1,27 @@
+---
+title: Reconciliation
+---
+import EE from '@site/docs/operator/partials/ee.mdx';
+
+<EE />
+## Requirements
+
+Formance Reconciliation requires:
+- **PostgreSQL**: See configuration guide [here](/next/operator/infra/postgres).
+- **Ledger**: See configuration guide [here](/next/operator/crd/modules/ledger).
+- **Payments**: See configuration guide [here](/next/operator/crd/modules/payments).
+
+## Reconciliation Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#reconciliation).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Reconciliation
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```

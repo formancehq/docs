@@ -209,6 +209,7 @@ const sidebars = {
                 'ledger/operations/storages',
                 'ledger/operations/upgrade',
                 'ledger/operations/authentication',
+                'ledger/operations/metric_reference',
                 // 'ledger/api/sdks'
               ],
             },
@@ -555,32 +556,94 @@ const sidebars = {
           collapsed: true,
           items: [
             {
+              type: 'doc',
+              id: 'operator/installation/requirements',
+            },
+            {
+              type: 'doc',
+              id: 'operator/installation/deployments',
+            },
+            {
               type: 'category',
-              label: 'Installation',
+              label: 'Modules',
               items: [
                 {
                   type: 'doc',
-                  id: 'operator/installation/requirements',
+                  id: 'operator/crd/modules/stack',
                 },
                 {
                   type: 'doc',
-                  id: 'operator/installation/deployments',
+                  id: 'operator/crd/modules/gateway',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/ledger',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/payments',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/auth',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/orchestration',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/search',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/reconciliation',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/wallets',
+                },
+                {
+                  type: 'doc',
+                  id: 'operator/crd/modules/webhooks',
+                },
+              ],
+            },
+            {
+              type: 'doc',
+              id: 'operator/crd/settings',
+            },
+            {
+              type: "category",
+              label: "Infrastructure services",
+              items: [
+                {
+                  type: "doc",
+                  id: "operator/infra/postgres",
+                },
+                {
+                  type: "doc",
+                  id: "operator/infra/broker",
+                },
+                {
+                  type: "doc",
+                  id: "operator/infra/elasticsearch",
+                },
+                {
+                  type: "doc",
+                  id: "operator/infra/temporal",
                 },
               ],
             },
             {
               type: 'category',
-              label: 'Custom Resources Definition',
+              label: 'Observability',
               items: [
                 {
                   type: 'doc',
-                  id: 'operator/crd/settings',
+                  id: 'operator/observability/opentelemetry-configurations',
                 },
-                {
-                  type: 'doc',
-                  id: 'operator/crd/modules',
-                },
-              ],
+              ]
             },
             {
               type: 'doc',
@@ -591,9 +654,10 @@ const sidebars = {
               type: 'doc',
               id: 'operator/crd',
               label: 'CRD Definition',
-            }
+            },
           ],
         },
+
         {
           type: 'doc',
           id: 'deployment/upgrade',
@@ -602,11 +666,6 @@ const sidebars = {
           type: 'doc',
           id: 'deployment/backups',
         },
-        // {
-        //   type: 'doc',
-        //   id: 'stack/capacity',
-        //   label: 'Capacity planning',
-        // }
       ],
     },
     {

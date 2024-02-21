@@ -1,0 +1,26 @@
+---
+title: Webhooks
+---
+import EE from '@site/docs/operator/partials/ee.mdx';
+
+<EE />
+## Requirements
+
+Formance Webhooks requires:
+- **PostgreSQL**: See configuration guide [here](/next/operator/infra/postgres).
+- **Broker**: See configuration guide [here](/next/operator/infra/broker).
+
+## Webhooks Object
+
+:::info
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#webhooks).
+:::
+
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Webhooks
+metadata:
+  name: formance-dev
+spec:
+  stack: formance-dev
+```
