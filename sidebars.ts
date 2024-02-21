@@ -622,7 +622,7 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "operator/infra/nats",
+                  id: "operator/infra/broker",
                 },
                 {
                   type: "doc",
