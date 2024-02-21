@@ -209,6 +209,7 @@ const sidebars = {
                 'ledger/operations/storages',
                 'ledger/operations/upgrade',
                 'ledger/operations/authentication',
+                'ledger/operations/metric_reference',
                 // 'ledger/api/sdks'
               ],
             },
