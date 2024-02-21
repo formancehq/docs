@@ -57,3 +57,30 @@ spec:
     - 'formance-dev'
   value: postgresql://formance:formance@postgresql-payments.formance-system.svc:5432?disableSSLMode=true
 ```
+
+### Option 3: Use PostgreSQL on AWS RDS with an IAM role
+
+In this example, aws iam role is used to connect to the database. The `formance-dev` stack will use this configuration.
+
+```yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: aws-rds-access-role
+  namespace: formance-system
+  labels:
+    formance.com/stack: any
+  annotations:
+    eks.amazonaws.com/role-arn: arn:aws:iam::AWS_ACCOUNT_ID:role/AWS_ROLE_NAME
+---
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
+  name: formance-dev-postgres-uri
+spec:
+  key: postgres.*.uri
+  stacks:
+    - 'formance-dev'
+  value: postgresql://formance@postgresql.formance-system.svc:5432?awsRole=aws-rds-access-role
+ ```
+ 
