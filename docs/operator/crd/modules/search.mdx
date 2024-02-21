@@ -1,9 +1,25 @@
 ---
 title: Search
 ---
+
+# Search
+
 import EE from '@site/docs/operator/partials/ee.mdx';
 
 <EE />
+
+## Overview
+
+Formance Search is a service that provides a search engine for your Formance stack. It is based on Elasticsearch and provides a powerful search engine for your data.
+
+Search comes with with two components:
+- **Search**: The public search service itself used to search your data.
+- **[Benthos](https://www.benthos.dev/)**: The data pipeline that indexes your data into the search engine.
+
+Benthos is a stream processor that is used to ingest data from your Formance stack into the Eleasticsearch search engine. Benthos listens to the [messages broker](/next/operator/infra/broker), transforms the data and indexes it into the search engine.
+
+When you install the Search module with the Formance Operator, it will automatically install and configure Benthos on your behalf.
+
 ## Requirements
 
 Formance Search requires:
@@ -12,7 +28,7 @@ Formance Search requires:
 ## Search Object
 
 :::info
-You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#search).
 :::
 
 ```yaml
