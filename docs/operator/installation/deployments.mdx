@@ -16,7 +16,7 @@ We can deploy our Formance Operator using Helm:
 
 ```bash
 helm install regions oci://ghcr.io/formancehq/helm/regions \
---version v2.0.0-rc.9 \
+--version v2.0.0-rc.10 \
 --namespace formance-system \
 --create-namespace
 ```
@@ -24,7 +24,7 @@ helm install regions oci://ghcr.io/formancehq/helm/regions \
 Due to a limitation of Helm, the Versions CRD cannot be created at the same time as the installation of the Operator. You must launch an upgrade of the operator for this with the following command:
 ```bash
 helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
---version v2.0.0-rc.9 \
+--version v2.0.0-rc.10 \
 --namespace formance-system \
 --create-namespace
 ```
