@@ -655,6 +655,7 @@ const sidebars = {
               id: 'operator/crd',
               label: 'CRD Definition',
             },
+            'operator/demo/demo'
           ],
         },
 
@@ -665,7 +666,7 @@ const sidebars = {
         {
           type: 'doc',
           id: 'deployment/backups',
-        },
+        }
       ],
     },
     {
