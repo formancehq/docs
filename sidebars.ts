@@ -635,6 +635,16 @@ const sidebars = {
               ],
             },
             {
+              type: 'category',
+              label: 'Observability',
+              items: [
+                {
+                  type: 'doc',
+                  id: 'operator/observability/opentelemetry-configurations',
+                },
+              ]
+            },
+            {
               type: 'doc',
               id: 'operator/upgrade',
               label: 'Upgrade',
