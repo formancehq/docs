@@ -646,16 +646,18 @@ const sidebars = {
               ]
             },
             {
-              type: 'doc',
-              id: 'operator/upgrade',
+              type: 'category',
               label: 'Upgrade',
+              items: [
+                'operator/upgrade/upgrade',
+                'operator/upgrade/db_migration',
+              ]
             },
             {
               type: 'doc',
               id: 'operator/crd',
               label: 'CRD Definition',
             },
-            'operator/demo/demo'
           ],
         },
 
