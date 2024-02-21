@@ -1,10 +1,13 @@
 ---
-title: NATS
-description: Setup NATS
+title: Message Broker
+description: Setup a message broker for the Formance stack.
 ---
 
-# Broker
+# Message Broker
 
+The broker is the messaging system that the Formance stack uses to communicate between its modules. The Formance stack supports both [NATS](https://nats.io/) and [Kafka](https://kafka.apache.org/) as brokers.
+
+The broker sends messages between the different modules of the Formance stack. The producers are Ledger, Gateway, and Payments. The consumers are Benthos, Orchestration and Webhooks. Benthos is used to transform messages so that they can be ingested by the ElasticSearch / OpenSearch cluster to power the Search module.
 
 ## Option 1: NATS
 
