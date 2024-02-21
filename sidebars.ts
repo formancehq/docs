@@ -653,6 +653,7 @@ const sidebars = {
                 'operator/upgrade/db_migration',
               ]
             },
+            'operator/troubleshooting',
             {
               type: 'doc',
               id: 'operator/crd',
