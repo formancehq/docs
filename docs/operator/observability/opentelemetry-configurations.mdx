@@ -21,20 +21,12 @@ In this example, we will set up an OpenTelemetry configuration for the `formance
 
 ```yaml
 apiVersion: formance.com/v1beta1
-kind: OpenTelemetryConfiguration
+kind: Settings
 metadata:
-  labels:
-    formance.com/stack: formance-dev
-  name: formance-dev-otel
+  name: stacks-otel-collector
 spec:
-  traces:
-    otlp:
-      endpoint: otel-collector-opentelemetry-collector.formance.svc.cluster.local
-      insecure: true
-      mode: grpc
-      port: 4317
+  key: opentelemetry.*.dsn
+  stacks:
+    - "formance-dev"
+  value: grpc://opentelemetry-collector.formance-system.svc:4317?insecure=true
 ```
-
-:::info
-If you want to apply the configuration to all of your stacks, you can set the `formance.com/stack` label to `any`.
-:::
