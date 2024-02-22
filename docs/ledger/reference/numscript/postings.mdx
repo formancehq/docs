@@ -2,7 +2,7 @@
 title: Postings
 ---
 
-In Numscript, a [posting](/ledger/reference/transactions#postings) models the movement of an amount of an asset from one account to another. Postings are wrapped in a [transaction](/ledger/reference/transactions#transactions-1) to ensure that they are applied atomically.
+In Numscript, a [posting](../../reference/transactions.md#postings) models the movement of an amount of an asset from one account to another. Postings are wrapped in a [transaction](../../reference/transactions.md#transactions-1) to ensure that they are applied atomically.
 
 ## Defining a posting
 
@@ -15,7 +15,7 @@ send [COIN 100] (
 )
 ```
 
-Square brackets describe the asset being moved using the Formance's [Unambiguous Monetary Notation (UMN)](/stack/unambiguous-monetary-notation). It is composed of the asset type optionally followed by a scaling value, and the amount. In this case, the asset type is `COIN` with no scaling value, and the amount is `100`.
+Square brackets describe the asset being moved using the Formance's [Unambiguous Monetary Notation (UMN)](../../../stack/unambiguous-monetary-notation.md). It is composed of the asset type optionally followed by a scaling value, and the amount. In this case, the asset type is `COIN` with no scaling value, and the amount is `100`.
 
 ## Postings with no amount
 

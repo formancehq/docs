@@ -7,4 +7,4 @@ title: Architecture
 This page is being reworked and expanded.
 :::
 
-![](/img/advanced/architecture.png)
+![](../../../static/img/stack-architecture.png)

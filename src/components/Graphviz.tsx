@@ -51,8 +51,6 @@ const PostingsGraph = ({ postings, caption, additionnals =[] }) => {
         style="${style}",
       ];`);
     }
-
-    console.log(additionnals, graph);
   });
 
   const dot = `digraph {\nrankdir=LR\n${graph.join('\n')}\n}`;

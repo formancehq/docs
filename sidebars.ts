@@ -563,6 +563,7 @@ const sidebars = {
               type: 'doc',
               id: 'operator/installation/deployments',
             },
+            'operator/demo/demo',
             {
               type: 'category',
               label: 'Modules',
