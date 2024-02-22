@@ -6,13 +6,13 @@ import Warning from '../../stack/partials/installation/_complexity_warning.mdx';
 
 The deployment of resources is orchestrated by the Formance Kubernetes Operator, which is driven by the CRDs present in the Kubernetes Cluster and reconciles them against the current state of the cluster.
 
-This essentially means that the operator will be creating and maintaining pods, services, and other resources on your cluster for you. It is also the last mile of this setup guide before we get to actually use our Formance Stack — let's get started!
+This essentially means that the operator will be creating and maintaining pods, services, and other resources on your cluster on your behalf. It is also the last mile of this setup guide before you get to actually use your Formance Stack — let's get started!
 
 ## Setup
 
-We can now install the Formance Operator on our cluster using Helm.
+You install the Formance Operator using Helm. If you don't have Helm installed, you can follow the [official Helm installation guide](https://helm.sh/docs/intro/install/).
 
-We can deploy our Formance Operator using Helm:
+You can deploy our Formance Operator using Helm:
 
 ```bash
 helm install regions oci://ghcr.io/formancehq/helm/regions \

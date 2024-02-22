@@ -610,10 +610,6 @@ const sidebars = {
               ],
             },
             {
-              type: 'doc',
-              id: 'operator/crd/settings',
-            },
-            {
               type: "category",
               label: "Infrastructure services",
               items: [
@@ -655,10 +651,17 @@ const sidebars = {
             },
             'operator/troubleshooting',
             {
-              type: 'doc',
-              id: 'operator/crd',
-              label: 'CRD Definition',
-            },
+              type: 'category',
+              label: 'Configuration reference',
+              items: [
+                'operator/crd/settings',
+                {
+                  id: 'operator/crd',
+                  label: 'Custom Resource Definitions',
+                  type: 'doc'
+                }
+              ]
+            }
           ],
         },
 

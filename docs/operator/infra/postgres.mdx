@@ -12,7 +12,7 @@ The recommended way to spin up a PostgreSQL deployment is to use your cloud prov
 
 ### Option 1: Use the same server for all modules
 
-In this example, we will set up a configuration for a PostgreSQL cluster that will be used only by the `formance-dev` stack but will apply to all the modules of this stack.
+In this example, you'll set up a configuration for a PostgreSQL cluster that will be used only by the `formance-dev` stack but will apply to all the modules of this stack.
 Thus, the different modules of the Stack will use this PostgreSQL cluster while being isolated in their own database.
 
 :::info
@@ -33,7 +33,7 @@ spec:
 
 ### Option 2: Use different servers for each module
 
-In this example we will set up a configuration dedicated Postgres cluster for the `ledger` and `payments` modules of the `formance-dev` stack.
+In this example you'll set up a configuration dedicated Postgres cluster for the `ledger` and `payments` modules of the `formance-dev` stack.
 
 ```yaml
 ---
@@ -60,7 +60,7 @@ spec:
 
 ### Option 3: Use PostgreSQL on AWS RDS with an IAM role
 
-In this example, aws iam role is used to connect to the database. The `formance-dev` stack will use this configuration.
+In this example, you'll use an AWS IAM role to connect to the database. The `formance-dev` stack will use this configuration.
 
 ```yaml
 apiVersion: v1
@@ -83,4 +83,3 @@ spec:
     - 'formance-dev'
   value: postgresql://formance@postgresql.formance-system.svc:5432?awsRole=aws-rds-access-role
  ```
- 
