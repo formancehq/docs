@@ -1,6 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
+import Link from '@docusaurus/Link';
 
 import { findFirstSidebarItemLink, useDocById } from '@docusaurus/theme-common/internal'
 
@@ -10,6 +11,16 @@ export function DocCardGrid({ children }) {
 			{children}
 		</Grid>
 	)
+}
+
+interface CardProps {
+	title: string
+	icon: string
+	cta: {
+		text: string
+		link: string
+	}
+	children: React.ReactNode
 }
 
 function Card({ title, icon, cta, children }) {
@@ -41,23 +52,32 @@ function Card({ title, icon, cta, children }) {
 						<img src={icon} />
 					</Box>
 				)}
-				<a className='card__title' href={cta.link}>
+				<Link className='card__title' to={cta.link}>
 					<h3 className='m-0'>{title}</h3>
-				</a>
+				</Link>
 			</Box>
 			<div className='card__body'>{children}</div>
 			{cta && (
 				<div className='card__footer'>
-					<a class='button button--yellow button--block' href={cta.link}>
+					<Link className='button button--yellow button--block' to={cta.link}>
 						{cta.text}
-					</a>
+					</Link>
 				</div>
 			)}
 		</Box>
 	)
 }
 
-export function DocCard({ children, headline, icon, link, cta, highlight }) {
+interface DocCardProps {
+	children: React.ReactNode
+	headline: string
+	icon: string
+	link: string
+	cta: string
+	highlight?: boolean
+}
+
+export function DocCard({ children, headline, icon, link, cta, highlight }: DocCardProps) {
 	var title = headline
 	cta = cta || 'Read more'
 
@@ -80,7 +100,7 @@ export function DocCard({ children, headline, icon, link, cta, highlight }) {
 	)
 
 	if (!cta) {
-		card = <a href={link}>{card}</a>
+		card = <Link href={link}>{card}</Link>
 	}
 
 	return (

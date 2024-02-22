@@ -4,11 +4,11 @@ description: How to use CRD settings
 ---
 The Settings CRD is one of the most important CRDs in Operator v2. It enables all the necessary adjustments so that the Operator can adapt to your usage and environment.
 
-Settings are encoded as string, but under the hood, each settings can be unmarshalled on a dedicated type.
+Settings are encoded as string, but under the hood, each setting can be unmarshalled to a specific type.
 
-While we have some basic types (string, number, bool ...), we also have some complex structures :
+While we have some basic types (string, number, bool ...), we also have some complex structures:
 * Maps: maps are just one level dictionary with values as string. Repeat `<key>=<value>` pattern for each entry, while separating with comma.
-* URIs: URIs are used each time we need to address an external resources (postgres, kafka ...). URIs are convenient to encode a lot of information in a simple, normalized format.
+* URIs: URIs are used each time we need to address an external resource (postgres, kafka ...). URIs are convenient to encode a lot of information in a simple, normalized format.
 
 ## Available settings
 
@@ -101,13 +101,13 @@ Query params :
 The process is always the same: you create a YAML file, submit it to Kubernetes, and the Operator takes care of the rest.
 All the values present in the `Metadata` section are not used by the Operator. Conversely, the `Spec` section is used to define the Operator's parameters.
 You will always find 3 parameters there:
-- **stacks**: which allows defining the stacks that should use this configuration (you can put a * to indicate that all stacks should use this configuration)
-- **key**: Which allows defining the key of the configuration (you can put a * so that it applies to all services)
-- **value**: which allows defining the value of the configuration
+- **stacks**: defines the stacks that should use this configuration (you can put a `*` to indicate that all stacks should use this configuration)
+- **key**: defines the key of the configuration (you can put a `*` so that it applies to all services)
+- **value**: defines the value of the configuration
 
 ## Examples
 ### Define PostgreSQL clusters
-In this example, we will set up a configuration for a PostgreSQL cluster that will be used only by the `formance-dev` stack but will apply to all the modules of this stack.
+In this example, you will set up a configuration for a PostgreSQL cluster that will be used only by the `formance-dev` stack but will apply to all the modules of this stack.
 Thus, the different modules of the Stack will use this PostgreSQL cluster while being isolated in their own database.
 
 :::info
@@ -127,7 +127,7 @@ spec:
 ```
 
 ### Use AWS IAM Role
-In this example, aws iam role is used to connect to the database. The `formance-dev` stack will use this configuration.
+In this example, you'll use an AWS IAM role to connect to the database. The `formance-dev` stack will use this configuration.
 
 ```yaml
 apiVersion: v1
@@ -152,7 +152,7 @@ spec:
  ```
 
 ### Define module resource requests
-In this example, we will set up a configuration for the resource requests of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
+In this example, you'll set up a configuration for the resource requests of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
 
 ```yaml
 apiVersion: formance.com/v1beta1
@@ -167,7 +167,7 @@ spec:
 ```
 
 ### Define a Broker
-In this example, we will set up a configuration for the Broker of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
+In this example, you'll set up a configuration for the Broker of the `formance-dev` stack. This configuration will apply to all the modules of this stack.
 
 ```yaml
 apiVersion: formance.com/v1beta1
@@ -183,7 +183,7 @@ spec:
 
 ### Define a OpenTelemetry Collector
 
-In this example, we'll set up a configuration to send traces and metrics to an OpenTelemetry collector. This configuration will apply to all modules in this stack.
+In this example, you'll set up a configuration to send traces and metrics to an OpenTelemetry collector. This configuration will apply to all modules in this stack.
 
 ```yaml
 apiVersion: formance.com/v1beta1

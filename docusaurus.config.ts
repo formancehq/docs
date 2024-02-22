@@ -18,8 +18,8 @@ export default async function createConfig() {
     tagline: 'The open source foundation you need to build and scale money-movements within your app',
     url: 'https://docs.formance.com/',
     baseUrl: '/',
-    onBrokenLinks: 'log',
-    onBrokenMarkdownLinks: 'log',
+    onBrokenLinks: 'warn',
+    onBrokenMarkdownLinks: 'warn',
     favicon: 'img/f-shape.ico',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.
@@ -156,19 +156,19 @@ export default async function createConfig() {
               items: [
                 {
                   label: 'Ledger',
-                  to: '/ledger',
+                  to: 'next/ledger',
                 },
                 {
                   label: 'Payments',
-                  to: '/payments',
+                  to: 'next/payments',
                 },
                 {
                   label: 'Wallets',
-                  to: '/wallets',
+                  to: 'next/wallets',
                 },
                 {
                   label: 'Flows',
-                  to: '/flows',
+                  to: 'next/flows',
                 },
               ],
             },

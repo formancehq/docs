@@ -103,6 +103,10 @@ html[data-theme='dark'] .header-github-logo:before {
 		no-repeat;
 }
 
+html[data-theme='dark'] .button--yellow {
+	color: var(--ifm-font-color-base-inverse);
+}
+
 /* Graph */
 .Graph {
 	background-color: transparent;

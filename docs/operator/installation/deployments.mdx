@@ -6,13 +6,13 @@ import Warning from '../../stack/partials/installation/_complexity_warning.mdx';
 
 The deployment of resources is orchestrated by the Formance Kubernetes Operator, which is driven by the CRDs present in the Kubernetes Cluster and reconciles them against the current state of the cluster.
 
-This essentially means that the operator will be creating and maintaining pods, services, and other resources on your cluster for you. It is also the last mile of this setup guide before we get to actually use our Formance Stack — let's get started!
+This essentially means that the operator will be creating and maintaining pods, services, and other resources on your cluster on your behalf. It is also the last mile of this setup guide before you get to actually use your Formance Stack — let's get started!
 
 ## Setup
 
-We can now install the Formance Operator on our cluster using Helm.
+You install the Formance Operator using Helm. If you don't have Helm installed, you can follow the [official Helm installation guide](https://helm.sh/docs/intro/install/).
 
-We can deploy our Formance Operator using Helm:
+You can deploy our Formance Operator using Helm:
 
 ```bash
 helm install regions oci://ghcr.io/formancehq/helm/regions \
@@ -28,36 +28,3 @@ helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
 --namespace formance-system \
 --create-namespace
 ```
-
-### Demo
-If you want to have a sample deployment, you can use our Demo Helm chart which will deploy all the necessary resources to install Formance on your cluster.
-This will install the following components:
-- Gateway
-- Ledger
-- Payments
-- PostgreSQL
-
-```bash
-helm upgrade --install demo oci://ghcr.io/formancehq/helm/demo \
---version 2.0.0 \
---namespace formance-system \
---create-namespace
-```
-
-You can verify that the installation was successful by using the following command:
-```bash
-kubectl get pods,svc -n formance-dev
-```
-
-**Your Operator is now successfully installed and ready to use.**
-
-### How to access to Demo environement
-```BASH
-kubectl port-forward -n formance-dev svc/gateway 8080:8080
-```
-You can now check the different versions of the components installed on your cluster using the following command:
-```bash
-curl http://localhost:8080/versions
-```
-
-Your demo environment is now ready for use. You can now move on to the [configuration](/docs/configuration) of your environment.

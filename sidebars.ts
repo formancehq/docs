@@ -563,6 +563,7 @@ const sidebars = {
               type: 'doc',
               id: 'operator/installation/deployments',
             },
+            'operator/demo/demo',
             {
               type: 'category',
               label: 'Modules',
@@ -610,10 +611,6 @@ const sidebars = {
               ],
             },
             {
-              type: 'doc',
-              id: 'operator/crd/settings',
-            },
-            {
               type: "category",
               label: "Infrastructure services",
               items: [
@@ -646,15 +643,26 @@ const sidebars = {
               ]
             },
             {
-              type: 'doc',
-              id: 'operator/upgrade',
+              type: 'category',
               label: 'Upgrade',
+              items: [
+                'operator/upgrade/upgrade',
+                'operator/upgrade/db_migration',
+              ]
             },
+            'operator/troubleshooting',
             {
-              type: 'doc',
-              id: 'operator/crd',
-              label: 'CRD Definition',
-            },
+              type: 'category',
+              label: 'Configuration reference',
+              items: [
+                'operator/crd/settings',
+                {
+                  id: 'operator/crd',
+                  label: 'Custom Resource Definitions',
+                  type: 'doc'
+                }
+              ]
+            }
           ],
         },
 
@@ -665,7 +673,7 @@ const sidebars = {
         {
           type: 'doc',
           id: 'deployment/backups',
-        },
+        }
       ],
     },
     {
