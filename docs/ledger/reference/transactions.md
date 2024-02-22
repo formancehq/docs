@@ -1,5 +1,6 @@
 ---
 title: Transactions
+sidebar_position: 6
 ---
 # Transactions
 
