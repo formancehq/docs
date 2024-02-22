@@ -19,7 +19,7 @@ export default async function createConfig() {
     url: 'https://docs.formance.com/',
     baseUrl: '/',
     onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenMarkdownLinks: 'throw',
     favicon: 'img/f-shape.ico',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.
