@@ -1,4 +1,7 @@
-# API Reference
+---
+sidebar_position: 2
+---
+# CRD Reference
 
 ## Packages
 - [formance.com/v1beta1](#formancecomv1beta1)
