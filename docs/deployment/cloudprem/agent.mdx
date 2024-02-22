@@ -3,6 +3,12 @@ title: Agent Deployment
 ---
 The agent allows linking your Kubernetes Cluster to your Formance Organization. To do this, you need to add an agent to your cluster that will manage the Operator through the CRDs.
 
+## Requirements
+
+Before you can link your Kubernetes cluster to a private Formance region. You must deploy [the Operator following this documentation](./../../operator/installation/deployments).
+
+Now that the Operator is deployed, we'll activate the agent that will communicate with Formance Cloud. The agent is a component that runs on your Kubernetes cluster and communicates with the Formance Cloud to manage the resources in your private region.
+
 ## Setup
 
 We can now install the Formance Operator on our cluster using Helm, and bind it to our private region. We will first create a values file, with the following keys:
@@ -25,6 +31,7 @@ Subdomains of `REGION_URL` will need to be publicly accessible in order to funct
 ```yaml
 # region.values.yaml
 agent:
+  enabled: true
   agent:
     id: "REGION_ID"
     baseUrl: "REGION_URL"

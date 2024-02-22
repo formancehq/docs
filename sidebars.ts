@@ -665,11 +665,6 @@ const sidebars = {
             }
           ],
         },
-
-        {
-          type: 'doc',
-          id: 'deployment/upgrade',
-        },
         {
           type: 'doc',
           id: 'deployment/backups',
