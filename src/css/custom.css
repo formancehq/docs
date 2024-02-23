@@ -171,6 +171,22 @@ html[data-theme='dark'] .button--yellow {
 	margin: 0;
 }
 
+.badge {
+	/* display: none; */
+	font-weight: 400;
+	font-size: 85%;
+	padding: 8px 15px;
+	border-radius: 999px;
+}
+
+.theme-doc-version-badge {
+	margin-top: 10px;
+	margin-bottom: 20px;
+	background-color: var(--yellow-light);
+	border: 1px solid var(--yellow-bright);
+	color: var(--yellow-darker);
+}
+
 .footer__title {
 	font-weight: var(--ifm-font-weight-semibold);
 }
