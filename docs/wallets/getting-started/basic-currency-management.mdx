@@ -141,3 +141,33 @@ Let's inspect Eryldor's wallet in the Formance Console.
 You'll see that the `main` balance contains 5 COIN and 150 XP, as shown in the screenshot below.
 
 ![Eryldor's wallet in the Formance Console](./wallet-console-debited.png)
+
+## Earning badges
+
+Eryldor is a very skilled mage and they are participating in the tournament season 2024. Thanks to their new spellbook, they managed to win the first tournament and earned a badge! Badges are earned in tournaments and expire at the end of the tournament season.
+
+You'll use the `fctl wallets credit` command to credit Eryldor's wallet with a badge. It's a special asset that you'll represent with the `BADGE` currency. The process is the same as for the coins and experience points, with the difference that you'll specify the `season-2024` balance.
+
+```bash
+fctl wallets credit 1 BADGE --name eryldor --balance season-2024 --source account=world
+```
+
+You'll get a response like this:
+
+```
+ SUCCESS  Wallet credited successfully!
+```
+
+### Inspecting Eryldor's wallet
+
+Let's inspect Eryldor's wallet in the Formance Console.
+
+You'll see that the `season-2024` balance contains 1 BADGE, as shown in the screenshot below.
+
+![Eryldor's wallet in the Formance Console](./wallet-console-badges.png)
+
+## Next steps
+
+In this section, you've learned how to create a wallet, create balances, credit and debit a wallet, and credit a balance. You've also learned how to inspect a wallet in the Formance Console.
+
+In the next session, you'll learn how to use the Wallets to model a hold, a mechanism to freeze assets for a specific purpose, such as a deposit or a reservation.
