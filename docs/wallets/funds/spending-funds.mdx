@@ -1,5 +1,7 @@
 ---
 title: Spending funds from wallets
+sidebar_label: Spending funds
+sidebar_position: 2
 ---
 
 Now that we have a wallet (and some funds in it), we can head straight to the fun part: spending funds from the wallet. In the wallets world, we spend funds by issuing a debit against the wallet through the `POST /wallets/{walletId}/debit` endpoint. The debit will be issued against the wallet's balance, which will immediately be reduced by the amount of the debit.
