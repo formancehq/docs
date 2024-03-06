@@ -1,0 +1,94 @@
+---
+title: Golang
+description: Setup the Formance SDK in you Golang project.
+---
+
+## Create a new project
+
+Create a new project with the following command:
+
+```bash
+mkdir formance-go-demo
+cd formance-go-demo
+go mod init example/formance-go-demo
+```
+
+## Install the Formance SDK
+
+Install the Formance SDK with the following command:
+
+```bash
+go get github.com/formancehq/formance-sdk-go/v2
+go get golang.org/x/oauth2/clientcredentials
+```
+
+:::info
+The Formance API relies on OAuth 2.0 for authentication. 
+
+For more information, see [OAuth 2.0](https://oauth.net/2/).
+:::
+
+:::danger
+In this demo, we will setup the Formance SDK with the client credentials grant type,  which requires a client ID and client secret. These are sensitive credentials that should not be exposed to the public.
+
+If you're integrating the Formance SDK in a client-side application, you should should use an OAuth 2.0 flow that does not expose the client secret, such as the [authorization code grant](https://oauth.net/2/grant-types/authorization-code/).
+:::
+
+## Hello world from the Formance Ledger
+
+Create a new file called `main.go` with the following content:
+
+```go
+package main
+
+import (
+  "context"
+  "github.com/formancehq/formance-sdk-go/v2"
+  "golang.org/x/oauth2/clientcredentials"
+  "log"
+)
+
+const FORMANCE_ENDPOINT = "https://xxxxxxxxxx-xxxx.sandbox.formance.cloud"
+const TOKEN_ENDPOINT = FORMANCE_ENDPOINT + "/api/auth/oauth/token"
+
+func main() {
+  config := clientcredentials.Config{
+    ClientID:     "6a936dfe-xxxx-yyyy-zzzz-9019a1e9b9e3",
+    ClientSecret: "20bd58c4-xxxx-yyyy-zzzz-dc05258bc959",
+    TokenURL:     TOKEN_ENDPOINT,
+  }
+
+  ctx := context.Background()
+  httpClient := config.Client(ctx)
+
+  formance := v2.New(
+    v2.WithServerURL(FORMANCE_ENDPOINT),
+    v2.WithClient(httpClient),
+  )
+
+  info, err := formance.Ledger.GetInfo(ctx)
+
+  if err != nil {
+    log.Fatal(err)
+  }
+
+  println(info.ConfigInfoResponse.GetData().Version)
+}
+```
+:::info
+You'll need the API endpoint and the credentials created during the [SDK's Getting Started](./index.mdx) guide. If you don't have them, you can create them by following the guide.
+:::
+
+## Run the project
+
+Run the project with the following command:
+
+```bash
+go run main.go
+```
+
+You should see the version of the Formance Ledger printed to the console, for example:
+
+```bash
+2.0.0-rc.13
+```
