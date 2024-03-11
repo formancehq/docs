@@ -24,6 +24,10 @@ Let's create a Cloud sandbox:
 fctl stack create playground
 ```
 
+:::caution
+Sandboxes are available for 15 days after their creation. After this period, they are automatically disabled and then completely deleted after 30 days. If you wish to keep your sandbox after it has been disabled, you can request its restoration.
+:::
+
 You'll be prompted to select a region for your stack named `playground`. While multiple regions are available, you will need to select one ending with `-sandbox` in order to create a free sandbox type stack.
 
 Make sure to let the command a few seconds to complete: this will create and provision a sandbox deployment in your account, and your local fctl will be automatically authorized against it.
