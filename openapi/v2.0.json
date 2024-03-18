@@ -637,7 +637,7 @@
           {
             "name": "cursor",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -646,7 +646,7 @@
           {
             "name": "pagination_token",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\nDeprecated, please use `cursor` instead.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\nDeprecated, please use `cursor` instead.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1283,7 +1283,7 @@
           {
             "name": "cursor",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1293,7 +1293,7 @@
             "name": "pagination_token",
             "x-speakeasy-ignore": true,
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\nDeprecated, please use `cursor` instead.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\nDeprecated, please use `cursor` instead.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1678,6 +1678,18 @@
             }
           },
           {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The maximum number of results to return per page.\n",
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 15
+            }
+          },
+          {
             "name": "after",
             "in": "query",
             "description": "Pagination cursor, will return accounts after given address, in descending order.",
@@ -1689,7 +1701,7 @@
           {
             "name": "cursor",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1895,7 +1907,7 @@
           {
             "name": "cursor",
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -1905,7 +1917,7 @@
             "name": "pagination_token",
             "x-speakeasy-ignore": true,
             "in": "query",
-            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\nDeprecated, please use `cursor` instead.\n",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 1000.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\nDeprecated, please use `cursor` instead.\n",
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
@@ -3497,7 +3509,8 @@
         "summary": "List Transfer Initiations",
         "operationId": "listTransferInitiations",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "parameters": [
           {
@@ -3522,7 +3535,8 @@
       "post": {
         "summary": "Create a TransferInitiation",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "operationId": "createTransferInitiation",
         "description": "Create a transfer initiation",
@@ -3540,7 +3554,8 @@
       "get": {
         "summary": "Get a transfer initiation",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "operationId": "getTransferInitiation",
         "parameters": [
@@ -3558,7 +3573,8 @@
         "summary": "Delete a transfer initiation",
         "operationId": "deleteTransferInitiation",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "description": "Delete a transfer initiation by its id.",
         "parameters": [
@@ -3577,7 +3593,8 @@
       "post": {
         "summary": "Update the status of a transfer initiation",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "operationId": "udpateTransferInitiationStatus",
         "description": "Update a transfer initiation status",
@@ -3600,7 +3617,8 @@
       "post": {
         "summary": "Reverse a transfer initiation",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "operationId": "reverseTransferInitiation",
         "description": "Reverse transfer initiation",
@@ -3623,7 +3641,8 @@
       "post": {
         "summary": "Retry a failed transfer initiation",
         "tags": [
-          "Payments"
+          "Payments",
+          "TransferInitiations"
         ],
         "operationId": "retryTransferInitiation",
         "description": "Retry a failed transfer initiation",
@@ -3644,7 +3663,8 @@
         "summary": "List Pools",
         "operationId": "listPools",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "parameters": [
           {
@@ -3669,7 +3689,8 @@
       "post": {
         "summary": "Create a Pool",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "operationId": "createPool",
         "description": "Create a Pool",
@@ -3687,7 +3708,8 @@
       "get": {
         "summary": "Get a Pool",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "operationId": "getPool",
         "parameters": [
@@ -3705,7 +3727,8 @@
         "summary": "Delete a Pool",
         "operationId": "deletePool",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "description": "Delete a pool by its id.",
         "parameters": [
@@ -3724,7 +3747,8 @@
       "post": {
         "summary": "Add an account to a pool",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "operationId": "addAccountToPool",
         "description": "Add an account to a pool",
@@ -3748,7 +3772,8 @@
         "summary": "Remove an account from a pool",
         "operationId": "removeAccountFromPool",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "description": "Remove an account from a pool by its id.",
         "parameters": [
@@ -3771,7 +3796,8 @@
         "summary": "Get pool balances",
         "operationId": "getPoolBalances",
         "tags": [
-          "Payments"
+          "Payments",
+          "Pools"
         ],
         "parameters": [
           {
@@ -3813,6 +3839,16 @@
             "$ref": "#/components/parameters/Sort"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "$ref": "#/components/responses/Accounts"
@@ -3910,7 +3946,8 @@
       "post": {
         "summary": "Create a BankAccount in Payments and on the PSP",
         "tags": [
-          "Payments"
+          "Payments",
+          "BankAccounts"
         ],
         "operationId": "createBankAccount",
         "description": "Create a bank account in Payments and on the PSP.",
@@ -3927,7 +3964,8 @@
         "summary": "List bank accounts created by user on Formance",
         "operationId": "listBankAccounts",
         "tags": [
-          "Payments"
+          "Payments",
+          "BankAccounts"
         ],
         "parameters": [
           {
@@ -3952,7 +3990,8 @@
       "get": {
         "summary": "Get a bank account created by user on Formance",
         "tags": [
-          "Payments"
+          "Payments",
+          "BankAccounts"
         ],
         "operationId": "getBankAccount",
         "parameters": [
@@ -3971,7 +4010,8 @@
       "post": {
         "summary": "Forward a bank account to a connector",
         "tags": [
-          "Payments"
+          "Payments",
+          "BankAccounts"
         ],
         "operationId": "forwardBankAccount",
         "parameters": [
@@ -3989,12 +4029,36 @@
         }
       }
     },
+    "/api/payments/bank-accounts/{bankAccountId}/metadata": {
+      "patch": {
+        "summary": "Update metadata of a bank account",
+        "tags": [
+          "Payments",
+          "BankAccounts"
+        ],
+        "operationId": "updateBankAccountMetadata",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/BankAccountId"
+          }
+        ],
+        "requestBody": {
+          "$ref": "#/components/requestBodies/UpdateBankAccountMetadata"
+        },
+        "responses": {
+          "204": {
+            "$ref": "#/components/responses/NoContent"
+          }
+        }
+      }
+    },
     "/api/payments/connectors": {
       "get": {
         "summary": "List all installed connectors",
         "operationId": "listAllConnectors",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "List all installed connectors.",
         "responses": {
@@ -4009,7 +4073,8 @@
         "summary": "List the configs of each available connector",
         "operationId": "listConfigsAvailableConnectors",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "List the configs of each available connector.",
         "responses": {
@@ -4023,7 +4088,8 @@
       "post": {
         "summary": "Install a connector",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "operationId": "installConnector",
         "description": "Install a connector by its name and config.",
@@ -4046,7 +4112,8 @@
         "deprecated": true,
         "operationId": "uninstallConnector",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Uninstall a connector by its name.",
         "parameters": [
@@ -4066,7 +4133,8 @@
         "summary": "Uninstall a connector",
         "operationId": "uninstallConnectorV1",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Uninstall a connector by its name.",
         "parameters": [
@@ -4090,7 +4158,8 @@
         "deprecated": true,
         "operationId": "readConnectorConfig",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Read connector config",
         "parameters": [
@@ -4110,7 +4179,8 @@
         "summary": "Update the config of a connector",
         "operationId": "updateConnectorConfigV1",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Update connector config",
         "parameters": [
@@ -4134,7 +4204,8 @@
         "summary": "Read the config of a connector",
         "operationId": "readConnectorConfigV1",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Read connector config",
         "parameters": [
@@ -4158,7 +4229,8 @@
         "deprecated": true,
         "operationId": "resetConnector",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Reset a connector by its name.\nIt will remove the connector and ALL PAYMENTS generated with it.\n",
         "parameters": [
@@ -4178,7 +4250,8 @@
         "summary": "Reset a connector",
         "operationId": "resetConnectorV1",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "description": "Reset a connector by its name.\nIt will remove the connector and ALL PAYMENTS generated with it.\n",
         "parameters": [
@@ -4201,7 +4274,8 @@
         "summary": "List tasks from a connector",
         "deprecated": true,
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "operationId": "listConnectorTasks",
         "description": "List all tasks associated with this connector.",
@@ -4227,7 +4301,8 @@
       "get": {
         "summary": "List tasks from a connector",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "operationId": "listConnectorTasksV1",
         "description": "List all tasks associated with this connector.",
@@ -4257,7 +4332,8 @@
         "summary": "Read a specific task of the connector",
         "deprecated": true,
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "operationId": "getConnectorTask",
         "description": "Get a specific task associated to the connector.",
@@ -4280,7 +4356,8 @@
       "get": {
         "summary": "Read a specific task of the connector",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "operationId": "getConnectorTaskV1",
         "description": "Get a specific task associated to the connector.",
@@ -4306,7 +4383,8 @@
       "post": {
         "summary": "Transfer funds between Connector accounts",
         "tags": [
-          "Payments"
+          "Payments",
+          "Connectors"
         ],
         "operationId": "connectorsTransfer",
         "description": "Execute a transfer between two accounts.",
@@ -5268,6 +5346,16 @@
           "204": {
             "description": "Wallet successfully debited"
           },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/walletsErrorResponse"
+                }
+              }
+            }
+          },
           "default": {
             "description": "Error",
             "content": {
@@ -5310,6 +5398,16 @@
         "responses": {
           "204": {
             "description": "Wallet successfully credited"
+          },
+          "400": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/walletsErrorResponse"
+                }
+              }
+            }
           },
           "default": {
             "description": "Error",
@@ -5552,7 +5650,8 @@
         "operationId": "listTriggers",
         "description": "List triggers",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "200": {
@@ -5575,7 +5674,8 @@
         "operationId": "createTrigger",
         "description": "Create trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "requestBody": {
           "content": {
@@ -5620,7 +5720,8 @@
         "operationId": "readTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "200": {
@@ -5643,7 +5744,8 @@
         "operationId": "deleteTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "204": {
@@ -5672,7 +5774,8 @@
         "operationId": "listTriggersOccurrences",
         "description": "List triggers occurrences",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "200": {
@@ -5697,7 +5800,8 @@
         "operationId": "listWorkflows",
         "description": "List registered workflows",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "responses": {
           "200": {
@@ -5720,7 +5824,8 @@
         "operationId": "createWorkflow",
         "description": "Create a workflow",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "requestBody": {
           "content": {
@@ -5764,7 +5869,8 @@
       "get": {
         "summary": "Get a flow by id",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "description": "Get a flow by id",
         "operationId": "getWorkflow",
@@ -5787,7 +5893,8 @@
       "delete": {
         "summary": "Delete a flow by id",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "description": "Delete a flow by id",
         "operationId": "deleteWorkflow",
@@ -5830,7 +5937,8 @@
           }
         ],
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "requestBody": {
           "content": {
@@ -5886,7 +5994,8 @@
           }
         ],
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -5923,7 +6032,8 @@
         "description": "Get a workflow instance by id",
         "operationId": "getInstance",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -5960,7 +6070,8 @@
         "description": "Send an event to a running workflow",
         "operationId": "sendEvent",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "requestBody": {
           "content": {
@@ -6007,7 +6118,8 @@
         "description": "Cancel a running workflow",
         "operationId": "cancelEvent",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "204": {
@@ -6037,7 +6149,8 @@
         "description": "Get a workflow instance history by id",
         "operationId": "getInstanceHistory",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -6084,7 +6197,8 @@
         "description": "Get a workflow instance stage history",
         "operationId": "getInstanceStageHistory",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -6133,7 +6247,8 @@
         "operationId": "v2ListTriggers",
         "description": "List triggers",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "200": {
@@ -6156,7 +6271,8 @@
         "operationId": "v2CreateTrigger",
         "description": "Create trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "requestBody": {
           "content": {
@@ -6201,7 +6317,8 @@
         "operationId": "v2ReadTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "200": {
@@ -6224,7 +6341,8 @@
         "operationId": "v2DeleteTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "204": {
@@ -6256,7 +6374,8 @@
         "operationId": "testTrigger",
         "description": "Test trigger",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "requestBody": {
           "content": {
@@ -6302,7 +6421,8 @@
         "operationId": "v2ListTriggersOccurrences",
         "description": "List triggers occurrences",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Triggers"
         ],
         "responses": {
           "200": {
@@ -6327,7 +6447,8 @@
         "operationId": "v2ListWorkflows",
         "description": "List registered workflows",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "responses": {
           "200": {
@@ -6350,7 +6471,8 @@
         "operationId": "v2CreateWorkflow",
         "description": "Create a workflow",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "requestBody": {
           "content": {
@@ -6394,7 +6516,8 @@
       "get": {
         "summary": "Get a flow by id",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "description": "Get a flow by id",
         "operationId": "v2GetWorkflow",
@@ -6417,7 +6540,8 @@
       "delete": {
         "summary": "Delete a flow by id",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "description": "Delete a flow by id",
         "operationId": "v2DeleteWorkflow",
@@ -6466,7 +6590,8 @@
           }
         ],
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Workflows"
         ],
         "requestBody": {
           "content": {
@@ -6522,7 +6647,8 @@
           }
         ],
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -6559,7 +6685,8 @@
         "description": "Get a workflow instance by id",
         "operationId": "v2GetInstance",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -6596,7 +6723,8 @@
         "description": "Send an event to a running workflow",
         "operationId": "v2SendEvent",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "requestBody": {
           "content": {
@@ -6643,7 +6771,8 @@
         "description": "Cancel a running workflow",
         "operationId": "v2CancelEvent",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "204": {
@@ -6673,7 +6802,8 @@
         "description": "Get a workflow instance history by id",
         "operationId": "v2GetInstanceHistory",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -6720,7 +6850,8 @@
         "description": "Get a workflow instance stage history",
         "operationId": "v2GetInstanceStageHistory",
         "tags": [
-          "Orchestration"
+          "Orchestration",
+          "Instances"
         ],
         "responses": {
           "200": {
@@ -6760,7 +6891,8 @@
       "post": {
         "summary": "Create a policy",
         "tags": [
-          "Reconciliation"
+          "Reconciliation",
+          "Policy"
         ],
         "operationId": "createPolicy",
         "description": "Create a policy",
@@ -6780,7 +6912,8 @@
         "summary": "List policies",
         "operationId": "listPolicies",
         "tags": [
-          "Reconciliation"
+          "Reconciliation",
+          "Policy"
         ],
         "parameters": [
           {
@@ -6805,7 +6938,8 @@
         "summary": "Delete a policy",
         "operationId": "deletePolicy",
         "tags": [
-          "Reconciliation"
+          "Reconciliation",
+          "Policy"
         ],
         "description": "Delete a policy by its id.",
         "parameters": [
@@ -6825,7 +6959,8 @@
       "get": {
         "summary": "Get a policy",
         "tags": [
-          "Reconciliation"
+          "Reconciliation",
+          "Policy"
         ],
         "operationId": "getPolicy",
         "parameters": [
@@ -6847,7 +6982,8 @@
       "post": {
         "summary": "Reconcile using a policy",
         "tags": [
-          "Reconciliation"
+          "Reconciliation",
+          "Policy"
         ],
         "operationId": "reconcile",
         "description": "Reconcile using a policy",
@@ -8717,7 +8853,8 @@
           "NOT_FOUND",
           "REVERT_OCCURRING",
           "ALREADY_REVERT",
-          "NO_POSTINGS"
+          "NO_POSTINGS",
+          "LEDGER_NOT_FOUND"
         ],
         "example": "VALIDATION"
       },
@@ -10260,10 +10397,10 @@
           "swiftBicCode": {
             "type": "string"
           },
-          "adjustments": {
+          "relatedAccounts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/BankAccountAdjustment"
+              "$ref": "#/components/schemas/BankAccountRelatedAccounts"
             }
           },
           "metadata": {
@@ -10271,7 +10408,7 @@
           }
         }
       },
-      "BankAccountAdjustment": {
+      "BankAccountRelatedAccounts": {
         "type": "object",
         "required": [
           "id",
@@ -10515,6 +10652,9 @@
             "type": "string"
           },
           "connectorID": {
+            "type": "string"
+          },
+          "provider": {
             "type": "string"
           },
           "defaultCurrency": {
@@ -10883,6 +11023,17 @@
         "properties": {
           "connectorID": {
             "type": "string"
+          }
+        }
+      },
+      "UpdateBankAccountMetadataRequest": {
+        "type": "object",
+        "required": [
+          "metadata"
+        ],
+        "properties": {
+          "metadata": {
+            "$ref": "#/components/schemas/BankAccountMetadata"
           }
         }
       },
@@ -12566,8 +12717,6 @@
         "type": "object",
         "required": [
           "triggerID",
-          "workflowInstanceID",
-          "workflowInstance",
           "date",
           "event"
         ],
@@ -12588,6 +12737,9 @@
           "event": {
             "type": "object",
             "additionalProperties": true
+          },
+          "error": {
+            "type": "string"
           }
         }
       },
@@ -13818,8 +13970,6 @@
         "type": "object",
         "required": [
           "triggerID",
-          "workflowInstanceID",
-          "workflowInstance",
           "date",
           "event"
         ],
@@ -13835,6 +13985,9 @@
             "$ref": "#/components/schemas/V2WorkflowInstance"
           },
           "triggerID": {
+            "type": "string"
+          },
+          "error": {
             "type": "string"
           },
           "event": {
@@ -15345,8 +15498,8 @@
         "type": "oauth2",
         "flows": {
           "clientCredentials": {
-            "tokenUrl": "https://localhost/api/auth/oauth/token",
-            "refreshUrl": "https://localhost/api/auth/oauth/token",
+            "tokenUrl": "/api/auth/oauth/token",
+            "refreshUrl": "/api/auth/oauth/token",
             "scopes": {}
           }
         }
@@ -15867,6 +16020,16 @@
           }
         }
       },
+      "UpdateBankAccountMetadata": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/UpdateBankAccountMetadataRequest"
+            }
+          }
+        }
+      },
       "BankAccount": {
         "required": true,
         "content": {
@@ -15962,7 +16125,11 @@
     {
       "name": "Payments",
       "tags": [
-        "Payments"
+        "Payments",
+        "TransferInitiations",
+        "Pools",
+        "BankAccounts",
+        "Connectors"
       ]
     },
     {
@@ -15986,13 +16153,17 @@
     {
       "name": "Flows",
       "tags": [
-        "Orchestration"
+        "Orchestration",
+        "Workflows",
+        "Triggers",
+        "Instances"
       ]
     },
     {
       "name": "Reconciliation",
       "tags": [
-        "Reconciliation"
+        "Reconciliation",
+        "Policy"
       ]
     }
   ]
