@@ -14,6 +14,7 @@ While we have some basic types (string, number, bool ...), we also have some com
 
 | Key                                                                                      | Type   | Example             | Description                                                          |
 |------------------------------------------------------------------------------------------|--------|---------------------|----------------------------------------------------------------------|
+| aws.service-account                                                                      | string |                     |  AWS Role |
 | postgres.`<module-name>`.uri                                                             | URI    |                     | Postgres database configuration                                      |
 | elasticsearch.dsn                                                                        | URI    |                     | Elasticsearch connection URI                                         |
 | temporal.dsn                                                                             | URI    |                     | Temporal URI                                                         |
@@ -42,7 +43,6 @@ Query params :
 | Name           | Type   | Default | Description                                          |
 |----------------|--------|---------|------------------------------------------------------|
 | secret         | string |         | Specify a secret where credentials are defined       |
-| awsRole        | string |         | Specify a service account name mapped to an aws role |
 | disableSSLMode | bool   | false   | Disable SSL on Postgres connection                   |
 
 ### ElasticSearch URI format
@@ -148,7 +148,7 @@ spec:
   key: postgres.*.uri
   stacks:
     - 'formance-dev'
-  value: postgresql://formance@postgresql.formance-system.svc:5432?awsRole=aws-rds-access-role
+  value: postgresql://formance@postgresql.formance-system.svc:5432
  ```
 
 ### Define module resource requests

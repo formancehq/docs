@@ -76,10 +76,20 @@ metadata:
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
+  name: formance-dev-aws-service-account
+spec:
+  stacks:
+    - formance-dev
+  key: aws.service-account
+  value: aws-rds-access-role
+---
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
   name: formance-dev-postgres-uri
 spec:
   key: postgres.*.uri
   stacks:
     - 'formance-dev'
-  value: postgresql://formance@postgresql.formance-system.svc:5432?awsRole=aws-rds-access-role
+  value: postgresql://formance@postgresql.formance-system.svc:5432
  ```
