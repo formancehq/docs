@@ -1,0 +1,244 @@
+---
+title: CloudPrem Deployment
+---
+## Requirements
+- Kubernetes
+- Helm
+- Ingress Controller
+- SSL Certificate
+- Oauth2 / OIDC Provider (eg: [Dex](https://dexidp.io/))
+
+## Deployment Membership on Kubernetes
+We will start by creating the values.yaml file, which will contain the configuration values for our deployment. This will make our deployment more flexible and allow us to reuse this file for other deployments.
+
+In this example, we will deploy a CloudPrem application consisting of several services:
+
+* Dex (OAuth2 / OIDC Provider)
+* Membership (Management API)
+* Console (Graphical Interface)
+* PostgreSQL (Database)
+
+
+:::warning
+Please note, the following values are examples and must be adapted to your environment. The PostgreSQL configuration does not provide any data persistence.
+:::
+
+```yaml
+---
+global:
+  ingress:
+    consoleUrl: "console.formance.dev"
+    membershipUrl: "membership.formance.dev"
+    dexUrl: "dex.formance.dev"
+
+console:
+  enabled: true
+  replicas: 2
+  ingress:
+    enabled: true
+    className: ""
+    annotations: { }
+    hosts:
+      - host: console.*ingress.baseUrl
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - secretName: *ingress.tlsSecretName
+
+  config:
+    stargate_url: "http://gateway.#{organizationId}-#{stackId}.svc:8080/api" # DO NOT CHANGE
+    redirect_url: "https://console.*ingress.baseUrl"
+    encryption_key: "9h44y2ZqrDuUy5R9NGLA9hca7uRUr932"
+    encryption_iv: "b6747T6eP9DnMvEw"
+    environment: "demo"
+    features_disabled: ""
+    managed_stack: true
+    database:
+      url: "postgresql://formance:formance@postgresql.formance-system.svc:5432/console?sslmode=disable"
+    membership:
+      url: "https://membership.*ingress.baseUrl/api"
+      client: "console"
+      secret: "console"
+    monitoring:
+      traces:
+        enabled: false
+
+membership:
+  enabled: true
+
+  replicaCount: 3
+
+  feature:
+    managedStacks: true
+    disableEvents: true
+
+  ingress:
+    enabled: true
+    className: ""
+    annotations: { }
+    hosts:
+      - host: membership.*ingress.baseUrl
+        paths:
+          - path: /api
+            pathType: ImplementationSpecific
+    tls:
+      - secretName: *ingress.tlsSecretName
+
+  config:
+    url: https://membership.*ingress.baseUrl
+    postgresqlUrl: "postgresql://formance:formance@postgresql.formance-system.svc:5432/formance?sslmode=disable"
+    oidc:
+      issuer: https://dex.*ingress.baseUrl
+      clientId: NAME_OF_CLIENT
+      clientSecret: NAME_OF_CLIENT
+    configMap:
+      clients:
+        - id: fctl
+          public: true
+        - id: console
+          secrets:
+            - console
+          redirectUris:
+            - https://console.*ingress.baseUrl/auth/login
+            - http://localhost:3000/auth/login
+          postLogoutRedirectUris:
+            - https://console.*ingress.baseUrl/auth/logout
+            - http://localhost:3000/auth/logout
+          scopes:
+            - supertoken
+            - accesses
+
+dex:
+  enabled: true
+
+  ingress:
+    enabled: true
+    hosts:
+      - host: dex.*ingress.baseUrl
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    tls:
+      - secretName: *ingress.tlsSecretName
+
+  config:
+    issuer: https://dex.*ingress.baseUrl
+    oauth2:
+      skipApprovalScreen: true
+      responseTypes:
+        - code
+        - token
+        - id_token
+    logger:
+      format: "json"
+    storage:
+      type: postgres
+      config:
+        host: postgresql.formance-system.svc
+        port: 5432
+        database: formance
+        user: formance
+        password: formance
+        ssl:
+          mode: disable
+    staticClients:
+      - name: 'Membership API'
+        id: NAME_OF_CLIENT
+        secret: NAME_OF_CLIENT
+        redirectURIs:
+          - https://membership.*ingress.baseUrl/api/authorize/callback
+    enablePasswordDB: true
+    staticPasswords:
+      - email: admin@formance.com
+        # https://github.com/dexidp/dex/blob/576f990d257d9dd63e283cf379960e50506e8bcc/examples/config-dev.yaml#L145
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W" # password
+        username: admin
+        userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
+      - email: user1@formance.com
+        # https://github.com/dexidp/dex/blob/576f990d257d9dd63e283cf379960e50506e8bcc/examples/config-dev.yaml#L145
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W" # password
+        username: user1
+        userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
+      - email: user2@formance.com
+        # https://github.com/dexidp/dex/blob/576f990d257d9dd63e283cf379960e50506e8bcc/examples/config-dev.yaml#L145
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W" # password
+        username: user2
+        userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
+      - email: user3@formance.com
+        # https://github.com/dexidp/dex/blob/576f990d257d9dd63e283cf379960e50506e8bcc/examples/config-dev.yaml#L145
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W" # password
+        username: user3
+        userID: 08a8684b-db88-4b73-90a9-3cd1661f5466
+
+postgresql:
+  enabled: true
+  fullnameOverride: postgresql
+  architecture: standalone
+  global:
+    postgresql:
+      auth:
+        username: formance
+        password: formance
+        database: formance
+        postgresPassword: formance
+  primary:
+    persistence:
+      enabled: false
+```
+We can now launch the deployment of our application using Helm. Helm will be responsible for deploying the necessary resources for our application.
+```bash
+helm install regions oci://ghcr.io/formancehq/helm/cloudprem \
+--version v2.0.0 \
+--namespace formance-system \
+--create-namespace \
+--values ./values.yaml
+```
+
+## Configuration of Membership
+
+### Login to the cluster
+
+```bash
+fctl --profile demo login --membership-uri https://membership.$URL/api
+```
+
+This will create a new organization and a user.
+
+### Add a domain for Auto Login
+```bash
+fctl cloud organizations list
+fctl cloud organizations update ORGANIZATION_ID --domain=DOMAIN_NAME --default-organization-role=GUEST --default-stack-role=GUEST
+fctl cloud organizations list
+```
+The possible values are GUEST or ADMIN. This allows assigning default rights to a user who logs in with an email from the DOMAIN_NAME domain.
+
+### Init databases
+
+```SQL
+insert into membership."regions" (id, base_url, name, creator_id, created_at, production, active) values (
+    gen_random_uuid(),
+    'https://NAME.formance.dev',
+    'default',
+    (select id from membership."users" where id = (
+        select owner_id from membership."organizations" limit 1
+    )),
+    now(),
+    true,
+    true
+);
+insert into membership."stacks" (name, organization_id, id, region_id, created_at, updated_at, stargate_enabled, client_secret, state, status, expected_status) values (
+    'default',
+     (select id from membership."organizations" limit 1),
+     'demo', -- update if needed, this is your stack id
+     (select id from membership."regions" limit 1),
+     now(),
+     now(),
+     false,
+     gen_random_uuid(),
+     'ACTIVE',
+     'READY',
+     'READY'
+);
+```
+

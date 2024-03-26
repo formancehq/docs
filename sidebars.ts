@@ -493,7 +493,7 @@ const sidebars = {
             },
             {
               type: 'category',
-              label: 'Formance CloudPrem',
+              label: 'Formance CloudPrem 1',
               items: [
                 { type: 'doc', id: 'deployment/cloudprem/intro' },
                 {
@@ -507,6 +507,25 @@ const sidebars = {
                 {
                   type: 'doc',
                   id: 'deployment/cloudprem/usage',
+                },
+              ],
+            },
+            {
+              type: 'category',
+              label: 'Formance CloudPrem 2',
+              items: [
+                { type: 'doc', id: 'deployment/cloudprem2/intro' },
+                {
+                  type: 'doc',
+                  id: 'deployment/cloudprem2/cloudprem',
+                },
+                {
+                  type: 'doc',
+                  id: 'deployment/cloudprem2/operator',
+                },
+                {
+                  type: 'doc',
+                  id: 'deployment/cloudprem2/stack',
                 },
               ],
             },
