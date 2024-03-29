@@ -13,14 +13,14 @@ We will start by creating the values.yaml file, which will contain the configura
 
 In this example, we will deploy a CloudPrem application consisting of several services:
 
-* Dex (OAuth2 / OIDC Provider)
+* [Dex](https://dexidp.io/) (OAuth2 / OIDC Provider)
 * Membership (Management API)
 * Console (Graphical Interface)
 * PostgreSQL (Database)
 
 
 :::warning
-Please note, the following values are examples and must be adapted to your environment. The PostgreSQL configuration does not provide any data persistence.
+Please note, the following values are examples and must be adapted to your environment. The PostgreSQL configuration **does not provide any data persistence**.
 :::
 
 You can retrieve the `values.yaml` file with the following command:
@@ -44,10 +44,19 @@ helm install regions oci://ghcr.io/formancehq/helm/cloudprem \
 
 ## Configuration of Membership
 
+### Create a valid Dex configuration
+By default, we deploy a [Dex](https://dexidp.io/) as an OIDC / oAuth2 provider. This allows us to create default users that you can use.
+
+It also enables us to connect protocols such as SAMLv2 to OIDC. To do this, you need to follow [Dex's documentation](https://dexidp.io/docs/) to create a valid configuration.
+
+:::warning
+You can also choose not to deploy Dex and modify Membership's OIDC configuration to talk directly to the OIDC provider of your choice.
+:::
+
 ### Login to the cluster
 
 ```bash
-fctl --profile demo login --membership-uri https://membership.$URL/api
+fctl --profile demo login --membership-uri https://membership.BASE_URL/api
 ```
 
 This will create a new organization and a user.
@@ -62,10 +71,17 @@ The possible values are GUEST or ADMIN. This allows assigning default rights to 
 
 ### Init databases
 
+We will now create a region and a stack in the Membership database.
+To do this, replace BASE_URL with the domain of your choice.
+
+:::warning
+By default, all communications between Console and your Stack remain internal to the Kubernetes cluster.
+:::
+
 ```SQL
 insert into membership."regions" (id, base_url, name, creator_id, created_at, production, active) values (
     gen_random_uuid(),
-    'https://NAME.formance.dev',
+    'https://BASE_URL',
     'default',
     (select id from membership."users" where id = (
         select owner_id from membership."organizations" limit 1
@@ -89,3 +105,10 @@ insert into membership."stacks" (name, organization_id, id, region_id, created_a
 );
 ```
 
+## Next Steps
+:::warning
+Be sure to save your OrganizationID and StackID, as you'll need them when you create your Stack.
+:::
+
+You now have an Organization containing a default region and a stack.
+In the next steps, you'll be able to deploy the Operator and then your Stack.
