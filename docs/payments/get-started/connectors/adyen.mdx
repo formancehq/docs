@@ -13,6 +13,19 @@ Before you begin, you need to have a Adyen account. If you don't have one, you c
 
 ## Setup
 
+In order to use the adyen connector, you will have first to create a webhook in
+your Adyen account. First, you need to go to Developers > Webhooks in your Adyen
+account and click on the buttin to add a new standard webhook.
+
+![Webhook Creation](./adyen_screenshot_1.png)
+
+Then, on the webhook creation page, you need to first generate a new HMAC key.
+
+![HMAC Key Generation](./adyen_screenshot_2.png)
+
+Copy the HMAC key and paste it in the `hmacKey` field in the JSON configuration
+for the formance connector. You can now create the connector on the Formance
+platform using the following command:
 
 <StackCmd>
 
@@ -40,3 +53,15 @@ With adyen.json containing:
     "pollingPeriod": "2m"
 }
 ```
+
+Retrieve the connector ID after creation, you will need it to link the connector
+to the webhook in Adyen.
+
+Finally, you can add the URL in the server configuration in the webhook creation
+page on Adyen. The URL must have the following format:
+
+```
+https://$STACK.formance.cloud/api/payments/connectors/webhooks/adyen/<connectorID>/
+```
+
+You can now save the configuration and wait for webhooks to start coming in.
