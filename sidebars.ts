@@ -284,6 +284,11 @@ const sidebars = {
                   items: [
                     {
                       type: 'doc',
+                      id: 'payments/get-started/connectors/atlar',
+                      label: 'Atlar',
+                    },
+                    {
+                      type: 'doc',
                       id: 'payments/get-started/connectors/stripe',
                       label: 'Stripe',
                     },
