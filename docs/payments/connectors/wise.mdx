@@ -16,19 +16,22 @@ Before you begin, you need to have a Wise account. If you don't have one, you ca
 <StackCmd>
 
 ```shell
-read "WISE_API_KEY"
-fctl payments connectors install wise $WISE_API_KEY
+fctl payments connectors install wise wise.json
 ```
 
 ```shell
-STACK="stack_123" \
-read WISE_API_KEY && \
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/wise" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/wise" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d "{ \
-  \"apiKey\": "$MODULR_API_KEY" \
-}"
+-d @wise.json
 ```
 
 </StackCmd>
+
+With wise.json containing:
+
+```json
+{
+    "apiKey": "<apiKey>"
+}
+```

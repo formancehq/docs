@@ -16,25 +16,24 @@ Before you begin, you need to have a Moneycorp account. If you don't have one, y
 <StackCmd>
 
 ```shell
-read "CLIENT_ID"
-read "API_KEY"
-read "ENDPOINT"
-fctl payments connectors install moneycorp $CLIENT_ID $API_KEY
+fctl payments connectors install moneycorp moneycorp.json
 ```
 
 ```shell
-STACK="stack_123" \
-read "CLIENT_ID" && \
-read API_KEY && \
-read "ENDPOINT" && \
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/moneycorp" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/moneycorp" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d "{ \
-  \"clientID\": \"$CLIENT_ID\",
-  \"apiKey\": \"$API_KEY\", \
-  \"endpoint\": \"$ENDPOINT\" \
-}"
+-d @moneycorp.json
 ```
 
 </StackCmd>
+
+With moneycorp.json containing:
+
+```json
+{
+    "clientID": "<clientID>",
+    "apiKey": "<apiKey>",
+    "endpoint": "<endpoint>"
+}
+```
