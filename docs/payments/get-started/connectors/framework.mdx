@@ -26,6 +26,9 @@ type Loader[ConnectorConfig payments.ConnectorConfigObject, TaskDescriptor payme
 	Load(logger sharedlogging.Logger, config ConnectorConfig) Connector[TaskDescriptor]
 	// ApplyDefaults is used to fill default values of the provided configuration object.
 	ApplyDefaults(t ConnectorConfig) ConnectorConfig
+	// Router is used to expose some endpoints for the payment provider to send
+	// webhooks.
+	Router(store *storage.Storage) *mux.Router
 	// AllowTasks define how many task the connector can run
 	// If too many tasks are scheduled by the connector,
 	// those will be set to pending state and restarted later when some other tasks will be terminated
@@ -80,6 +83,10 @@ func (l *Loader) ApplyDefaults(cfg Config) Config {
 	}
 
 	return cfg
+}
+
+func (l *Loader) Router(store *storage.Storage) *mux.Router {
+	return nil
 }
 
 func (l *Loader) Load(logger logging.Logger, config Config) connectors.Connector {
@@ -138,10 +145,14 @@ type Connector interface {
 	Install(ctx task.ConnectorContext) error
 	// Uninstall is used to uninstall the connector. It has to close all related resources opened by the connector.
 	Uninstall(ctx context.Context) error
+	// UpdateConfig is used to update the configuration of the connector.
+	UpdateConfig(ctx task.ConnectorContext, config models.ConnectorConfigObject) error
 	// Resolve is used to recover state of a failed or restarted task
 	Resolve(descriptor models.TaskDescriptor) task.Task
 	// InitiateTransfer is used to initiate a transfer from the connector to a bank account.
 	InitiatePayment(ctx task.ConnectorContext, transfer *models.TransferInitiation) error
+	// ReverssePayment is used to reverse a transfer from the connector.
+	ReversePayment(ctx task.ConnectorContext, transferReversal *models.TransferReversal) error
 	// CreateExternalBankAccount is used to create a bank account on the connector side.
 	CreateExternalBankAccount(ctx task.ConnectorContext, bankAccount *models.BankAccount) error
 	// GetSupportedCurrenciesAndDecimals returns a map of supported currencies and their decimals.
@@ -165,15 +176,30 @@ type Connector struct {
 }
 
 func (c *Connector) InitiatePayment(ctx task.ConnectorContext, transfer *models.TransferInitiation) error {
-	return errors.New("not implemented")
+	return connectors.ErrNotImplemented
+}
+
+func (c *Connector) ReversePayment(ctx task.ConnectorContext, transferReversal *models.TransferReversal) error {
+	return connectors.ErrNotImplemented
 }
 
 func (c *Connector) CreateExternalBankAccount(ctx task.ConnectorContext, bankAccount *models.BankAccount) error {
-	return errors.New("not implemented")
+	return connectors.ErrNotImplemented
 }
 
 func (c *Connector) SupportedCurrenciesAndDecimals() map[string]int {
 	return currency.ISO4217Currencies
+}
+
+func (c *Connector) UpdateConfig(ctx task.ConnectorContext, config models.ConnectorConfigObject) error {
+	cfg, ok := config.(Config)
+	if !ok {
+		return connectors.ErrInvalidConfig
+	}
+
+	c.cfg = cfg
+
+	return nil
 }
 
 func (c *Connector) Install(ctx task.ConnectorContext) error {
@@ -723,6 +749,10 @@ func (l *Loader) ApplyDefaults(cfg Config) Config {
 	return cfg
 }
 
+func (l *Loader) Router(store *storage.Storage) *mux.Router {
+	return nil
+}
+
 func (l *Loader) Load(logger logging.Logger, config Config) connectors.Connector {
 	return newConnector(logger, config)
 }
@@ -760,15 +790,30 @@ type Connector struct {
 }
 
 func (c *Connector) InitiatePayment(ctx task.ConnectorContext, transfer *models.TransferInitiation) error {
-	return errors.New("not implemented")
+	return connectors.ErrNotImplemented
 }
 
 func (c *Connector) CreateExternalBankAccount(ctx task.ConnectorContext, bankAccount *models.BankAccount) error {
-	return errors.New("not implemented")
+	return connectors.ErrNotImplemented
+}
+
+func (c *Connector) ReversePayment(ctx task.ConnectorContext, transferReversal *models.TransferReversal) error {
+	return connectors.ErrNotImplemented
 }
 
 func (c *Connector) SupportedCurrenciesAndDecimals() map[string]int {
 	return currency.ISO4217Currencies
+}
+
+func (c *Connector) UpdateConfig(ctx task.ConnectorContext, config models.ConnectorConfigObject) error {
+	cfg, ok := config.(Config)
+	if !ok {
+		return connectors.ErrInvalidConfig
+	}
+
+	c.cfg = cfg
+
+	return nil
 }
 
 type TaskDescriptor string
