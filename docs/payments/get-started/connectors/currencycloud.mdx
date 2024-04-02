@@ -16,26 +16,26 @@ Before you begin, make sure you have a CurrencyCloud account. If you don't have 
 <StackCmd>
 
 ```shell
-read "CC_LOGIN_ID"
-read "CC_API_KEY"
-read "CC_ENDPOINT"
-fctl payments connectors install currency-cloud $CC_API_KEY $CC_API_KEY --endpoint $CC_ENDPOINT
+fctl payments connectors install currencycloud currencycloud.json
 ```
 
 ```shell
-STACK="stack_123" \
-read CC_LOGIN_ID && \
-read CC_API_KEY && \
-read CC_ENDPOINT && \
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/currency-cloud" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/currencycloud" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d '{
-  "pollingPeriod": "300s",
-  "apiKey": "$CC_API_KEY",
-  "loginID": "$CC_LOGIN_ID",
-  "endpoint": "$CC_ENDPOINT"
-}'
+-d @currencycloud.json
 ```
 
 </StackCmd>
+
+With currencycloud.json containing:
+
+```json
+{
+    "name": "currencycloud",
+    "loginID": "<loginID>",
+    "apiKey": "<apiKey>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "2m"
+}
+```

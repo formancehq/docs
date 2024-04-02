@@ -1,0 +1,42 @@
+---
+title: Adyen Connector
+description: Learn how to use the Adyen Connector to connect your Formance Stack with your Adyen account.
+---
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+
+## Prerequisites
+
+Before you begin, you need to have a Adyen account. If you don't have one, you can [sign up for a Adyen account](https://www.adyen.com/) here.
+
+<ApiWarning/>
+
+## Setup
+
+
+<StackCmd>
+
+```shell
+fctl payments connectors install atlar adyen.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/atlar" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @adyen.json
+```
+
+</StackCmd>
+
+With adyen.json containing:
+
+```json
+{
+    "name": "adyen",
+    "apiKey": "<apiKey>",
+    "hmacKey": "<hmacKey>",
+    "liveEndpointPrefix": "<liveEndpointPrefix>",
+    "pollingPeriod": "2m"
+}
+```

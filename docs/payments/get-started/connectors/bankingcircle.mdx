@@ -37,35 +37,29 @@ In addition to the steps above, you will alsoneed to whitelist the IP addresses 
 <StackCmd>
 
 ```shell
-read "BC_USERNAME"
-read "BC_PASSWORD"
-read "BC_ENDPOINT"
-read "BC_AUTH_ENDPOINT"
-read "BC_USER_CERTIFICATE"
-read "BC_USER_CERTIFICATE_KEY"
-fctl payments connectors install banking-circle $BC_USERNAME $BC_PASSWORD $BC_ENDPOINT $BC_AUTH_ENDPOINT $BC_USER_CERTIFICATE $BC_USER_CERTIFICATE_KEY
+fctl payments connectors install bankingcircle bankingcircle.json
 ```
 
 ```shell
-STACK="stack_123" \
-read "BC_USERNAME" && \
-read "BC_PASSWORD" && \
-read "BC_ENDPOINT" && \
-read "BC_AUTH_ENDPOINT" && \
-read "BC_USER_CERTIFICATE" && \
-read "BC_USER_CERTIFICATE_KEY"
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/banking-circle" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/bankingcircle" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d '{
-  "pollingPeriod": "300s",
-  "username": "$BC_USERNAME",
-  "password": "$BC_PASSWORD",
-  "endpoint": "$BC_ENDPOINT",
-  "authEndpoint": "$BC_AUTH_ENDPOINT",
-  "userCertificate": "$BC_USER_CERTIFICATE",
-  "userCertificateKey": "$BC_USER_CERTIFICATE_KEY"
-}'
+-d @bankingcircle.json
 ```
 
 </StackCmd>
+
+with bankingcircle.json containing:
+
+```json
+{
+    "name": "bankingcircle",
+    "username": "<username>",
+    "password": "<password>",
+    "endpoint": "<endpoint>",
+    "authorizationEndpoint": "<authorization endpoint>",
+    "userCertificate": "<certificate>",
+    "userCertificateKey": "<certificate key>",
+    "pollingPeriod": "2m"
+}
+```

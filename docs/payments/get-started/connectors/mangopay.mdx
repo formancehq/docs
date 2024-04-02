@@ -16,26 +16,26 @@ Before you begin, you need to have a Mangopay account. If you don't have one, yo
 <StackCmd>
 
 ```shell
-read "CLIENT_ID"
-read "API_KEY"
-read "ENDPOINT"
-fctl payments connectors install mangopay $CLIENT_ID $API_KEY --endpoint $ENDPOINT
+fctl payments connectors install mangopay mangopay.json
 ```
 
 ```shell
-STACK="stack_123" \
-read "CLIENT_ID" && \
-read API_KEY && \
-read "ENDPOINT" && \
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/mangopay" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/mangopay" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d '{
-  "pollingPeriod": "300s",
-  "clientID": "$CLIENT_ID",
-  "apiKey": "$API_KEY",
-  "endpoint": "$ENDPOINT"
-}'
+-d @mangopay.json
 ```
 
 </StackCmd>
+
+With mangopay.json containing:
+
+```json
+{
+    "name": "mangopay",
+    "clientID": "<clientID>",
+    "apiKey": "<apiKey>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "2m"
+}
+```
