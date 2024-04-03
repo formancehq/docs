@@ -13,8 +13,8 @@ Before you begin, you need to have a Adyen account. If you don't have one, you c
 
 ## Setup
 
-In order to use the adyen connector, you will have first to create a webhook in
-your Adyen account. First, you need to go to Developers > Webhooks in your Adyen
+In order to use the adyen connector, you will have to create a webhook in
+your Adyen account. You need to go to Developers > Webhooks in your Adyen
 account and click on the button to add a new standard webhook.
 
 ![Webhook Creation](./adyen_screenshot_1.png)
@@ -30,11 +30,11 @@ platform using the following command:
 <StackCmd>
 
 ```shell
-fctl payments connectors install atlar adyen.json
+fctl payments connectors install adyen adyen.json
 ```
 
 ```shell
-curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/atlar" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/adyen" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
 -d @adyen.json
