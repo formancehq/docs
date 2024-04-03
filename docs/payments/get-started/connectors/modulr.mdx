@@ -16,26 +16,26 @@ Before you begin, you need to have a Modulr account. If you don't have one, you 
 <StackCmd>
 
 ```shell
-read "MODULR_API_KEY"
-read "MODULR_API_SECRET"
-read "MODULR_ENDPOINT"
-fctl payments connectors install modulr $MODULR_API_KEY $MODULR_API_SECRET --endpoint $MODULR_ENDPOINT
+fctl payments connectors install modulr modulr.json
 ```
 
 ```shell
-read STACK && \
-read MODULR_API_KEY && \
-read MODULR_API_SECRET && \
-read MODULR_ENDPOINT && \
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/modulr" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/modulr" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d '{
-  "pollingPeriod": "300s",
-  "apiKey": "$MODULR_API_KEY",
-  "apiSecret": "$MODULR_API_SECRET",
-  "endpoint": "$MODULR_ENDPOINT"
-}'
+-d @modulr.json
 ```
 
 </StackCmd>
+
+With modulr.json containing:
+
+```json
+{
+    "name": "modulr",
+    "apiKey": "<apiKey>",
+    "apiSecret": "<apiSecret>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "10m"
+}
+```
