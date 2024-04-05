@@ -284,23 +284,13 @@ const sidebars = {
                   items: [
                     {
                       type: 'doc',
-                      id: 'payments/get-started/connectors/stripe',
-                      label: 'Stripe',
+                      id: 'payments/get-started/connectors/adyen',
+                      label: 'Adyen',
                     },
                     {
                       type: 'doc',
-                      id: 'payments/get-started/connectors/modulr',
-                      label: 'Modulr',
-                    },
-                    {
-                      type: 'doc',
-                      id: 'payments/get-started/connectors/wise',
-                      label: 'Wise',
-                    },
-                    {
-                      type: 'doc',
-                      id: 'payments/get-started/connectors/currencycloud',
-                      label: 'CurrencyCloud',
+                      id: 'payments/get-started/connectors/atlar',
+                      label: 'Atlar',
                     },
                     {
                       type: 'doc',
@@ -309,13 +299,33 @@ const sidebars = {
                     },
                     {
                       type: 'doc',
+                      id: 'payments/get-started/connectors/currencycloud',
+                      label: 'CurrencyCloud',
+                    },
+                    {
+                      type: 'doc',
                       id: 'payments/get-started/connectors/mangopay',
                       label: 'Mangopay',
                     },
                     {
                       type: 'doc',
+                      id: 'payments/get-started/connectors/modulr',
+                      label: 'Modulr',
+                    },
+                    {
+                      type: 'doc',
                       id: 'payments/get-started/connectors/moneycorp',
                       label: 'Moneycorp',
+                    },
+                    {
+                      type: 'doc',
+                      id: 'payments/get-started/connectors/stripe',
+                      label: 'Stripe',
+                    },
+                    {
+                      type: 'doc',
+                      id: 'payments/get-started/connectors/wise',
+                      label: 'Wise',
                     }
                   ]
                 },

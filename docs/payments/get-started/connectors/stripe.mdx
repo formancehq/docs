@@ -16,21 +16,25 @@ Before you begin, you need to have a Stripe account. If you don't have one, you 
 <StackCmd>
 
 ```shell
-read "STRIPE_API_KEY"
-fctl payments connectors install stripe $STRIPE_API_KEY
+fctl payments connectors install stripe stripe.json
 ```
 
 ```shell
-STACK="stack_123" \
-read STRIPE_API_KEY && \
-echo -X POST "https://$STACK.formance.cloud/api/payments/connectors/stripe" \
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/stripe" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d '{
-  "pollingPeriod": "300s",
-  "apiKey": "$STRIPE_API_KEY",
-  "pageSize": 50
-}'
+-d stripe.json
 ```
 
 </StackCmd>
+
+With stripe.json containing:
+
+```json
+{
+    "name": "stripe",
+    "apiKey": "<apiKey>",
+    "pollingPeriod": "2m",
+    "pageSize": 100
+}
+```
