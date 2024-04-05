@@ -1,0 +1,52 @@
+---
+title: Generic Connector
+description: Learn how to use the Generic Connector to connect your Formance Stack with your own Payment Service Provider.
+---
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+
+## Prerequisites
+
+Before you begin, if you want the Generic Connector to poll automatically your
+data, you need to create a service on your side that will expose the data we need.
+This service needs to follow this [OpenAPI Specification](https://github.com/formancehq/stack/blob/main/components/payments/cmd/connectors/internal/connectors/generic/client/generic-openapi.yaml).
+
+When instanciating the generic connector, you will need to pass an API key that
+will be used to authenticate the requests to your service. For now, the generic
+connector will send requests with the api key in the Authorization header.
+
+Example:
+
+```
+Authorization: Bearer <API_KEY>
+```
+
+<ApiWarning/>
+
+## Setup
+
+<StackCmd>
+
+```shell
+fctl payments connectors install generic generic.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/generic" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @generic.json
+```
+
+</StackCmd>
+
+With generic.json containing:
+
+```json
+{
+    "name": "generic",
+    "apiKey": "<apiKey>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "2m"
+}
+```
