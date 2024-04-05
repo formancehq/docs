@@ -304,6 +304,11 @@ const sidebars = {
                     },
                     {
                       type: 'doc',
+                      id: 'payments/get-started/connectors/generic',
+                      label: 'Generic',
+                    },
+                    {
+                      type: 'doc',
                       id: 'payments/get-started/connectors/mangopay',
                       label: 'Mangopay',
                     },
