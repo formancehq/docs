@@ -24,7 +24,6 @@ type Loader[ConnectorConfig models.ConnectorConfigObject] interface {
 	// It takes a logger and a ConnectorConfig object.
 	// At this point, the config must have been validated
 	Load(logger logging.Logger, config ConnectorConfig) connectors.Connector
-
 	// ApplyDefaults is used to fill default values of the provided configuration object
 	ApplyDefaults(t ConnectorConfig) ConnectorConfig
 
@@ -66,11 +65,14 @@ implements the required methods, or you can use utilities provided by the
 framework. Here is an example of a basic loader:
 
 ```go
+// See below in the docs where to add the ConnectorProviderExample enum.
+const name = models.ConnectorProviderExample
+
 type Loader struct{}
 
 // Name returns the name of the connector.
 func (l *Loader) Name() models.ConnectorProvider {
-	return "example"
+	return name
 }
 
 // AllowTasks returns the amount of tasks that are allowed to be scheduled.
@@ -170,8 +172,6 @@ the `Uninstall()` method.
 It is time to create a basic connector that does nothing.
 
 ```go
-const Name = models.ConnectorProviderExample
-
 type Connector struct {
 	logger logging.Logger
 	cfg    Config
@@ -730,6 +730,8 @@ import (
 	"github.com/formancehq/stack/libs/go-libs/logging"
 )
 
+const Name = models.ConnectorProviderExample
+
 type Loader struct{}
 
 // Name returns the name of the connector.
@@ -783,8 +785,6 @@ func (c Config) Validate() error {
 func (c Config) Marshal() ([]byte, error) {
 	return json.Marshal(c)
 }
-
-const Name = models.ConnectorProviderExample
 
 type Connector struct {
 	logger logging.Logger
