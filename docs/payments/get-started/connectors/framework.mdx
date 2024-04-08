@@ -17,18 +17,20 @@ by the connector.
 Let's get our hands on deck with the Connector interface
 
 ```go
-type Loader[ConnectorConfig payments.ConnectorConfigObject, TaskDescriptor payments.TaskDescriptor] interface {
+type Loader[ConnectorConfig models.ConnectorConfigObject] interface {
 	// Name has to return the name of the connector. It must be constant and unique
-	Name() string
+	Name() models.ConnectorProvider
 	// Load is in charge of loading the connector
 	// It takes a logger and a ConnectorConfig object.
 	// At this point, the config must have been validated
-	Load(logger sharedlogging.Logger, config ConnectorConfig) Connector[TaskDescriptor]
-	// ApplyDefaults is used to fill default values of the provided configuration object.
+	Load(logger logging.Logger, config ConnectorConfig) connectors.Connector
+
+	// ApplyDefaults is used to fill default values of the provided configuration object
 	ApplyDefaults(t ConnectorConfig) ConnectorConfig
-	// Router is used to expose some endpoints for the payment provider to send
-	// webhooks.
+
+	// Extra routes to be added to the connectors manager API
 	Router(store *storage.Storage) *mux.Router
+
 	// AllowTasks define how many task the connector can run
 	// If too many tasks are scheduled by the connector,
 	// those will be set to pending state and restarted later when some other tasks will be terminated
