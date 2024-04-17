@@ -2,3 +2,69 @@
 sidebar_label: "Setup the Generic Connector"
 sidebar_position: 1
 ---
+
+# Setup the Formance Payments Generic Connector
+
+Formance Payments is a service that allows you to connect to multiple payment service providers (PSPs), ingest their data and expose this data in a unified format, so that you can effectively use it within the platform.
+
+To integrate heterogeneous PSPs, Formance Payments relies on a set of connectors. These connectors are responsible for fetching data from the PSPs, normalizing it and exposing it in a unified format.
+
+In this tutorial, we will guide you through the process of setting up the Generic Connector, which is a connector that allows you to ingest data from any PSP that is not supported natively. We will use it to ingest dummy fixed data that we will use in the reconciliation process.
+
+:::note
+Before getting started, make sure you have a Formance stack with the Reconciliation service enabled. If you don't have one, please [contact the Formance team](https://www.formance.com/contact).
+:::
+
+### Login to your Formance stack
+
+Run the following command to login to your Formance stack:
+
+```bash
+fctl login
+```
+
+You should see something similar to:
+
+```bash
+Link : https://app.staging.formance.cloud/api/device?user_code=****-****
+ SUCCESS  Logged!
+```
+
+### Create the generic connector configuration file
+
+Create a file called `generic_connector_config.json` and paste the following content.
+
+```json
+{
+    "name": "generic",
+    "apiKey": "<apiKey>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "2m"
+}
+```
+
+### Install the generic connector
+
+Run the following command to install the Generic Connector:
+
+```bash
+fctl payments connectors install generic generic_connector_config.json
+```
+
+You should see something similar to:
+
+```bash
+[TODO]
+```
+
+### Check that Formance payments has been successfully fed with dummy data
+
+Open the Formance console by running the following command:
+
+```bash
+fctl ui
+```
+
+Navigate to the `Apps` located in the sidebar. You should see the Generic Connector we just installed is active.
+
+**Insert screenshot here**
