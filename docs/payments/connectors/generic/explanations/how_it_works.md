@@ -41,7 +41,7 @@ The Generic Connector is in charge of polling the data from the Payment Service 
 
 ## Integration with the Payment Service Provider
 
-The Generic Connector interacts with the Payment Service Provider by sending request formatted according to the [Generic Connector API specifications](https://github.com/formancehq/stack/blob/main/components/payments/cmd/connectors/internal/connectors/generic/client/generic-openapi.yaml) and expecting responses formatted according to the same specifications.
+The Generic Connector interacts with the Payment Service Provider by sending request formatted according to the [Generic Connector API specifications](../api-reference) and expecting responses formatted according to the same specifications.
 
 As a consequence, it is necessary to create a service on your side that will interact with the Payment Service Provider and expose the data with the expected format.
 

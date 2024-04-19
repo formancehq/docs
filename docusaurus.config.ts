@@ -93,6 +93,10 @@ export default async function createConfig() {
               spec: './openapi/v2.0.json',
               route: '/api/v2.0',
               id: 'api-v2-0',
+            }, {
+              spec: './openapi/generic-connector.yaml',
+              route: '/api/generic-connector',
+              id: 'api-generic-connector',
             }
           ],
         }
@@ -207,6 +211,7 @@ export default async function createConfig() {
         },
         prism: {
           theme: darkCodeTheme,
+          additionalLanguages: ['yaml', 'json', 'csharp', 'python', 'typescript', 'php', 'kotlin', 'javascript', 'java', 'go', 'ruby', 'sql', 'bash', 'scala'],
         },
         posthog: {
           apiKey: 'phc_hRDv01yOHJNUM7l5SmXPUtSQUuNw4r5am9FtV83Z9om',
