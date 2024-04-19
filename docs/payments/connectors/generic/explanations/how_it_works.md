@@ -18,15 +18,15 @@ sequenceDiagram
     Generic Connector ->> PSP: Request account list
     PSP -->> Generic Connector: Account list
     loop for each account
-      par Account balance
-        Generic Connector ->> PSP: Request account balance
-        PSP -->> Generic Connector: Account balance
-      and Account transactions
-        Generic Connector ->> PSP: Request account transactions
-        PSP -->> Generic Connector: Account transactions
-      end
+      Generic Connector ->> PSP: Request account balance
+      PSP -->> Generic Connector: Account balance
     end
-    Generic Connector -->> Payments: Account details
+
+    Generic Connector -->> Payments: Account list
+    Generic Connector ->> PSP: Request account transactions
+    PSP -->> Generic Connector: Account transactions
+
+    Generic Connector -->> Payments: Transactions list
   and Beneficiary list
     Generic Connector ->> PSP: Request beneficiary list
     PSP -->> Generic Connector: Beneficiary list
