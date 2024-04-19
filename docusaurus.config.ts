@@ -23,6 +23,10 @@ export default async function createConfig() {
     favicon: 'img/f-shape.ico',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.
+    markdown: {
+      mermaid: true
+    },
+    themes: ['@docusaurus/theme-mermaid'],
     webpack: {
       jsLoader: (isServer) => ({
         loader: require.resolve('swc-loader'),
