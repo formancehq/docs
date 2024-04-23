@@ -21,9 +21,29 @@ Regardless of the reconciliation type, the produced artifact is a reconciliation
 
 Account-based reconciliation is comparing the balances of a set of accounts in the Formance Ledger with those of another set of accounts in an external financial institution and ensuring that they match.
 
-![Account based reconciliation example](./account-based-reconciliation.png)
+```mermaid
+graph LR
+subgraph Financial Institution
+  acct1[Account\n$6,000.00]
+end
+
+subgraph Formance Ledger
+  world["origin:card_payments\n($6,000.00)"]
+  order1[orders:1\n$1,000.00]
+  order2[orders:2\n$2,000.00]
+  order3[orders:3\n$3,000.00]
+
+  world --> order1
+  world --> order2
+  world --> order3
+end
+
+acct1-- Reconcile ---world
+```
 
 For the account-based reconciliation to succeed, the sum of the balances of the reconciled account set in the Formance Ledger must match the sum of balances of the reconciled accounts set in the external financial institution.
+
+In the above example, the account-based reconciliation would succeed if the sum of the balances of the `origin:card_payments` account in the Formance Ledger matches the balance of the `Account for card payments` account in the external financial institution.
 
 ## Transaction-based reconciliation
 
