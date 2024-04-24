@@ -76,6 +76,9 @@ export default async function createConfig() {
           },
           blog: false,
           pages: false,
+          googleTagManager: {
+            containerId: 'GTM-KF4MNHHS',
+          }
         }),
       ],
       [
