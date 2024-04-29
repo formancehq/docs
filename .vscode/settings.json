@@ -1,0 +1,9 @@
+{
+  "grammarly.selectors": [
+    {
+      "language": "mdx",
+      "scheme": "file",
+      "pattern": "docs/reconciliation/explanation/what_is_reconciliation.mdx"
+    }
+  ]
+}
