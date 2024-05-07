@@ -12,7 +12,7 @@
       "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
       "altText": "Formance"
     },
-    "version": "v2.0"
+    "version": "v2.0.0-rc.27"
   },
   "servers": [
     {
@@ -46,6 +46,8 @@
     },
     "/api/auth/.well-known/openid-configuration": {
       "get": {
+        "summary": "Retrieve OpenID connect well-knowns.",
+        "operationId": "getOIDCWellKnowns",
         "responses": {
           "200": {
             "description": "OpenID provider configuration.\nSee https://swagger.io/docs/specification/authentication/openid-connect-discovery/ for details\n"
@@ -780,26 +782,6 @@
             "description": "No Content",
             "content": {}
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -1386,16 +1368,6 @@
               }
             }
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -1570,7 +1542,7 @@
           }
         ],
         "responses": {
-          "200": {
+          "201": {
             "description": "OK",
             "content": {
               "application/json": {
@@ -1773,7 +1745,7 @@
             }
           },
           {
-            "name": "use_insertion_date",
+            "name": "useInsertionDate",
             "in": "query",
             "description": "Use insertion date instead of effective date",
             "required": false,
@@ -2062,7 +2034,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/V2Ledger"
+                  "$ref": "#/components/schemas/V2GetLedgerResponse"
                 }
               }
             }
@@ -2099,7 +2071,7 @@
           "204": {
             "description": "OK"
           },
-          "400": {
+          "default": {
             "description": "Error",
             "content": {
               "application/json": {
@@ -2108,6 +2080,89 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/ledger/v2/{ledger}/metadata": {
+      "parameters": [
+        {
+          "name": "ledger",
+          "in": "path",
+          "description": "Name of the ledger.",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "ledger001"
+          }
+        }
+      ],
+      "put": {
+        "summary": "Update ledger metadata",
+        "operationId": "v2UpdateLedgerMetadata",
+        "tags": [
+          "Ledger"
+        ],
+        "x-speakeasy-group": "ledger",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V2UpdateLedgerMetadataRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "OK"
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ledger/v2/{ledger}/metadata/{key}": {
+      "parameters": [
+        {
+          "name": "ledger",
+          "in": "path",
+          "description": "Name of the ledger.",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "ledger001"
+          }
+        },
+        {
+          "name": "key",
+          "in": "path",
+          "description": "Key to remove.",
+          "required": true,
+          "schema": {
+            "type": "string",
+            "example": "foo"
+          }
+        }
+      ],
+      "delete": {
+        "summary": "Delete ledger metadata by key",
+        "operationId": "v2DeleteLedgerMetadata",
+        "tags": [
+          "Ledger"
+        ],
+        "x-speakeasy-group": "ledger",
+        "responses": {
+          "204": {
+            "description": "OK"
           },
           "default": {
             "description": "Error",
@@ -2168,12 +2223,6 @@
     },
     "/api/ledger/v2/{ledger}/_bulk": {
       "post": {
-        "x-speakeasy-errors": {
-          "override": true,
-          "statusCodes": [
-            "5XX"
-          ]
-        },
         "summary": "Bulk request",
         "operationId": "v2CreateBulk",
         "tags": [
@@ -2213,7 +2262,7 @@
             }
           },
           "400": {
-            "description": "Failure",
+            "description": "OK",
             "content": {
               "application/json": {
                 "schema": {
@@ -2380,16 +2429,6 @@
               }
             }
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -2538,26 +2577,6 @@
           "204": {
             "description": "No Content",
             "content": {}
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
           },
           "default": {
             "description": "Error",
@@ -2810,26 +2829,6 @@
               }
             }
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -2896,16 +2895,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/V2CreateTransactionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
                 }
               }
             }
@@ -2981,16 +2970,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/V2GetTransactionResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
                 }
               }
             }
@@ -3072,26 +3051,6 @@
             "description": "No Content",
             "content": {}
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -3149,16 +3108,6 @@
           }
         ],
         "responses": {
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
-                }
-              }
-            }
-          },
           "2XX": {
             "description": "Key deleted",
             "content": {}
@@ -3215,6 +3164,15 @@
             "schema": {
               "type": "boolean"
             }
+          },
+          {
+            "name": "atEffectiveDate",
+            "in": "query",
+            "description": "Revert transaction at effective date of the original tx",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "responses": {
@@ -3224,16 +3182,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/V2RevertTransactionResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V2ErrorResponse"
                 }
               }
             }
@@ -3280,7 +3228,7 @@
             }
           },
           {
-            "name": "use_insertion_date",
+            "name": "useInsertionDate",
             "in": "query",
             "description": "Use insertion date instead of effective date",
             "required": false,
@@ -3306,6 +3254,120 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/V2AggregateBalancesResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ErrorResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/ledger/v2/{ledger}/volumes": {
+      "get": {
+        "tags": [
+          "Ledger"
+        ],
+        "x-speakeasy-group": "ledger",
+        "summary": "Get list of volumes with balances for (account/asset)",
+        "operationId": "v2GetVolumesWithBalances",
+        "parameters": [
+          {
+            "name": "pageSize",
+            "in": "query",
+            "description": "The maximum number of results to return per page.\n",
+            "example": 100,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1,
+              "maximum": 1000
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "description": "Parameter used in pagination requests. Maximum page size is set to 15.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
+            "schema": {
+              "type": "string",
+              "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+            }
+          },
+          {
+            "name": "ledger",
+            "in": "path",
+            "description": "Name of the ledger.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ledger001"
+            }
+          },
+          {
+            "name": "endTime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "startTime",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          },
+          {
+            "name": "insertionDate",
+            "in": "query",
+            "description": "Use insertion date instead of effective date",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
+            "name": "groupBy",
+            "in": "query",
+            "description": "Group volumes and balance by the level of the segment of the address",
+            "example": 3,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 0,
+              "maximum": 1000
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": true
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2VolumesWithBalanceCursorResponse"
                 }
               }
             }
@@ -3418,6 +3480,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/ServerInfo"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3436,6 +3501,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Payment"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
@@ -3454,11 +3522,17 @@
           },
           {
             "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Query"
           }
         ],
         "responses": {
           "200": {
             "$ref": "#/components/responses/Payments"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3478,6 +3552,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Payment"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3500,6 +3577,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3509,8 +3589,7 @@
         "summary": "List Transfer Initiations",
         "operationId": "listTransferInitiations",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "parameters": [
           {
@@ -3529,14 +3608,16 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/TransferInitiations"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
       "post": {
         "summary": "Create a TransferInitiation",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "operationId": "createTransferInitiation",
         "description": "Create a transfer initiation",
@@ -3546,6 +3627,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/TransferInitiation"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3554,8 +3638,7 @@
       "get": {
         "summary": "Get a transfer initiation",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "operationId": "getTransferInitiation",
         "parameters": [
@@ -3566,6 +3649,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/TransferInitiation"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
@@ -3573,8 +3659,7 @@
         "summary": "Delete a transfer initiation",
         "operationId": "deleteTransferInitiation",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "description": "Delete a transfer initiation by its id.",
         "parameters": [
@@ -3585,6 +3670,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3593,8 +3681,7 @@
       "post": {
         "summary": "Update the status of a transfer initiation",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "operationId": "udpateTransferInitiationStatus",
         "description": "Update a transfer initiation status",
@@ -3609,6 +3696,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3617,8 +3707,7 @@
       "post": {
         "summary": "Reverse a transfer initiation",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "operationId": "reverseTransferInitiation",
         "description": "Reverse transfer initiation",
@@ -3633,6 +3722,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3641,8 +3733,7 @@
       "post": {
         "summary": "Retry a failed transfer initiation",
         "tags": [
-          "Payments",
-          "TransferInitiations"
+          "Payments"
         ],
         "operationId": "retryTransferInitiation",
         "description": "Retry a failed transfer initiation",
@@ -3654,6 +3745,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3663,8 +3757,7 @@
         "summary": "List Pools",
         "operationId": "listPools",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "parameters": [
           {
@@ -3683,14 +3776,16 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Pools"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
       "post": {
         "summary": "Create a Pool",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "operationId": "createPool",
         "description": "Create a Pool",
@@ -3700,6 +3795,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Pool"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3708,8 +3806,7 @@
       "get": {
         "summary": "Get a Pool",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "operationId": "getPool",
         "parameters": [
@@ -3720,6 +3817,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Pool"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
@@ -3727,8 +3827,7 @@
         "summary": "Delete a Pool",
         "operationId": "deletePool",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "description": "Delete a pool by its id.",
         "parameters": [
@@ -3739,6 +3838,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3747,8 +3849,7 @@
       "post": {
         "summary": "Add an account to a pool",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "operationId": "addAccountToPool",
         "description": "Add an account to a pool",
@@ -3763,6 +3864,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3772,8 +3876,7 @@
         "summary": "Remove an account from a pool",
         "operationId": "removeAccountFromPool",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "description": "Remove an account from a pool by its id.",
         "parameters": [
@@ -3787,6 +3890,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3796,8 +3902,7 @@
         "summary": "Get pool balances",
         "operationId": "getPoolBalances",
         "tags": [
-          "Payments",
-          "Pools"
+          "Payments"
         ],
         "parameters": [
           {
@@ -3817,11 +3922,33 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/PoolBalances"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
     },
     "/api/payments/accounts": {
+      "post": {
+        "summary": "Create an account",
+        "tags": [
+          "Payments"
+        ],
+        "operationId": "createAccount",
+        "description": "Create an account",
+        "requestBody": {
+          "$ref": "#/components/requestBodies/Account"
+        },
+        "responses": {
+          "200": {
+            "$ref": "#/components/responses/Account"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
+          }
+        }
+      },
       "get": {
         "summary": "List accounts",
         "operationId": "paymentslistAccounts",
@@ -3837,6 +3964,9 @@
           },
           {
             "$ref": "#/components/parameters/Sort"
+          },
+          {
+            "$ref": "#/components/parameters/Query"
           }
         ],
         "requestBody": {
@@ -3852,6 +3982,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Accounts"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3871,6 +4004,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Account"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3938,6 +4074,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/AccountBalances"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3946,8 +4085,7 @@
       "post": {
         "summary": "Create a BankAccount in Payments and on the PSP",
         "tags": [
-          "Payments",
-          "BankAccounts"
+          "Payments"
         ],
         "operationId": "createBankAccount",
         "description": "Create a bank account in Payments and on the PSP.",
@@ -3957,6 +4095,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/BankAccount"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
@@ -3964,8 +4105,7 @@
         "summary": "List bank accounts created by user on Formance",
         "operationId": "listBankAccounts",
         "tags": [
-          "Payments",
-          "BankAccounts"
+          "Payments"
         ],
         "parameters": [
           {
@@ -3982,6 +4122,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/BankAccounts"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -3990,8 +4133,7 @@
       "get": {
         "summary": "Get a bank account created by user on Formance",
         "tags": [
-          "Payments",
-          "BankAccounts"
+          "Payments"
         ],
         "operationId": "getBankAccount",
         "parameters": [
@@ -4002,6 +4144,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/BankAccount"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4010,8 +4155,7 @@
       "post": {
         "summary": "Forward a bank account to a connector",
         "tags": [
-          "Payments",
-          "BankAccounts"
+          "Payments"
         ],
         "operationId": "forwardBankAccount",
         "parameters": [
@@ -4025,6 +4169,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/BankAccount"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4033,8 +4180,7 @@
       "patch": {
         "summary": "Update metadata of a bank account",
         "tags": [
-          "Payments",
-          "BankAccounts"
+          "Payments"
         ],
         "operationId": "updateBankAccountMetadata",
         "parameters": [
@@ -4048,6 +4194,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4057,13 +4206,15 @@
         "summary": "List all installed connectors",
         "operationId": "listAllConnectors",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "List all installed connectors.",
         "responses": {
           "200": {
             "$ref": "#/components/responses/Connectors"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4073,13 +4224,15 @@
         "summary": "List the configs of each available connector",
         "operationId": "listConfigsAvailableConnectors",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "List the configs of each available connector.",
         "responses": {
           "200": {
             "$ref": "#/components/responses/ConnectorsConfigs"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4088,8 +4241,7 @@
       "post": {
         "summary": "Install a connector",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "operationId": "installConnector",
         "description": "Install a connector by its name and config.",
@@ -4104,6 +4256,9 @@
         "responses": {
           "201": {
             "$ref": "#/components/responses/ConnectorInstalled"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
@@ -4112,8 +4267,7 @@
         "deprecated": true,
         "operationId": "uninstallConnector",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Uninstall a connector by its name.",
         "parameters": [
@@ -4124,6 +4278,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4133,8 +4290,7 @@
         "summary": "Uninstall a connector",
         "operationId": "uninstallConnectorV1",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Uninstall a connector by its name.",
         "parameters": [
@@ -4148,6 +4304,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4158,8 +4317,7 @@
         "deprecated": true,
         "operationId": "readConnectorConfig",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Read connector config",
         "parameters": [
@@ -4170,6 +4328,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/ConnectorConfig"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4179,8 +4340,7 @@
         "summary": "Update the config of a connector",
         "operationId": "updateConnectorConfigV1",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Update connector config",
         "parameters": [
@@ -4197,6 +4357,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       },
@@ -4204,8 +4367,7 @@
         "summary": "Read the config of a connector",
         "operationId": "readConnectorConfigV1",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Read connector config",
         "parameters": [
@@ -4219,6 +4381,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/ConnectorConfig"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4229,8 +4394,7 @@
         "deprecated": true,
         "operationId": "resetConnector",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Reset a connector by its name.\nIt will remove the connector and ALL PAYMENTS generated with it.\n",
         "parameters": [
@@ -4241,6 +4405,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4250,8 +4417,7 @@
         "summary": "Reset a connector",
         "operationId": "resetConnectorV1",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "description": "Reset a connector by its name.\nIt will remove the connector and ALL PAYMENTS generated with it.\n",
         "parameters": [
@@ -4265,6 +4431,9 @@
         "responses": {
           "204": {
             "$ref": "#/components/responses/NoContent"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4274,8 +4443,7 @@
         "summary": "List tasks from a connector",
         "deprecated": true,
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "operationId": "listConnectorTasks",
         "description": "List all tasks associated with this connector.",
@@ -4293,6 +4461,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Tasks"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4301,8 +4472,7 @@
       "get": {
         "summary": "List tasks from a connector",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "operationId": "listConnectorTasksV1",
         "description": "List all tasks associated with this connector.",
@@ -4323,6 +4493,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Tasks"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4332,8 +4505,7 @@
         "summary": "Read a specific task of the connector",
         "deprecated": true,
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "operationId": "getConnectorTask",
         "description": "Get a specific task associated to the connector.",
@@ -4348,6 +4520,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Task"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4356,8 +4531,7 @@
       "get": {
         "summary": "Read a specific task of the connector",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "operationId": "getConnectorTaskV1",
         "description": "Get a specific task associated to the connector.",
@@ -4375,6 +4549,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Task"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4383,8 +4560,7 @@
       "post": {
         "summary": "Transfer funds between Connector accounts",
         "tags": [
-          "Payments",
-          "Connectors"
+          "Payments"
         ],
         "operationId": "connectorsTransfer",
         "description": "Execute a transfer between two accounts.",
@@ -4399,6 +4575,9 @@
         "responses": {
           "200": {
             "$ref": "#/components/responses/Transfer"
+          },
+          "default": {
+            "$ref": "#/components/responses/PaymentsErrorResponse"
           }
         }
       }
@@ -4541,16 +4720,6 @@
               }
             }
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -4587,26 +4756,6 @@
         "responses": {
           "200": {
             "description": "Config successfully deleted."
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
-                }
-              }
-            }
           },
           "default": {
             "description": "Error",
@@ -4648,26 +4797,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AttemptResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
-                }
-              }
-            }
-          },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
                 }
               }
             }
@@ -4760,16 +4889,6 @@
               }
             }
           },
-          "404": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -4819,16 +4938,6 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ConfigResponse"
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/webhooksErrorResponse"
                 }
               }
             }
@@ -5346,16 +5455,6 @@
           "204": {
             "description": "Wallet successfully debited"
           },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/walletsErrorResponse"
-                }
-              }
-            }
-          },
           "default": {
             "description": "Error",
             "content": {
@@ -5398,16 +5497,6 @@
         "responses": {
           "204": {
             "description": "Wallet successfully credited"
-          },
-          "400": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/walletsErrorResponse"
-                }
-              }
-            }
           },
           "default": {
             "description": "Error",
@@ -5650,8 +5739,18 @@
         "operationId": "listTriggers",
         "description": "List triggers",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
+        ],
+        "parameters": [
+          {
+            "name": "name",
+            "in": "query",
+            "description": "search by name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -5674,8 +5773,7 @@
         "operationId": "createTrigger",
         "description": "Create trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -5720,8 +5818,7 @@
         "operationId": "readTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -5744,8 +5841,7 @@
         "operationId": "deleteTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "responses": {
           "204": {
@@ -5774,8 +5870,7 @@
         "operationId": "listTriggersOccurrences",
         "description": "List triggers occurrences",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -5800,8 +5895,7 @@
         "operationId": "listWorkflows",
         "description": "List registered workflows",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -5824,8 +5918,7 @@
         "operationId": "createWorkflow",
         "description": "Create a workflow",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -5869,8 +5962,7 @@
       "get": {
         "summary": "Get a flow by id",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "description": "Get a flow by id",
         "operationId": "getWorkflow",
@@ -5893,8 +5985,7 @@
       "delete": {
         "summary": "Delete a flow by id",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "description": "Delete a flow by id",
         "operationId": "deleteWorkflow",
@@ -5937,8 +6028,7 @@
           }
         ],
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -5994,8 +6084,7 @@
           }
         ],
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6032,8 +6121,7 @@
         "description": "Get a workflow instance by id",
         "operationId": "getInstance",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6070,8 +6158,7 @@
         "description": "Send an event to a running workflow",
         "operationId": "sendEvent",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -6118,8 +6205,7 @@
         "description": "Cancel a running workflow",
         "operationId": "cancelEvent",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "204": {
@@ -6149,8 +6235,7 @@
         "description": "Get a workflow instance history by id",
         "operationId": "getInstanceHistory",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6197,8 +6282,7 @@
         "description": "Get a workflow instance stage history",
         "operationId": "getInstanceStageHistory",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6247,8 +6331,24 @@
         "operationId": "v2ListTriggers",
         "description": "List triggers",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orchestrationCursor"
+          },
+          {
+            "$ref": "#/components/parameters/orchestrationPageSize"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "description": "search by name",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -6271,8 +6371,7 @@
         "operationId": "v2CreateTrigger",
         "description": "Create trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -6317,8 +6416,7 @@
         "operationId": "v2ReadTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6341,15 +6439,11 @@
         "operationId": "v2DeleteTrigger",
         "description": "Read trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "responses": {
           "204": {
             "description": "Trigger deleted"
-          },
-          "404": {
-            "$ref": "#/components/responses/V2ErrorResponse"
           },
           "default": {
             "$ref": "#/components/responses/V2ErrorResponse"
@@ -6374,8 +6468,7 @@
         "operationId": "testTrigger",
         "description": "Test trigger",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -6421,8 +6514,15 @@
         "operationId": "v2ListTriggersOccurrences",
         "description": "List triggers occurrences",
         "tags": [
-          "Orchestration",
-          "Triggers"
+          "Orchestration"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orchestrationCursor"
+          },
+          {
+            "$ref": "#/components/parameters/orchestrationPageSize"
+          }
         ],
         "responses": {
           "200": {
@@ -6447,8 +6547,15 @@
         "operationId": "v2ListWorkflows",
         "description": "List registered workflows",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
+        ],
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/orchestrationCursor"
+          },
+          {
+            "$ref": "#/components/parameters/orchestrationPageSize"
+          }
         ],
         "responses": {
           "200": {
@@ -6471,8 +6578,7 @@
         "operationId": "v2CreateWorkflow",
         "description": "Create a workflow",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -6516,8 +6622,7 @@
       "get": {
         "summary": "Get a flow by id",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "description": "Get a flow by id",
         "operationId": "v2GetWorkflow",
@@ -6540,20 +6645,13 @@
       "delete": {
         "summary": "Delete a flow by id",
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "description": "Delete a flow by id",
         "operationId": "v2DeleteWorkflow",
         "responses": {
           "204": {
             "description": "No content"
-          },
-          "400": {
-            "$ref": "#/components/responses/V2ErrorResponse"
-          },
-          "404": {
-            "$ref": "#/components/responses/V2ErrorResponse"
           },
           "default": {
             "$ref": "#/components/responses/V2ErrorResponse"
@@ -6590,8 +6688,7 @@
           }
         ],
         "tags": [
-          "Orchestration",
-          "Workflows"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -6626,6 +6723,12 @@
         "operationId": "v2ListInstances",
         "parameters": [
           {
+            "$ref": "#/components/parameters/orchestrationCursor"
+          },
+          {
+            "$ref": "#/components/parameters/orchestrationPageSize"
+          },
+          {
             "in": "query",
             "description": "A workflow id",
             "name": "workflowID",
@@ -6647,8 +6750,7 @@
           }
         ],
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6685,8 +6787,7 @@
         "description": "Get a workflow instance by id",
         "operationId": "v2GetInstance",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6723,8 +6824,7 @@
         "description": "Send an event to a running workflow",
         "operationId": "v2SendEvent",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "requestBody": {
           "content": {
@@ -6771,8 +6871,7 @@
         "description": "Cancel a running workflow",
         "operationId": "v2CancelEvent",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "204": {
@@ -6802,8 +6901,7 @@
         "description": "Get a workflow instance history by id",
         "operationId": "v2GetInstanceHistory",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6850,8 +6948,7 @@
         "description": "Get a workflow instance stage history",
         "operationId": "v2GetInstanceStageHistory",
         "tags": [
-          "Orchestration",
-          "Instances"
+          "Orchestration"
         ],
         "responses": {
           "200": {
@@ -6891,8 +6988,7 @@
       "post": {
         "summary": "Create a policy",
         "tags": [
-          "Reconciliation",
-          "Policy"
+          "Reconciliation"
         ],
         "operationId": "createPolicy",
         "description": "Create a policy",
@@ -6912,8 +7008,7 @@
         "summary": "List policies",
         "operationId": "listPolicies",
         "tags": [
-          "Reconciliation",
-          "Policy"
+          "Reconciliation"
         ],
         "parameters": [
           {
@@ -6938,8 +7033,7 @@
         "summary": "Delete a policy",
         "operationId": "deletePolicy",
         "tags": [
-          "Reconciliation",
-          "Policy"
+          "Reconciliation"
         ],
         "description": "Delete a policy by its id.",
         "parameters": [
@@ -6959,8 +7053,7 @@
       "get": {
         "summary": "Get a policy",
         "tags": [
-          "Reconciliation",
-          "Policy"
+          "Reconciliation"
         ],
         "operationId": "getPolicy",
         "parameters": [
@@ -6982,8 +7075,7 @@
       "post": {
         "summary": "Reconcile using a policy",
         "tags": [
-          "Reconciliation",
-          "Policy"
+          "Reconciliation"
         ],
         "operationId": "reconcile",
         "description": "Reconcile using a policy",
@@ -7054,8 +7146,7 @@
     },
     "x-speakeasy-errors": {
       "statusCodes": [
-        "4XX",
-        "5XX"
+        "default"
       ]
     }
   },
@@ -8169,7 +8260,8 @@
           "CONFLICT",
           "NO_SCRIPT",
           "COMPILATION_FAILED",
-          "METADATA_OVERRIDE"
+          "METADATA_OVERRIDE",
+          "NOT_FOUND"
         ],
         "example": "INSUFFICIENT_FUND"
       },
@@ -8419,6 +8511,79 @@
             "$ref": "#/components/schemas/V2AssetsBalances"
           }
         }
+      },
+      "V2VolumesWithBalanceCursorResponse": {
+        "type": "object",
+        "required": [
+          "cursor"
+        ],
+        "properties": {
+          "cursor": {
+            "type": "object",
+            "required": [
+              "pageSize",
+              "hasMore",
+              "data"
+            ],
+            "properties": {
+              "pageSize": {
+                "type": "integer",
+                "format": "int64",
+                "minimum": 1,
+                "maximum": 1000,
+                "example": 15
+              },
+              "hasMore": {
+                "type": "boolean",
+                "example": false
+              },
+              "previous": {
+                "type": "string",
+                "example": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="
+              },
+              "next": {
+                "type": "string",
+                "example": ""
+              },
+              "data": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/V2VolumesWithBalance"
+                }
+              }
+            }
+          }
+        }
+      },
+      "V2VolumesWithBalance": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "type": "string"
+          },
+          "asset": {
+            "type": "string"
+          },
+          "input": {
+            "type": "integer",
+            "format": "bigint"
+          },
+          "output": {
+            "type": "integer",
+            "format": "bigint"
+          },
+          "balance": {
+            "type": "integer",
+            "format": "bigint"
+          }
+        },
+        "required": [
+          "account",
+          "asset",
+          "input",
+          "output",
+          "balance"
+        ]
       },
       "V2Metadata": {
         "type": "object",
@@ -9043,6 +9208,9 @@
                   },
                   "force": {
                     "type": "boolean"
+                  },
+                  "atEffectiveDate": {
+                    "type": "boolean"
                   }
                 },
                 "required": [
@@ -9219,6 +9387,9 @@
         "properties": {
           "bucket": {
             "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/V2Metadata"
           }
         }
       },
@@ -9234,6 +9405,9 @@
           },
           "bucket": {
             "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/V2Metadata"
           }
         },
         "required": [
@@ -9282,6 +9456,20 @@
                 }
               }
             }
+          }
+        }
+      },
+      "V2UpdateLedgerMetadataRequest": {
+        "$ref": "#/components/schemas/V2Metadata"
+      },
+      "V2GetLedgerResponse": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/V2Ledger"
           }
         }
       },
@@ -9805,7 +9993,8 @@
           "MANGOPAY",
           "MONEYCORP",
           "ATLAR",
-          "ADYEN"
+          "ADYEN",
+          "GENERIC"
         ]
       },
       "TransferInitiationStatus": {
@@ -9856,6 +10045,9 @@
           },
           {
             "$ref": "#/components/schemas/AdyenConfig"
+          },
+          {
+            "$ref": "#/components/schemas/GenericConfig"
           }
         ]
       },
@@ -10023,6 +10215,34 @@
             "type": "string",
             "example": "60s",
             "description": "The frequency at which the connector will try to fetch new BalanceTransaction objects from Banking Circle API.\n",
+            "default": "120s"
+          }
+        }
+      },
+      "GenericConfig": {
+        "type": "object",
+        "required": [
+          "name",
+          "apiKey",
+          "endpoint"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "example": "My Generic Account"
+          },
+          "apiKey": {
+            "type": "string",
+            "example": "XXX"
+          },
+          "endpoint": {
+            "type": "string",
+            "example": "XXX"
+          },
+          "pollingPeriod": {
+            "type": "string",
+            "example": "60s",
+            "description": "The frequency at which the connector will try to fetch new BalanceTransaction objects from the API.\n",
             "default": "120s"
           }
         }
@@ -10668,7 +10888,7 @@
             "type": "string"
           },
           "type": {
-            "type": "string"
+            "$ref": "#/components/schemas/AccountType"
           },
           "pools": {
             "type": "array",
@@ -11099,6 +11319,39 @@
           }
         }
       },
+      "AccountRequest": {
+        "type": "object",
+        "required": [
+          "reference",
+          "connectorID",
+          "createdAt",
+          "type"
+        ],
+        "properties": {
+          "reference": {
+            "type": "string"
+          },
+          "connectorID": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "type": {
+            "$ref": "#/components/schemas/AccountType"
+          },
+          "defaultAsset": {
+            "type": "string"
+          },
+          "accountName": {
+            "type": "string"
+          },
+          "metadata": {
+            "$ref": "#/components/schemas/AccountMetadata"
+          }
+        }
+      },
       "PaymentRequest": {
         "type": "object",
         "required": [
@@ -11266,6 +11519,14 @@
           }
         }
       },
+      "AccountType": {
+        "type": "string",
+        "enum": [
+          "UNKNOWN",
+          "INTERNAL",
+          "EXTERNAL"
+        ]
+      },
       "PaymentType": {
         "type": "string",
         "enum": [
@@ -11319,6 +11580,31 @@
           "DISPUTE_LOST",
           "OTHER"
         ]
+      },
+      "PaymentsErrorResponse": {
+        "type": "object",
+        "required": [
+          "errorCode",
+          "errorMessage"
+        ],
+        "properties": {
+          "errorCode": {
+            "$ref": "#/components/schemas/PaymentsErrorsEnum"
+          },
+          "errorMessage": {
+            "type": "string",
+            "example": "[VALIDATION] missing reference"
+          }
+        }
+      },
+      "PaymentsErrorsEnum": {
+        "type": "string",
+        "enum": [
+          "INTERNAL",
+          "VALIDATION",
+          "NOT_FOUND"
+        ],
+        "example": "VALIDATION"
       },
       "Query": {
         "type": "object",
@@ -12210,6 +12496,10 @@
           "balance": {
             "type": "string",
             "description": "The balance to credit"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "example": {
@@ -12256,6 +12546,11 @@
               "type": "string",
               "description": "A targeted balance (use '*' for all)"
             }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "cannot be used in conjunction with `pending` property"
           }
         },
         "example": {
@@ -12687,6 +12982,9 @@
           "vars": {
             "type": "object",
             "additionalProperties": true
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -12982,6 +13280,10 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -13940,6 +14242,9 @@
           "vars": {
             "type": "object",
             "additionalProperties": true
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -14323,6 +14628,10 @@
             "additionalProperties": {
               "type": "string"
             }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -14589,6 +14898,10 @@
           "balance": {
             "type": "string",
             "description": "The balance to credit"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
           }
         },
         "example": {
@@ -14696,6 +15009,11 @@
               "type": "string",
               "description": "A targeted balance (use '*' for all)"
             }
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time",
+            "description": "cannot be used in conjunction with `pending` property"
           }
         },
         "example": {
@@ -15509,6 +15827,16 @@
       "NoContent": {
         "description": "No content"
       },
+      "PaymentsErrorResponse": {
+        "description": "Error",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/PaymentsErrorResponse"
+            }
+          }
+        }
+      },
       "ServerInfo": {
         "description": "Server information",
         "content": {
@@ -15916,6 +16244,27 @@
         },
         "required": true
       },
+      "orchestrationCursor": {
+        "name": "cursor",
+        "in": "query",
+        "description": "Parameter used in pagination requests.\nSet to the value of next for the next page of results.\nSet to the value of previous for the previous page of results.\nNo other parameters can be set when this parameter is set.\n",
+        "schema": {
+          "type": "string",
+          "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+        }
+      },
+      "orchestrationPageSize": {
+        "name": "pageSize",
+        "in": "query",
+        "description": "The maximum number of results to return per page.\n",
+        "example": 100,
+        "schema": {
+          "type": "integer",
+          "format": "int64",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
       "reconciliationPageSize": {
         "name": "pageSize",
         "in": "query",
@@ -15976,6 +16325,16 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/PaymentRequest"
+            }
+          }
+        }
+      },
+      "Account": {
+        "required": true,
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/AccountRequest"
             }
           }
         }
@@ -16125,11 +16484,7 @@
     {
       "name": "Payments",
       "tags": [
-        "Payments",
-        "TransferInitiations",
-        "Pools",
-        "BankAccounts",
-        "Connectors"
+        "Payments"
       ]
     },
     {
@@ -16153,17 +16508,13 @@
     {
       "name": "Flows",
       "tags": [
-        "Orchestration",
-        "Workflows",
-        "Triggers",
-        "Instances"
+        "Orchestration"
       ]
     },
     {
       "name": "Reconciliation",
       "tags": [
-        "Reconciliation",
-        "Policy"
+        "Reconciliation"
       ]
     }
   ]
