@@ -6,6 +6,9 @@ import math from 'remark-math';
 import katex from 'rehype-katex';
 import  path from 'node:path';
 
+const lightCodeTheme = require('prism-react-renderer/themes/github');
+const darkCodeTheme = require('prism-react-renderer/themes/palenight');
+
 import type {Config} from '@docusaurus/types';
 
 export default async function createConfig() {
@@ -210,6 +213,7 @@ export default async function createConfig() {
           copyright: `Copyright © 2021-2024 Formance, Inc`,
         },
         prism: {
+          theme: darkCodeTheme,
           additionalLanguages: ['yaml', 'json', 'csharp', 'python', 'typescript', 'php', 'kotlin', 'javascript', 'java', 'go', 'ruby', 'sql', 'bash', 'scala'],
         },
         posthog: {
