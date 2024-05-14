@@ -26,9 +26,17 @@ This capability has some implications discussed below.
 
 Account and transaction metadata are not fixed in time. When a user queries the ledger at a specific point in time, the metadata associated with accounts and transactions is also determined based on the requested point in time. This means that the metadata associated with an account or transaction can change over time.
 
-Moreover, metadata can be updated at any point in time, and the updated metadata is reflected in the ledger state at the requested point in time.
+#### Example: Fraud management
 
-**Ajouter une illustration avec une schéma**
+Let's consider the following example. Suppose that a fraud engine is integrated with the ledger to flag suspicious account. It does so by adding `risk=high` to the account metadata. The fraud team regurlarly exports the suspicious accounts to an external system for further investigation. The fraud team queries the ledger at specific points in time to get the list of suspicious accounts.
+
+Let's consider the account `customer:123456`. At a time `t1` the fraud engine marks the account as suspicious by adding `risk=high` to the account metadata. The fraud team exports the list of suspicious accounts at time `t2` and `t3`. The account will be included in the list of suspicious accounts in both exports.
+
+![Initial state](./01%20-%20initial%20state.png)
+
+Now, let's consider that the fraud engine removes the `risk=high` metadata from the account at time `t4` located between the two exports `t2` and `t3`. It does so by removing the `risk` metadata using a backdated transaction. In this case, the account will not be included in the list of suspicious accounts in the export at time `t3`.
+
+![Final state](./02%20-%20final%20state.png)
 
 ### Backdated Transactions validation
 
