@@ -439,12 +439,24 @@ const sidebars = {
               items: [
                 { type: 'doc', id: 'deployment/cloudprem/intro' },
                 {
-                  type: 'doc',
-                  id: 'deployment/cloudprem/private-regions',
+                  type: "link",
+                  label: "Operator Deployment",
+                  href: "/next/operator/installation/requirements"
                 },
                 {
-                  type: 'doc',
-                  id: 'deployment/cloudprem/agent',
+                  type: 'category',
+                  label: 'Private Region Deployment',
+                  collapsed: false,
+                  items: [
+                    {
+                      type: 'doc',
+                      id: 'deployment/cloudprem/private-regions',
+                    },
+                    {
+                      type: 'doc',
+                      id: 'deployment/cloudprem/agent',
+                    },
+                  ],
                 },
                 {
                   type: 'doc',
