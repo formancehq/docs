@@ -27,7 +27,7 @@ Bi-temporality is useful in the following scenarios:
 
 ### Present time relativity
 
-Because transactions can be backdated, the concept of "present time" may not match the current machine clock time. Form the point of view of the ledger, the present time is the **transaction timestamp** the most in the future.
+Because transactions can either be backdated or postdated, the concept of "present time" may not match the current machine clock time. Form the point of view of the ledger, the present time is the **transaction timestamp** the most in the future.
 
 In the example above, let's consider that we only inserted `TX1`. In that case, the **machine clock is on monday**, but **the present time is tuesday** because the transaction time of `TX1` is tuesday and it is the most recent transaction.
 
