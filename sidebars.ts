@@ -447,8 +447,25 @@ const sidebars = {
                   id: 'deployment/cloudprem/agent',
                 },
                 {
-                  type: 'doc',
-                  id: 'deployment/cloudprem/usage',
+                  type: 'category',
+                  label: 'Stack Deployment',
+                  link: {
+                    type: 'doc',
+                    id: 'deployment/cloudprem/usage',
+                  },
+                  collapsed: false,
+                  items: [
+                    {
+                      type: 'link',
+                      label:'Creation',
+                      href: '/next/deployment/cloudprem/usage#create-a-stack',
+                    },
+                    {
+                      type: 'link',
+                      label: 'Enable Modules',
+                      href: '/next/deployment/cloudprem/usage#enabledisable-stack-modules',
+                    },
+                  ],
                 },
               ],
             },

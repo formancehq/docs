@@ -39,6 +39,42 @@ fctl stack list
 fctl stack show --name=playground
 ```
 
+## Enable/Disable modules to your Sandbox
+
+By default, a stack is composed of modules:
+
+- Ledger
+- Gateway
+- Payments
+- Auth
+- Stargate
+
+You can enable/disable any modules with:
+
+```shell
+fctl stack modules enable "wallets"
+fctl stack modules disable "wallets"
+```
+
+# Obtain availables modules
+
+Depending on the region you are using, you can obtain the list of available modules under `Capabilities > MODULE_LIST` with:
+
+```shell
+fctl cloud regions show c9abcd0df-480b-42c4-b5e7-dfght8e7c852                                                                                                                                      ─╯
+# Information
+ID        | c9abcd0df-480b-42c4-b5e7-dfght8e7c852
+Name      | example
+Base URL  | https://example.com
+Active    | Yes
+Public    | Yes
+Version   | latest
+Last ping | 2024-05-15T14:09:02Z
+
+# Capabilities
+MODULE_LIST | auth, gateway, ledger, orchestration, payments, reconciliation, search, stargate, wallets, webhooks
+```
+
 ## Using your Sandbox
 
 Now that you have a sandbox ready to be fiddled with, you can use it freely for test and development. The Formance CLI ships with a number of commands that you can use to interact with your sandbox from your terminal:

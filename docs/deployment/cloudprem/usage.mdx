@@ -8,7 +8,7 @@ We are now reaching the final steps of this setup guide. We will now verify our 
 The Formance Platform seggregates resources first by region, then by stack. A stack is a deployment of the Formance Platform, isolated from other stacks. This allows you to have multiple deployments of the Formance Platform, for example for different customers or different environments.
 :::
 
-## Creating a stack
+## Create a stack
 
 ```bash
 fctl stack create foo
@@ -22,6 +22,42 @@ You will be prompted for the region in which you want to create the stack: you c
 * The operator will deploy the stack in your cluster and all its components
 
 After a few seconds or minutes, fctl will finally return and acknowledge the stack creation and availability.
+
+## Enable/Disable stack modules
+
+By default, a stack is composed of modules:
+
+- Ledger
+- Gateway
+- Payments
+- Auth
+- Stargate
+
+You can enable/disable any modules with:
+
+```shell
+fctl stack modules enable "orchestration"
+fctl stack modules disable "orchestration"
+```
+
+# Obtain availables modules
+
+Depending on the region you are using, you can obtain the list of available modules under `Capabilities > MODULE_LIST` with:
+
+```shell
+fctl cloud regions show c9abcd0df-480b-42c4-b5e7-dfght8e7c852                                                                                                                                      ─╯
+# Information
+ID        | c9abcd0df-480b-42c4-b5e7-dfght8e7c852
+Name      | example
+Base URL  | https://example.com
+Active    | Yes
+Public    | Yes
+Version   | latest
+Last ping | 2024-05-15T14:09:02Z
+
+# Capabilities
+MODULE_LIST | auth, gateway, ledger, orchestration, payments, reconciliation, search, stargate, wallets, webhooks
+```
 
 ## Checking our deployment
 
