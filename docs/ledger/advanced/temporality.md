@@ -5,10 +5,19 @@ This page covers the bi-temporality feature of the ledger as well as the impact 
 ## Definition of bi-temporality
 
 The ledger supports bi-temporality, which means that each transaction is associated with two timestamps:
-- **Request time**: The time at which the transaction was submitted to the ledger.
+- **Request time**: The time at which the transaction was submitted to the ledger. It is usually the machine clock time.
 - **Transaction time**: The time at which the transaction is considered to have occurred.
 
 The ledger records both timestamps for each transaction, and the transaction time is used to determine the state of the ledger at a given point in time.
+
+Let's consider the following example to illustrate the difference between the two timestamps.
+
+![Bi-temporality](./bi-temporality-example.png)
+
+In this example, 3 transactions are submitted to the ledger at different times:
+- `TX1` is submitted on monday, but the transaction time is set to tuesday. The transaction is considered to have occurred on tuesday. We say that the transaction is **postdated**.
+- `TX2` is submitted on tuesday, and the transaction time is set to monday. The transaction is considered to have occurred on monday. We say that the transaction is **backdated**.
+- `TX3` is submitted on tuesday, and the transaction time is set to tuesday. The transaction is considered to have occurred on tuesday. This is **the default behavior**.
 
 Bi-temporality is useful in the following scenarios:
 - **Time travel**: The ability to query the ledger as it was at a specific point in time.
@@ -16,11 +25,25 @@ Bi-temporality is useful in the following scenarios:
 - **Auditing**: The ability to audit the ledger at a specific point in time.
 - **Data import**: The ability to import data from external systems that use different timestamps.
 
-## Implications of Bi-Temporality
+### Present time relativity
+
+Because transactions can be backdated, the concept of "present time" may not match the current machine clock time. Form the point of view of the ledger, the present time is the **transaction timestamp** the most in the future.
+
+In the example above, let's consider that we only inserted `TX1`. In that case, the **machine clock is on monday**, but **the present time is tuesday** because the transaction time of `TX1` is tuesday and it is the most recent transaction.
+
+![Present time](./present-time.png)
+
+Likewise, if we insert only backdated transactions, the present time will be in the past compared to the machine clock.
+
+## Implications of bi-temporality
 
 Bi-temporality allows users to insert transaction at any point in time in the past or future. When a user performs a query on the ledger, the ledger state is determined based on the requested point in time. The ledger state is a snapshot of the ledger at the requested point in time, and it includes all transactions that have a transaction time equal to or less than the requested point in time.
 
 This capability has some implications discussed below.
+
+:::info
+From now on, we will only consider the __transaction time__ when discussing the ledger state at a specific point in time.
+:::
 
 ### Account and Trandsaction Metadata
 
