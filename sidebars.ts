@@ -121,7 +121,11 @@ const sidebars = {
                 {
                   type: 'doc',
                   id: 'ledger/advanced/scale',
-                },
+                }, 
+                {
+                  type: 'doc',
+                  id: 'ledger/advanced/temporality',
+                }
               ],
             },
             {
