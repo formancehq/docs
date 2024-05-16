@@ -1,5 +1,5 @@
 ---
-title: Agent Deployment
+title: Deployment
 ---
 The agent allows linking your Kubernetes Cluster to your Formance Organization. To do this, you need to add an agent to your cluster that will manage the Operator through the CRDs.
 
@@ -9,11 +9,7 @@ Before you can link your Kubernetes cluster to a private Formance region. You mu
 
 Now that the Operator is deployed, we'll activate the agent that will communicate with Formance Cloud. The agent is a component that runs on your Kubernetes cluster and communicates with the Formance Cloud to manage the resources in your private region.
 
-## Setup
-
-We can now install the Formance Operator on our cluster using Helm, and bind it to our private region. We will first create a values file, with the following keys:
-
-<!-- agent, operator  -->
+## Setup Agent
 
 * `REGION_ID`
   * The private region identifier, as per given by fctl
@@ -36,15 +32,38 @@ agent:
     id: "REGION_ID"
     baseUrl: "REGION_URL"
     authentication:
-        clientID: "REGION_ID"
-        clientSecret: "REGION_SECRET"
+      clientID: "REGION_ID"
+      clientSecret: "REGION_SECRET"
+
+# As operator chart is also bundled by default with the agent chart, we can reuse the setup from the operator deployment
+operator: 
+  enabled: true
+  operator-crds:
+    create: false
+
 ```
 
 With this file in place, we can deploy our private region using Helm:
 
 ```bash
-helm upgrade regions oci://ghcr.io/formancehq/helm/regions \
---version v2.0.0-rc.12 \
+helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
+--version v2.0.0-rc.27 \
 --namespace formance-system \
 --values region.values.yaml
+```
+
+
+### Check region availability
+
+You can verify that the region is active by showing your private regions with the following command:
+
+```bash
+fctl cloud regions show REGION_ID
+```
+
+You should see the region marked as `active: yes`.
+
+```
+ID                                    | Name     | Base url                         | Active | Last ping               
+dea0da54-0f58-4762-a3b8-6e60f2780140  | staging  | https://formance.example.com     | Yes    | 2024-05-07T09:21:07Z 
 ```
