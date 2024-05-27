@@ -46,7 +46,7 @@ helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
 --set operator.operator-crds.create=false
 ```
 
-### Migrating from Operator with CRDs to separated CRDs chart
+### Migrating from Operator chart with CRDs to dedicated CRDs chart
 
 First make **sure** you've already upgraded the operator chart with crds `operator-crds.create=true` to make sure the `helm.sh/resource-policy: keep` is present.
 You can verify this by running:
@@ -63,15 +63,44 @@ kubectl get crds authclients.formance.com -o json | jq .metadata.annotations
 
 If using Helm Release, you might want to set appropriate helm release ownership annotations to the new chart using kubectl:
 
+#### Migration bash script
+
 ```bash
-# Example for authclients.formance.com CRD
+#!/bin/bash
 
-kubectl annotate crd authclients.formance.com meta.helm.sh/release-name=operator-crds
-kubectl annotate crd authclients.formance.com meta.helm.sh/release-namespace=formance-system
+# Set the required namespace and release name
+NAMESPACE=formance-system
+RELEASE_NAME=operator-crds
 
-# Repeat for all CRDs
+NAME=$(kubectl get crds -o json  | jq ".items[].metadata.name" --raw-output)
+
+for i in $NAME
+do
+    echo "----- Annotating $i -----"
+    kubectl annotate crd $i meta.helm.sh/release-name=$RELEASE_NAME --overwrite
+    kubectl annotate crd $i meta.helm.sh/release-namespace=$NAMESPACE --overwrite
+    echo "--------- Done ----------"
+done
 ```
 
 Then you will be able to disable `operator-crds.create: false` and install the operator-crds chart separately.
 
+#### Disable CRDs creation
 
+```bash
+helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
+--version v2.0.0-rc.30 \
+--namespace $NAMESPACE \
+--create-namespace \
+--set operator.operator-crds.create=false
+
+```
+
+#### Install the new charts
+
+```bash
+helm upgrade --install $RELEASE_NAME oci://ghcr.io/formancehq/helm/operator-crds \
+--version v2.0.0-rc.30 \
+--namespace $NAMESPACE \
+--create-namespace
+```
