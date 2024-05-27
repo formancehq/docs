@@ -56,7 +56,7 @@ graph LR
   subgraph Formance Payments
     Payments <--> connector
   end
-  subgraph Your insfrastucture
+  subgraph Your infrastructure
     connector <-- HTTP --> service
   end
   service <-- PSP specific protocol --> psp
