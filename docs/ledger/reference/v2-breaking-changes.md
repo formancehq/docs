@@ -10,7 +10,16 @@ Even though we strive to keep the Ledger API stable, there are some changes that
 
 Once you upgrade to a new version of the Ledger API, the following features will no longer be available, even if they were available in the previous version.
 
-- **Batch queries**: The ability to query multiple accounts in a single request has been removed. You must now query each account individually.
+- **Batch operation**: The ability to batch multiple operations in a single request has been removed. You must now use the new `bulk` endpoint to perform bulk operations.
+  Example:
+  ```
+  POST /<ledger>/_bulk
+  [
+    {"action": "CREATE_TRANSACTION", "data": {...}},
+    ...
+  ]
+  ```
+  The major difference is that the `bulk` endpoint **is not** transactional. If one of the operations fails, the others will still be executed. To prevent the same action from being executed multiple times, you can add an `idempotency-key` on individual actions.
 - **Metadata format**: The ability to store metadata as a free-form JSON object on an account has been removed. You must now store metadata as a set of key-value pairs.
 - **Volumes are not returned when creating a new transaction**: The volume of the created transaction is not returned in the response. You must query the transaction to get the volume.
 
