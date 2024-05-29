@@ -125,7 +125,8 @@ const sidebars = {
                 {
                   type: 'doc',
                   id: 'ledger/advanced/temporality',
-                }
+                },
+                'ledger/advanced/filtering'
               ],
             },
             {
