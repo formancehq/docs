@@ -159,6 +159,7 @@ const sidebars = {
                 'ledger/reference/concurrency-model',
                 'ledger/advanced/publisher',
                 'ledger/reference/performance',
+                'ledger/reference/v2-breaking-changes',
               ],
             },
           ],
