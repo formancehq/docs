@@ -24,7 +24,7 @@ Here is a value example:
 
 In this example, we are filtering on a ledger account. The naming convention set on this account is the following: `order:XXXX:pending`
 
-In order to get all accounts, with unique value `XXXX` of order segment, we use this regex-like syntax `order::pending` equivalent to `.*`
+In order to get all accounts, with unique value `XXXX` of order segment, we use this regex-like syntax `order::pending`.
 
 :::note
 Note the double colon `::` used to express a wildcard match.
