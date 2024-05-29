@@ -64,7 +64,7 @@ export default async function createConfig() {
             remarkPlugins: [math],
             rehypePlugins: [katex],
             disableVersioning: false,
-            lastVersion: 'v1.10',
+            lastVersion: 'current',
             versions: {
               current: {
                 label: 'v2.0',
@@ -167,19 +167,19 @@ export default async function createConfig() {
               items: [
                 {
                   label: 'Ledger',
-                  to: 'next/ledger',
+                  to: 'ledger',
                 },
                 {
                   label: 'Payments',
-                  to: 'next/payments',
+                  to: 'payments',
                 },
                 {
                   label: 'Wallets',
-                  to: 'next/wallets',
+                  to: 'wallets',
                 },
                 {
                   label: 'Flows',
-                  to: 'next/flows',
+                  to: 'flows',
                 },
               ],
             },
