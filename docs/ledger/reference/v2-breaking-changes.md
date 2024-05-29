@@ -20,7 +20,7 @@ Once you upgrade to a new version of the Ledger API, the following features will
   ]
   ```
   The major difference is that the `bulk` endpoint **is not** transactional. If one of the operations fails, the others will still be executed. To prevent the same action from being executed multiple times, you can add an `idempotency-key` on individual actions.
-- **Metadata format**: The ability to store metadata as a free-form JSON object on an account has been removed. You must now store metadata as a set of key-value pairs.
+- **Metadata format**: The ability to store metadata as a free-form JSON object on an account has been removed. You must now store metadata as a set of key-value pairs where values are strings.
 - **Volumes are not returned when creating a new transaction**: The volume of the created transaction is not returned in the response. You must query the transaction to get the volume.
 
 ## Changes on the V2 API
