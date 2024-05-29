@@ -10,9 +10,11 @@ In some cases, you may want to filter the results to only include resources that
 
 ## Filtering syntax
 
-Filtering is done using a query parameter. The query parameter is a string that contains a JSON object describing the filter criteria.
+Filtering is done either:
+- using a query parameter named `query` and containing a JSON object describing the filter criteria.
+- sending the filter criteria as a JSON object in the body of the request.
 
-Here is an example:
+Here is a value example:
 
 ```json
 {
@@ -25,7 +27,7 @@ In this example, we are filtering on a ledger account. The naming convention set
 In order to get all accounts, with unique value `XXXX` of order segment, we use this regex-like syntax `order::pending` equivalent to `.*`
 
 :::note
-Note the double colon `::` used to express the wildcard `.*` in the filter.
+Note the double colon `::` used to express a wildcard match.
 :::
 
 For a metadata filter, the syntax is the following:
