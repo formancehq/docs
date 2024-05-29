@@ -11,8 +11,8 @@ In some cases, you may want to filter the results to only include resources that
 ## Filtering syntax
 
 Filtering is done either:
-- using a query parameter named `query` and containing a JSON object describing the filter criteria.
-- sending the filter criteria as a JSON object in the body of the request.
+- by using a query parameter named `query` and containing a JSON object describing the filter criteria.
+- by sending the filter criteria as a JSON object in the body of the request.
 
 Here is a value example:
 
