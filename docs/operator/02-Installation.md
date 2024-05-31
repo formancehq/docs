@@ -1,9 +1,3 @@
----
-title: Installation
-description: How to install Formance Platform on K8S with Operator
----
-import Warning from '../../stack/partials/installation/_complexity_warning.mdx';
-
 The deployment of resources is orchestrated by the Formance Kubernetes Operator, which is driven by the CRDs present in the Kubernetes Cluster and reconciles them against the current state of the cluster.
 
 This essentially means that the operator will be creating and maintaining pods, services, and other resources on your cluster on your behalf. It is also the last mile of this setup guide before you get to actually use your Formance Stack — let's get started!

@@ -1,12 +1,7 @@
----
-title: "Demo deployment"
-description: "Show how to deploy a demo Formance stack once the Kubernetes operator is installed"
----
-
 # Demo deployment
 
 :::warning
-This guide assumes that you have already installed the Formance Operator on your cluster. If you haven't done so, please refer to the [installation guide](../installation/deployments.mdx) before proceeding.
+This guide assumes that you have already installed the Formance Operator on your cluster. If you haven't done so, please refer to the [installation guide](02-Installation.md) before proceeding.
 :::
 
 If you want to have a sample deployment, you can use our Demo Helm chart which will deploy all the necessary resources to install Formance on your cluster.

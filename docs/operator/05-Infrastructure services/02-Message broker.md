@@ -1,8 +1,3 @@
----
-title: Message Broker
-description: Setup a message broker for the Formance stack.
----
-
 # Message Broker
 
 The broker is the messaging system that the Formance stack uses to communicate between its modules. The Formance stack supports both [NATS](https://nats.io/) and [Kafka](https://kafka.apache.org/) as brokers.

@@ -1,8 +1,3 @@
----
-title: Database update
-description: Describe the process of updating the database
----
-
 # Database update
 
 This page describes how the operator updates the database schema when deploying a new version of a module.

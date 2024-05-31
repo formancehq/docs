@@ -1,8 +1,3 @@
----
-title: Temporal
-description: Set up Temporal settings
----
-
 ### Temporal
 
 :::info
