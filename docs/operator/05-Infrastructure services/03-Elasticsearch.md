@@ -1,8 +1,3 @@
----
-title: Elasticsearch / OpenSearch
-description: Set up ElasticSearch / OpenSearch settings
----
-
 # Elasticsearch
 
 _Version 7.10 or higher is required._

@@ -1,8 +1,3 @@
----
-title: Troubleshooting
-description: Troubleshooting your deployment
----
-
 # Troubleshooting
 
 There are two places where you can encounter issues with your deployment.
@@ -13,4 +8,4 @@ If the operator itself encounters an error, it is very likely that there is eith
 
 ## Option 2: Stack failures
 
-If the operator is running fine, but the stack is failing, you can troubleshoot the stack by activating the open telemetry publication as described in the [observability section](./observability/opentelemetry-configurations.mdx).
+If the operator is running fine, but the stack is failing, you can troubleshoot the stack by activating the open telemetry publication as described in the [observability section](06-Observability/01-Configure%20OpenTelemetry.md).

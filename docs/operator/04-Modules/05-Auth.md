@@ -1,18 +1,15 @@
----
-title: Auth
----
-import EE from '@site/docs/operator/partials/ee.mdx';
-
-<EE />
+:::warning
+This Module is subject to a user license.
+:::
 
 ## Requirements
 
 Formance Auth requires:
-- **PostgreSQL**: See configuration guide [here](/next/operator/infra/postgres).
+- **PostgreSQL**: See configuration guide [here](../05-Infrastructure%20services/02-Message%20broker.md).
 
 ## Auth Object
 :::info
-You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#auth).
+You can find all the available parameters in [the comprehensive CRD documentation](../09-Configuration%20reference/02-Custom%20Resource%20Definitions.md#auth).
 :::
 
 ```yaml

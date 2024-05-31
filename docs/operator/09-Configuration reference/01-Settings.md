@@ -1,7 +1,3 @@
----
-title: Settings
-description: How to use CRD settings
----
 The Settings CRD is one of the most important CRDs in Operator v2. It enables all the necessary adjustments so that the Operator can adapt to your usage and environment.
 
 Settings are encoded as string, but under the hood, each setting can be unmarshalled to a specific type.

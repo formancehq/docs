@@ -1,9 +1,7 @@
----
-title: Orchestration
----
-import EE from '@site/docs/operator/partials/ee.mdx';
+:::warning
+This Module is subject to a user license.
+:::
 
-<EE />
 Formance Flows is a handy service that lets you quickly set up end-to-end money flows, without the headache of piecing together APIs and untangling complex systems.
 
 With a clever compatibility model, you can easily move value between different ledgers, wallets, and payment processors. Plus, Formance Flows takes care of translating and interpreting the transactions for you.
@@ -14,14 +12,14 @@ On top of that, Formance Flows comes with flexible workflow capabilities, so you
 ## Requirements
 
 Formance Flows requires:
-- **PostgreSQL**: See configuration guide [here](/next/operator/infra/postgres).
-- **Temporal**: See configuration guide [here](/next/operator/infra/temporal).
-- **Broker**: See configuration guide [here](/next/operator/infra/broker).
+- **PostgreSQL**: See configuration guide [here](../05-Infrastructure%20services/01-PostgreSQL.md).
+- **Temporal**: See configuration guide [here](../05-Infrastructure%20services/04-Temporal.md).
+- **Broker**: See configuration guide [here](../05-Infrastructure%20services/02-Message%20broker.md).
 
 ## Orchestration Object
 
 :::info
-You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#orchestration).
+You can find all the available parameters in [the comprehensive CRD documentation](../09-Configuration%20reference/02-Custom%20Resource%20Definitions.md#orchestration).
 :::
 
 ```yaml

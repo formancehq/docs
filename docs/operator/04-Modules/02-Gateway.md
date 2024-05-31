@@ -1,11 +1,8 @@
----
-title: Gateway
----
 The Gateway's role is to centralize all incoming connections to your stack. If you need to expose your Stack to the outside, it is necessary to route all the traffic through it.
 ## Gateway Object
 
 :::info
-You can find all the available parameters in [the comprehensive CRD documentation](/next/operator/crd#gateway).
+You can find all the available parameters in [the comprehensive CRD documentation](../09-Configuration%20reference/02-Custom%20Resource%20Definitions.md#gateway).
 :::
 
 ```yaml

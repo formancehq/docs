@@ -1,6 +1,3 @@
----
-title: Requirements
----
 Before creating our region and deploying the Formance Operator, let's make sure that our cluster is ready to host our operator and have the required following items below in place.
 
 ## Ingress controller (optional)
