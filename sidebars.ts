@@ -443,7 +443,7 @@ const sidebars = {
                 {
                   type: "link",
                   label: "Operator Deployment",
-                  href: "/next/operator/installation/requirements"
+                  href: "/next/operator/Requirements"
                 },
                 {
                   type: 'category',

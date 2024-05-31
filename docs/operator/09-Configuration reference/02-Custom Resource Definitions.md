@@ -262,6 +262,24 @@ You can note two things :
    Refer to the documentation of [ResourceReference](#resourcereference) for further information.
 
 
+###### JSON logging
+
+
+You can use the setting `logging.json` with the value `true` to configure elligible service to log as json.
+Example:
+```yaml
+apiVersion: formance.com/v1beta1
+kind: Settings
+metadata:
+  name: json-logging
+spec:
+  key: logging.json
+  stacks:
+  - '*'
+  value: "true"
+```
+
+
 
 
 
@@ -307,7 +325,7 @@ You can note two things :
 | Field | Description | Default | Validation |
 | --- | --- | --- | --- |
 | `stacks` _string array_ | Stacks on which the setting is applied. Can contain `*` to indicate a wildcard. |  |  |
-| `key` _string_ | The setting Key. See the documentation of each module or [global settings](#globalsettings) to discover them. |  |  |
+| `key` _string_ | The setting Key. See the documentation of each module or [global settings](#global-settings) to discover them. |  |  |
 | `value` _string_ | The value. It must have a specific format following the Key. |  |  |
 
 
@@ -439,7 +457,7 @@ The auth service is basically a proxy to another OIDC compliant server.
 | --- | --- | --- | --- |
 | `ready` _boolean_ | Ready indicates if the resource is seen as completely reconciled |  |  |
 | `info` _string_ | Info can contain any additional like reconciliation errors |  |  |
-| `clients` _string array_ | Clients contains the list of clients created using [AuthClient](#AuthClient) |  |  |
+| `clients` _string array_ | Clients contains the list of clients created using [AuthClient](#authclient) |  |  |
 
 
 #### Gateway
@@ -729,8 +747,8 @@ _Underlying type:_ _string_
 | `uri` _string_ |  |  |  |
 | `tls` _boolean_ |  | false |  |
 | `insecure` _boolean_ |  | false |  |
-| `duration` _[Duration](#duration)_ |  |  |  |
-| `retry` _[Duration](#duration)_ |  |  |  |
+| `duration` _string_ |  |  |  |
+| `retry` _string_ |  |  |  |
 
 
 
@@ -2023,7 +2041,7 @@ If you use that setting, the reconciler will use another job to drop the databas
 Be careful, no backup are performed!
 
 
-Database resource honors `aws.service-account` setting, so, you can create databases on a AWS server if you need.
+Database resource honors `aws.service-account` setting, so, you can create databases on an AWS server if you need.
 See [AWS accounts](#aws-account)
 
 
