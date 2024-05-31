@@ -1,8 +1,3 @@
----
-title: Configure OpenTelemetry
-description: Configure OpenTelemetry for the Formance stack
----
-
 # Configure OpenTelemetry
 
 ## Overview

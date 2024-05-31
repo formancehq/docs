@@ -1,8 +1,3 @@
----
-title: PostgreSQL
-description: Deploy and configure PostgreSQL databases
----
-
 _Version 14 or higher is required._
 
 The recommended way to spin up a PostgreSQL deployment is to use your cloud provider's managed services. It is recommended to start with a small instance and scale up as needed, starting with for example a `db.m4.large` sizing on AWS.

@@ -1,7 +1,3 @@
----
-title: Upgrading the operator
----
-
 It is good practice to keep the operator up to date with the latest [releases](https://github.com/formancehq/stack/releases) to anticipate for any future component upgrades. As there is no immediate impact on the deployed stacks when upgrading the operator, it is advised to simply ensure the operator is running the latest version most of the time.
 
 You can download the latest version of Formance directly from [our github repo](https://github.com/formancehq/stack/releases).
