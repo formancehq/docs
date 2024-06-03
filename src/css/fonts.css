@@ -1,9 +1,23 @@
 @font-face {
-	font-family: 'Object Sans';
-	src: url('../../static/fonts/Object-Sans/PPObjectSans-Variable.woff2');
+	font-family: 'Polymath';
+	font-weight: 200;
+	src: url('../../static/fonts/Polymath-Light.woff2');
 }
 
 @font-face {
-	font-family: 'Machina';
-	src: url('../../static/fonts/Machina/PPNeueMachina-PlainVariable.woff2');
+	font-family: 'Polymath';
+	font-weight: 400;
+	src: url('../../static/fonts/Polymath-Regular.woff2');
+}
+
+@font-face {
+	font-family: 'Polymath';
+	font-weight: 500;
+	src: url('../../static/fonts/Polymath-Medium.woff2');
+}
+
+@font-face {
+	font-family: 'Polymath';
+	font-weight: 600;
+	src: url('../../static/fonts/Polymath-SemiBold.woff2');
 }

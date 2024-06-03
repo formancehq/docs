@@ -7,10 +7,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap');
 @import url('./fonts.css');
 
-/* You can override the default Infima variables here. */
+/* Base style */
+
 :root {
-	--ifm-font-color-base: hsla(220, 22%, 26%, 1);
-	--ifm-font-family-base: 'Object Sans', sans-serif;
+	--ifm-font-color-base: var(--brand-primary-900);
+	--ifm-font-family-base: 'Polymath', sans-serif;
 	--ifm-heading-font-family: var(--ifm-font-family-base);
 	--ifm-breadcrumb-font-family: var(--ifm-font-family-base);
 	--ifm-heading-font-weight: var(--ifm-font-weight-normal);
@@ -31,12 +32,63 @@
 	--pink-bright: #f8e2ff;
 	--pink-light: #fdf4ff;
 
+	--brand-primary-100: hsl(180, 100%, 100%);
+	--brand-primary-200: hsl(180, 14%, 93%);
+	--brand-primary-300: hsl(180, 16%, 89%);
+	--brand-primary-400: hsl(180, 17%, 86%);
+	--brand-primary-500: hsl(180, 17%, 80%);
+	--brand-primary-600: hsl(184, 13%, 75%);
+	--brand-primary-700: hsl(184, 11%, 53%);
+	--brand-primary-800: hsl(186, 22%, 33%);
+	--brand-primary-900: hsl(187, 97%, 12%);
+	--brand-primary-1000: hsl(187, 97%, 7%);
+
+	--slate-100: hsl(180, 16%, 97%);
+
+	--lilac-100: hsl(240, 82%, 98%);
+	--lilac-200: hsl(243, 100%, 96%);
+	--lilac-300: hsl(242, 100%, 94%);
+	--lilac-400: hsl(243, 100%, 92%);
+	--lilac-500: hsl(242, 100%, 90%);
+	--lilac-600: hsl(243, 43%, 75%);
+	--lilac-700: hsl(242, 29%, 59%);
+	--lilac-800: hsl(243, 28%, 44%);
+	--lilac-900: hsl(242, 45%, 29%);
+
+	--gold-100: hsl(40, 17%, 86%);
+	--gold-200: hsl(45, 17%, 74%);
+	--gold-300: hsl(42, 17%, 63%);
+	--gold-400: hsl(43, 17%, 51%);
+	--gold-500: hsl(43, 26%, 39%);
+	--gold-600: hsl(43, 26%, 31%);
+	--gold-700: hsl(43, 27%, 24%);
+	--gold-800: hsl(42, 25%, 16%);
+	--gold-900: hsl(42, 25%, 8%);
+
+	--cobalt-100: hsl(205, 46%, 90%);
+	--cobalt-200: hsl(205, 48%, 90%);
+	--cobalt-300: hsl(206, 47%, 69%);
+	--cobalt-400: hsl(206, 48%, 59%);
+	--cobalt-500: hsl(206, 50%, 45%);
+	--cobalt-600: hsl(206, 50%, 39%);
+	--cobalt-700: hsl(206, 49%, 29%);
+	--cobalt-800: hsl(206, 50%, 20%);
+	--cobalt-900: hsl(205, 48%, 10%);
+
+	--mint-100: hsl(126, 56%, 96%);
+	--mint-200: hsl(123, 56%, 93%);
+	--mint-300: hsl(122, 52%, 89%);
+	--mint-400: hsl(122, 53%, 86%);
+	--mint-500: hsl(122, 53%, 82%);
+	--mint-600: hsl(123, 27%, 68%);
+	--mint-700: hsl(123, 16%, 53%);
+	--mint-800: hsl(122, 18%, 39%);
+	--mint-900: hsl(122, 25%, 24%);
+
 	--docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 
-	--ifm-box-border-color: var(--ifm-color-gray-300);
-
-	--ifm-button-font-weight: 400;
-
+	--ifm-box-border-color: var(--brand-primary-400);
+	--ifm-color-primary: var(--gold-400);
 	/* --ifm-color-primary: hsla(160, 40%, 50%, 1); */
 	/* --ifm-color-primary: #6FE385;
   --ifm-color-primary-dark: rgb(33, 175, 144);
@@ -45,13 +97,45 @@
   --ifm-color-primary-light: rgb(70, 203, 174);
   --ifm-color-primary-lighter: rgb(102, 212, 189);
   --ifm-color-primary-lightest: rgb(146, 224, 208); */
+
+	--ifm-button-font-weight: 400;
 	--ifm-code-font-size: 95%;
 	--ifm-h1-font-size: 1rem;
+	--ifm-navbar-shadow: none;
 }
 
-html[data-theme='dark'] {
-	--docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
-	--ifm-font-color-base: hsla(0, 0%, 100%, 0.88);
+/* Frame */
+
+:root {
+	--ifm-background-color: var(--slate-100);
+	--ifm-navbar-background-color: var(--slate-100);
+	--ifm-toc-border-color: var(--ifm-box-border-color);
+}
+
+.navbar {
+	border-bottom: 1px solid var(--ifm-box-border-color);
+}
+
+.footer {
+	border-top: 1px solid var(--ifm-box-border-color);
+}
+
+.footer__title {
+	font-weight: var(--ifm-font-weight-semibold);
+}
+
+.navbar__logo img {
+  height: 30px;
+	display: flex;
+	padding-top: 4px;
+}
+
+.menu__link {
+	font-weight: var(--ifm-menu-font-weight);
+}
+
+.navbar__link {
+	font-weight: var(--ifm-navbar-font-weight);
 }
 
 * {
@@ -70,6 +154,53 @@ html[data-theme='dark'] {
 	font-size: 1.4rem;
 }
 
+/* DocSearch */
+
+[data-theme='dark'] .DocSearch {
+	--docsearch-searchbox-background: var(--brand-primary-900);
+	--docsearch-modal-background: var(--ifm-background-color);
+	--docsearch-footer-background: var(--ifm-background-color);
+}
+
+/* Cards */
+
+.card__title {
+	font-weight: var(--ifm-font-weight-normal);
+	color: var(--ifm-font-color-base);
+	margin: 0;
+}
+
+.card__title:hover {
+	color: var(--ifm-font-color-base);
+	text-decoration: none;
+}
+
+.card__title h3 {
+	margin: 0;
+}
+
+/* Buttons */
+
+.button--yellow {
+	/* background-color: var(--yellow-bright);
+	color: var(--ifm-font-color-base); */
+	background-color: var(--brand-primary-800);
+	color: var(--brand-primary-100);
+}
+
+.button--yellow:hover {
+	/* background-color: var(--yellow-normal);
+	color: var(--ifm-font-color-base); */
+	background-color: var(--brand-primary-700);
+	color: var(--brand-primary-100);
+}
+
+/* Code blocks */
+
+/* :root {
+	--prism-background-color: var(--brand-primary-800);
+} */
+
 html:not([data-theme='dark']) .redocusaurus .redoc-wrap .api-content > div > div:nth-child(1) > div:nth-child(2) h3 {
 	color: var(--ifm-font-color-base-inverse);
 }
@@ -79,10 +210,6 @@ html:not([data-theme='dark']) .redocusaurus .redoc-wrap .api-content > div > div
 	display: block;
 	margin: 0 calc(-1 * var(--ifm-pre-padding));
 	padding: 0 var(--ifm-pre-padding);
-}
-
-html[data-theme='dark'] .docusaurus-highlight-code-line {
-	background-color: rgba(0, 0, 0, 0.3);
 }
 
 /* html[data-theme='light'] footer {
@@ -98,6 +225,25 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 		no-repeat;
 }
 
+/* Dark mode */
+
+html[data-theme='dark'] {
+	--docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
+	--ifm-font-color-base: var(--brand-primary-500);
+	
+	--ifm-background-color: var(--brand-primary-1000);
+	--ifm-navbar-background-color: var(--brand-primary-1000);
+
+	--ifm-box-border-color: var(--brand-primary-900);
+	--ifm-color-primary: var(--gold-300);
+	--ifm-footer-background-color: var(--brand-primary-1000);
+	--ifm-toc-border-color: var(--ifm-box-border-color);
+}
+
+html[data-theme='dark'] .footer {
+	border-top: 1px solid var(--brand-primary-900);
+}
+
 html[data-theme='dark'] .header-github-logo:before {
 	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='white' d='M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12'/%3E%3C/svg%3E")
 		no-repeat;
@@ -107,7 +253,12 @@ html[data-theme='dark'] .button--yellow {
 	color: var(--ifm-font-color-base-inverse);
 }
 
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+	background-color: rgba(0, 0, 0, 0.3);
+}
+
 /* Graph */
+
 .Graph {
 	background-color: transparent;
 }
@@ -138,41 +289,9 @@ html[data-theme='dark'] .button--yellow {
 	fill: hsl(218deg 13% 82%);
 }
 
-.menu__link {
-	font-weight: var(--ifm-menu-font-weight);
-}
-
-.navbar__link {
-	font-weight: var(--ifm-navbar-font-weight);
-}
-
-.button--yellow {
-	background-color: var(--yellow-bright);
-	color: var(--ifm-font-color-base);
-}
-
-.button--yellow:hover {
-	background-color: var(--yellow-normal);
-	color: var(--ifm-font-color-base);
-}
-
-.card__title {
-	font-weight: var(--ifm-font-weight-normal);
-	color: var(--ifm-font-color-base);
-	margin: 0;
-}
-
-.card__title:hover {
-	color: var(--ifm-font-color-base);
-	text-decoration: none;
-}
-
-.card__title h3 {
-	margin: 0;
-}
+/* Badge */
 
 .badge {
-	/* display: none; */
 	font-weight: 400;
 	font-size: 85%;
 	padding: 8px 15px;
@@ -185,8 +304,4 @@ html[data-theme='dark'] .button--yellow {
 	background-color: var(--yellow-light);
 	border: 1px solid var(--yellow-bright);
 	color: var(--yellow-darker);
-}
-
-.footer__title {
-	font-weight: var(--ifm-font-weight-semibold);
 }
