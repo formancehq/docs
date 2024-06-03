@@ -7,24 +7,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200;300;400;500;600&display=swap');
 @import url('./fonts.css');
 
-/* Base style */
+/* Theme colours */
 
 :root {
-	--ifm-font-color-base: var(--brand-primary-900);
-	--ifm-font-family-base: 'Polymath', sans-serif;
-
-	--ifm-heading-font-family: var(--ifm-font-family-base);
-	--ifm-breadcrumb-font-family: var(--ifm-font-family-base);
-	--ifm-heading-font-weight: var(--ifm-font-weight-normal);
-	--ifm-heading-font-weight: var(--ifm-font-weight-normal);
-	--ifm-menu-font-weight: var(--ifm-font-weight-normal);
-	--ifm-navbar-font-weight: var(--ifm-font-weight-normal);
-	--ifm-table-head-font-weight: var(--ifm-font-weight-semibold);
-
-	--ifm-font-weight-base: var(--ifm-font-weight-normal);
-
-	--ifm-font-family-secondary: 'Space Grotesk', sans-serif;
-
 	--yellow-darker: #92400e;
 	--yellow-normal: #ffe353;
 	--yellow-bright: #fff1a8;
@@ -87,24 +72,41 @@
 	--mint-700: hsl(123, 16%, 53%);
 	--mint-800: hsl(122, 18%, 39%);
 	--mint-900: hsl(122, 25%, 24%);
+}
+
+/* Base style */
+
+:root {
+	--ifm-font-color-base: var(--brand-primary-900);
+	--ifm-font-family-base: 'Polymath', sans-serif;
+
+	--ifm-heading-font-family: var(--ifm-font-family-base);
+	--ifm-breadcrumb-font-family: var(--ifm-font-family-base);
+	--ifm-heading-font-weight: var(--ifm-font-weight-normal);
+	--ifm-heading-font-weight: var(--ifm-font-weight-normal);
+	--ifm-menu-font-weight: var(--ifm-font-weight-normal);
+	--ifm-navbar-font-weight: var(--ifm-font-weight-normal);
+	--ifm-table-head-font-weight: var(--ifm-font-weight-semibold);
+
+	--ifm-font-weight-base: var(--ifm-font-weight-normal);
+
+	--ifm-font-family-secondary: 'Space Grotesk', sans-serif;
 
 	--docusaurus-highlighted-code-line-bg: rgb(0 0 0 / 10%);
 
 	--ifm-box-border-color: var(--brand-primary-400);
+
 	--ifm-color-primary: var(--gold-400);
-	/* --ifm-color-primary: hsla(160, 40%, 50%, 1); */
-	/* --ifm-color-primary: #6FE385;
-  --ifm-color-primary-dark: rgb(33, 175, 144);
-  --ifm-color-primary-darker: rgb(31, 165, 136);
-  --ifm-color-primary-darkest: rgb(26, 136, 112);
-  --ifm-color-primary-light: rgb(70, 203, 174);
-  --ifm-color-primary-lighter: rgb(102, 212, 189);
-  --ifm-color-primary-lightest: rgb(146, 224, 208); */
+	--ifm-color-primary-lighter: var(--gold-300);
+	--ifm-color-primary-dark: var(--gold-500);
+	--ifm-color-primary-darker: var(--gold-600);
 
 	--ifm-button-font-weight: 400;
 	--ifm-code-font-size: 95%;
 	--ifm-h1-font-size: 1rem;
 	--ifm-navbar-shadow: none;
+
+	--ifm-color-emphasis-300: var(--brand-primary-300);
 }
 
 /* Frame */
@@ -163,6 +165,7 @@
 	--docsearch-searchbox-background: var(--brand-primary-900);
 	--docsearch-modal-background: var(--ifm-background-color);
 	--docsearch-footer-background: var(--ifm-background-color);
+	--docsearch-searchbox-focus-background: var(--ifm-background-color);
 }
 
 /* Cards */
@@ -184,14 +187,14 @@
 
 /* Buttons */
 
-.button--yellow {
+.button--brand {
 	/* background-color: var(--yellow-bright);
 	color: var(--ifm-font-color-base); */
 	background-color: var(--brand-primary-800);
 	color: var(--brand-primary-100);
 }
 
-.button--yellow:hover {
+.button--brand:hover {
 	/* background-color: var(--yellow-normal);
 	color: var(--ifm-font-color-base); */
 	background-color: var(--brand-primary-700);
@@ -203,6 +206,10 @@
 /* :root {
 	--prism-background-color: var(--brand-primary-800);
 } */
+
+.codeBlockTitle_node_modules-\@docusaurus-theme-classic-lib-theme-CodeBlock-Content-styles-module {
+	border-bottom-color: var(--brand-primary-800) !important;
+}
 
 html:not([data-theme='dark']) .redocusaurus .redoc-wrap .api-content > div > div:nth-child(1) > div:nth-child(2) h3 {
 	color: var(--ifm-font-color-base-inverse);
@@ -241,6 +248,7 @@ html[data-theme='dark'] {
 	--ifm-color-primary: var(--gold-300);
 	--ifm-footer-background-color: var(--brand-primary-1000);
 	--ifm-toc-border-color: var(--ifm-box-border-color);
+	--ifm-color-emphasis-300: var(--brand-primary-900);
 }
 
 html[data-theme='dark'] .footer {

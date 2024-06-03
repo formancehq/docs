@@ -59,7 +59,7 @@ function Card({ title, icon, cta, children }) {
 			<div className='card__body'>{children}</div>
 			{cta && (
 				<div className='card__footer'>
-					<Link className='button button--yellow button--block' to={cta.link}>
+					<Link className='button button--brand button--block' to={cta.link}>
 						{cta.text}
 					</Link>
 				</div>
