@@ -12,6 +12,7 @@
 :root {
 	--ifm-font-color-base: var(--brand-primary-900);
 	--ifm-font-family-base: 'Polymath', sans-serif;
+
 	--ifm-heading-font-family: var(--ifm-font-family-base);
 	--ifm-breadcrumb-font-family: var(--ifm-font-family-base);
 	--ifm-heading-font-weight: var(--ifm-font-weight-normal);
@@ -21,6 +22,8 @@
 	--ifm-table-head-font-weight: var(--ifm-font-weight-semibold);
 
 	--ifm-font-weight-base: var(--ifm-font-weight-normal);
+
+	--ifm-font-family-secondary: 'Space Grotesk', sans-serif;
 
 	--yellow-darker: #92400e;
 	--yellow-normal: #ffe353;
@@ -125,7 +128,7 @@
 }
 
 .navbar__logo img {
-  height: 30px;
+	height: 30px;
 	display: flex;
 	padding-top: 4px;
 }
@@ -230,7 +233,7 @@ html:not([data-theme='dark']) .redocusaurus .redoc-wrap .api-content > div > div
 html[data-theme='dark'] {
 	--docusaurus-highlighted-code-line-bg: rgb(66 66 66 / 35%);
 	--ifm-font-color-base: var(--brand-primary-500);
-	
+
 	--ifm-background-color: var(--brand-primary-1000);
 	--ifm-navbar-background-color: var(--brand-primary-1000);
 	--ifm-background-surface-color: var(--brand-primary-900);
@@ -341,7 +344,10 @@ html[data-theme='dark'] .Graph .edge > path {
 .theme-doc-version-badge {
 	margin-top: 10px;
 	margin-bottom: 20px;
-	background-color: var(--yellow-light);
-	border: 1px solid var(--yellow-bright);
-	color: var(--yellow-darker);
+	background-color: var(--lilac-400);
+	color: var(--lilac-800);
+	border: 1px solid var(--lilac-500);
+	text-transform: uppercase;
+	font-family: var(--ifm-font-family-secondary);
+	font-weight: 500;
 }
