@@ -58,9 +58,9 @@ const PostingsGraph = ({ postings, caption, additionnals =[] }) => {
   return (
     <Box sx={{
       textAlign: 'center',
-      border: '1px solid',
-      borderRadius: 2,
-      borderColor: 'grey.200',
+      // border: '1px solid',
+      // borderRadius: 2,
+      // borderColor: 'grey.200',
       mt: 2,
       mb: 2,
     }}>

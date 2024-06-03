@@ -233,7 +233,7 @@ html[data-theme='dark'] {
 	
 	--ifm-background-color: var(--brand-primary-1000);
 	--ifm-navbar-background-color: var(--brand-primary-1000);
-
+	--ifm-background-surface-color: var(--brand-primary-900);
 	--ifm-box-border-color: var(--brand-primary-900);
 	--ifm-color-primary: var(--gold-300);
 	--ifm-footer-background-color: var(--brand-primary-1000);
@@ -261,32 +261,72 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 
 .Graph {
 	background-color: transparent;
+	border: solid 1px var(--ifm-box-border-color);
+	border-radius: 4px;
 }
 .Graph polygon {
 	fill: transparent;
 }
-
 .Graph text {
 	font-size: 12px;
 	font-family: var(--ifm-font-family-base);
 }
+
+/* Normal */
+
 .Graph .edge text {
-	fill: #5d6779;
+	fill: var(--brand-primary-800);
 }
 .Graph .edge > path {
-	stroke: hsl(218deg 13% 18%);
+	stroke: var(--brand-primary-400);
 }
 .Graph .edge > polygon {
-	stroke: hsl(218deg 13% 18%);
-	fill: hsl(218deg 13% 18%);
+	/* stroke: hsl(218deg 13% 18%); */
+	/* fill: hsl(218deg 13% 18%); */
+	stroke: var(--brand-primary-400);
+	fill: var(--brand-primary-400);
+}
+.Graph .node > polygon {
+	/* stroke: hsl(218deg 13% 18%); */
+	stroke: var(--brand-primary-100);
+	fill: var(--brand-primary-400);
+	/* fill: hsl(218deg 13% 18%); */
 }
 .Graph .node > ellipse {
-	stroke: hsl(218deg 13% 18%);
-	fill: hsl(218deg 13% 18%);
+	/* stroke: hsl(218deg 13% 18%); */
+	/* fill: hsl(218deg 13% 18%); */
+	stroke: var(--brand-primary-400);
+	fill: var(--brand-primary-200);
 }
 .Graph .node text {
 	font-size: 12px;
-	fill: hsl(218deg 13% 82%);
+	fill: var(--brand-primary-800);
+}
+
+/* Dark */
+
+html[data-theme='dark'] .Graph .edge text {
+	/* fill: #5d6779; */
+	fill: var(--brand-primary-800);
+}
+
+html[data-theme='dark'] .Graph .node > ellipse {
+	stroke: var(--brand-primary-800);
+	fill: var(--brand-primary-900);
+}
+
+html[data-theme='dark'] .Graph .node > polygon {
+	stroke: var(--brand-primary-800);
+	fill: var(--brand-primary-900);
+}
+
+html[data-theme='dark'] .Graph .edge > polygon {
+	stroke: var(--brand-primary-800);
+	fill: var(--brand-primary-800);
+}
+
+html[data-theme='dark'] .Graph .edge > path {
+	stroke: var(--brand-primary-800);
 }
 
 /* Badge */
