@@ -27,7 +27,7 @@ In this example, we are filtering on a ledger account. The naming convention set
 In order to get all accounts, with unique value `XXXX` of order segment, we use this regex-like syntax `order::pending`.
 
 :::note
-Note the double colon `::` used to express a wildcard match.
+An address is divided into segments delimited by semi-colons `:`. If a segment is empty in the filter, it is interpreted as a wildcard match. Moreover, if the filter ends with a semi-colon, it is interpreted as an open-ended wildcard.
 :::
 
 For a metadata filter, the syntax is the following:
