@@ -70,7 +70,13 @@ The following operations are supported:
 - `$gt`: Greater. Same format as `$match`.
 - `$gte`: Greater than or equal to. Same format as `$match`.
 - `$exists`: test the existence of a metadata
-- `$not`: Inverse the result of the expression. Same format as `$match`.
+- `$not`: Inverse the result of the expression. It takes an expression as parameter and returns the opposite decision.
+  To invert the result of a `$match` operation, you can use the `$not` operation like this:
+  ```json
+  {
+    "$not": { "$match": { "source": "order::pending" } }
+  }
+  ```
 
 ### Filterable fields
 
