@@ -5,7 +5,7 @@ IMPORT github.com/formancehq/earthly:tags/v0.12.0 AS core
 update-operator-doc:
     FROM core+base-image
     RUN mkdir -p docs/operator
-    COPY --dir github.com/formancehq/stack/components/operator:main+generate-docs/* docs/operator
+    COPY --dir github.com/formancehq/stack/components/operator:releases/v2.0.0+generate-docs/* docs/operator
     SAVE ARTIFACT docs/operator/* AS LOCAL docs/operator/
 
 build:
