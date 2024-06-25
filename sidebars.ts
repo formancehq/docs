@@ -407,6 +407,16 @@ const sidebars = {
           ],
         },
         {
+          type: 'category',
+          label: 'Observability',
+          items: [
+            {
+              type: 'doc',
+              id: 'stack/observability/metrics',
+            }
+          ],
+        },
+        {
           type: 'doc',
           id: 'stack/sdk/index',
           label: 'SDKs',
