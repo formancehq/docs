@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import Link from '@docusaurus/Link';
+import Link from '@docusaurus/Link'
 
 import { findFirstSidebarItemLink, useDocById } from '@docusaurus/theme-common/internal'
 
@@ -45,7 +45,7 @@ function Card({ title, icon, cta, children }) {
 					<Box
 						sx={{
 							width: 55,
-							height: 60,
+							height: 55,
 							mr: 1,
 						}}
 					>
@@ -59,7 +59,7 @@ function Card({ title, icon, cta, children }) {
 			<div className='card__body'>{children}</div>
 			{cta && (
 				<div className='card__footer'>
-					<Link className='button button--yellow button--block' to={cta.link}>
+					<Link className='button button--brand button--block' to={cta.link}>
 						{cta.text}
 					</Link>
 				</div>

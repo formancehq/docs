@@ -1,9 +1,8 @@
 @font-face {
-	font-family: 'Object Sans';
-	src: url('../../static/fonts/Object-Sans/PPObjectSans-Variable.woff2');
+	font-family: 'Polymath';
+	font-weight: 100 1000;
+	src: url('../../static/fonts/Polymath/PolymathVar.woff2');
+	font-variation-settings: 'opsz' 72;
 }
 
-@font-face {
-	font-family: 'Machina';
-	src: url('../../static/fonts/Machina/PPNeueMachina-PlainVariable.woff2');
-}
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');

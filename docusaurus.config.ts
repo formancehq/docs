@@ -1,15 +1,13 @@
 // @ts-check
 // Note: type annotations allow type checking and IDEs autocompletion
-
-
 import math from 'remark-math';
 import katex from 'rehype-katex';
 import  path from 'node:path';
 
-const lightCodeTheme = require('prism-react-renderer/themes/github');
-const darkCodeTheme = require('prism-react-renderer/themes/palenight');
+const darkCodeTheme = require('./src/prisma/theme-dark');
 
 import type {Config} from '@docusaurus/types';
+import { height } from '@mui/system';
 
 export default async function createConfig() {
 
@@ -20,7 +18,7 @@ export default async function createConfig() {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'throw',
-    favicon: 'img/f-shape.ico',
+    favicon: 'img/formance-favicon-gold.png',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.
     markdown: {
@@ -133,9 +131,9 @@ export default async function createConfig() {
           // style: 'light',
           logo: {
             alt: 'Formance Logo',
-            src: 'img/logo.svg',
+            src: 'img/formance-logo.svg',
             href: '/',
-            srcDark: 'img/logo-dark.svg'
+            srcDark: 'img/formance-logo-dark.svg',
           },
           items: [
             {
