@@ -453,7 +453,7 @@ const sidebars = {
                 {
                   type: "link",
                   label: "Operator Deployment",
-                  href: "/next/operator/Requirements"
+                  href: "/operator/Requirements"
                 },
                 {
                   type: 'category',
@@ -482,12 +482,12 @@ const sidebars = {
                     {
                       type: 'link',
                       label:'Creation',
-                      href: '/next/deployment/cloudprem/usage#create-a-stack',
+                      href: '/deployment/cloudprem/usage#create-a-stack',
                     },
                     {
                       type: 'link',
                       label: 'Enable Modules',
-                      href: '/next/deployment/cloudprem/usage#enabledisable-stack-modules',
+                      href: '/deployment/cloudprem/usage#enabledisable-stack-modules',
                     },
                   ],
                 },

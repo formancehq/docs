@@ -1,5 +1,6 @@
 {
   "redirects": [
+    { "source": "/:path*", "destination": "/:path*"},
     { "source": "/oss/:path*/", "destination": "/:path*/"},
     { "source": "/oss/:path*", "destination": "/:path*"},
     { "source": "/ledger/reference/api", "destination": "/api/stack/v1.0" },

@@ -18,8 +18,8 @@ export default async function createConfig() {
     tagline: 'The open source foundation you need to build and scale money-movements within your app',
     url: 'https://docs.formance.com/',
     baseUrl: '/',
-    onBrokenLinks: 'warn',
-    onBrokenMarkdownLinks: 'warn',
+    onBrokenLinks: 'throw',
+    onBrokenMarkdownLinks: 'throw',
     favicon: 'img/f-shape.ico',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.

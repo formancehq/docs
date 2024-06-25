@@ -11,7 +11,7 @@ As a result, write heavy applications above this threshold are advised to levera
 
 ### Transaction commit cost breakdown
 
-As outlined in the performance model [section](/ledger/reference/performance), we consider the cost of a write to be `O(N) + W`. Let's consider the following example:
+As outlined in the performance model [section](/v1.10/ledger/reference/performance), we consider the cost of a write to be `O(N) + W`. Let's consider the following example:
 
 ```numscript
 send [USD/2 9900] (
@@ -48,7 +48,7 @@ Implemented instead as `users:1234:main`, the latter will enable the ledger to e
 
 ### Ledgers sizing
 
-As a consequence of their append-only nature, ledgers will only grow in size over time indefinitely. Optimal mitigation of this nature is one of the design goal of the Formance Ledger. As a result of these optimisation efforts, not all queries are negatively impacted by the size of the ledger, as per explained in the performance model [section](/ledger/reference/performance). It is however to be noted that some queries will be impacted by the size of the ledger, relative to the underlying storage database capacity.
+As a consequence of their append-only nature, ledgers will only grow in size over time indefinitely. Optimal mitigation of this nature is one of the design goal of the Formance Ledger. As a result of these optimisation efforts, not all queries are negatively impacted by the size of the ledger, as per explained in the performance model [section](/v1.10/ledger/reference/performance). It is however to be noted that some queries will be impacted by the size of the ledger, relative to the underlying storage database capacity.
 
 In order to equip you with primitives to mitigate this, the Formance Ledger comes with the ability to segment your ledgers, allowing you to create multiple ledgers and to query them in parallel.
 
