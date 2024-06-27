@@ -2404,10 +2404,10 @@
     tslib "^2.6.0"
     utility-types "^3.10.0"
 
-"@docusaurus/theme-mermaid@^3.4.0":
-  version "3.4.0"
-  resolved "https://registry.yarnpkg.com/@docusaurus/theme-mermaid/-/theme-mermaid-3.4.0.tgz#ef1d2231d0858767f67538b4fafd7d0ce2a3e845"
-  integrity sha512-3w5QW0HEZ2O6x2w6lU3ZvOe1gNXP2HIoKDMJBil1VmLBc9PmpAG17VmfhI/p3L2etNmOiVs5GgniUqvn8AFEGQ==
+"@docusaurus/theme-mermaid@npm:@sidv/docusaurus-theme-mermaid@beta":
+  version "3.5.0-beta.1"
+  resolved "https://registry.yarnpkg.com/@sidv/docusaurus-theme-mermaid/-/docusaurus-theme-mermaid-3.5.0-beta.1.tgz#051971ce95bc365991e5efeddfd0b3ea863fc48f"
+  integrity sha512-gFYlyJZ8QhZZ+XoqUkXOABDg8eVUwv5XvZvQ4GFIgDsHAoslGIo8I2CkcKy+8x3Xc2PCpir0u//zPfDupeFBUQ==
   dependencies:
     "@docusaurus/core" "3.4.0"
     "@docusaurus/module-type-aliases" "3.4.0"
