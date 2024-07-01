@@ -5,9 +5,9 @@ sidebar_position: 1
 
 # How does the Generic Connector work?
 
-The Generic Connector for Formance Connectivity provides a way to connect your Formance Stack with Payment Service Providers that are not natively supported by Formance.
+The Generic Connector for Formance Connectivity provides a way to connect your Formance Stack with Financial Service Providers that are not natively supported by Formance.
 
-Formance Connectivity interact with the remote Connectivity Service Provider, throught the Generic Connector, as follow:
+Formance Connectivity interact with the remote Financial Service Provider, throught the Generic Connector, as follow:
 
 ```mermaid
 sequenceDiagram
@@ -35,16 +35,16 @@ sequenceDiagram
   deactivate Generic Connector
 ```
 
-The Generic Connector is in charge of polling the data from the Payment Service Provider, and then it sends the data to the Formance Connectivity. It polls the following data:
+The Generic Connector is in charge of polling the data from the Financial Service Provider, and then it sends the data to the Formance Connectivity. It polls the following data:
 
-- the list of accounts available in the Payment Service Provider and their associated balances and transactions.
-- the list of beneficiaries available in the Payment Service Provider for payouts.
+- the list of accounts available in the Financial Service Provider and their associated balances and transactions.
+- the list of beneficiaries available in the Financial Service Provider for payouts.
 
-## Integration with the Payment Service Provider
+## Integration with the Financial Service Provider
 
-The Generic Connector interacts with the Payment Service Provider by sending request formatted according to the [Generic Connector API specifications](../api-reference) and expecting responses formatted according to the same specifications.
+The Generic Connector interacts with the Financial Service Provider by sending request formatted according to the [Generic Connector API specifications](../api-reference) and expecting responses formatted according to the same specifications.
 
-As a consequence, it is necessary to create a service on your side that will interact with the Payment Service Provider and expose the data with the expected format.
+As a consequence, it is necessary to create a service on your side that will interact with the Financial Service Provider and expose the data with the expected format.
 
 The typical deployment of the Generic Connector is as follows:
 
@@ -53,7 +53,7 @@ graph LR
   Connectivity["Connectivity Core"]
   connector["Generic Connector"]
   service["Integration Service"]
-  psp["Payment Service Provider"]
+  psp["Financial Service Provider"]
   subgraph Formance Connectivity
     Connectivity <--> connector
   end
