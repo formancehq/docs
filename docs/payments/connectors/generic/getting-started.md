@@ -11,12 +11,12 @@ The generic connector interacts with a Payment Service Provider by sending reque
 
 ```mermaid
 graph LR
-  Payments["Payments Core"]
-  connector["Generic Connector"] 
+  Connectivity["Connectivity Core"]
+  connector["Generic Connector"]
   service["Integration Service"]
   psp["Payment Service Provider"]
-  subgraph Formance Payments
-    Payments <--> connector
+  subgraph Formance Connectivity
+    Connectivity <--> connector
   end
   subgraph Your insfrastucture
     connector <-- HTTP --> service
@@ -36,10 +36,10 @@ To install the Generic Connector, you need to create a `generic-connector.json` 
 
 ```json title='generic-connector.json'
 {
-    "name": "generic-tutorial",
-    "apiKey": "fake-api-key",
-    "endpoint": "https://wo4o67kza53yyfxbqkxnpjkknm0mndbb.lambda-url.eu-west-1.on.aws",
-    "pollingPeriod": "1h"
+  "name": "generic-tutorial",
+  "apiKey": "fake-api-key",
+  "endpoint": "https://wo4o67kza53yyfxbqkxnpjkknm0mndbb.lambda-url.eu-west-1.on.aws",
+  "pollingPeriod": "1h"
 }
 ```
 
@@ -59,7 +59,7 @@ Do you want to continue [Y/n]y
 
 ## Explore the data
 
-Now that the connector is installed, you can explore the data that has been imported into Formance Payments.
+Now that the connector is installed, you can explore the data that has been imported into Formance Connectivity.
 
 First, open the console.
 
@@ -67,7 +67,7 @@ First, open the console.
 fctl ui
 ```
 
-Navigate to the Payments page. You should see a list of payments that have been imported from the fake Payment Service Provider.
+Navigate to the Connectivity page. You should see a list of payments that have been imported from the fake Payment Service Provider.
 
 ![Generic connector transactions](./transactions-generic.png)
 
@@ -75,4 +75,4 @@ Navigate to the Payments page. You should see a list of payments that have been 
 If you don't see any transactions but a welcome page, click on the `Refresh status` button to reload the data.
 :::
 
-Congratulations! You have successfully imported payments data into Formance Payments using the Generic Connector.
+Congratulations! You have successfully imported payments data into Formance Connectivity using the Generic Connector.

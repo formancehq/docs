@@ -1,6 +1,6 @@
 # Generic
 
-The Generic Connector for Formance Payments provides a way to connect your Formance Stack with Payment Service Providers that are not natively supported by Formance.
+The Generic Connector for Formance Connectivity provides a way to connect your Formance Stack with Financial Service Providers that are not natively supported by Formance.
 
 ## Documentation organization
 
