@@ -45,7 +45,7 @@ This capability has some implications discussed below.
 From now on, we will only consider the __transaction time__ when discussing the ledger state at a specific point in time.
 :::
 
-### Account and Trandsaction Metadata
+### Account and Transaction Metadata
 
 Account and transaction metadata are not fixed in time. When a user queries the ledger at a specific point in time, the metadata associated with accounts and transactions is also determined based on the requested point in time. This means that the metadata associated with an account or transaction can change over time.
 
@@ -61,7 +61,7 @@ Now, let's consider that the fraud engine removes the `risk=high` metadata from 
 
 ![Final state](./02%20-%20final%20state.png)
 
-### Backdated Transactions validation
+### Backdated transaction validation
 
 #### Problem Statement
 
@@ -109,8 +109,8 @@ Note that the intermediate balances might be negative, as it is the case at time
 
 #### Validation Mechanism
 
-The ledger does not validate backdated transaction the same way it validates usual transactions. To check that a backdated transaction is valid, the ledger computes the new current state of the ledger by applying the backdated transaction and all the transactions that occurred after the backdated transaction. If the new state is valid, the backdated transaction is accepted. Otherwise, the backdated transaction is rejected.
+The ledger does not validate backdated transactions the same way it validates usual transactions. To check that a backdated transaction is valid, the ledger computes the new current state of the ledger by applying the backdated transaction and all the transactions that occurred after the backdated transaction. If the new state is valid, the backdated transaction is accepted. Otherwise, the backdated transaction is rejected.
 
 A backdated transaction is considered valid if it doesn't put any account in a negative balance in the new computed final state of the ledger. Keep in mind that the ledger does not validate the intermediate states of the ledger, only the final state.
 
-The only exception to this rule are the accounts that have been allowed to overdraft within the transaction. These accounts can have a negative balance in the new computed final state of the ledger.
+The only exception to this rule is the accounts that have been allowed to overdraft within the transaction. These accounts can have a negative balance in the new computed final state of the ledger.
