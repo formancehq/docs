@@ -36,17 +36,15 @@ Verify that you meet the upgrade path requirements above for your desired versio
 ### Preparation
 
 * Prior to upgrading, confirm that all your `ledger` instances were cleanly shut down
-* Create a backup of your database (e.g. using pg_dump if you're using Postgres as your storage backend, or by copying the SQLite files otherwise)
-* Choose a node where you'll be able to execute numary cli commands
+* Create a backup of your database (e.g. using pg_dump if you're using Postgres as your storage backend)
+* Choose a node where you'll be able to execute ledger cli commands
 
 ### Upgrade instructions
 
 1. Download the desired target version on the node used for upgrade
 2. Using the new binary, run:
 ```
-numary storage scan
-numary storage list
-numary storage upgrade {LEDGER_NAME}
+ledger migrate
 ```
 3. Restart all your nodes with the upgraded ledger binary
 
@@ -63,15 +61,13 @@ numary storage upgrade {LEDGER_NAME}
 ### Preparation
 
 * Prior to upgrading, confirm that your `ledger` instance was cleanly shut down
-* Create a backup of your database (e.g. using pg_dump if you're using Postgres as your storage backend, or by copying the SQLite files otherwise)
+* Create a backup of your database (e.g. using pg_dump if you're using Postgres as your storage backend)
 
 ### Upgrade instructions
 
 1. Download the desired version of Formance Ledger
 2. Using the new binary, run:
 ```
-numary storage scan
-numary storage list
-numary storage upgrade {LEDGER_NAME}
+ledger migrate
 ```
 3. Start your `ledger` instance with new version of ledger binary
