@@ -23,12 +23,12 @@ For HTTP publishing on Formance Cloud, please refer instead to the [webhooks sec
 
 ```shell
 # Publishing COMMITTED_TRANSACTIONS events
-numary server start \
+ledger serve \
   --publisher-http-enabled \
   --publisher-topic-mapping='COMMITTED_TRANSACTIONS:http://localhost:3042/numary-hook'
 
 # Publishing all events
-numary server start \
+ledger serve \
   --publisher-http-enabled \
   --publisher-topic-mapping='*:http://localhost:3042/numary-hook'
 ```
@@ -91,13 +91,13 @@ Access to Kafka publishing is not yet available in Formance Cloud.
 
 ```shell
 # Publishing COMMITTED_TRANSACTIONS events to the default topic
-numary server start \
+ledger serve \
   --publisher-kafka-enabled \
   --publisher-kafka-broker="localhost:9092" \
   --publisher-topic-mapping='COMMITTED_TRANSACTIONS:default'
 
 # Publishing all events to the default topic
-numary server start \
+ledger serve \
   --publisher-kafka-enabled \
   --publisher-kafka-broker="localhost:9092" \
   --publisher-topic-mapping='*:default'

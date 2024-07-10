@@ -136,11 +136,9 @@ const sidebars = {
               collapsed: true,
               items: [
                 'ledger/operations/installation',
-                'ledger/operations/configuration',
                 'ledger/operations/env-vars',
                 'ledger/operations/storages',
                 'ledger/operations/upgrade',
-                'ledger/operations/authentication',
                 'ledger/operations/metric_reference',
                 // 'ledger/api/sdks'
               ],

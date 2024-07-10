@@ -4,61 +4,69 @@ hide_table_of_contents: true
 ---
 
 :::info
-When using environment vars, the var name must be prefixed with `NUMARY_`.
-As an example, DEBUG could either be passed as `numary server start --debug` or `NUMARY_DEBUG=true numary server start`.
+As an example, DEBUG could either be passed as `ledger serve --debug` or `DEBUG=true ledger serve`.
 :::
 
 
- |Flag                                   |Env var                              |Default value                    |Description                                                                |
- |-                                      |-                                    |-                                |-                                                                          |
- |--auth-basic-credentials               |AUTH_BASIC_CREDENTIALS               |[]                               |HTTP basic auth credentials (`<username>:<password>`)                        |
- |--auth-basic-enabled                   |AUTH_BASIC_ENABLED                   |false                            |Enable basic auth                                                          |
- |--auth-bearer-audience                 |AUTH_BEARER_AUDIENCE                 |[]                               |Allowed audiences                                                          |
- |--auth-bearer-audiences-wildcard       |AUTH_BEARER_AUDIENCES_WILDCARD       |false                            |Don't check audience                                                       |
- |--auth-bearer-enabled                  |AUTH_BEARER_ENABLED                  |false                            |Enable bearer auth                                                         |
- |--auth-bearer-introspect-url           |AUTH_BEARER_INTROSPECT_URL           |                                 |OAuth2 introspect URL                                                      |
- |--auth-bearer-use-scopes               |AUTH_BEARER_USE_SCOPES               |false                            |Use scopes as defined by rfc https://datatracker.ietf.org/doc/html/rfc8693 |
- |--commit-policy                        |COMMIT_POLICY                        |                                 |Transaction commit policy (default or allow-past-timestamps)               |
- |--debug                                |DEBUG                                |false                            |Debug mode                                                                 |
- |--lock-strategy                        |LOCK_STRATEGY                        |memory                           |Lock strategy (memory, none, redis)                                        |
- |--lock-strategy-redis-duration         |LOCK_STRATEGY_REDIS_DURATION         |1m0s                             |Lock duration                                                              |
- |--lock-strategy-redis-retry            |LOCK_STRATEGY_REDIS_RETRY            |1s                               |Retry lock period                                                          |
- |--lock-strategy-redis-tls-enabled      |LOCK_STRATEGY_REDIS_TLS_ENABLED      |false                            |Use tls on redis                                                           |
- |--lock-strategy-redis-tls-insecure     |LOCK_STRATEGY_REDIS_TLS_INSECURE     |false                            |Whether redis is trusted or not                                            |
- |--lock-strategy-redis-url              |LOCK_STRATEGY_REDIS_URL              |                                 |Redis url when using redis locking strategy                                |
- |--otel-metrics                         |OTEL_METRICS                         |false                            |Enable OpenTelemetry metrics support                                       |
- |--otel-metrics-exporter                |OTEL_METRICS_EXPORTER                |stdout                           |OpenTelemetry metrics exporter                                             |
- |--otel-metrics-exporter-otlp-endpoint  |OTEL_METRICS_EXPORTER_OTLP_ENDPOINT  |                                 |OpenTelemetry metrics grpc endpoint                                        |
- |--otel-metrics-exporter-otlp-insecure  |OTEL_METRICS_EXPORTER_OTLP_INSECURE  |false                            |OpenTelemetry metrics grpc insecure                                        |
- |--otel-metrics-exporter-otlp-mode      |OTEL_METRICS_EXPORTER_OTLP_MODE      |grpc                             |OpenTelemetry metrics OTLP exporter mode (grpc|http)                       |
- |--otel-traces                          |OTEL_TRACES                          |false                            |Enable OpenTelemetry traces support                                        |
- |--otel-traces-batch                    |OTEL_TRACES_BATCH                    |false                            |Use OpenTelemetry batching                                                 |
- |--otel-traces-exporter                 |OTEL_TRACES_EXPORTER                 |stdout                           |OpenTelemetry traces exporter                                              |
- |--otel-traces-exporter-jaeger-endpoint |OTEL_TRACES_EXPORTER_JAEGER_ENDPOINT |                                 |OpenTelemetry traces Jaeger exporter endpoint                              |
- |--otel-traces-exporter-jaeger-password |OTEL_TRACES_EXPORTER_JAEGER_PASSWORD |                                 |OpenTelemetry traces Jaeger exporter password                              |
- |--otel-traces-exporter-jaeger-user     |OTEL_TRACES_EXPORTER_JAEGER_USER     |                                 |OpenTelemetry traces Jaeger exporter user                                  |
- |--otel-traces-exporter-otlp-endpoint   |OTEL_TRACES_EXPORTER_OTLP_ENDPOINT   |                                 |OpenTelemetry traces grpc endpoint                                         |
- |--otel-traces-exporter-otlp-insecure   |OTEL_TRACES_EXPORTER_OTLP_INSECURE   |false                            |OpenTelemetry traces grpc insecure                                         |
- |--otel-traces-exporter-otlp-mode       |OTEL_TRACES_EXPORTER_OTLP_MODE       |grpc                             |OpenTelemetry traces OTLP exporter mode (grpc|http)                        |
- |--publisher-http-enabled               |PUBLISHER_HTTP_ENABLED               |false                            |Sent write event to http endpoint                                          |
- |--publisher-kafka-broker               |PUBLISHER_KAFKA_BROKER               |[]                               |Kafka address is kafka enabled                                             |
- |--publisher-kafka-enabled              |PUBLISHER_KAFKA_ENABLED              |false                            |Publish write events to kafka                                              |
- |--publisher-kafka-sasl-enabled         |PUBLISHER_KAFKA_SASL_ENABLED         |false                            |Enable SASL authentication on kafka publisher                              |
- |--publisher-kafka-sasl-mechanism       |PUBLISHER_KAFKA_SASL_MECHANISM       |                                 |SASL authentication mechanism                                              |
- |--publisher-kafka-sasl-password        |PUBLISHER_KAFKA_SASL_PASSWORD        |                                 |SASL password                                                              |
- |--publisher-kafka-sasl-scram-sha-size  |PUBLISHER_KAFKA_SASL_SCRAM_SHA_SIZE  |512                              |SASL SCRAM SHA size                                                        |
- |--publisher-kafka-sasl-username        |PUBLISHER_KAFKA_SASL_USERNAME        |                                 |SASL username                                                              |
- |--publisher-kafka-tls-enabled          |PUBLISHER_KAFKA_TLS_ENABLED          |false                            |Enable TLS to connect on kafka                                             |
- |--publisher-topic-mapping              |PUBLISHER_TOPIC_MAPPING              |[]                               |Define mapping between internal event types and topics                     |
- |--segment-application-id               |SEGMENT_APPLICATION_ID               |                                 |Segment application id                                                     |
- |--segment-enabled                      |SEGMENT_ENABLED                      |true                             |Is segment enabled                                                         |
- |--segment-heartbeat-interval           |SEGMENT_HEARTBEAT_INTERVAL           |24h0m0s                          |Segment heartbeat interval                                                 |
- |--segment-write-key                    |SEGMENT_WRITE_KEY                    |lAVEcNA5tKkhkQGp2CvTBSsbGqFsbCIF |Segment write key                                                          |
- |--server.http.basic_auth               |SERVER_HTTP_BASIC_AUTH               |                                 |Http basic auth                                                            |
- |--server.http.bind_address             |SERVER_HTTP_BIND_ADDRESS             |localhost:3068                   |API bind address                                                           |
- |--storage.cache                        |STORAGE_CACHE                        |true                             |Storage cache                                                              |
- |--storage.dir                          |STORAGE_DIR                          |/Users/clement/.numary/data      |Storage directory (for sqlite)                                             |
- |--storage.driver                       |STORAGE_DRIVER                       |sqlite                           |Storage driver                                                             |
- |--storage-postgres-conn-string         |STORAGE_POSTGRES_CONN_STRING         |postgresql://localhost/postgres  |Postgre connection string                                                  |
- |--storage.sqlite.db_name               |STORAGE_SQLITE_DB_NAME               |numary                           |SQLite database name                                                       |
- |--ui.http.bind_address                 |UI_HTTP_BIND_ADDRESS                 |localhost:3068                   |UI bind address                                                            |
+|Flag                                                   |Env var                                              |Default value    |Description                                                   |
+|-                                                      |-                                                    |-                |-                                                             |
+|--auth-check-scopes                                    |AUTH_CHECK_SCOPES                                    |false            |CheckScopes                                                   |
+|--auth-enabled                                         |AUTH_ENABLED                                         |false            |Enable auth                                                   |
+|--auth-issuer                                          |AUTH_ISSUER                                          |                 |Issuer                                                        |
+|--auth-read-key-set-max-retries                        |AUTH_READ_KEY_SET_MAX_RETRIES                        |10               |ReadKeySetMaxRetries                                          |
+|--auth-service                                         |AUTH_SERVICE                                         |                 |Service                                                       |
+|--aws-access-key-id                                    |AWS_ACCESS_KEY_ID                                    |                 |AWS access key id                                             |
+|--aws-profile                                          |AWS_PROFILE                                          |                 |AWS profile                                                   |
+|--aws-region                                           |AWS_REGION                                           |                 |Specify AWS region                                            |
+|--aws-role-arn                                         |AWS_ROLE_ARN                                         |                 |AWS Role ARN                                                  |
+|--aws-secret-access-key                                |AWS_SECRET_ACCESS_KEY                                |                 |AWS secret access key                                         |
+|--aws-session-token                                    |AWS_SESSION_TOKEN                                    |                 |AWS session token                                             |
+|--bind                                                 |BIND                                                 |0.0.0.0:3068     |API bind address                                              |
+|--debug                                                |DEBUG                                                |false            |Debug mode                                                    |
+|--json-formatting-logger                               |JSON_FORMATTING_LOGGER                               |true             |Json formatting mode for logger                               |
+|--otel-metrics                                         |OTEL_METRICS                                         |false            |Enable OpenTelemetry traces support                           |
+|--otel-metrics-exporter                                |OTEL_METRICS_EXPORTER                                |stdout           |OpenTelemetry metrics exporter                                |
+|--otel-metrics-exporter-otlp-endpoint                  |OTEL_METRICS_EXPORTER_OTLP_ENDPOINT                  |                 |OpenTelemetry traces grpc endpoint                            |
+|--otel-metrics-exporter-otlp-insecure                  |OTEL_METRICS_EXPORTER_OTLP_INSECURE                  |false            |OpenTelemetry traces grpc insecure                            |
+|--otel-metrics-exporter-otlp-mode                      |OTEL_METRICS_EXPORTER_OTLP_MODE                      |grpc             |OpenTelemetry traces OTLP exporter mode (grpc|http)           |
+|--otel-metrics-exporter-push-interval                  |OTEL_METRICS_EXPORTER_PUSH_INTERVAL                  |10s              |OpenTelemetry metrics exporter push interval                  |
+|--otel-metrics-runtime                                 |OTEL_METRICS_RUNTIME                                 |false            |Enable OpenTelemetry runtime metrics                          |
+|--otel-metrics-runtime-minimum-read-mem-stats-interval |OTEL_METRICS_RUNTIME_MINIMUM_READ_MEM_STATS_INTERVAL |15s              |OpenTelemetry runtime metrics minimum read mem stats interval |
+|--otel-resource-attributes                             |OTEL_RESOURCE_ATTRIBUTES                             |[]               |Additional OTLP resource attributes                           |
+|--otel-service-name                                    |OTEL_SERVICE_NAME                                    |                 |OpenTelemetry service name                                    |
+|--otel-traces                                          |OTEL_TRACES                                          |false            |Enable OpenTelemetry traces support                           |
+|--otel-traces-batch                                    |OTEL_TRACES_BATCH                                    |false            |Use OpenTelemetry batching                                    |
+|--otel-traces-exporter                                 |OTEL_TRACES_EXPORTER                                 |stdout           |OpenTelemetry traces exporter                                 |
+|--otel-traces-exporter-jaeger-endpoint                 |OTEL_TRACES_EXPORTER_JAEGER_ENDPOINT                 |                 |OpenTelemetry traces Jaeger exporter endpoint                 |
+|--otel-traces-exporter-jaeger-password                 |OTEL_TRACES_EXPORTER_JAEGER_PASSWORD                 |                 |OpenTelemetry traces Jaeger exporter password                 |
+|--otel-traces-exporter-jaeger-user                     |OTEL_TRACES_EXPORTER_JAEGER_USER                     |                 |OpenTelemetry traces Jaeger exporter user                     |
+|--otel-traces-exporter-otlp-endpoint                   |OTEL_TRACES_EXPORTER_OTLP_ENDPOINT                   |                 |OpenTelemetry traces grpc endpoint                            |
+|--otel-traces-exporter-otlp-insecure                   |OTEL_TRACES_EXPORTER_OTLP_INSECURE                   |false            |OpenTelemetry traces grpc insecure                            |
+|--otel-traces-exporter-otlp-mode                       |OTEL_TRACES_EXPORTER_OTLP_MODE                       |grpc             |OpenTelemetry traces OTLP exporter mode (grpc|http)           |
+|--postgres-aws-enable-iam                              |POSTGRES_AWS_ENABLE_IAM                              |false            |Enable AWS IAM authentication                                 |
+|--postgres-conn-max-idle-time                          |POSTGRES_CONN_MAX_IDLE_TIME                          |1m0s             |Max Idle time for connections                                 |
+|--postgres-max-idle-conns                              |POSTGRES_MAX_IDLE_CONNS                              |0                |Max Idle connections                                          |
+|--postgres-max-open-conns                              |POSTGRES_MAX_OPEN_CONNS                              |20               |Max opened connections                                        |
+|--postgres-uri                                         |POSTGRES_URI                                         |                 |Postgres URI                                                  |
+|--publisher-circuit-breaker-enabled                    |PUBLISHER_CIRCUIT_BREAKER_ENABLED                    |false            |Enable circuit breaker for publisher                          |
+|--publisher-circuit-breaker-list-storage-limit         |PUBLISHER_CIRCUIT_BREAKER_LIST_STORAGE_LIMIT         |100              |Circuit breaker list storage limit                            |
+|--publisher-circuit-breaker-open-interval-duration     |PUBLISHER_CIRCUIT_BREAKER_OPEN_INTERVAL_DURATION     |5s               |Circuit breaker open interval duration                        |
+|--publisher-circuit-breaker-schema                     |PUBLISHER_CIRCUIT_BREAKER_SCHEMA                     |_system          |Circuit breaker schema                                        |
+|--publisher-http-enabled                               |PUBLISHER_HTTP_ENABLED                               |false            |Sent write event to http endpoint                             |
+|--publisher-kafka-broker                               |PUBLISHER_KAFKA_BROKER                               |[localhost:9092] |Kafka address is kafka enabled                                |
+|--publisher-kafka-enabled                              |PUBLISHER_KAFKA_ENABLED                              |false            |Publish write events to kafka                                 |
+|--publisher-kafka-sasl-enabled                         |PUBLISHER_KAFKA_SASL_ENABLED                         |false            |Enable SASL authentication on kafka publisher                 |
+|--publisher-kafka-sasl-iam-enabled                     |PUBLISHER_KAFKA_SASL_IAM_ENABLED                     |false            |Enable IAM authentication on kafka publisher                  |
+|--publisher-kafka-sasl-mechanism                       |PUBLISHER_KAFKA_SASL_MECHANISM                       |                 |SASL authentication mechanism                                 |
+|--publisher-kafka-sasl-password                        |PUBLISHER_KAFKA_SASL_PASSWORD                        |                 |SASL password                                                 |
+|--publisher-kafka-sasl-scram-sha-size                  |PUBLISHER_KAFKA_SASL_SCRAM_SHA_SIZE                  |512              |SASL SCRAM SHA size                                           |
+|--publisher-kafka-sasl-session-name                    |PUBLISHER_KAFKA_SASL_SESSION_NAME                    |                 |IAM session name                                              |
+|--publisher-kafka-sasl-username                        |PUBLISHER_KAFKA_SASL_USERNAME                        |                 |SASL username                                                 |
+|--publisher-kafka-tls-enabled                          |PUBLISHER_KAFKA_TLS_ENABLED                          |false            |Enable TLS to connect on kafka                                |
+|--publisher-nats-auto-provision                        |PUBLISHER_NATS_AUTO_PROVISION                        |true             |Auto create streams                                           |
+|--publisher-nats-client-id                             |PUBLISHER_NATS_CLIENT_ID                             |                 |Nats client ID                                                |
+|--publisher-nats-enabled                               |PUBLISHER_NATS_ENABLED                               |false            |Publish write events to nats                                  |
+|--publisher-nats-max-reconnect                         |PUBLISHER_NATS_MAX_RECONNECT                         |-1               |Nats: set the maximum number of reconnect attempts.           |
+|--publisher-nats-reconnect-wait                        |PUBLISHER_NATS_RECONNECT_WAIT                        |2s               |Nats: the wait time between reconnect attempts.               |
+|--publisher-nats-url                                   |PUBLISHER_NATS_URL                                   |                 |Nats url                                                      |
+|--publisher-topic-mapping                              |PUBLISHER_TOPIC_MAPPING                              |[]               |Define mapping between internal event types and topics        |
