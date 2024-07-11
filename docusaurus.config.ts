@@ -172,11 +172,6 @@ export default async function createConfig() {
               position: 'left',
             },
             {
-              label: 'Use-cases Library',
-              position: 'right',
-              href: 'https://www.formance.com/use-cases',
-            },
-            {
               href: 'https://github.com/formancehq/stack',
               label: 'GitHub',
               position: 'right',
