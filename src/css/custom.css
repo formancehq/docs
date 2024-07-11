@@ -241,6 +241,14 @@ html:not([data-theme='dark']) .redocusaurus .redoc-wrap .api-content > div > div
 		no-repeat;
 }
 
+/* Redocly */
+h5{
+	color:var(--brand-primary-900) !important
+}
+
+[data-theme='dark'] h5, [data-theme='dark'] h5 span{
+	color:var(--brand-primary-400) !important;
+}
 /* Dark mode */
 
 html[data-theme='dark'] {
