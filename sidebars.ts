@@ -134,6 +134,7 @@ const sidebars = {
                   id: "ledger/advanced/temporality",
                 },
                 "ledger/advanced/filtering",
+                "ledger/advanced/buckets",
               ],
             },
             {
