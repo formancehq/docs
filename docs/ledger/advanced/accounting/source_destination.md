@@ -21,7 +21,7 @@ The balance of an account is calculated by subtracting the destination component
 
 $$
 
-Balance = Source - Destination
+Balance = Destination - Source
 
 $$
 
@@ -39,22 +39,22 @@ The following tables represent the state of the accounts with their source and d
 
 | Account | Source | Destination | Balance |
 |---------|--------|-------------|---------|
-| Account 1 | 100 | 0 | 100
+| Account 1 | 0 | 100 | 100
 | Account 2 | 0 | 0 | 0
 
 Now, let's create a transaction that transfers 50 USD from **account 1** to **account 2**. The transaction is composed of two postings:
 
 | Account | Source | Destination
 |---------|--------|-------------
-| Account 1 | 0 | 50
-| Account 2 | 50 | 0
+| Account 1 | 50 | 0
+| Account 2 | 0 | 0
 
 After applying the transaction, the state of the accounts is as follows:
 
 | Account | Source | Destination | Balance |
 |---------|--------|-------------|---------|
-| Account 1 | 100 | 50 | 50
-| Account 2 | 50 | 0 | 50
+| Account 1 | 50 | 100 | 50
+| Account 2 | 0 | 50 | 50
 
 
 ## Constraints
@@ -89,15 +89,15 @@ The transaction is composed of two postings:
 
 | Account | Source | Destination
 |---------|--------|-------------
-| Account 1 | 100 | 0
-| World  | 0 | 100 
+| Account 1 | 0 | 100
+| World  | 100 | 0
 
 After applying the transaction, the state of the accounts is as follows:
 
 | Account | Source | Destination | Balance |
 |---------|--------|-------------|---------|
-| Account 1 | 100 | 0 | 100
-| World  | 0 | 100 | -100
+| Account 1 | 0 | 100 | 100
+| World  | 100 | 0 | -100
 
 In this example, the world account has a negative balance of 100 USD, which means that it has absorbed 100 USD from account 1. 
 
@@ -117,17 +117,17 @@ The payment transaction is composed of three postings:
 
 | Account | Source | Destination
 |---------|--------|-------------
-| `order:1234:paid` | 100 | 0
-| `payment-method:credit-card` | 0 | 50
-| `payment-method:bank-transfer` | 0 | 50
+| `order:1234:paid` | 0 | 100
+| `payment-method:credit-card` | 50 | 0
+| `payment-method:bank-transfer` | 50 | 0
 
 After applying the transaction, the state of the accounts is as follows:
 
 | Account | Source | Destination | Balance |
 |---------|--------|-------------|---------|
-| `order:1234:paid` | 100 | 0 | 100
-| `payment-method:credit-card` | 0 | 50 | -50
-| `payment-method:bank-transfer` | 0 | 50 | -50
+| `order:1234:paid` | 0 | 100 | 100
+| `payment-method:credit-card` | 50 | 0 | -50
+| `payment-method:bank-transfer` | 50 | 0 | -50
 
 :::info{title="Counter-part accounts and reconciliation"}
 Counter-part accounts are a powerful tool to manage cash flows in the source / destination model. By mapping them to your financial partners, you can easily reconcile your accounts with external systems and make sure that your ledger remains consistent.
@@ -149,7 +149,7 @@ The transaction is composed of one posting:
 
 | Account | Source | Destination
 |---------|--------|-------------
-| Account 1 | 100 | 0
+| Account 1 | 0 | 100
 
 This transaction is invalid because it violates the first and second constraints, which states that the sum of the source components must be equal to the sum of the destination components. In this case, the sum of the source components is 100, while the sum of the destination components is 0, which means that cash would be created out of thin air.
 
@@ -159,7 +159,7 @@ Let's consider the following accounts with a balance of 100 USD:
 
 | Account | Source | Destination | Balance |
 |---------|--------|-------------|---------|
-| Account 1 | 100 | 0 | 100
+| Account 1 | 0 | 100 | 100
 
 We want to transfer 150 USD from account 1 to account 2.
 
@@ -167,8 +167,8 @@ The transaction is composed of two postings:
 
 | Account | Source | Destination
 |---------|--------|-------------
-| Account 1 | 0 | 150
-| Account 2 | 150 | 0
+| Account 1 | 150 | 0
+| Account 2 | 0 | 150
 
 This transaction is invalid because it violates the third constraint, which states that an account cannot have a negative balance unless it is explicitly allowed. In this case, account 1 would have a negative balance of -50 USD, which is not allowed.
 
