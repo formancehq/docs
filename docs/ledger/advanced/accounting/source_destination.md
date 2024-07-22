@@ -42,12 +42,11 @@ The following tables represent the state of the accounts with their source and d
 | Account 1 | 0 | 100 | 100
 | Account 2 | 0 | 0 | 0
 
-Now, let's create a transaction that transfers 50 USD from **account 1** to **account 2**. The transaction is composed of two postings:
+Now, let's create a transaction that transfers 50 USD from **account 1** to **account 2**. The transaction is composed of following posting:
 
 | Account | Source | Destination
 |---------|--------|-------------
 | Account 1 | 50 | 0
-| Account 2 | 0 | 0
 
 After applying the transaction, the state of the accounts is as follows:
 
