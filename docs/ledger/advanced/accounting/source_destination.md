@@ -1,5 +1,5 @@
 ---
-sidebar_pos: 2
+sidebar_position: 2
 ---
 
 # The source / destination model
