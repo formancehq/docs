@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import Graphviz from 'graphviz-react';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { graphviz } from "d3-graphviz";
 
 const PostingsGraph = ({ postings, caption, additionnals =[] }) => {
   const graph : string[] = [];
@@ -55,6 +55,14 @@ const PostingsGraph = ({ postings, caption, additionnals =[] }) => {
 
   const dot = `digraph {\nrankdir=LR\n${graph.join('\n')}\n}`;
 
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if(ref.current) {
+      graphviz(ref.current, { fit: true, width: 700, height: 300, useWorker: true, zoom: false }).renderDot(dot);
+    }
+  }, [ref])
+
   return (
     <Box sx={{
       textAlign: 'center',
@@ -64,16 +72,7 @@ const PostingsGraph = ({ postings, caption, additionnals =[] }) => {
       mt: 2,
       mb: 2,
     }}>
-      <Graphviz
-        className="Graph"
-        options={{
-          width: 700,
-          height: 300,
-          fit: true,
-          useWorker: false,
-          // useSharedWorker: false,
-        }}
-        dot={dot}/>
+      <div className="Graph" ref={ref}></div>
       <Box sx={{
         textAlign: 'center',
         fontSize: 12,
