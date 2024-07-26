@@ -186,8 +186,8 @@ The Formance Ledger API will return a `200` status code even on failure, but the
 
 ```json
 {
-    "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
-    "err": "account had insufficient funds"
+  "details": "https://play.numscript.org/?payload=eyJlcnJvciI6ImFjY291bnQgaGFkIGluc3VmZmljaWVudCBmdW5kcyJ9",
+  "err": "account had insufficient funds"
 }
 ```
 
@@ -208,12 +208,12 @@ vars {
   account $sender
   account $receiver
 }
-\n
+
 send $amount (
   source = $sender
   destination = {
     $commission_rate to @centralbank
-    remainder to $receiver
+    remaining to $receiver
   }
 )
 ```
