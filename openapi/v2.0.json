@@ -8,7 +8,11 @@
       "url": "https://www.formance.com",
       "email": "support@formance.com"
     },
-    "version": "v2.0.0"
+    "x-logo": {
+      "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
+      "altText": "Formance"
+    },
+    "version": "v2.0.7"
   },
   "servers": [
     {
@@ -659,6 +663,16 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/AccountsCursorResponse"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not found",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ErrorResponse"
                 }
               }
             }
@@ -5094,6 +5108,17 @@
             "schema": {
               "type": "string",
               "example": "aHR0cHM6Ly9nLnBhZ2UvTmVrby1SYW1lbj9zaGFyZQ=="
+            }
+          },
+          {
+            "name": "expand",
+            "in": "query",
+            "example": "balances",
+            "schema": {
+              "type": "string",
+              "items": {
+                "type": "string"
+              }
             }
           }
         ],
@@ -12009,6 +12034,17 @@
           },
           "ledger": {
             "type": "string"
+          },
+          "balances": {
+            "type": "object",
+            "required": [
+              "main"
+            ],
+            "properties": {
+              "main": {
+                "$ref": "#/components/schemas/AssetHolder"
+              }
+            }
           }
         }
       },
@@ -12465,9 +12501,7 @@
       "CreditWalletRequest": {
         "type": "object",
         "required": [
-          "amount",
-          "sources",
-          "metadata"
+          "amount"
         ],
         "properties": {
           "amount": {
@@ -12475,6 +12509,7 @@
           },
           "metadata": {
             "type": "object",
+            "nullable": true,
             "additionalProperties": {
               "type": "string"
             },
@@ -12485,6 +12520,7 @@
           },
           "sources": {
             "type": "array",
+            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/Subject"
             }
@@ -13306,6 +13342,36 @@
           }
         }
       },
+      "UpdateAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "ledger": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ledger",
+          "metadata"
+        ]
+      },
+      "Update": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/UpdateAccount"
+          }
+        }
+      },
       "Stage": {
         "anyOf": [
           {
@@ -13316,6 +13382,9 @@
           },
           {
             "$ref": "#/components/schemas/StageWaitEvent"
+          },
+          {
+            "$ref": "#/components/schemas/Update"
           }
         ]
       },
@@ -13382,7 +13451,7 @@
                 "properties": {
                   "data": {
                     "items": {
-                      "$ref": "#/components/schemas/Wallet"
+                      "$ref": "#/components/schemas/orchestrationWallet"
                     },
                     "type": "array"
                   }
@@ -13393,6 +13462,40 @@
                 ]
               }
             ]
+          }
+        }
+      },
+      "orchestrationWallet": {
+        "type": "object",
+        "required": [
+          "name",
+          "id",
+          "metadata",
+          "createdAt",
+          "ledger"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique ID of the wallet."
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Metadata associated with the wallet."
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "ledger": {
+            "type": "string"
           }
         }
       },
@@ -13437,6 +13540,28 @@
             "type": "string"
           }
         }
+      },
+      "ActivityAddAccountMetadata": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ledger": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "ledger",
+          "metadata"
+        ]
       },
       "ActivityCreateTransaction": {
         "type": "object",
@@ -13493,8 +13618,55 @@
             "type": "string"
           },
           "data": {
-            "$ref": "#/components/schemas/CreditWalletRequest"
+            "$ref": "#/components/schemas/orchestrationCreditWalletRequest"
           }
+        }
+      },
+      "orchestrationCreditWalletRequest": {
+        "type": "object",
+        "required": [
+          "amount",
+          "sources",
+          "metadata"
+        ],
+        "properties": {
+          "amount": {
+            "$ref": "#/components/schemas/Monetary"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "description": "Metadata associated with the wallet."
+          },
+          "reference": {
+            "type": "string"
+          },
+          "sources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Subject"
+            }
+          },
+          "balance": {
+            "type": "string",
+            "description": "The balance to credit"
+          },
+          "timestamp": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "example": {
+          "amount": {
+            "asset": "USD/2",
+            "amount": 100
+          },
+          "metadata": {
+            "key": ""
+          },
+          "sources": []
         }
       },
       "ActivityDebitWallet": {
@@ -13781,6 +13953,9 @@
         "properties": {
           "GetAccount": {
             "$ref": "#/components/schemas/ActivityGetAccount"
+          },
+          "AddAccountMetadata": {
+            "$ref": "#/components/schemas/ActivityAddAccountMetadata"
           },
           "CreateTransaction": {
             "$ref": "#/components/schemas/ActivityCreateTransaction"
@@ -14654,6 +14829,36 @@
           }
         }
       },
+      "V2UpdateAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "ledger": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "ledger",
+          "metadata"
+        ]
+      },
+      "V2Update": {
+        "type": "object",
+        "properties": {
+          "account": {
+            "$ref": "#/components/schemas/V2UpdateAccount"
+          }
+        }
+      },
       "V2Stage": {
         "anyOf": [
           {
@@ -14664,6 +14869,9 @@
           },
           {
             "$ref": "#/components/schemas/V2StageWaitEvent"
+          },
+          {
+            "$ref": "#/components/schemas/V2Update"
           }
         ]
       },
@@ -14819,6 +15027,28 @@
             "type": "string"
           }
         }
+      },
+      "V2ActivityAddAccountMetadata": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "ledger": {
+            "type": "string"
+          },
+          "metadata": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        },
+        "required": [
+          "id",
+          "ledger",
+          "metadata"
+        ]
       },
       "V2ActivityCreateTransaction": {
         "type": "object",
@@ -15405,6 +15635,9 @@
         "properties": {
           "GetAccount": {
             "$ref": "#/components/schemas/V2ActivityGetAccount"
+          },
+          "AddAccountMetadata": {
+            "$ref": "#/components/schemas/V2ActivityAddAccountMetadata"
           },
           "CreateTransaction": {
             "$ref": "#/components/schemas/V2ActivityCreateTransaction"
