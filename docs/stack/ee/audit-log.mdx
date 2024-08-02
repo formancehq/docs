@@ -16,7 +16,7 @@ Contact our support team in order to enable the Audit Log on your deployment. On
 The audit log system operates at three levels:
 * **Organisation**: Providing a detailed overview of all activity tied to the organisation itself, e.g. whenever a user is invited, has their permissions updated, or a new resource is created.
 * **Resources**: Providing a detailed event history of the lifecycle of the Formance Platform deployments created within the organisation.
-* **Modules**: Providing a detailed event history of the lifecycle of the modules within the Formance Platform deployments.
+* **Modules**: Providing a detailed event history of the modules activity within a stack.
 
 Each event record consists of the following fields:
 
@@ -101,24 +101,3 @@ Events available for the modules logs are structured as follows:
 | Request Headers   | Headers included in the request             | `data.request.header.*`                   |
 | Response Headers  | Headers included in the response            | `data.response.headers.*`                 |
 | Response Body     | Content of the response body                | `data.response.body`                      |
-
-
-{/* ### Structure
-
-Each log entry contains the following information:
-
-* ID: The unique identifier of the log entry.
-* Timestamp: The time at which the event occurred.
-* Stack: The stack in which the event occurred.
-* Type: The type of event that occurred
-
-For HTTP type entries:
-* Request
-  * Headers
-* Response
-  * Headers
-  * Body
-
-For other entries
-* Data
-* Client */}
