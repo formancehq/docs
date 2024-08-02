@@ -91,9 +91,17 @@ In the stack information panel, under the Audit logs section, navigate through t
 
 Events available for the modules logs are structured as follows:
 
-| HTTP Method  | Status Code | Host        | Endpoint                     | Request Headers        | Response Headers       | Response Body         |
-|--------------|-------------|-------------|------------------------------|------------------------|------------------------|-----------------------|
-| The method used (e.g., GET, POST) | The response status code (e.g., 200) | The host of the request | The API endpoint accessed | Headers included in the request | Headers included in the response | Content of the response body |
+| Field             | Description                                 | Path                                      |
+|-------------------|---------------------------------------------|-------------------------------------------|
+| Identity          | The originating user or machine token       | `data.identity`                           |
+| HTTP Method       | The method used (e.g., GET, POST)           | `data.request.method`                     |
+| Status Code       | The response status code (e.g., 200)        | `data.response.status_code`               |
+| Host              | The host of the request                     | `data.request.host`                       |
+| Endpoint          | The API endpoint accessed                   | `data.request.path`                       |
+| Request Headers   | Headers included in the request             | `data.request.header.*`                   |
+| Response Headers  | Headers included in the response            | `data.response.headers.*`                 |
+| Response Body     | Content of the response body                | `data.response.body`                      |
+
 
 {/* ### Structure
 
