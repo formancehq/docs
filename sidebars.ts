@@ -455,6 +455,24 @@ const sidebars = {
           type: "doc",
           id: "stack/versions",
         },
+        {
+          type: "category",
+          label: "Enterprise",
+          items: [
+            {
+              type: "doc",
+              id: "stack/ee/audit-log",
+            },
+            // {
+            //   type: "doc",
+            //   id: "stack/ee/sso",
+            // },
+            // {
+            //   type: "doc",
+            //   id: "stack/ee/rbac",
+            // },
+          ],
+        },
       ],
     },
     {
