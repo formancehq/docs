@@ -473,6 +473,10 @@ const sidebars = {
             // },
           ],
         },
+        {
+          type: 'doc',
+          id: 'cloud/membership',
+        },
       ],
     },
     {
@@ -610,7 +614,7 @@ const sidebars = {
       type: "doc",
       id: "api",
       label: "API Reference",
-    },
+    }
   ],
 } satisfies SidebarsConfig;
 
