@@ -83,11 +83,17 @@ The following events are availble for the stack resource logs:
 | stacks | stacks.module.disabled          |
 | stacks | stacks.module.status.updated    |
 
-### Activity logs
+### Modules logs
 
-To access the activity logs, navigate to the "manage environments" section or directly access it from [here](https://console.formance.cloud/membership/stacks) of the console interface. From here, select navigate to the stack that you want to view the Audit Log for.
+To access the modules activity logs, navigate to the "manage environments" section or directly access it from [here](https://console.formance.cloud/membership/stacks) of the console interface. From here, select navigate to the stack that you want to view the Audit Log for.
 
 In the stack information panel, under the Audit logs section, navigate through the "Show logs" button to head to the Audit Log page.
+
+Events available for the modules logs are structured as follows:
+
+| HTTP Method  | Status Code | Host        | Endpoint                     | Request Headers        | Response Headers       | Response Body         |
+|--------------|-------------|-------------|------------------------------|------------------------|------------------------|-----------------------|
+| The method used (e.g., GET, POST) | The response status code (e.g., 200) | The host of the request | The API endpoint accessed | Headers included in the request | Headers included in the response | Content of the response body |
 
 {/* ### Structure
 
