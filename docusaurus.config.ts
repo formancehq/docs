@@ -101,7 +101,7 @@ export default async function createConfig() {
             },
             {
               spec: './openapi/membership.yaml',
-              route: '/api/membership',
+              route: '/cloud/membership',
               id: 'api-membership',
             }
           ],
