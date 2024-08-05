@@ -5154,6 +5154,16 @@
         "tags": [
           "Wallets"
         ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5235,6 +5245,16 @@
         "operationId": "updateWallet",
         "tags": [
           "Wallets"
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "requestBody": {
           "content": {
@@ -5354,6 +5374,16 @@
         "tags": [
           "Wallets"
         ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "requestBody": {
           "content": {
             "application/json": {
@@ -5445,11 +5475,29 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "Idempotency-Key",
+          "in": "header",
+          "description": "Use an idempotency key",
+          "schema": {
+            "type": "string"
+          }
         }
       ],
       "post": {
         "summary": "Debit a wallet",
         "operationId": "debitWallet",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "tags": [
           "Wallets"
         ],
@@ -5498,11 +5546,29 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "Idempotency-Key",
+          "in": "header",
+          "description": "Use an idempotency key",
+          "schema": {
+            "type": "string"
+          }
         }
       ],
       "post": {
         "summary": "Credit a wallet",
         "operationId": "creditWallet",
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
         "tags": [
           "Wallets"
         ],
@@ -5663,6 +5729,14 @@
             "schema": {
               "type": "string"
             }
+          },
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
           }
         ],
         "requestBody": {
@@ -5705,6 +5779,14 @@
           "schema": {
             "type": "string"
           }
+        },
+        {
+          "name": "Idempotency-Key",
+          "in": "header",
+          "description": "Use an idempotency key",
+          "schema": {
+            "type": "string"
+          }
         }
       ],
       "post": {
@@ -5712,6 +5794,16 @@
         "operationId": "voidHold",
         "tags": [
           "Wallets"
+        ],
+        "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Use an idempotency key",
+            "schema": {
+              "type": "string"
+            }
+          }
         ],
         "responses": {
           "204": {
@@ -12622,7 +12714,8 @@
           },
           "expiresAt": {
             "type": "string",
-            "format": "date-time"
+            "format": "date-time",
+            "nullable": true
           },
           "priority": {
             "type": "integer",
