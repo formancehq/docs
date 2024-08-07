@@ -424,6 +424,11 @@ const sidebars = {
           id: "getting-started/invite",
         },
         {
+          type: "doc",
+          id: "cloud/rbac",
+          label: "RBAC",
+        },
+        {
           label: "Events",
           type: "category",
           collapsible: true,
