@@ -11,12 +11,15 @@ With Formance Cloud, you can manage access to your organization and stacks using
 - An organization's `ADMIN` can manage the organization and its stacks. It overrides the stack role.
 - `GUEST` of an organization can read the organization.
 
-### Stacks
+
+### Stack: manage **one stack**
 
 - `ADMIN` of a stack can manage the stack control plane and data plane.
 - `GUEST` of a stack can read the stack control plane and data plane.
 
-Notice that to access a stack the user **must** have a role set on the organization.
+Notice:
+- To access a stack the user **must** have a role set on the organization.
+- If a user has organization role `ADMIN`, he will have the stack role `ADMIN` even if it is not set.
 
 ## Data planes: Roles to scopes translation
 
@@ -36,10 +39,6 @@ Notice that to access a stack the user **must** have a role set on the organizat
 
 
 ## Basics
-
-- Organizations: An organization's role is to manage an organization and stacks.
-- Stacks: A stack role intent to manage **one** stack. Any stack belongs to an organization and can inherit the organization's role.
-
 
 ### Inviting a user
 
