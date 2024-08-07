@@ -18,10 +18,28 @@ With Formance Cloud, you can manage access to your organization and stacks using
 
 Notice that to access a stack the user **must** have a role set on the organization.
 
+## Data planes: Roles to scopes translation
+
+| Organization  | Stack   |  Scopes |
+|---|---|---|
+|  ADMIN  | _  | Read & Write  |
+|  GUEST  | ADMIN  | Read & Write  |
+|  GUEST  | GUEST  | Read  |
+|  GUEST  | NONE    | _  |
+|  NONE   | NONE  | _  |
+|  NONE   | undefined  | _  |
+
+- Organization ADMIN: read & write on all services
+- Stack ADMIN: read & write on all services
+- Stack GUEST: read on all services
+- Else: no accesses
+
+
 ## Basics
 
 - Organizations: An organization's role is to manage an organization and stacks.
 - Stacks: A stack role intent to manage **one** stack. Any stack belongs to an organization and can inherit the organization's role.
+
 
 ### Inviting a user
 
@@ -43,7 +61,7 @@ Default roles are assigned at the organization level. You can modify defaults wi
 fctl cloud organization update <orgId> --name <name> --default-stack-role "ADMIN" --default-organization-role "GUEST"
 ```
 
-Examples
+### Examples
 
 1. A user can be a member of an organization with the role `ADMIN` and have the role `GUEST` in a stack. GUEST would be ignored, he would be granted of the role `ADMIN` in the stack.
 2. Fallback roles are set to organization `GUEST` and stack `GUEST`
@@ -58,22 +76,6 @@ Examples
     2. A user with a stack role `NONE` would have the role `GUEST` assigned
     3. A user with a stack role `ADMIN` would have the role `ADMIN` assigned
 
-
-## Data planes: Roles to scopes translation
-
-| Organization  | Stack   |  Scopes |
-|---|---|---|
-|  ADMIN  | _  | Read & Write  |
-|  GUEST  | ADMIN  | Read & Write  |
-|  GUEST  | GUEST  | Read  |
-|  GUEST  | NONE    | _  |
-|  NONE   | NONE  | _  |
-|  NONE   | undefined  | _  |
-
-- Organization ADMIN: read & write on all services
-- Stack ADMIN: read & write on all services
-- Stack GUEST: read on all services
-- Else: no accesses
 
 ## Manage Permissions with FCTL
 
