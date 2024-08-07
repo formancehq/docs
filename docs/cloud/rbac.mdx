@@ -18,7 +18,7 @@ With Formance Cloud, you can manage access to your organization and stacks using
 
 ## Basics
 
-- Organizations: An organization's role is to manage an organization and stacks. eaz
+- Organizations: An organization's role is to manage an organization and stacks.
 - Stacks: A stack role intent to manage **one** stack. Any stack belongs to an organization and can inherit the organization's role.
 
 ### Inviting a user
@@ -110,7 +110,7 @@ fctl cloud organizations users link <userId> —role GUEST —organization=<orgI
 fctl cloud organizations users unlink <userId> —organization <orgId>
 ```
 
-## Access to a stack
+### Access to a stack
 
 ```shell
 fctl stacks users link <stackId> <userId> —role  GUEST --organization <organizationId>
