@@ -45,10 +45,10 @@ Examples
 
 1. A user can be a member of an organization with the role `ADMIN` and have the role `GUEST` in a stack. GUEST would be ignored, he would be granted of the role `ADMIN` in the stack.
 2. Fallback roles are set to organization `GUEST` and stack `GUEST`
-   1. A user with _no roles_ and _no stack role_ assigned. would have role `GUEST` and stack role `GUEST` assigned
+   1. A user with **no roles** and **no stack role** assigned. would have role `GUEST` and stack role `GUEST` assigned
    2. A user with a stack role `NONE` would have the role guest assigned
 3. Fallback roles are set to organization `ADMIN` and stack `ADMIN`
-    1. A user with no *roles* and *no stack role assigned.* would have role `ADMIN` and stack role  `ADMIN`
+    1. A user with **no roles** and **no stack role** assigned would have role `ADMIN` and stack role  `ADMIN`
     2. A user with a stack role `NONE` would have the role ADMIN assigned
     3. A user with a stack role `GUEST` would have the role ADMIN assigned
 4. Fallback roles are set to organization `NONE` and stack `GUEST`
@@ -73,8 +73,6 @@ Examples
 - Stack ADMIN: read & write on all services
 - Stack GUEST: read on all services
 - Else: no accesses
-
-
 
 ## Manage Permissions with FCTL
 
