@@ -1,0 +1,49 @@
+---
+title: Save
+---
+
+It is sometimes helpful to prevent an account from going below a certain threshold balance. The `save` directive allows you to specify a minimum balance for an account, which will be deduced from the account available balance for the transaction.
+
+```numscript
+// Prevent the end balance foo is never less than [USD/2 100]
+save [USD/2 100] from @merchants:1234
+
+send [USD/2 500] (
+  source = @merchants:1234
+  destination = @payouts:T1891G
+)
+```
+
+In this transaction example, even if the account `@merchants:1234` has an initial balance of `[USD/2 500]`, the transaction will fail as the account post-transaction balance would otherwise be less than `[USD/2 100]`.
+
+Should additional source of funds is provided, the account will act as if its balance is `[USD/2 100]` less than it actually is:
+
+```numscript
+// Prevent the end balance foo is never less than [USD/2 100]
+save [USD/2 100] from @merchants:1234
+
+send [USD/2 500] (
+  source = {
+    @merchants:1234
+    @world
+  }
+  destination = @payouts:T1891G
+)
+```
+
+```json
+[
+  {
+    "source": "merchants:1234",
+    "destination": "payouts:T1891G",
+    "amount": 400,
+    "asset": "USD/2"
+  },
+  {
+    "source": "world",
+    "destination": "payouts:T1891G",
+    "amount": 100,
+    "asset": "USD/2"
+  }
+]
+```
