@@ -1,0 +1,35 @@
+---
+title: Save
+---
+
+```numscript
+// Prevent the end balance foo is never less than [USD/2 100]
+save [USD/2 100] from @foo
+
+send [USD/2 500] (
+  source = {
+    @foo
+    @world
+  }
+  destination = @bar
+)
+```
+
+In this transaction example, imagining the initial balance of `@foo` is `[USD/2 500]`, the end postings will be:
+
+```json
+[
+  {
+    "source": "foo",
+    "destination": "bar",
+    "amount": 400,
+    "asset": "USD/2"
+  },
+  {
+    "source": "world",
+    "destination": "bar",
+    "amount": 100,
+    "asset": "USD/2"
+  }
+]
+```
