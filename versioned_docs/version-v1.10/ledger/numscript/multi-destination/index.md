@@ -3,8 +3,8 @@ title: Transactions with multiple destinations
 description: Sometimes you need to split a payment across multiple destinations. Learn how to do this with Numscript.
 ---
 
-import Prerequisites from '@site/docs/ledger/partials/numscript/_prerequisites.mdx';
-import Prereqwarn from '@site/docs/ledger/partials/numscript/_prereq_warning.mdx';
+import Prerequisites from '@site/versioned_docs/version-v1.10/ledger/partials/numscript/_prerequisites.mdx';
+import Prereqwarn from '@site/versioned_docs/version-v1.10/ledger/partials/numscript/_prereq_warning.mdx';
 
 
 Sometimes you need to split a payment across multiple destinations. For example:
