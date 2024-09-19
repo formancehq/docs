@@ -191,6 +191,7 @@ const sidebars = {
           type: "category",
           collapsible: true,
           collapsed: true,
+          link: { type: 'doc', id: 'numscript/introduction' },
           items: [
             {
               type: 'doc',
