@@ -191,11 +191,11 @@ const sidebars = {
           type: "category",
           collapsible: true,
           collapsed: true,
-          link: { type: 'doc', id: 'numscript/introduction' },
           items: [
             {
-              type: 'doc',
-              id: 'numscript/introduction',
+              type: "doc",
+              id: "numscript/index",
+              label: "Introduction",
             },
             {
               type: 'doc',
@@ -208,6 +208,8 @@ const sidebars = {
             {
               type: 'category',
               label: 'Reference',
+              collapsible: true,
+              collapsed: true,
               items: [
                 'numscript/reference/send',
                 'numscript/reference/sources',
