@@ -18,7 +18,7 @@ export default async function createConfig() {
     baseUrl: '/',
     onBrokenLinks: 'throw',
     onBrokenMarkdownLinks: 'throw',
-    favicon: 'img/formance-favicon-gold.png',
+    favicon: 'img/favicons/favicon.ico',
     organizationName: 'formancehq', // Usually your GitHub org/user name.
     projectName: 'docs', // Usually your repo name.
     markdown: {
