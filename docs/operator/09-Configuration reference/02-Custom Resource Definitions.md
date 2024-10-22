@@ -18,6 +18,7 @@ Various parts of the stack can be configured either using the CRD properties or 
 
 
 Modules :
+- [Analytics](#analytics)
 - [Auth](#auth)
 - [Gateway](#gateway)
 - [Ledger](#ledger)
@@ -165,12 +166,20 @@ Example :
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
-  name: postgres-uri
+
+
+	name: postgres-uri
+
+
 spec:
-  key: postgres.ledger.uri
-  stacks:
-  - stack0
-  value: postgresql://postgresql.formance.svc.cluster.local:5432
+
+
+	key: postgres.ledger.uri
+	stacks:
+	- stack0
+	value: postgresql://postgresql.formance.svc.cluster.local:5432
+
+
 ```
 
 
@@ -188,12 +197,20 @@ For example, if you want to use the same database server for all the modules of 
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
-  name: postgres-uri
+
+
+	name: postgres-uri
+
+
 spec:
-  key: postgres.*.uri # There, we use a wildcard to indicate we want to use that setting of all services of the stack `stack0`
-  stacks:
-  - stack0
-  value: postgresql://postgresql.formance.svc.cluster.local:5432
+
+
+	key: postgres.*.uri # There, we use a wildcard to indicate we want to use that setting of all services of the stack `stack0`
+	stacks:
+	- stack0
+	value: postgresql://postgresql.formance.svc.cluster.local:5432
+
+
 ```
 
 
@@ -202,12 +219,20 @@ Also, we could use that setting for all of our stacks using :
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
-  name: postgres-uri
+
+
+	name: postgres-uri
+
+
 spec:
-  key: postgres.*.uri # There, we use a wildcard to indicate we want to use that setting for all services of all stacks
-  stacks:
-  - * # There we select all the stacks
-  value: postgresql://postgresql.formance.svc.cluster.local:5432
+
+
+	key: postgres.*.uri # There, we use a wildcard to indicate we want to use that setting for all services of all stacks
+	stacks:
+	- * # There we select all the stacks
+	value: postgresql://postgresql.formance.svc.cluster.local:5432
+
+
 ```
 
 
@@ -232,12 +257,20 @@ It includes RDS, OpenSearch and MSK. To do so, you can create the following sett
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
-  name: aws-service-account
+
+
+	name: aws-service-account
+
+
 spec:
-  key: aws.service-account
-  stacks:
-  - '*'
-  value: aws-access
+
+
+	key: aws.service-account
+	stacks:
+	- '*'
+	value: aws-access
+
+
 ```
 This setting instruct the operator than there is somewhere on the cluster a service account named `aws-access`.
 
@@ -250,16 +283,20 @@ The service account could look like that :
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  annotations:
-    eks.amazonaws.com/role-arn: arn:aws:iam::************:role/staging-eu-west-1-hosting-stack-access
-  labels:
-    formance.com/stack: any
-  name: aws-access
+
+
+	annotations:
+	  eks.amazonaws.com/role-arn: arn:aws:iam::************:role/staging-eu-west-1-hosting-stack-access
+	labels:
+	  formance.com/stack: any
+	name: aws-access
+
+
 ```
 You can note two things :
-1. We have an annotation indicating the role arn used to connect to AWS. Refer to the AWS documentation to create this role
-2. We have a label `formance.com/stack=any` indicating we are targeting all stacks.
-   Refer to the documentation of [ResourceReference](#resourcereference) for further information.
+ 1. We have an annotation indicating the role arn used to connect to AWS. Refer to the AWS documentation to create this role
+ 2. We have a label `formance.com/stack=any` indicating we are targeting all stacks.
+    Refer to the documentation of [ResourceReference](#resourcereference) for further information.
 
 
 ###### JSON logging
@@ -271,12 +308,20 @@ Example:
 apiVersion: formance.com/v1beta1
 kind: Settings
 metadata:
-  name: json-logging
+
+
+	name: json-logging
+
+
 spec:
-  key: logging.json
-  stacks:
-  - '*'
-  value: "true"
+
+
+	key: logging.json
+	stacks:
+	- '*'
+	value: "true"
+
+
 ```
 
 
@@ -332,6 +377,93 @@ spec:
 
 
 ### Modules
+
+#### Analytics
+
+
+
+Analytics is the Schema for the analytics API
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `apiVersion` _string_ | `formance.com/v1beta1` | | |
+| `kind` _string_ | `Analytics` | | |
+| `metadata` _[ObjectMeta](https://kubernetes.io/docs/reference/generated/kubernetes-api/v1.27/#objectmeta-v1-meta)_ | Refer to Kubernetes API documentation for fields of `metadata`. |  |  |
+| `spec` _[AnalyticsSpec](#analyticsspec)_ |  |  |  |
+| `status` _[AnalyticsStatus](#analyticsstatus)_ |  |  |  |
+
+
+
+##### AnalyticsSpec
+
+
+
+AnalyticsSpec defines the desired state of Analytics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `debug` _boolean_ | Allow to enable debug mode on the module | false |  |
+| `dev` _boolean_ | Allow to enable dev mode on the module<br />Dev mode is used to allow some application to do custom setup in development mode (allow insecure certificates for example) | false |  |
+| `version` _string_ | Version allow to override global version defined at stack level for a specific module |  |  |
+| `stack` _string_ | Stack indicates the stack on which the module is installed |  |  |
+
+
+
+
+
+##### AnalyticsStatus
+
+
+
+AnalyticsStatus defines the observed state of Analytics
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+| Field | Description | Default | Validation |
+| --- | --- | --- | --- |
+| `ready` _boolean_ | Ready indicates if the resource is seen as completely reconciled |  |  |
+| `info` _string_ | Info can contain any additional like reconciliation errors |  |  |
+
 
 #### Auth
 
@@ -542,6 +674,7 @@ Gateway is the Schema for the gateways API
 | --- | --- | --- | --- |
 | `host` _string_ | Indicates the hostname on which the stack will be served.<br />Example : `formance.example.com` |  |  |
 | `scheme` _string_ | Indicate the scheme.<br /><br />Actually, It should be `https` unless you know what you are doing. | https |  |
+| `ingressClassName` _string_ | Ingress class to use |  |  |
 | `annotations` _object (keys:string, values:string)_ | Custom annotations to add on the ingress |  |  |
 | `tls` _[GatewayIngressTLS](#gatewayingresstls)_ | Allow to customize the tls part of the ingress |  |  |
 
@@ -598,7 +731,6 @@ Gateway is the Schema for the gateways API
 | `ready` _boolean_ | Ready indicates if the resource is seen as completely reconciled |  |  |
 | `info` _string_ | Info can contain any additional like reconciliation errors |  |  |
 | `syncHTTPAPIs` _string array_ | Detected http apis. See [GatewayHTTPAPI](#gatewayhttpapi) |  |  |
-| `authEnabled` _boolean_ | Indicates if a [Auth](#auth) module has been detected. | false |  |
 
 
 #### Ledger
@@ -618,10 +750,10 @@ So, the ledger can run in two modes :
 
 
 Use setting `ledger.deployment-strategy` with either the value :
-* single : For the single instance mode.
-* single-writer: For the single writer / multiple reader mode.
-  Under the hood, the operator create two deployments and force the scaling of the writer to stay at 1.
-  Then you can scale the deployment of the reader to the value you want.
+  - single : For the single instance mode.
+  - single-writer: For the single writer / multiple reader mode.
+    Under the hood, the operator create two deployments and force the scaling of the writer to stay at 1.
+    Then you can scale the deployment of the reader to the value you want.
 
 
 
@@ -2275,23 +2407,35 @@ The Database reconciler will create a ResourceReference looking like that :
 apiVersion: formance.com/v1beta1
 kind: ResourceReference
 metadata:
-  name: jqkuffjxcezj-qlii-auth-postgres
-  ownerReferences:
-  - apiVersion: formance.com/v1beta1
-    blockOwnerDeletion: true
-    controller: true
-    kind: Database
-    name: jqkuffjxcezj-qlii-auth
-    uid: 2cc4b788-3ffb-4e3d-8a30-07ed3941c8d2
+
+
+	name: jqkuffjxcezj-qlii-auth-postgres
+	ownerReferences:
+	- apiVersion: formance.com/v1beta1
+	  blockOwnerDeletion: true
+	  controller: true
+	  kind: Database
+	  name: jqkuffjxcezj-qlii-auth
+	  uid: 2cc4b788-3ffb-4e3d-8a30-07ed3941c8d2
+
+
 spec:
-  gvk:
-    group: ""
-    kind: Secret
-    version: v1
-  name: postgres
-  stack: jqkuffjxcezj-qlii
+
+
+	gvk:
+	  group: ""
+	  kind: Secret
+	  version: v1
+	name: postgres
+	stack: jqkuffjxcezj-qlii
+
+
 status:
-  ...
+
+
+	...
+
+
 ```
 This reconciler behind this ResourceReference will search, in all namespaces, for a secret named "postgres".
 The secret must have a label `formance.com/stack` with the value matching either a specific stack or `any` to target any stack.
