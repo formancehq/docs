@@ -107,8 +107,6 @@
 	--ifm-navbar-shadow: none;
 
 	--ifm-color-emphasis-300: var(--brand-primary-300);
-
-	--ifm-letter-spacing: 0.8px;
 }
 
 /* Frame */
@@ -147,7 +145,6 @@
 
 * {
 	font-weight: var(--ifm-font-weight-light);
-	letter-spacing: var(--ifm-letter-spacing);
 }
 
 .markdown h1:first-child {
