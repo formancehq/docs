@@ -35,10 +35,7 @@ Its value is read from the value of the key `value`. Here are all the available 
 
   ```json
   {
-    "amount": {
-      "type": "number",
-      "value": 1000
-    }
+    "amount": "100"
   }
   ```
 
@@ -48,10 +45,7 @@ Its value is read from the value of the key `value`. Here are all the available 
 
   ```json
   {
-    "reference": {
-      "type": "string",
-      "value": "82HHON80ILP"
-    }
+    "reference": "82HHON80ILP"
   }
   ```
 
@@ -61,10 +55,7 @@ Its value is read from the value of the key `value`. Here are all the available 
 
   ```json
   {
-    "currency": {
-      "type": "asset",
-      "value": "USD/2"
-    }
+    "currency": "USD/2"
   }
   ```
 
@@ -74,13 +65,7 @@ Its value is read from the value of the key `value`. Here are all the available 
 
   ```json
   {
-    "coupon_value": {
-      "type": "monetary",
-      "value": {
-        "amount": 1000,
-        "asset": "USD/2"
-      }
-    }
+    "coupon_value": "USD/2 1000"
   }
   ```
 
@@ -90,10 +75,7 @@ Its value is read from the value of the key `value`. Here are all the available 
 
   ```json
   {
-    "merchant": {
-      "type": "account",
-      "value": "platform:merchant"
-    }
+    "merchant": "platform:merchant"
   }
   ```
 
@@ -103,10 +85,7 @@ Its value is read from the value of the key `value`. Here are all the available 
 
   ```json
   {
-    "commission": {
-      "type": "portion",
-      "value": "15.5%"
-    }
+    "commission": "15.5%"
   }
   ```
 
@@ -166,10 +145,7 @@ set_tx_meta("commission", $commission)
   "script": {
     "vars": {
       "order": "orders:186HH78UH",
-      "fee": {
-        "amount": 1000,
-        "asset": "USD/2"
-      },
+      "fee": "USD/2 1000",
       "commission": "15.5%",
       "reference": "108IUYGI",
     }
