@@ -38,14 +38,11 @@ The `script.vars` field in the request body is used to inject variable values:
 {
     "script": {
         "vars": {
-            "price": {
-                "amount": 100,
-                "asset": "USD/2"
-            },
+            "price": "USD/2 100",
             "trade": "trades:108391999",
             "commission": "15%",
             "pair": "EUR/2",
-            "id": 108391999,
+            "id": "108391999",
             "reference": "USD/EUR:108391999"
         }
     }
@@ -66,12 +63,9 @@ This type represents asset names. They can contain uppercase letters, digits and
 
 ## Monetary type
 
-This type represents an positive integer amount associated with an asset.
+This type represents a positive integer amount associated with an asset.
 ```json
-{
-    "amount": 100,
-    "asset": "USD/2"
-}
+"USD/2 100"
 ```
 
 It is possible to pull the balance of an account and inject it in a monetary variable by using the `balance(_account_, _asset_)` statement.
