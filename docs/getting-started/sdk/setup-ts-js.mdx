@@ -27,9 +27,6 @@ Depending on the language you want to use, setup TypeScript.
     npx tsc --init
     ```
     </TabItem>
-
-    <TabItem value="js" label="JavaScript">
-    </TabItem>
 </Tabs>
 
 ## Install the Formance SDK
@@ -37,7 +34,7 @@ Depending on the language you want to use, setup TypeScript.
 Next install the Formance SDK as well as the Formance OAuth helper.
 
 ```bash
-npm install --save @formance/formance-sdk @formance/formance-sdk-oauth
+npm install --save @formance/formance-sdk
 ```
 
 :::info
@@ -69,18 +66,15 @@ If you're integrating Formance into a web application, you should use an OAuth f
 
     ```typescript title="index.ts"
     import { SDK as Formance } from '@formance/formance-sdk';
-    import { createAuthorizationProvider } from '@formance/formance-sdk-oauth';
 
     const ENDPOINT = "https://xxxxxxxxxx-xxxx.sandbox.formance.cloud";
 
     const formance = new Formance({
         serverURL: ENDPOINT,
-        authorization: createAuthorizationProvider({
-            endpointUrl: ENDPOINT,
-            // These are sensitive credentials that should not be exposed to the public.
-            clientId: "6a936dfe-xxxx-yyyy-zzzz-9019a1e9b9e3",
-            clientSecret: "20bd58c4-xxxx-yyyy-zzzz-dc05258bc959",
-        }),
+        security: {
+            clientID: "RANDOM_KEY",
+            clientSecret: "RANDOM_KEY",
+        }
     });
 
     async function main() {
@@ -107,18 +101,15 @@ You'll need the API endpoint and the credentials created during the [SDK's Getti
 
     ```javascript title="index.js"
     import { SDK as Formance } from '@formance/formance-sdk';
-    import { createAuthorizationProvider } from '@formance/formance-sdk-oauth';
 
     const ENDPOINT = "https://xxxxxxxxxx-xxxx.sandbox.formance.cloud";
 
     const formance = new Formance({
         serverURL: ENDPOINT,
-        authorization: createAuthorizationProvider({
-            endpointUrl: ENDPOINT,
-            // These are sensitive credentials that should not be exposed to the public.
-            clientId: "6a936dfe-xxxx-yyyy-zzzz-9019a1e9b9e3",
-            clientSecret: "20bd58c4-xxxx-yyyy-zzzz-dc05258bc959",
-        }),
+        security: {
+            clientID: "RANDOM_KEY",
+            clientSecret: "RANDOM_KEY",
+        }
     });
 
     async function main() {

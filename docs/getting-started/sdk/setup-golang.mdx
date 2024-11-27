@@ -18,8 +18,7 @@ go mod init example/formance-go-demo
 Install the Formance SDK with the following command:
 
 ```bash
-go get github.com/formancehq/formance-sdk-go/v2
-go get golang.org/x/oauth2/clientcredentials
+go get github.com/formancehq/formance-sdk-go/v3
 ```
 
 :::info
@@ -41,38 +40,31 @@ Create a new file called `main.go` with the following content:
 ```go
 package main
 
-import (
-  "context"
-  "github.com/formancehq/formance-sdk-go/v2"
-  "golang.org/x/oauth2/clientcredentials"
-  "log"
+import(
+	"github.com/formancehq/formance-sdk-go/v3/pkg/models/shared"
+	formancesdkgo "github.com/formancehq/formance-sdk-go/v3"
+	"context"
+	"github.com/formancehq/formance-sdk-go/v3/pkg/models/operations"
+	"log"
 )
 
-const FORMANCE_ENDPOINT = "https://xxxxxxxxxx-xxxx.sandbox.formance.cloud"
-const TOKEN_ENDPOINT = FORMANCE_ENDPOINT + "/api/auth/oauth/token"
-
 func main() {
-  config := clientcredentials.Config{
-    ClientID:     "6a936dfe-xxxx-yyyy-zzzz-9019a1e9b9e3",
-    ClientSecret: "20bd58c4-xxxx-yyyy-zzzz-dc05258bc959",
-    TokenURL:     TOKEN_ENDPOINT,
-  }
+    s := formancesdkgo.New(
+    	formancesdkgo.WithServerURL("https://<YOUR_SERVER_URL_HERE>"),
+        formancesdkgo.WithSecurity(shared.Security{
+            ClientID: formancesdkgo.String("<YOUR_CLIENT_ID_HERE>"),
+            ClientSecret: formancesdkgo.String("<YOUR_CLIENT_SECRET_HERE>"),
+        }),
+    )
 
-  ctx := context.Background()
-  httpClient := config.Client(ctx)
-
-  formance := v2.New(
-    v2.WithServerURL(FORMANCE_ENDPOINT),
-    v2.WithClient(httpClient),
-  )
-
-  info, err := formance.Ledger.GetInfo(ctx)
-
-  if err != nil {
-    log.Fatal(err)
-  }
-
-  println(info.ConfigInfoResponse.GetData().Version)
+    ctx := context.Background()
+    res, err := s.Ledger.V2.ListLedgers(ctx, operations.V2ListLedgersRequest{
+        PageSize: formancesdkgo.Int64(100),
+    })
+    if err != nil {
+        log.Fatal(err)
+    }
+    fmt.Println("response:", res.StatusCode)
 }
 ```
 :::info
@@ -90,5 +82,5 @@ go run main.go
 You should see the version of the Formance Ledger printed to the console, for example:
 
 ```bash
-2.0.0-rc.13
+2.1.0
 ```
