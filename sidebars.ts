@@ -78,51 +78,57 @@ const sidebars = {
               label: "Introduction",
             },
             {
-              label: "Tutorials",
-              type: "category",
-              collapsible: true,
-              collapsed: true,
-              link: { type: "doc", id: "ledger/get-started/index" },
-              items: [
-                // {
-                //   type: 'doc',
-                //   id: 'ledger/get-started/installation',
-                //   customProps: {
-                //     // icon: '💾',
-                //   }
-                // },
-                {
-                  label: "Hello World",
-                  type: "category",
-                  collapsible: true,
-                  collapsed: true,
-                  customProps: {
-                    // icon: '👋🏾',
-                    description:
-                      "Get started by creating your first transaction.",
-                  },
-                  link: {
-                    type: "doc",
-                    id: "ledger/get-started/hello-world/index",
-                  },
-                  items: [
-                    // 'get-started/hello-world/start-the-server',
-                    "ledger/get-started/hello-world/introducing-money",
-                    "ledger/get-started/hello-world/checking-balances",
-                    "ledger/get-started/hello-world/your-first-transaction",
-                  ],
-                },
-                // {
-                //   label: "Advanced",
-                //   type: "category",
-                //   collapsible: true,
-                //   collapsed: true,
-                //   items: [
-                //     "ledger/get-started/advanced/prerequisites",
-                //   ],
-                // }
-              ],
+              type: "doc",
+              id: "ledger/ledger-tutorial",
+              label: "Tutorial",
             },
+            // {
+            //   label: "Tutorials",
+            //   type: "category",
+            //   collapsible: true,
+            //   collapsed: true,
+            //   link: { type: "doc", id: "ledger/get-started/index" },
+            //   items: [
+            //     // {
+            //     //   type: 'doc',
+            //     //   id: 'ledger/get-started/installation',
+            //     //   customProps: {
+            //     //     // icon: '💾',
+            //     //   }
+            //     // },
+            //     {
+            //       label: "Hello World",
+            //       type: "category",
+            //       collapsible: true,
+            //       collapsed: true,
+            //       customProps: {
+            //         // icon: '👋🏾',
+            //         description:
+            //           "Get started by creating your first transaction.",
+            //       },
+            //       link: {
+            //         type: "doc",
+            //         id: "ledger/get-started/hello-world/index",
+            //       },
+            //       items: [
+            //         // 'get-started/hello-world/start-the-server',
+            //         "ledger/get-started/hello-world/introducing-money",
+            //         "ledger/get-started/hello-world/checking-balances",
+            //         "ledger/get-started/hello-world/your-first-transaction",
+            //       ],
+            //     },
+            //     // {
+            //     //   label: "Advanced",
+            //     //   type: "category",
+            //     //   collapsible: true,
+            //     //   collapsed: true,
+            //     //   items: [
+            //     //     "ledger/get-started/advanced/prerequisites",
+            //     //   ],
+            //     // }
+            //   ],
+            // },
+
             {
               label: "Guides",
               type: "category",
