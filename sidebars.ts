@@ -87,7 +87,7 @@ const sidebars = {
             //   type: "category",
             //   collapsible: true,
             //   collapsed: true,
-            //   link: { type: "doc", id: "ledger/get-started/index" },
+            //  link: { type: "doc", id: "ledger/get-started/index" },
             //   items: [
             //     // {
             //     //   type: 'doc',
@@ -128,7 +128,6 @@ const sidebars = {
             //     // }
             //   ],
             // },
-
             {
               label: "Guides",
               type: "category",
