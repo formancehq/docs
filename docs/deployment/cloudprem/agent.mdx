@@ -36,7 +36,7 @@ agent:
       clientSecret: "REGION_SECRET"
 
 # As operator chart is also bundled by default with the agent chart, we can reuse the setup from the operator deployment
-operator: 
+operator:
   enabled: true
   operator-crds:
     create: false
@@ -47,7 +47,7 @@ With this file in place, we can deploy our private region using Helm:
 
 ```bash
 helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
---version v2.0.0-rc.30 \
+--version v2.8.0 \
 --namespace formance-system \
 --values region.values.yaml
 ```
@@ -64,6 +64,6 @@ fctl cloud regions show REGION_ID
 You should see the region marked as `active: yes`.
 
 ```
-ID                                    | Name     | Base url                         | Active | Last ping               
-dea0da54-0f58-4762-a3b8-6e60f2780140  | staging  | https://formance.example.com     | Yes    | 2024-05-07T09:21:07Z 
+ID                                    | Name     | Base url                         | Active | Last ping
+dea0da54-0f58-4762-a3b8-6e60f2780140  | staging  | https://formance.example.com     | Yes    | 2024-05-07T09:21:07Z
 ```
