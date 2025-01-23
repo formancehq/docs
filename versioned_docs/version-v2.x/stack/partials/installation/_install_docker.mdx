@@ -1,0 +1,7 @@
+We provide the Formance CLI as ready-to-use Docker container images. You can install the latest version of the CLI using the latest tag or a specific version passing the appropriate tag.
+You must have a database (PostgreSQL) available to launch the Ledger. 
+
+```shell
+docker run -p 3068:3068 --env POSTGRES_URI="postgresql://localhost/dbname" ghcr.io/formancehq/ledger:latest
+```
+Open Formance API : http://127.0.0.1:3068/_info

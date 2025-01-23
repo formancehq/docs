@@ -65,7 +65,7 @@ export default async function createConfig() {
             lastVersion: 'current',
             versions: {
               current: {
-                label: 'v2.0',
+                label: 'v3.x',
               },
             }
           },
@@ -240,7 +240,7 @@ export default async function createConfig() {
               ],
             },
           ],
-          copyright: `Copyright © 2021-2024 Formance, Inc`,
+          copyright: `Copyright © 2021-2025 Formance, Inc`,
         },
         prism: {
           theme: darkCodeTheme,

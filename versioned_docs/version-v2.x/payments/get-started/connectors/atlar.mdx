@@ -1,0 +1,42 @@
+---
+title: Atlar Connector
+description: Learn how to use the Atlar Connector to connect your Formance Stack with your Atlar account.
+---
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+
+## Prerequisites
+
+Before you begin, you need to have a Atlar account. If you don't have one, you can [sign up for a Atlar account](https://www.atlar.com/) here. Make sure you have a Atlar AccessKey, Secret and base URL, with the least amount of permissions required to access the functionality of the Atlar Connector you plan to use.
+
+<ApiWarning/>
+
+## Setup
+
+<StackCmd>
+
+```shell
+fctl payments connectors install atlar atlar.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/atlar" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @atlar.json
+```
+
+</StackCmd>
+
+With atlar.json containing:
+
+```json
+{
+    "name": "atlar",
+    "baseUrl": "<baseURL>",
+    "accessKey": "<accessKey>",
+    "secret": "<secret>",
+    "pollingPeriod": "2m",
+    "pageSize": 25
+}
+```
