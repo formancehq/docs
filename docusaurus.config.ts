@@ -94,7 +94,13 @@ export default async function createConfig() {
               spec: './openapi/v2.0.json',
               route: '/api/v2.0',
               id: 'api-v2-0',
-            }, {
+            }, 
+            {
+              spec: './openapi/v3.0.json',
+              route: '/api/v3.0',
+              id: 'api-v3-0',
+            },
+            {
               spec: './openapi/generic-connector.yaml',
               route: '/api/generic-connector',
               id: 'api-generic-connector',
