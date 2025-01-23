@@ -304,10 +304,10 @@ const sidebars = {
                 id: "payments/get-started/index",
               },
               items: [
-                {
-                  type: "doc",
-                  id: "payments/get-started/installation",
-                },
+                // {
+                //   type: "doc",
+                //   id: "payments/get-started/installation",
+                // },
                 {
                   type: "doc",
                   id: "payments/get-started/connectors/framework",
