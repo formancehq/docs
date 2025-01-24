@@ -237,6 +237,33 @@ const sidebars = {
             },
             {
               type: "category",
+              label: "Concepts",
+              collapsible: true,
+              collapsed: true,
+              link: {
+                type: "doc",
+                id: "payments/get-started/basic-guides/index",
+              },
+              items: [
+                {
+                  type: "doc",
+                  id: "payments/get-started/basic-guides/accounts",
+                  label: "Accounts",
+                },
+                {
+                  type: "doc",
+                  id: "payments/get-started/basic-guides/payments",
+                  label: "Payments",
+                },
+                {
+                  type: "doc",
+                  id: "payments/get-started/basic-guides/transfer-initiation",
+                  label: "Transfer Initiation",
+                },
+              ],
+            },
+            {
+              type: "category",
               label: "Connectors",
               link: {
                 type: "doc",
@@ -295,53 +322,27 @@ const sidebars = {
               ],
             },
             {
-              type: "category",
-              label: "Tutorials",
-              collapsible: true,
-              collapsed: true,
-              link: {
-                type: "doc",
-                id: "payments/get-started/index",
-              },
-              items: [
-                // {
-                //   type: "doc",
-                //   id: "payments/get-started/installation",
-                // },
-                {
-                  type: "doc",
-                  id: "payments/get-started/connectors/framework",
-                  label: "Framework",
-                },
-                {
-                  type: "category",
-                  label: "Guides",
-                  collapsible: true,
-                  collapsed: true,
-                  link: {
-                    type: "doc",
-                    id: "payments/get-started/basic-guides/index",
-                  },
-                  items: [
-                    {
-                      type: "doc",
-                      id: "payments/get-started/basic-guides/accounts",
-                      label: "Accounts",
-                    },
-                    {
-                      type: "doc",
-                      id: "payments/get-started/basic-guides/payments",
-                      label: "Payments",
-                    },
-                    {
-                      type: "doc",
-                      id: "payments/get-started/basic-guides/transfer-initiation",
-                      label: "Transfer Initiation",
-                    },
-                  ],
-                },
-              ],
+              type: "doc",
+              id: "payments/get-started/connectors/framework",
+              label: "Build a Connector",
             },
+            // {
+            //   type: "category",
+            //   label: "Tutorials",
+            //   collapsible: true,
+            //   collapsed: true,
+            //   link: {
+            //     type: "doc",
+            //     id: "payments/get-started/index",
+            //   },
+            //   items: [
+            //     // {
+            //     //   type: "doc",
+            //     //   id: "payments/get-started/installation",
+            //     // },
+                
+            //   ],
+            // },
           ],
         },
         {
