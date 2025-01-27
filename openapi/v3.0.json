@@ -7577,6 +7577,58 @@
             ]
           }
         ]
+      },
+      "put": {
+        "summary": "Update one config",
+        "description": "Update a webhooks config by ID.",
+        "operationId": "updateConfig",
+        "tags": [
+          "webhooks.v1"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Config ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "4997257d-dfb6-445b-929c-cbe2ab182818"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Config successfully updated."
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/webhooksErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
       }
     },
     "/api/webhooks/configs/{id}/test": {
@@ -13845,8 +13897,7 @@
           "id",
           "name",
           "createdAt",
-          "country",
-          "connectorID"
+          "country"
         ],
         "properties": {
           "id": {
@@ -14211,8 +14262,7 @@
           "createdAt",
           "updatedAt",
           "descriptor",
-          "status",
-          "state"
+          "status"
         ],
         "properties": {
           "id": {
@@ -14231,15 +14281,26 @@
             "format": "date-time"
           },
           "status": {
-            "$ref": "#/components/schemas/PaymentStatus"
+            "$ref": "#/components/schemas/TaskStatus"
           },
           "state": {
+            "nullable": true,
             "type": "object"
           },
           "error": {
             "type": "string"
           }
         }
+      },
+      "TaskStatus": {
+        "type": "string",
+        "enum": [
+          "PENDING",
+          "ACTIVE",
+          "STOPPED",
+          "TERMINATED",
+          "FAILED"
+        ]
       },
       "TaskStripe": {
         "allOf": [
@@ -15018,7 +15079,8 @@
             "type": "string"
           },
           "defaultAsset": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -15260,13 +15322,16 @@
             "type": "string"
           },
           "accountNumber": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "iban": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "swiftBicCode": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -15382,7 +15447,15 @@
         }
       },
       "V3GetConnectorConfigResponse": {
-        "$ref": "#/components/schemas/V3ConnectorConfig"
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/V3ConnectorConfig"
+          }
+        }
       },
       "V3ConnectorsCursorResponse": {
         "type": "object",
@@ -15769,6 +15842,7 @@
         "required": [
           "id",
           "connectorID",
+          "provider",
           "reference",
           "createdAt",
           "type",
@@ -15783,6 +15857,9 @@
             "type": "string"
           },
           "connectorID": {
+            "type": "string"
+          },
+          "provider": {
             "type": "string"
           },
           "reference": {
@@ -15813,16 +15890,19 @@
             "$ref": "#/components/schemas/V3PaymentStatusEnum"
           },
           "sourceAccountID": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "destinationAccountID": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
           },
           "adjustments": {
             "type": "array",
+            "nullable": true,
             "items": {
               "$ref": "#/components/schemas/V3PaymentAdjustment"
             }
@@ -16588,10 +16668,7 @@
         "required": [
           "name",
           "apiKey",
-          "webhookUsername",
-          "webhookPassword",
-          "companyID",
-          "liveEndpointPrefix"
+          "companyID"
         ],
         "properties": {
           "apiKey": {
@@ -16657,12 +16734,12 @@
         "type": "object",
         "required": [
           "name",
-          "authorizationEndpoint",
-          "userCertificate",
-          "userCertificateKey",
           "username",
           "password",
-          "endpoint"
+          "endpoint",
+          "authorizationEndpoint",
+          "userCertificate",
+          "userCertificateKey"
         ],
         "properties": {
           "authorizationEndpoint": {
@@ -16812,9 +16889,9 @@
         "type": "object",
         "required": [
           "name",
-          "endpoint",
           "apiKey",
-          "apiSecret"
+          "apiSecret",
+          "endpoint"
         ],
         "properties": {
           "apiKey": {
@@ -16897,8 +16974,8 @@
         "type": "object",
         "required": [
           "name",
-          "webhookPublicKey",
-          "apiKey"
+          "apiKey",
+          "webhookPublicKey"
         ],
         "properties": {
           "apiKey": {
