@@ -3,6 +3,7 @@ import { RedocStandalone } from "redoc";
 import { ColorMode, useColorMode } from "@docusaurus/theme-common";
 import v1json from "../../openapi/v1.10.json";
 import v2json from "../../openapi/v2.0.json";
+import v3json from "../../openapi/v3.0.json";
 import genericConnector from "../../openapi/generic-connector.json";
 
 type RedocTheme = Parameters<typeof RedocStandalone>[0]["options"]["theme"];
@@ -10,6 +11,7 @@ type RedocTheme = Parameters<typeof RedocStandalone>[0]["options"]["theme"];
 const redoclySpecPaths = {
   "api-v1-10": v1json,
   "api-v2-0": v2json,
+  "api-v3-0": v3json,
   "api-generic-connector": genericConnector,
 };
 
