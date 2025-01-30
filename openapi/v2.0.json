@@ -8,38 +8,70 @@
       "url": "https://www.formance.com",
       "email": "support@formance.com"
     },
-    "version": "v2.0.7"
+    "x-logo": {
+      "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
+      "altText": "Formance"
+    },
+    "version": "v2.1"
   },
   "servers": [
     {
       "url": "http://localhost",
       "description": "local server"
+    },
+    {
+      "url": "https://{organization}.{environment}.formance.cloud",
+      "description": "A per-organization and per-environment API",
+      "variables": {
+        "organization": {
+          "description": "The organization name. Defaults to a generic organization.",
+          "default": "orgID-stackID"
+        },
+        "environment": {
+          "description": "The environment name. Defaults to the production environment.",
+          "default": "sandbox",
+          "enum": [
+            "sandbox",
+            "eu-west-1",
+            "us-east-1"
+          ]
+        }
+      }
     }
   ],
-  "security": [
+  "tags": [
     {
-      "Authorization": []
+      "name": "ledger.v1"
+    },
+    {
+      "name": "ledger.v2"
+    },
+    {
+      "name": "payments.v1"
+    },
+    {
+      "name": "auth.v1"
+    },
+    {
+      "name": "orchestration.v1"
+    },
+    {
+      "name": "orchestration.v2"
+    },
+    {
+      "name": "reconciliation.v1"
+    },
+    {
+      "name": "search.v1"
+    },
+    {
+      "name": "webhooks.v1"
+    },
+    {
+      "name": "wallets.v1"
     }
   ],
   "paths": {
-    "/versions": {
-      "get": {
-        "summary": "Show stack version information",
-        "operationId": "getVersions",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetVersionsResponse"
-                }
-              }
-            }
-          }
-        }
-      }
-    },
     "/api/auth/.well-known/openid-configuration": {
       "get": {
         "summary": "Retrieve OpenID connect well-knowns.",
@@ -363,13 +395,37 @@
         }
       }
     },
+    "/versions": {
+      "get": {
+        "summary": "Show stack version information",
+        "operationId": "getVersions",
+        "security": [
+          {
+            "NoAuthorization": []
+          },
+          {
+            "Authorization": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetVersionsResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/ledger/_info": {
       "get": {
         "tags": [
-          "Ledger",
-          "Server"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Show server information",
         "operationId": "getInfo",
         "responses": {
@@ -393,7 +449,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/_info": {
@@ -401,9 +464,8 @@
         "summary": "Get information about a ledger",
         "operationId": "getLedgerInfo",
         "tags": [
-          "Ledger"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -437,7 +499,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/accounts": {
@@ -445,10 +514,8 @@
         "summary": "Count the accounts from a ledger",
         "operationId": "countAccounts",
         "tags": [
-          "Ledger",
-          "Accounts"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -505,17 +572,22 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "get": {
         "summary": "List accounts from a ledger",
         "description": "List accounts from a ledger, sorted by address in descending order.",
         "operationId": "listAccounts",
         "tags": [
-          "Ledger",
-          "Accounts"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -683,7 +755,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/accounts/{address}": {
@@ -691,10 +770,8 @@
         "summary": "Get account by its address",
         "operationId": "getAccount",
         "tags": [
-          "Ledger",
-          "Accounts"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -738,7 +815,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/accounts/{address}/metadata": {
@@ -746,10 +830,8 @@
         "summary": "Add metadata to an account",
         "operationId": "addMetadataToAccount",
         "tags": [
-          "Ledger",
-          "Accounts"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -777,7 +859,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Metadata1"
+                "$ref": "#/components/schemas/ledgerMetadata"
               }
             }
           },
@@ -798,16 +880,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/mapping": {
       "get": {
         "tags": [
-          "Ledger",
-          "Mapping"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "getMapping",
         "summary": "Get the mapping of a ledger",
         "parameters": [
@@ -843,14 +930,19 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "put": {
         "tags": [
-          "Ledger",
-          "Mapping"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "updateMapping",
         "summary": "Update the mapping of a ledger",
         "parameters": [
@@ -896,17 +988,22 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/script": {
       "post": {
         "deprecated": true,
         "tags": [
-          "Ledger",
-          "Script"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "runScript",
         "summary": "Execute a Numscript",
         "description": "This route is deprecated, and has been merged into `POST /{ledger}/transactions`.\n",
@@ -952,16 +1049,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/stats": {
       "get": {
         "tags": [
-          "Ledger",
-          "Stats"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "readStats",
         "summary": "Get statistics from a ledger",
         "description": "Get statistics from a ledger. (aggregate metrics on accounts and transactions)\n",
@@ -998,16 +1100,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/transactions": {
       "head": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Count the transactions from a ledger",
         "operationId": "countTransactions",
         "parameters": [
@@ -1133,14 +1240,19 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "get": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "List transactions from a ledger",
         "description": "List transactions from a ledger, sorted by txid in descending order.",
         "operationId": "listTransactions",
@@ -1321,14 +1433,19 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Create a new transaction to a ledger",
         "operationId": "createTransaction",
         "parameters": [
@@ -1384,16 +1501,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/transactions/{txid}": {
       "get": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Get transaction from a ledger by its ID",
         "operationId": "getTransaction",
         "parameters": [
@@ -1441,16 +1563,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/transactions/{txid}/metadata": {
       "post": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Set the metadata of a transaction by its ID",
         "operationId": "addMetadataOnTransaction",
         "parameters": [
@@ -1482,7 +1609,7 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/Metadata1"
+                "$ref": "#/components/schemas/ledgerMetadata"
               }
             }
           }
@@ -1502,16 +1629,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/transactions/{txid}/revert": {
       "post": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "revertTransaction",
         "summary": "Revert a ledger transaction by its ID",
         "parameters": [
@@ -1568,16 +1700,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/transactions/batch": {
       "post": {
         "tags": [
-          "Ledger",
-          "Transactions"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Create a new batch of transactions to a ledger",
         "operationId": "CreateTransactions",
         "parameters": [
@@ -1623,16 +1760,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/balances": {
       "get": {
         "tags": [
-          "Ledger",
-          "Balances"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Get the balances from a ledger's account",
         "operationId": "getBalances",
         "parameters": [
@@ -1718,16 +1860,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/aggregate/balances": {
       "get": {
         "tags": [
-          "Ledger",
-          "Balances"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Get the aggregated balances from selected accounts",
         "operationId": "getBalancesAggregated",
         "parameters": [
@@ -1781,16 +1928,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/{ledger}/logs": {
       "get": {
         "tags": [
-          "Ledger",
-          "Logs"
+          "ledger.v1"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "List the logs from a ledger",
         "description": "List the logs from a ledger, sorted by ID in descending order.",
         "operationId": "listLogs",
@@ -1924,17 +2076,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/_info": {
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Show server information",
         "operationId": "v2GetInfo",
+        "x-speakeasy-name-override": "GetInfo",
         "responses": {
           "200": {
             "description": "OK",
@@ -1955,14 +2114,35 @@
                 }
               }
             }
+          },
+          "5XX": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ErrorResponse"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2": {
       "get": {
         "summary": "List ledgers",
         "operationId": "v2ListLedgers",
+        "x-speakeasy-name-override": "ListLedgers",
+        "tags": [
+          "ledger.v2"
+        ],
         "parameters": [
           {
             "name": "pageSize",
@@ -1986,10 +2166,6 @@
             }
           }
         ],
-        "tags": [
-          "Ledger"
-        ],
-        "x-speakeasy-group": "ledger",
         "responses": {
           "200": {
             "description": "OK",
@@ -2011,7 +2187,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}": {
@@ -2030,10 +2213,10 @@
       "get": {
         "summary": "Get a ledger",
         "operationId": "v2GetLedger",
+        "x-speakeasy-name-override": "GetLedger",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "responses": {
           "200": {
             "description": "OK",
@@ -2055,15 +2238,22 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "post": {
         "summary": "Create a ledger",
         "operationId": "v2CreateLedger",
+        "x-speakeasy-name-override": "CreateLedger",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2087,7 +2277,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/metadata": {
@@ -2106,10 +2303,10 @@
       "put": {
         "summary": "Update ledger metadata",
         "operationId": "v2UpdateLedgerMetadata",
+        "x-speakeasy-name-override": "UpdateLedgerMetadata",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "requestBody": {
           "content": {
             "application/json": {
@@ -2132,8 +2329,25 @@
                 }
               }
             }
+          },
+          "5XX": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ErrorResponse"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/metadata/{key}": {
@@ -2162,10 +2376,10 @@
       "delete": {
         "summary": "Delete ledger metadata by key",
         "operationId": "v2DeleteLedgerMetadata",
+        "x-speakeasy-name-override": "DeleteLedgerMetadata",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "responses": {
           "204": {
             "description": "OK"
@@ -2180,17 +2394,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/_info": {
       "get": {
         "summary": "Get information about a ledger",
         "operationId": "v2GetLedgerInfo",
+        "x-speakeasy-name-override": "GetLedgerInfo",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2224,17 +2445,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/_bulk": {
       "post": {
         "summary": "Bulk request",
         "operationId": "v2CreateBulk",
+        "x-speakeasy-name-override": "CreateBulk",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2287,17 +2515,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/accounts": {
       "head": {
         "summary": "Count the accounts from a ledger",
         "operationId": "v2CountAccounts",
+        "x-speakeasy-name-override": "CountAccounts",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2352,16 +2587,23 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "get": {
         "summary": "List accounts from a ledger",
         "description": "List accounts from a ledger, sorted by address in descending order.",
         "operationId": "v2ListAccounts",
+        "x-speakeasy-name-override": "ListAccounts",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2445,17 +2687,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/accounts/{address}": {
       "get": {
         "summary": "Get account by its address",
         "operationId": "v2GetAccount",
+        "x-speakeasy-name-override": "GetAccount",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2518,17 +2767,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/accounts/{address}/metadata": {
       "post": {
         "summary": "Add metadata to an account",
         "operationId": "v2AddMetadataToAccount",
+        "x-speakeasy-name-override": "AddMetadataToAccount",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -2594,17 +2850,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/accounts/{address}/metadata/{key}": {
       "delete": {
         "description": "Delete metadata by key",
         "operationId": "v2DeleteAccountMetadata",
+        "x-speakeasy-name-override": "DeleteAccountMetadata",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Delete metadata by key",
         "parameters": [
           {
@@ -2641,17 +2904,34 @@
           "2XX": {
             "description": "Key deleted",
             "content": {}
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ErrorResponse"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/stats": {
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "v2ReadStats",
+        "x-speakeasy-name-override": "ReadStats",
         "summary": "Get statistics from a ledger",
         "description": "Get statistics from a ledger. (aggregate metrics on accounts and transactions)\n",
         "parameters": [
@@ -2687,17 +2967,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/transactions": {
       "head": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Count the transactions from a ledger",
         "operationId": "v2CountTransactions",
+        "x-speakeasy-name-override": "CountTransactions",
         "parameters": [
           {
             "name": "ledger",
@@ -2752,16 +3039,23 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "List transactions from a ledger",
         "description": "List transactions from a ledger, sorted by id in descending order.",
         "operationId": "v2ListTransactions",
+        "x-speakeasy-name-override": "ListTransactions",
         "parameters": [
           {
             "name": "ledger",
@@ -2812,6 +3106,25 @@
               "type": "string",
               "format": "date-time"
             }
+          },
+          {
+            "name": "order",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "effective"
+              ]
+            }
+          },
+          {
+            "name": "reverse",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "boolean"
+            }
           }
         ],
         "requestBody": {
@@ -2845,15 +3158,22 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       },
       "post": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Create a new transaction to a ledger",
         "operationId": "v2CreateTransaction",
+        "x-speakeasy-name-override": "CreateTransaction",
         "parameters": [
           {
             "name": "ledger",
@@ -2915,17 +3235,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/transactions/{id}": {
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Get transaction from a ledger by its ID",
         "operationId": "v2GetTransaction",
+        "x-speakeasy-name-override": "GetTransaction",
         "parameters": [
           {
             "name": "ledger",
@@ -2990,17 +3317,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/transactions/{id}/metadata": {
       "post": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Set the metadata of a transaction by its ID",
         "operationId": "v2AddMetadataOnTransaction",
+        "x-speakeasy-name-override": "AddMetadataOnTransaction",
         "parameters": [
           {
             "name": "ledger",
@@ -3067,18 +3401,25 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/transactions/{id}/metadata/{key}": {
       "delete": {
         "description": "Delete metadata by key",
         "operationId": "v2DeleteTransactionMetadata",
+        "x-speakeasy-name-override": "DeleteTransactionMetadata",
         "summary": "Delete metadata by key",
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "parameters": [
           {
             "name": "ledger",
@@ -3128,16 +3469,23 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/transactions/{id}/revert": {
       "post": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "operationId": "v2RevertTransaction",
+        "x-speakeasy-name-override": "RevertTransaction",
         "summary": "Revert a ledger transaction by its ID",
         "parameters": [
           {
@@ -3202,17 +3550,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/aggregate/balances": {
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Get the aggregated balances from selected accounts",
         "operationId": "v2GetBalancesAggregated",
+        "x-speakeasy-name-override": "GetBalancesAggregated",
         "parameters": [
           {
             "name": "ledger",
@@ -3274,17 +3629,24 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/volumes": {
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "Get list of volumes with balances for (account/asset)",
         "operationId": "v2GetVolumesWithBalances",
+        "x-speakeasy-name-override": "GetVolumesWithBalances",
         "parameters": [
           {
             "name": "pageSize",
@@ -3388,18 +3750,25 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
       }
     },
     "/api/ledger/v2/{ledger}/logs": {
       "get": {
         "tags": [
-          "Ledger"
+          "ledger.v2"
         ],
-        "x-speakeasy-group": "ledger",
         "summary": "List the logs from a ledger",
         "description": "List the logs from a ledger, sorted by ID in descending order.",
         "operationId": "v2ListLogs",
+        "x-speakeasy-name-override": "ListLogs",
         "parameters": [
           {
             "name": "ledger",
@@ -3473,7 +3842,112 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/ledger/v2/{ledger}/logs/import": {
+      "post": {
+        "tags": [
+          "ledger.v2"
+        ],
+        "operationId": "v2ImportLogs",
+        "x-speakeasy-name-override": "ImportLogs",
+        "parameters": [
+          {
+            "name": "ledger",
+            "in": "path",
+            "description": "Name of the ledger.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ledger001"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/octet-stream": {
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Import OK"
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V2ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/ledger/v2/{ledger}/logs/export": {
+      "post": {
+        "summary": "Export logs",
+        "operationId": "v2ExportLogs",
+        "x-speakeasy-name-override": "ExportLogs",
+        "tags": [
+          "ledger.v2"
+        ],
+        "parameters": [
+          {
+            "name": "ledger",
+            "in": "path",
+            "description": "Name of the ledger.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "ledger001"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Import OK"
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/octet-stream": {
+                "schema": {
+                  "title": "bytes",
+                  "type": "string",
+                  "format": "binary"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "ledger:write"
+            ]
+          }
+        ]
       }
     },
     "/api/payments/_info": {
@@ -4651,7 +5125,7 @@
         "description": "Sorted by updated date descending",
         "operationId": "getManyConfigs",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "parameters": [
           {
@@ -4696,14 +5170,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:read"
+            ]
+          }
+        ]
       },
       "post": {
         "summary": "Insert a new config",
         "description": "Insert a new webhooks config.\n\nThe endpoint should be a valid https URL and be unique.\n\nThe secret is the endpoint's verification secret.\nIf not passed or empty, a secret is automatically generated.\nThe format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)\n\nAll eventTypes are converted to lower-case when inserted.\n",
         "operationId": "insertConfig",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "requestBody": {
           "content": {
@@ -4736,7 +5217,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
       }
     },
     "/api/webhooks/configs/{id}": {
@@ -4745,7 +5233,7 @@
         "description": "Delete a webhooks config by ID.",
         "operationId": "deleteConfig",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "parameters": [
           {
@@ -4773,7 +5261,66 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
+      },
+      "put": {
+        "summary": "Update one config",
+        "description": "Update a webhooks config by ID.",
+        "operationId": "updateConfig",
+        "tags": [
+          "webhooks.v1"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Config ID",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "4997257d-dfb6-445b-929c-cbe2ab182818"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ConfigUser"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Config successfully updated."
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/webhooksErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
       }
     },
     "/api/webhooks/configs/{id}/test": {
@@ -4782,7 +5329,7 @@
         "description": "Test a config by sending a webhook to its endpoint.",
         "operationId": "testConfig",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "parameters": [
           {
@@ -4817,7 +5364,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:read"
+            ]
+          }
+        ]
       }
     },
     "/api/webhooks/configs/{id}/activate": {
@@ -4826,7 +5380,7 @@
         "description": "Activate a webhooks config by ID, to start receiving webhooks to its endpoint.",
         "operationId": "activateConfig",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "parameters": [
           {
@@ -4861,7 +5415,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
       }
     },
     "/api/webhooks/configs/{id}/deactivate": {
@@ -4870,7 +5431,7 @@
         "description": "Deactivate a webhooks config by ID, to stop receiving webhooks to its endpoint.",
         "operationId": "deactivateConfig",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "parameters": [
           {
@@ -4905,7 +5466,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
       }
     },
     "/api/webhooks/configs/{id}/secret/change": {
@@ -4914,7 +5482,7 @@
         "description": "Change the signing secret of the endpoint of a webhooks config.\n\nIf not passed or empty, a secret is automatically generated.\nThe format is a random string of bytes of size 24, base64 encoded. (larger size after encoding)\n",
         "operationId": "changeConfigSecret",
         "tags": [
-          "Webhooks"
+          "webhooks.v1"
         ],
         "requestBody": {
           "content": {
@@ -4958,7 +5526,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "webhooks:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/_info": {
@@ -4966,7 +5541,7 @@
         "summary": "Get server info",
         "operationId": "walletsgetServerInfo",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -4989,7 +5564,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/transactions": {
@@ -5028,7 +5610,7 @@
           }
         ],
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -5051,7 +5633,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets": {
@@ -5119,7 +5708,7 @@
           }
         ],
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -5142,13 +5731,20 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       },
       "post": {
         "summary": "Create a new wallet",
         "operationId": "createWallet",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "parameters": [
           {
@@ -5190,7 +5786,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets/{id}": {
@@ -5208,7 +5811,7 @@
         "summary": "Get a wallet",
         "operationId": "getWallet",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -5234,13 +5837,20 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       },
       "patch": {
         "summary": "Update a wallet",
         "operationId": "updateWallet",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "parameters": [
           {
@@ -5287,7 +5897,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets/{id}/summary": {
@@ -5305,7 +5922,7 @@
         "summary": "Get wallet summary",
         "operationId": "getWalletSummary",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -5331,7 +5948,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets/{id}/balances": {
@@ -5349,7 +5973,7 @@
         "summary": "List balances of a wallet",
         "operationId": "listBalances",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -5362,13 +5986,20 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       },
       "post": {
         "summary": "Create a balance",
         "operationId": "createBalance",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "parameters": [
           {
@@ -5410,7 +6041,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets/{id}/balances/{balanceName}": {
@@ -5436,7 +6074,7 @@
         "summary": "Get detailed balance",
         "operationId": "getBalance",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "responses": {
           "200": {
@@ -5459,7 +6097,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets/{id}/debit": {
@@ -5495,7 +6140,7 @@
           }
         ],
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "requestBody": {
           "content": {
@@ -5530,7 +6175,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/wallets/{id}/credit": {
@@ -5566,7 +6218,7 @@
           }
         ],
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "requestBody": {
           "content": {
@@ -5591,14 +6243,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/holds": {
       "get": {
         "summary": "Get all holds for a wallet",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "operationId": "getHolds",
         "parameters": [
@@ -5670,14 +6329,21 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/holds/{holdID}": {
       "get": {
         "summary": "Get a hold",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "operationId": "getHold",
         "parameters": [
@@ -5712,7 +6378,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:read"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/holds/{hold_id}/confirm": {
@@ -5746,7 +6419,7 @@
         },
         "summary": "Confirm a hold",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "operationId": "confirmHold",
         "responses": {
@@ -5763,7 +6436,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/wallets/holds/{hold_id}/void": {
@@ -5789,7 +6469,7 @@
         "summary": "Cancel a hold",
         "operationId": "voidHold",
         "tags": [
-          "Wallets"
+          "wallets.v1"
         ],
         "parameters": [
           {
@@ -5815,7 +6495,14 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "wallets:write"
+            ]
+          }
+        ]
       }
     },
     "/api/orchestration/_info": {
@@ -7260,48 +7947,29 @@
     }
   },
   "components": {
+    "securitySchemes": {
+      "Authorization": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/api/auth/oauth/token",
+            "refreshUrl": "/api/auth/oauth/token",
+            "scopes": {}
+          }
+        }
+      },
+      "NoAuthorization": {
+        "type": "oauth2",
+        "flows": {
+          "clientCredentials": {
+            "tokenUrl": "/api/auth/oauth/token",
+            "refreshUrl": "/api/auth/oauth/token",
+            "scopes": {}
+          }
+        }
+      }
+    },
     "schemas": {
-      "Version": {
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          },
-          "version": {
-            "type": "string"
-          },
-          "health": {
-            "type": "boolean"
-          }
-        },
-        "required": [
-          "name",
-          "version",
-          "health"
-        ]
-      },
-      "GetVersionsResponse": {
-        "type": "object",
-        "properties": {
-          "region": {
-            "type": "string"
-          },
-          "env": {
-            "type": "string"
-          },
-          "versions": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Version"
-            }
-          }
-        },
-        "required": [
-          "region",
-          "env",
-          "versions"
-        ]
-      },
       "Metadata": {
         "type": "object",
         "additionalProperties": {}
@@ -7596,6 +8264,47 @@
           }
         }
       },
+      "Version": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "version": {
+            "type": "string"
+          },
+          "health": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "name",
+          "version",
+          "health"
+        ]
+      },
+      "GetVersionsResponse": {
+        "type": "object",
+        "properties": {
+          "region": {
+            "type": "string"
+          },
+          "env": {
+            "type": "string"
+          },
+          "versions": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Version"
+            }
+          }
+        },
+        "required": [
+          "region",
+          "env",
+          "versions"
+        ]
+      },
       "AccountsCursorResponse": {
         "type": "object",
         "required": [
@@ -7819,7 +8528,7 @@
           "ledgers"
         ]
       },
-      "Metadata1": {
+      "ledgerMetadata": {
         "type": "object",
         "nullable": true,
         "additionalProperties": {}
@@ -8038,7 +8747,7 @@
             "description": "Reference to attach to the generated transaction"
           },
           "metadata": {
-            "$ref": "#/components/schemas/Metadata1"
+            "$ref": "#/components/schemas/ledgerMetadata"
           }
         },
         "required": [
@@ -8063,7 +8772,7 @@
             "example": "ref:001"
           },
           "metadata": {
-            "$ref": "#/components/schemas/Metadata1"
+            "$ref": "#/components/schemas/ledgerMetadata"
           },
           "txid": {
             "type": "integer",
@@ -8100,7 +8809,7 @@
             "example": "ref:001"
           },
           "metadata": {
-            "$ref": "#/components/schemas/Metadata1"
+            "$ref": "#/components/schemas/ledgerMetadata"
           },
           "timestamp": {
             "type": "string",
@@ -8159,7 +8868,7 @@
             "example": "ref:001"
           },
           "metadata": {
-            "$ref": "#/components/schemas/Metadata1"
+            "$ref": "#/components/schemas/ledgerMetadata"
           }
         }
       },
@@ -8470,49 +9179,6 @@
           }
         }
       },
-      "V2BalancesCursorResponse": {
-        "type": "object",
-        "required": [
-          "cursor"
-        ],
-        "properties": {
-          "cursor": {
-            "type": "object",
-            "required": [
-              "pageSize",
-              "hasMore",
-              "data"
-            ],
-            "properties": {
-              "pageSize": {
-                "type": "integer",
-                "format": "int64",
-                "minimum": 1,
-                "maximum": 1000,
-                "example": 15
-              },
-              "hasMore": {
-                "type": "boolean",
-                "example": false
-              },
-              "previous": {
-                "type": "string",
-                "example": "YXVsdCBhbmQgYSBtYXhpbXVtIG1heF9yZXN1bHRzLol="
-              },
-              "next": {
-                "type": "string",
-                "example": ""
-              },
-              "data": {
-                "type": "array",
-                "items": {
-                  "$ref": "#/components/schemas/V2AccountsBalances"
-                }
-              }
-            }
-          }
-        }
-      },
       "V2TransactionsCursorResponse": {
         "type": "object",
         "required": [
@@ -8748,22 +9414,6 @@
           }
         }
       },
-      "V2AccountsBalances": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/V2AssetsBalances"
-        },
-        "example": {
-          "account1": {
-            "USD": 100,
-            "EUR": 23
-          },
-          "account2": {
-            "CAD": 20,
-            "JPY": 21
-          }
-        }
-      },
       "V2AssetsBalances": {
         "type": "object",
         "additionalProperties": {
@@ -8802,34 +9452,6 @@
           "asset",
           "destination",
           "source"
-        ]
-      },
-      "V2Script": {
-        "type": "object",
-        "properties": {
-          "plain": {
-            "type": "string",
-            "example": "vars {\naccount $user\n}\nsend [COIN 10] (\n\tsource = @world\n\tdestination = $user\n)\n"
-          },
-          "vars": {
-            "type": "object",
-            "properties": {},
-            "additionalProperties": true,
-            "example": {
-              "user": "users:042"
-            }
-          },
-          "reference": {
-            "type": "string",
-            "example": "order_1234",
-            "description": "Reference to attach to the generated transaction"
-          },
-          "metadata": {
-            "$ref": "#/components/schemas/V2Metadata"
-          }
-        },
-        "required": [
-          "plain"
         ]
       },
       "V2Transaction": {
@@ -9128,11 +9750,13 @@
           "REVERT_OCCURRING",
           "ALREADY_REVERT",
           "NO_POSTINGS",
-          "LEDGER_NOT_FOUND"
+          "LEDGER_NOT_FOUND",
+          "IMPORT"
         ],
         "example": "VALIDATION"
       },
       "V2LedgerInfoResponse": {
+        "type": "object",
         "properties": {
           "data": {
             "$ref": "#/components/schemas/V2LedgerInfo"
@@ -9310,6 +9934,7 @@
             "type": "object",
             "properties": {
               "data": {
+                "type": "object",
                 "properties": {
                   "id": {
                     "type": "integer",
@@ -9340,6 +9965,7 @@
             "type": "object",
             "properties": {
               "data": {
+                "type": "object",
                 "properties": {
                   "targetId": {
                     "$ref": "#/components/schemas/V2TargetId"
@@ -16129,18 +16755,6 @@
         }
       }
     },
-    "securitySchemes": {
-      "Authorization": {
-        "type": "oauth2",
-        "flows": {
-          "clientCredentials": {
-            "tokenUrl": "/api/auth/oauth/token",
-            "refreshUrl": "/api/auth/oauth/token",
-            "scopes": {}
-          }
-        }
-      }
-    },
     "responses": {
       "NoContent": {
         "description": "No content"
@@ -16773,66 +17387,51 @@
     {
       "name": "Auth",
       "tags": [
-        "Clients",
-        "Scopes",
-        "Users",
-        "Auth"
+        "auth.v1"
       ]
     },
     {
       "name": "Ledger",
       "tags": [
-        "Ledger",
-        "Server",
-        "Accounts",
-        "Mapping",
-        "Script",
-        "Stats",
-        "Transactions",
-        "Balances",
-        "server",
-        "accounts",
-        "mapping",
-        "script",
-        "stats",
-        "transactions",
-        "balances"
+        "ledger.v1",
+        "ledger.v2"
       ]
     },
     {
       "name": "Payments",
       "tags": [
-        "Payments"
+        "payments.v1"
       ]
     },
     {
       "name": "Search",
       "tags": [
-        "Search"
+        "search.v1"
       ]
     },
     {
       "name": "Wallets",
       "tags": [
-        "Wallets"
+        "wallets.v1"
       ]
     },
     {
       "name": "Webhooks",
       "tags": [
-        "Webhooks"
+        "webhooks.v1"
       ]
     },
     {
       "name": "Flows",
       "tags": [
-        "Orchestration"
+        "orchestration.v1",
+        "orchestration.v2"
       ]
     },
     {
       "name": "Reconciliation",
       "tags": [
-        "Reconciliation"
+        "reconciliation.v1"
       ]
     }
   ]
