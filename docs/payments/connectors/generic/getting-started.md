@@ -1,9 +1,11 @@
 ---
-sidebar_label: Getting started
+sidebar_label: Generic
 sidebar_position: 1
 ---
 
 # Getting started with the Generic Connector
+
+The Generic Connector for Formance Connectivity provides a way to connect your Formance Stack with Financial Service Providers that are not natively supported by Formance.
 
 In this tutorial, you will learn how to use the Generic Connector to connect your Formance Stack with a fake Payment Service Provider that will return static fake data.
 
