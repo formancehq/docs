@@ -242,22 +242,22 @@ const sidebars = {
               collapsed: true,
               link: {
                 type: "doc",
-                id: "payments/get-started/basic-guides/index",
+                id: "payments/payments-concepts/index",
               },
               items: [
                 {
                   type: "doc",
-                  id: "payments/get-started/basic-guides/accounts",
+                  id: "payments/payments-concepts/accounts",
                   label: "Accounts",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/basic-guides/payments",
+                  id: "payments/payments-concepts/payments",
                   label: "Payments",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/basic-guides/transfer-initiation",
+                  id: "payments/payments-concepts/transfer-initiation",
                   label: "Transfer Initiation",
                 },
               ],
@@ -267,7 +267,7 @@ const sidebars = {
               label: "Connectors",
               link: {
                 type: "doc",
-                id: "payments/get-started/connectors/index",
+                id: "payments/connectors/index",
               },
               items: [
                 {
@@ -292,73 +292,56 @@ const sidebars = {
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/adyen",
+                  id: "payments/connectors/adyen",
                   label: "Adyen",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/atlar",
+                  id: "payments/connectors/atlar",
                   label: "Atlar",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/bankingcircle",
+                  id: "payments/connectors/bankingcircle",
                   label: "BankingCircle",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/currencycloud",
+                  id: "payments/connectors/currencycloud",
                   label: "CurrencyCloud",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/mangopay",
+                  id: "payments/connectors/mangopay",
                   label: "Mangopay",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/modulr",
+                  id: "payments/connectors/modulr",
                   label: "Modulr",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/moneycorp",
+                  id: "payments/connectors/moneycorp",
                   label: "Moneycorp",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/stripe",
+                  id: "payments/connectors/stripe",
                   label: "Stripe",
                 },
                 {
                   type: "doc",
-                  id: "payments/get-started/connectors/wise",
+                  id: "payments/connectors/wise",
                   label: "Wise",
                 },
               ],
             },
             {
               type: "doc",
-              id: "payments/get-started/connectors/framework",
+              id: "payments/connectors/framework",
               label: "Build a Connector",
             },
-            // {
-            //   type: "category",
-            //   label: "Tutorials",
-            //   collapsible: true,
-            //   collapsed: true,
-            //   link: {
-            //     type: "doc",
-            //     id: "payments/get-started/index",
-            //   },
-            //   items: [
-            //     // {
-            //     //   type: "doc",
-            //     //   id: "payments/get-started/installation",
-            //     // },
-                
-            //   ],
-            // },
           ],
         },
         {
