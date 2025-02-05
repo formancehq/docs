@@ -42,7 +42,7 @@ The Generic Connector is in charge of polling the data from the Financial Servic
 
 ## Integration with the Financial Service Provider
 
-The Generic Connector interacts with the Financial Service Provider by sending request formatted according to the [Generic Connector API specifications](../api-reference) and expecting responses formatted according to the same specifications.
+The Generic Connector interacts with the Financial Service Provider by sending request formatted according to the [Generic Connector API specifications](./api-reference) and expecting responses formatted according to the same specifications.
 
 As a consequence, it is necessary to create a service on your side that will interact with the Financial Service Provider and expose the data with the expected format.
 
