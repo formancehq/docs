@@ -167,6 +167,7 @@ const sidebars = {
               collapsed: true,
               items: [
                 "ledger/reference/ledgers",
+                "ledger/reference/bucket",
                 "ledger/reference/accounting-model",
                 // 'ledger/reference/architecture',
                 "ledger/reference/concurrency-model",
