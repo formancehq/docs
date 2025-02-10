@@ -12,7 +12,7 @@
       "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
       "altText": "Formance"
     },
-    "version": "v3.0.0-rc.1"
+    "version": "v3.0.0"
   },
   "servers": [
     {
@@ -29,8 +29,9 @@
         },
         "environment": {
           "description": "The environment name. Defaults to the production environment.",
-          "default": "sandbox",
+          "default": "eu.sandbox",
           "enum": [
+            "eu.sandbox",
             "sandbox",
             "eu-west-1",
             "us-east-1"
@@ -2147,7 +2148,7 @@
     "/api/ledger/_/info": {
       "get": {
         "tags": [
-          "ledger"
+          "ledger.v2"
         ],
         "summary": "Show server information",
         "operationId": "v2GetInfo",
@@ -2196,7 +2197,7 @@
     "/api/ledger/_/metrics": {
       "get": {
         "tags": [
-          "ledger"
+          "ledger.v2"
         ],
         "summary": "Read in memory metrics",
         "operationId": "getMetrics",
@@ -5990,6 +5991,15 @@
             "$ref": "#/components/parameters/V3Cursor"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3QueryBuilder"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -6264,6 +6274,15 @@
             "$ref": "#/components/parameters/V3Cursor"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3QueryBuilder"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -6271,6 +6290,53 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/V3ConnectorSchedulesCursorResponse"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3ErrorResponse"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "Authorization": [
+              "payments:read"
+            ]
+          }
+        ]
+      }
+    },
+    "/api/payments/v3/connectors/{connectorID}/schedules/{scheduleID}": {
+      "get": {
+        "tags": [
+          "payments.v3"
+        ],
+        "summary": "Get a connector schedule by ID",
+        "operationId": "v3GetConnectorSchedule",
+        "x-speakeasy-name-override": "GetConnectorSchedule",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/V3ConnectorID"
+          },
+          {
+            "$ref": "#/components/parameters/V3ScheduleID"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/V3ConnectorScheduleResponse"
                 }
               }
             }
@@ -6923,6 +6989,15 @@
             "$ref": "#/components/parameters/V3Cursor"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3QueryBuilder"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -6973,6 +7048,15 @@
             "$ref": "#/components/parameters/V3Cursor"
           }
         ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/V3QueryBuilder"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK",
@@ -15017,7 +15101,8 @@
             "type": "string"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "createdAt": {
             "type": "string",
@@ -15030,7 +15115,9 @@
             "$ref": "#/components/schemas/V3AccountTypeEnum"
           },
           "defaultAsset": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-zA-Z]{3}\\/[0-9]$",
+            "nullable": true
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -15053,6 +15140,7 @@
         "required": [
           "id",
           "connectorID",
+          "provider",
           "reference",
           "createdAt",
           "type",
@@ -15063,6 +15151,10 @@
             "type": "string"
           },
           "connectorID": {
+            "type": "string",
+            "format": "byte"
+          },
+          "provider": {
             "type": "string"
           },
           "reference": {
@@ -15226,7 +15318,8 @@
         ],
         "properties": {
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           }
         }
       },
@@ -15541,6 +15634,17 @@
           }
         }
       },
+      "V3ConnectorScheduleResponse": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/V3Schedule"
+          }
+        }
+      },
       "V3ConnectorScheduleInstancesCursorResponse": {
         "type": "object",
         "required": [
@@ -15587,6 +15691,7 @@
         "type": "object",
         "required": [
           "id",
+          "reference",
           "name",
           "createdAt",
           "provider",
@@ -15595,6 +15700,9 @@
         ],
         "properties": {
           "id": {
+            "type": "string"
+          },
+          "reference": {
             "type": "string"
           },
           "name": {
@@ -15627,7 +15735,8 @@
             "type": "string"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "createdAt": {
             "type": "string",
@@ -15650,7 +15759,8 @@
             "type": "string"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "scheduleID": {
             "type": "string"
@@ -15692,7 +15802,8 @@
             "type": "string"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "createdAt": {
             "type": "string",
@@ -15710,16 +15821,19 @@
             "format": "bigint"
           },
           "asset": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-zA-Z]{3}\\/[0-9]$"
           },
           "scheme": {
             "type": "string"
           },
           "sourceAccountID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "destinationAccountID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -15755,7 +15869,8 @@
             "format": "bigint"
           },
           "asset": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-zA-Z]{3}\\/[0-9]$"
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -15857,7 +15972,8 @@
             "type": "string"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "provider": {
             "type": "string"
@@ -15891,10 +16007,12 @@
           },
           "sourceAccountID": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           },
           "destinationAccountID": {
             "type": "string",
+            "format": "byte",
             "nullable": true
           },
           "metadata": {
@@ -15992,17 +16110,21 @@
         ],
         "properties": {
           "reference": {
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 1000
           },
           "scheduledAt": {
             "type": "string",
             "format": "date-time"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 10000
           },
           "type": {
             "$ref": "#/components/schemas/V3PaymentInitiationTypeEnum"
@@ -16012,13 +16134,17 @@
             "format": "bigint"
           },
           "asset": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-zA-Z]{3}\\/[0-9]$"
           },
           "sourceAccountID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte",
+            "nullable": true
           },
           "destinationAccountID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -16096,17 +16222,21 @@
         ],
         "properties": {
           "reference": {
-            "type": "string"
+            "type": "string",
+            "minLength": 3,
+            "maxLength": 1000
           },
           "description": {
-            "type": "string"
+            "type": "string",
+            "maxLength": 10000
           },
           "amount": {
             "type": "integer",
             "format": "bigint"
           },
           "asset": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^[a-zA-Z]{3}\\/[0-9]$"
           },
           "metadata": {
             "$ref": "#/components/schemas/V3Metadata"
@@ -16279,7 +16409,8 @@
             "type": "string"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "reference": {
             "type": "string"
@@ -16309,10 +16440,12 @@
             "$ref": "#/components/schemas/V3PaymentInitiationStatusEnum"
           },
           "sourceAccountID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "destinationAccountID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "error": {
             "type": "string"
@@ -16566,7 +16699,8 @@
             "format": "date-time"
           },
           "connectorID": {
-            "type": "string"
+            "type": "string",
+            "format": "byte"
           },
           "createdObjectID": {
             "type": "string"
