@@ -2,15 +2,15 @@
 title: Changelog
 ---
 
-version
+**Stack version:** v3.0.0
 
-Release date: date
+**Release date:** February 2, 2025
 
 ## Ledger
 
 ### Stateless Ledger Service
 
-The Ledger service is now fully stateless, enabling it to operate with multiple replicas without requiring nodes synchronization.
+The Ledger service is now fully stateless and can operate with multiple replicas without requiring nodes synchronization.
 
 ### Zero-Downtime Upgrades
 
@@ -39,7 +39,7 @@ The `_bulk` endpoint has been significantly improved with three major capabiliti
 
 Bulk requests can now be streamed, allowing large payloads to be processed efficiently without requiring the entire request to be loaded into memory.
 
-To enable streaming, use the application/vnd.formance.ledger.api.v2.bulk+script-stream content type.
+To enable streaming, use the `application/vnd.formance.ledger.api.v2.bulk+script-stream` content type.
 
 #### Parallel vs. Sequential Processing
 
