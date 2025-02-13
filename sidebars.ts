@@ -641,6 +641,11 @@ const sidebars = {
     },
     {
       type: "doc",
+      id: "changelog",
+      label: "Changelog",
+    },
+    {
+      type: "doc",
       id: "api",
       label: "API Reference",
     },
