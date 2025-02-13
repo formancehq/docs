@@ -36,7 +36,8 @@
     "react-dom": "18",
     "redocusaurus": "2.2.1",
     "rehype-katex": "7",
-    "remark-math": "6"
+    "remark-math": "6",
+    "uri-js-replace": "^1.0.1"
   },
   "browserslist": {
     "production": [
