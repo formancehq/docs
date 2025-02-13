@@ -1,13 +1,15 @@
 ---
-sidebar_label: Getting started
+sidebar_label: Generic
 sidebar_position: 1
 ---
 
 # Getting started with the Generic Connector
 
+The Generic Connector for Formance Connectivity provides a way to connect your Formance Stack with Financial Service Providers that are not natively supported by Formance.
+
 In this tutorial, you will learn how to use the Generic Connector to connect your Formance Stack with a fake Payment Service Provider that will return static fake data.
 
-The generic connector interacts with a Payment Service Provider by sending requests formatted according to the [Generic Connector API specifications](api-reference) to an endpoint that you need to develop and provide. This endpoint acts as a middleware. It will query the Financial Institution and return the data in the expected format as shown in the diagram below.
+The generic connector interacts with a Payment Service Provider by sending requests formatted according to the [Generic Connector API specifications](./api-reference) to an endpoint that you need to develop and provide. This endpoint acts as a middleware. It will query the Financial Institution and return the data in the expected format as shown in the diagram below.
 
 ```mermaid
 graph LR

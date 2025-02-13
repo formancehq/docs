@@ -1,0 +1,114 @@
+---
+title: CloudPrem Deployment
+---
+## Requirements
+- Kubernetes
+- Helm
+- Ingress Controller
+- SSL Certificate
+- Oauth2 / OIDC Provider (eg: [Dex](https://dexidp.io/))
+
+## Deployment Membership on Kubernetes
+We will start by creating the values.yaml file, which will contain the configuration values for our deployment. This will make our deployment more flexible and allow us to reuse this file for other deployments.
+
+In this example, we will deploy a CloudPrem application consisting of several services:
+
+* [Dex](https://dexidp.io/) (OAuth2 / OIDC Provider)
+* Membership (Management API)
+* Console (Graphical Interface)
+* PostgreSQL (Database)
+
+
+:::warning
+Please note, the following values are examples and must be adapted to your environment. The PostgreSQL configuration **does not provide any data persistence**.
+:::
+
+You can retrieve the `values.yaml` file with the following command:
+```bash
+helm show values oci://ghcr.io/formancehq/helm/cloudprem --version v1.0.3 > values.yaml
+```
+You can adapt the configuration to your own needs, however, there are some minimum values that you need to replace:
+- BASE_URL = The base URL of your application with SSL certificate (eg: formance.dev)
+- YOUR_TLS_SECRET_NAME = The name of the secret containing your SSL certificate for Ingress object
+- RANDOM_KEY = A random key for the OAuth2 / OIDC provider
+
+
+We can now launch the deployment of our application using Helm. Helm will be responsible for deploying the necessary resources for our application.
+```bash
+helm install regions oci://ghcr.io/formancehq/helm/cloudprem \
+--version v1.0.3 \
+--namespace formance-system \
+--create-namespace \
+--values ./values.yaml
+```
+
+## Configuration of Membership
+
+### Create a valid Dex configuration
+By default, we deploy a [Dex](https://dexidp.io/) as an OIDC / oAuth2 provider. This allows us to create default users that you can use.
+
+It also enables us to connect protocols such as SAMLv2 to OIDC. To do this, you need to follow [Dex's documentation](https://dexidp.io/docs/) to create a valid configuration.
+
+:::warning
+You can also choose not to deploy Dex and modify Membership's OIDC configuration to talk directly to the OIDC provider of your choice.
+:::
+
+### Login to the cluster
+
+```bash
+fctl --profile demo login --membership-uri https://membership.BASE_URL/api
+```
+
+This will create a new organization and a user.
+
+### Add a domain for Auto Login
+```bash
+fctl cloud organizations list
+fctl cloud organizations update ORGANIZATION_ID --domain=DOMAIN_NAME --default-organization-role=GUEST --default-stack-role=GUEST
+fctl cloud organizations list
+```
+The possible values are GUEST or ADMIN. This allows assigning default rights to a user who logs in with an email from the DOMAIN_NAME domain.
+
+### Init databases
+
+We will now create a region and a stack in the Membership database.
+To do this, replace BASE_URL with the domain of your choice.
+
+:::warning
+By default, all communications between Console and your Stack remain internal to the Kubernetes cluster.
+:::
+
+```SQL
+insert into membership."regions" (id, base_url, name, creator_id, created_at, production, active) values (
+    gen_random_uuid(),
+    'https://BASE_URL',
+    'default',
+    (select id from membership."users" where id = (
+        select owner_id from membership."organizations" limit 1
+    )),
+    now(),
+    true,
+    true
+);
+insert into membership."stacks" (name, organization_id, id, region_id, created_at, updated_at, stargate_enabled, client_secret, state, status, expected_status) values (
+    'default',
+     (select id from membership."organizations" limit 1),
+     'demo', -- update if needed, this is your stack id
+     (select id from membership."regions" limit 1),
+     now(),
+     now(),
+     false,
+     gen_random_uuid(),
+     'ACTIVE',
+     'READY',
+     'READY'
+);
+```
+
+## Next Steps
+:::warning
+Be sure to save your OrganizationID and StackID, as you'll need them when you create your Stack.
+:::
+
+You now have an Organization containing a default region and a stack.
+In the next steps, you'll be able to deploy the Operator and then your Stack.

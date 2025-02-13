@@ -1,0 +1,81 @@
+---
+title: Connectors
+description: Available connectors for the Connectivity Service
+---
+
+The Connectivity Service provides a connector framework that allows you to integrate
+with any payment provider. It pre-packages the integration logic for some of
+the most popular payment providers, as per the table below, with the goal of
+providing connectivity to as many local and specific payment providers as
+possible.
+
+You can also create your own custom connectors by implementing the
+[Connector Framework](./framework.mdx) and taking inspiration
+from the existing connectors in the Github
+[repository](https://github.com/formancehq/stack/tree/main/components/payments/cmd/connectors/internal/connectors).
+
+## Logic behind the connectors
+
+When installing a connector on Formance Console or by using the API, you will be
+able to configure a polling period that will default to 2 minutes if not
+specified.
+
+This polling period will be used to periodically poll the payment service
+provider in order to fetch all the data we need: Payments, Accounts,
+Transfer/Payouts statuses when you create your transfer initiation etc.
+
+We are continuously working to enhance our platform and are actively exploring
+options to support listening to the payments service provider instead of using
+polling. Stay tuned for future updates and developments in this area.
+
+## Supported processors
+
+| Capabilities                 | Adyen                | Atlar | BankingCircle | CurrencyCloud | Mangopay | Modulr | Moneycorp | Stripe | Wise | Generic |
+| ---------------------------- | -------------------- | ----- | ------------- | ------------- | -------- | ------ | --------- | ------ | ---- | ------- |
+| Accounts Data Layer          | ✅                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
+| External Accounts Data Layer | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
+| Accounts Balances Data Layer | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
+| Transactions Data Layer      | ✅ (without history) | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
+| Bank Account Creation        | ❌                   | ✅     | ✅            | ❌            | ✅        | ❌     | ❌        | ❌     | ❌    | ❌      |
+| Transfer Initiation          | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ❌      |
+| Payout Initiation            | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ❌      |
+
+## Capabilities definitions
+
+### Accounts Data Layer
+
+Provide the ability to fetch on the related payment provider internal accounts,
+also known as as user's digital e-wallets, that serve as a secure storage for
+funds within the payments provider environment.
+
+### External Accounts Data Layer
+
+Provide the ability to fetch external accounts, which represent actual bank
+accounts of the user.
+
+### Accounts Balances Data Layer
+
+Provide the ability to fetch the internal accounts balances. It is important to
+note that none of the payment providers supports the fetching of the balances
+history for accounts.
+
+### Transactions Data Layer
+
+Provide the ability to fetch the transactions happening on the payment provider
+and relate them to the accounts previously fetched.
+
+### Bank Account Creation
+
+Provide the ability to create a bank account on the payment provider side. This
+is useful when you want to create a bank account for a user and then initiate
+a payout to that bank account.
+
+### Transfer Initiation
+
+Provide the ability to initiate a transfer from one internal account to another
+internal account.
+
+### Payout Initiation
+
+Provide the ability to initiate a payout to an external bank account from an
+internal account.

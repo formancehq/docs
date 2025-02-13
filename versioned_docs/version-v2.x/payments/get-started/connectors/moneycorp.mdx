@@ -1,0 +1,41 @@
+---
+title: Moneycorp Connector
+description: Learn how to use the Moneycorp Connector to connect your Formance Stack with your Moneycorp account.
+---
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+
+## Prerequisites
+
+Before you begin, you need to have a Moneycorp account. If you don't have one, you can [sign up for a Moneycorp account](https://Moneycorp.com/contact) here. Make sure you have a Moneycorp clientID and API key, with the least amount of permissions required to access the functionality of the Moneycorp Connector you plan to use.
+
+<ApiWarning/>
+
+## Setup
+
+<StackCmd>
+
+```shell
+fctl payments connectors install moneycorp moneycorp.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/moneycorp" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @moneycorp.json
+```
+
+</StackCmd>
+
+With moneycorp.json containing:
+
+```json
+{
+    "name": "moneycorp",
+    "clientID": "<clientID>",
+    "apiKey": "<apiKey>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "2m"   
+}
+```

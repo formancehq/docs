@@ -1,0 +1,41 @@
+---
+title: Modulr Connector
+description: Learn how to use the Modulr Connector to connect your Formance Platform with your Modulr account.
+---
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+
+## Prerequisites
+
+Before you begin, you need to have a Modulr account. If you don't have one, you can [sign up for a Modulr account](https://www.modulrfinance.com/contact-us) here. Make sure you have a Modulr API key and secret, with the least amount of permissions required to access the functionality of the Modulr Connector you plan to use. You can find more information about how to create an API key [here](https://modulr.readme.io/docs/gaining-use-of-the-api)
+
+<ApiWarning/>
+
+## Setup
+
+<StackCmd>
+
+```shell
+fctl payments connectors install modulr modulr.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/modulr" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @modulr.json
+```
+
+</StackCmd>
+
+With modulr.json containing:
+
+```json
+{
+    "name": "modulr",
+    "apiKey": "<apiKey>",
+    "apiSecret": "<apiSecret>",
+    "endpoint": "<endpoint>",
+    "pollingPeriod": "10m"
+}
+```

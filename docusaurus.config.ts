@@ -65,7 +65,7 @@ export default async function createConfig() {
             lastVersion: 'current',
             versions: {
               current: {
-                label: 'v2.0',
+                label: 'v3.x',
               },
             }
           },
@@ -94,7 +94,13 @@ export default async function createConfig() {
               spec: './openapi/v2.0.json',
               route: '/api/v2.0',
               id: 'api-v2-0',
-            }, {
+            }, 
+            {
+              spec: './openapi/v3.0.json',
+              route: '/api/v3.0',
+              id: 'api-v3-0',
+            },
+            {
               spec: './openapi/generic-connector.yaml',
               route: '/api/generic-connector',
               id: 'api-generic-connector',
@@ -119,34 +125,6 @@ export default async function createConfig() {
       ({
         mermaid: {
           theme: { light: 'base', dark: 'base' },
-          config: {
-            dark: {
-              theme: 'base',
-              themeVariables: {
-                primaryColor: '#426367',
-                background: '#856c6b',
-                primaryBorderColor: '#426367',
-                tertiaryBorderColor: '#7a9394',
-                tertiaryTextColor: '#7a9394',
-                secondaryColor: '#778f91',
-                tertiaryColor: '#002026',
-                primaryTextColor: '#d6eeee',
-              },
-            },
-            light: {
-              theme: 'base',
-              themeVariables: {
-                primaryColor: '#ebf0f0',
-                background: '#1c1e1e',
-                primaryBorderColor: '#d5e1e1',
-                tertiaryBorderColor: '#d5e1e1',
-                tertiaryTextColor: '#426367',
-                secondaryColor: '#dee7e7',
-                tertiaryColor: '#ffffff',
-                primaryTextColor: '#426367',
-              },
-            },
-          },
         },
         docs: {
           sidebar: {
@@ -234,7 +212,7 @@ export default async function createConfig() {
               ],
             },
           ],
-          copyright: `Copyright © 2021-2024 Formance, Inc`,
+          copyright: `Copyright © 2021-2025 Formance, Inc`,
         },
         prism: {
           theme: darkCodeTheme,
