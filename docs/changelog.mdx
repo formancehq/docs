@@ -35,13 +35,13 @@ Most endpoints have been optimized for faster read operations, leading to a more
 
 The `_bulk` endpoint has been significantly improved with three major capabilities:
 
-#### Streaming Support
+**Streaming Support**
 
 Bulk requests can now be streamed, allowing large payloads to be processed efficiently without requiring the entire request to be loaded into memory.
 
 To enable streaming, use the `application/vnd.formance.ledger.api.v2.bulk+script-stream` content type.
 
-#### Parallel vs. Sequential Processing
+**Parallel vs. Sequential Processing**
 
 You can now specify whether bulk elements should be processed in parallel or sequentially using the parallel query parameter:
 
@@ -71,16 +71,16 @@ Temporal is now required to deploy the Payments service.
 
 ### New V3 API improvements
 
-#### New task endpoint
+**New task endpoint**
 
 Added a new API endpoint to get a task. 
 
 A task represents a user operation done in background. When the task is done, its status will either be `failed` or `successful`. For a successful task, if an object has been created by the task, its ID can be retrieved in the task.
 
-#### Connector's uninstallation 
+**Connector's uninstallation** 
 
 For HTTP code 202, taskID is now sent as a response and uninstallation/deletion is performed in background. You can follow the uninstallation by polling the task status.
 
-#### Payments initiation creation 
+**Payments initiation creation** 
 
 For HTTP code 202, taskID is now sent as a response and payment creation is performed in background. You can follow the payment creation and retrieve the payment ID created in case of a successful task by polling the task.
