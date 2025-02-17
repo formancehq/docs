@@ -73,14 +73,6 @@ Temporal is now required to deploy the Payments service.
 
 **New task endpoint**
 
-Added a new API endpoint to get a task. 
+Added an endpoint to fetch a task, which represents a background user operation. Once completed, the task will have a status of either "failed" or "successful." If successful, the ID of any created object can be retrieved from the task.
 
-A task represents a user operation done in background. When the task is done, its status will either be `failed` or `successful`. For a successful task, if an object has been created by the task, its ID can be retrieved in the task.
-
-**Connector's uninstallation** 
-
-For HTTP code 202, taskID is now sent as a response and uninstallation/deletion is performed in background. You can follow the uninstallation by polling the task status.
-
-**Payments initiation creation** 
-
-For HTTP code 202, taskID is now sent as a response and payment creation is performed in background. You can follow the payment creation and retrieve the payment ID created in case of a successful task by polling the task.
+For connector uninstallation, payment initiation, and bank account creation, HTTP code 202 and a taskID are returned. The operations run in the background, and you can monitor their status and retrieve relevant IDs (e.g., payment or account ID) upon success by polling the task.
