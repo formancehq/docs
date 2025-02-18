@@ -1,0 +1,86 @@
+---
+title: v3.x
+---
+
+**Stack version: v3.0**
+
+| Component      | Version |
+|----------------|---------|
+| ledger         | v2.2.2  |
+| payments       | v3.0.0  |
+| wallets        | v2.1.1  |
+| orchestration  | v2.1.0  |
+| reconciliation | v2.1.0  |
+
+**Release date:** February 10, 2025
+
+## Ledger
+
+### Stateless Ledger Service
+
+The Ledger service is now fully stateless and can operate with multiple replicas without requiring nodes synchronization.
+
+### Zero-Downtime Upgrades
+
+Upgrades between versions now occur with zero downtime, ensuring a seamless transition and uninterrupted service.
+
+### New Numscript Interpreter
+
+The new numscript interpreter is now available in experimental mode (numscript used to be bundled in the ledger, but is now a separate, standalone library: https://github.com/formancehq/numscript)
+
+### Configurable Feature Disabling at the Bucket Level
+
+You can now disable specific features on a per-ledger basis at the bucket level, allowing for better optimization based on your usage patterns.
+
+### Enhanced Write Performance
+
+Significant improvements have been made to write operations, resulting in a higher throughput of transactions per second.
+
+### Improved Read Performance
+Most endpoints have been optimized for faster read operations, leading to a more responsive system overall.
+
+### Enhanced `_bulk` Endpoint
+
+The `_bulk` endpoint has been significantly improved with three major capabilities:
+
+**Streaming Support**
+
+Bulk requests can now be streamed, allowing large payloads to be processed efficiently without requiring the entire request to be loaded into memory.
+
+To enable streaming, use the `application/vnd.formance.ledger.api.v2.bulk+script-stream` content type.
+
+**Parallel vs. Sequential Processing**
+
+You can now specify whether bulk elements should be processed in parallel or sequentially using the parallel query parameter:
+
+- `parallel=true`: Elements are processed in parallel, improving throughput.
+- `parallel=false`: Elements are processed sequentially, maintaining order.
+
+### Atomic Bulk Execution
+
+You can now decide whether bulk elements should be committed atomically using the atomic query parameter:
+
+- `atomic=true`: The entire batch is committed as a single transaction. If any element fails, the entire batch is rolled back.
+- `atomic=false`: Each element is processed independently. If one element fails, it does not affect the others.
+
+Usage Example:
+
+```
+curl -H "Authorization: Bearer $(fctl cloud generate-personal-token)" \ -X POST <stack-url>/api/ledger/v2/<ledger-name>/_bulk?parallel=true&atomic=false \ -H 'Content-Type: application/vnd.formance.ledger.api.v2.bulk+script-stream' \ --data-binary @<stream file location>
+```
+
+These improvements provide greater flexibility and control over bulk processing, optimizing for performance, consistency, and reliability.
+
+## Payments
+
+### New dependency: Temporal
+
+Temporal is now required to deploy the Payments service.
+
+### New V3 API improvements
+
+**New task endpoint**
+
+Added an endpoint to fetch a task, which represents a background user operation. Once completed, the task will have a status of either "failed" or "successful." If successful, the ID of any created object can be retrieved from the task.
+
+For connector uninstallation, payment initiation, and bank account creation, HTTP code 202 and a taskID are returned. The operations run in the background, and you can monitor their status and retrieve relevant IDs (e.g., payment or account ID) upon success by polling the task.

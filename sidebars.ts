@@ -646,9 +646,22 @@ const sidebars = {
       label: "Getting Help",
     },
     {
-      type: "doc",
-      id: "changelog",
       label: "Changelog",
+      type: "category",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "changelog/v2.x-changelog",
+          label: "v2.x",
+        },
+        {
+          type: "doc",
+          id: "changelog/v3.x-changelog",
+          label: "v3.x",
+        },
+      ],
     },
     {
       type: "doc",
