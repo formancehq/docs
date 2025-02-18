@@ -621,6 +621,11 @@
     },
     {
       "type": "doc",
+      "id": "v2.x-changelog",
+      "label": "Changelog"
+    },
+    {
+      "type": "doc",
       "id": "api",
       "label": "API Reference"
     }
