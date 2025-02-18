@@ -647,7 +647,7 @@ const sidebars = {
     },
     {
       type: "doc",
-      id: "changelog",
+      id: "v3.x-changelog",
       label: "Changelog",
     },
     {
