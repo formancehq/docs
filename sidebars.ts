@@ -500,6 +500,10 @@ const sidebars = {
           items: [
             {
               type: "doc",
+              id: "deployment/licence",
+            },
+            {
+              type: "doc",
               id: "stack/ee/audit-log",
             },
             // {
