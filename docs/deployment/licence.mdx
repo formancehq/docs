@@ -5,7 +5,7 @@ description: Learn about the different deployment options for the Formance Platf
 
 ## Install the Licence using [Helm Global](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values)
 
-> All [Formance charts](https://github.com/formancehq/helm/) follows the same convention as described below.
+> All [Formance charts](https://github.com/formancehq/helm/) follow the same convention as described below.
 
 Make sure to add your licence token and clusterID to the `values.yaml` file.
 
@@ -13,9 +13,21 @@ Make sure to add your licence token and clusterID to the `values.yaml` file.
 global:
   licence:
     token: "your-token-here"
-    clusterID: "your-cluster-id-here" # kubectl get ns kube-system -o jsonpath='{.metadata.uid}
+    clusterID: "your-cluster-id-here"
 ...
 ```
+
+### Licence configuration
+
+| Key | Type | Default | Description |
+|-----|------|---------|-------------|
+| global.licence.clusterID | string | `""` | Obtain your licence cluster id with `kubectl get ns kube-system -o jsonpath='{.metadata.uid}'` |
+| global.licence.existingSecret | string | `""` | Licence Client Token as a secret |
+| global.licence.issuer | string | `"https://license.formance.cloud/keys"` | Licence Environment  |
+| global.licence.secretKeys.token | string | `""` | Key in existing secret to use for Licence Client Token |
+| global.licence.token | string | `""` | Licence Client Token delivered by contacting [Formance](https://formance.com) |
+
+### Debug
 
 Once installed you must see the following logs in any EE pod:
 
