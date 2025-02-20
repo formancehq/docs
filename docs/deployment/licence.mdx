@@ -1,0 +1,31 @@
+---
+title: Licence
+description: Learn about the different deployment options for the Formance Platform.
+---
+
+## Install the Licence using [Helm Global](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values)
+
+> All [Formance charts](https://github.com/formancehq/helm/) follows the same convention as described below.
+
+Make sure to add your licence token and clusterID to the `values.yaml` file.
+
+```yaml
+global:
+  licence:
+    token: "your-token-here"
+    clusterID: "your-cluster-id-here" # kubectl get ns kube-system -o jsonpath='{.metadata.uid}
+...
+```
+
+Once installed you must see the following logs in any EE pod:
+
+```bash
+│ {"level":"info","msg":"Licence check started","time":"2025-02-20T10:17:22Z"}                                                                                                            │
+│ {"level":"info","msg":"Licence check passed","time":"2025-02-20T10:17:22Z"}      
+```
+
+Any errors will be logged as well.
+
+```bash
+│ {"level":"error","msg":"Licence check failed: invalid token","time":"2025-02-20T10:25:22Z"}     
+```
