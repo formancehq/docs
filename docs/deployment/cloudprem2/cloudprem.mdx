@@ -28,7 +28,7 @@ Please note, the following values are examples and must be adapted to your envir
 
 You can retrieve the `values.yaml` file with the following command:
 ```bash
-helm show values oci://ghcr.io/formancehq/helm/cloudprem --version v1.0.3 > values.yaml
+helm show values oci://ghcr.io/formancehq/helm/cloudprem --version v2.2.1 > values.yaml
 ```
 You can adapt the configuration to your own needs, however, there are some minimum values that you need to replace:
 - BASE_URL = The base URL of your application with SSL certificate (eg: formance.dev)
@@ -39,7 +39,7 @@ You can adapt the configuration to your own needs, however, there are some minim
 We can now launch the deployment of our application using Helm. Helm will be responsible for deploying the necessary resources for our application.
 ```bash
 helm install regions oci://ghcr.io/formancehq/helm/cloudprem \
---version v1.0.3 \
+--version v2.2.1 \
 --namespace formance-system \
 --create-namespace \
 --values ./values.yaml
