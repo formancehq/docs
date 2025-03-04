@@ -12,7 +12,7 @@
       "url": "https://avatars.githubusercontent.com/u/84325077?s=200&v=4",
       "altText": "Formance"
     },
-    "version": "v3.0.0"
+    "version": "v3.0.1"
   },
   "servers": [
     {
@@ -5502,45 +5502,6 @@
           {
             "Authorization": [
               "payments:write"
-            ]
-          }
-        ]
-      }
-    },
-    "/api/payments/v3/_info": {
-      "get": {
-        "tags": [
-          "payments.v3"
-        ],
-        "summary": "Show server information",
-        "operationId": "v3GetInfo",
-        "x-speakeasy-name-override": "GetInfo",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V3ConfigInfoResponse"
-                }
-              }
-            }
-          },
-          "default": {
-            "description": "Error",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/V3ErrorResponse"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "Authorization": [
-              "payments:read"
             ]
           }
         ]
@@ -15014,23 +14975,6 @@
         ],
         "example": "VALIDATION"
       },
-      "V3ConfigInfoResponse": {
-        "$ref": "#/components/schemas/V3ConfigInfo"
-      },
-      "V3ConfigInfo": {
-        "type": "object",
-        "properties": {
-          "debug": {
-            "type": "boolean"
-          },
-          "version": {
-            "type": "string"
-          }
-        },
-        "required": [
-          "version"
-        ]
-      },
       "V3AccountID": {
         "type": "string"
       },
@@ -15168,7 +15112,8 @@
             "$ref": "#/components/schemas/V3AccountTypeEnum"
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "nullable": true
           },
           "defaultAsset": {
             "type": "string",
@@ -15423,6 +15368,10 @@
             "nullable": true
           },
           "swiftBicCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "country": {
             "type": "string",
             "nullable": true
           },
@@ -17710,6 +17659,17 @@
           }
         }
       },
+      "GetWalletSummaryResponse": {
+        "type": "object",
+        "required": [
+          "data"
+        ],
+        "properties": {
+          "data": {
+            "$ref": "#/components/schemas/WalletSummary"
+          }
+        }
+      },
       "DebitWalletResponse": {
         "type": "object",
         "required": [
@@ -18145,7 +18105,7 @@
           }
         ]
       },
-      "GetWalletSummaryResponse": {
+      "WalletSummary": {
         "type": "object",
         "required": [
           "balances",
@@ -21563,6 +21523,16 @@
       }
     },
     "responses": {
+      "ServerInfo": {
+        "description": "Server information",
+        "content": {
+          "application/json": {
+            "schema": {
+              "$ref": "#/components/schemas/ServerInfo"
+            }
+          }
+        }
+      },
       "NoContent": {
         "description": "No content"
       },
@@ -21572,16 +21542,6 @@
           "application/json": {
             "schema": {
               "$ref": "#/components/schemas/PaymentsErrorResponse"
-            }
-          }
-        }
-      },
-      "ServerInfo": {
-        "description": "Server information",
-        "content": {
-          "application/json": {
-            "schema": {
-              "$ref": "#/components/schemas/ServerInfo"
             }
           }
         }
