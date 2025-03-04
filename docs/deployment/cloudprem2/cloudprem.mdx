@@ -10,6 +10,7 @@ import Warning from '../../stack/partials/_warning_ee.mdx';
 - Ingress Controller
 - SSL Certificate
 - Oauth2 / OIDC Provider (eg: [Dex](https://dexidp.io/))
+- Enterprise Edition (EE) license
 
 ## Deployment Membership on Kubernetes
 We will start by creating the values.yaml file, which will contain the configuration values for our deployment. This will make our deployment more flexible and allow us to reuse this file for other deployments.
@@ -28,22 +29,32 @@ Please note, the following values are examples and must be adapted to your envir
 
 You can retrieve the `values.yaml` file with the following command:
 ```bash
-helm show values oci://ghcr.io/formancehq/helm/cloudprem --version v2.2.1 > values.yaml
+# helm show values oci://ghcr.io/formancehq/helm/cloudprem --version v3.0.0 > values.yaml
 ```
-You can adapt the configuration to your own needs, however, there are some minimum values that you need to replace:
-- BASE_URL = The base URL of your application with SSL certificate (eg: formance.dev)
-- YOUR_TLS_SECRET_NAME = The name of the secret containing your SSL certificate for Ingress object
-- RANDOM_KEY = A random key for the OAuth2 / OIDC provider
 
+You can adapt the configuration to your own needs, however, there are some minimum values that you need to replace. If you want more information about the values, please refer to the [helm documentation](https://github.com/formancehq/helm/blob/main/charts/cloudprem/README.md).
+```BASH
+export YOUR_LICENCE=$YOUR_LICENCE_KEY
+export YOUR_CLUSTER_ID=$YOUR_CLUSTER_ID
+export BASE_DOMAIN=example.com
+export BASE_DOMAIN_WILDCARD_CERTIFICATE=example-com-wildcard-certificate-tls
 
-We can now launch the deployment of our application using Helm. Helm will be responsible for deploying the necessary resources for our application.
-```bash
-helm install regions oci://ghcr.io/formancehq/helm/cloudprem \
---version v2.2.1 \
---namespace formance-system \
---create-namespace \
---values ./values.yaml
+helm install cloudprem oci://ghcr.io/formancehq/helm/cloudprem \
+  --version v3.0.0 \
+  --namespace formance-system \
+  --create-namespace \
+  --set global.licence.token=$YOUR_LICENCE_KEY \
+  --set global.licence.clusterID=$YOUR_CLUSTER_ID \
+  --set global.serviceHost=$BASE_DOMAIN \
+  --set membership.ingress.tls[0].secretName=$BASE_DOMAIN_WILDCARD_CERTIFICATE \
+  --set portal.ingress.tls[0].secretName=$BASE_DOMAIN_WILDCARD_CERTIFICATE \
+  --set console.ingress.tls[0].secretName=$BASE_DOMAIN_WILDCARD_CERTIFICATE \
+  --set dex.ingress.tls[0].secretName=$BASE_DOMAIN_WILDCARD_CERTIFICATE
 ```
+
+:::warning
+The use of this feature requires an Enterprise Edition (EE) license. Please ensure you have the appropriate license before enabling it.
+:::
 
 ## Configuration of Membership
 
