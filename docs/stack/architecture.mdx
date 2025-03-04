@@ -11,6 +11,12 @@ The Formance Platform embraces a cloud native architecture, enabling seamless de
 Formance Cloud offers minimal effort deployments with sane defaults and rolled-in support. Alternatively, on-prem and hybrid options provide a great level of flexibility — which has proven to be beneficial for deployments existing within the infrastructure of regulated financial institutions and platforms.
 :::
 
+## Enterprise Edition Licence
+
+The Formance Platform is available in two editions: the MIT and the Enterprise Edition (EE). The Community Edition is open-source and free to use, while the Enterprise Edition is a commercial offering that includes additional features and support.
+
+> For information about the EE licence, please refer to the [Licence](/deployment/licence) documentation.
+
 ## Planes
 
 The Formance Platform is composed of two main planes: the control plane, and the data plane. The control plane is responsible for managing the platform and provisioning its components, while the data plane is responsible for delivering the actual core functions of the platform.
@@ -25,12 +31,13 @@ The control plane server is responsible for managing the platform and its compon
 
 ### Components
 
-| Component         | Description                                               | License     | Source Available | Group   |
-|-------------------|-----------------------------------------------------------|-------------|------------------|---------|
-| Console           | Administration user interface                             | Proprietary | Not available    | Server  |
-| Server            | Internal Formance Cloud API                               | Proprietary | Not available    | Server  |
-| Agent             | Agent queuing request from the control plane server       | Proprietary        | Yes              | Client  |
-| Operator          | Kubernetes operator provisioning the data plane components| MIT        | Yes              | Client  |
+| Component         | Description                                               | License          | Source Available | Group   |
+|-------------------|-----------------------------------------------------------|------------------|------------------|---------|
+| Console           | Administration user interface                             | Proprietary (EE) | Not available    | Server  |
+| Portal            | Administration user interface                             | Proprietary (EE) | Not available    | Server  |
+| Membership        | Internal Formance Cloud API                               | Proprietary (EE) | Not available    | Server  |
+| Agent             | Agent queuing request from the control plane server       | Proprietary      | Yes              | Client  |
+| Operator          | Kubernetes operator provisioning the data plane components| MIT              | Yes              | Client  |
 
 
 ## Data plane
@@ -51,5 +58,3 @@ The data plane is composed of a number of components that work together to provi
 | Gateway       | EE     | Yes              | System  | [Github](https://github.com/formancehq/stack/tree/main/ee/gateway) |
 | Webhooks      | EE     | Yes              | System  | [Github](https://github.com/formancehq/stack/tree/main/ee/webhooks) |
 | Stargate      | EE    | Yes              | System  | [Github](https://github.com/formancehq/stack/tree/main/ee/stargate) |
-
-### Dependencies
