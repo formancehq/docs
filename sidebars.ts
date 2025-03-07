@@ -83,18 +83,17 @@ const sidebars = {
               label: "Tutorial",
             },
             {
-              label: "Concepts",
+              label: "Accounting model",
               type: "category",
+              link: { type: "doc", id: "ledger/advanced/accounting/accounting" },
               collapsible: true,
               collapsed: true,
               items: [
-                "ledger/reference/ledgers",
                 "ledger/reference/accounts",
                 "ledger/reference/transactions",
                 "ledger/advanced/accounting/constraints",
                 "ledger/advanced/accounting/source_destination",
                 "ledger/advanced/accounting/credit-debit-to-src-dest",
-                "ledger/reference/concurrency-model",
               ],
             },
             {
@@ -103,6 +102,11 @@ const sidebars = {
               collapsible: true,
               collapsed: true,
               items: [
+                {
+                  type: "doc",
+                  id: "ledger/reference/concurrency-model",
+                  label: "Currency conversion",
+                },
                 {
                   type: "doc",
                   id: "ledger/advanced/asset-conversion",
