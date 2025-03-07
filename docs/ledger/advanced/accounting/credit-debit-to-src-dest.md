@@ -2,11 +2,11 @@
 sidebar_position: 3
 ---
 
-# Converting from credit / debit to source / destination
+# Converting from credit/debit to source/destination
 
 ## The golden rule
 
-The golden rule for converting a credit / debit accounting model to a source / destination model is:
+The golden rule for converting a credit/debit accounting model to a source/destination model is:
 - **Credit** becomes **Destination**
 - **Debit** becomes **Source**
 
@@ -24,23 +24,23 @@ $$
 
 Assets are also called debit normal accounts. They are increased by debits and decreased by credits.
 
-Therefore, in the source / destination model, when an asset account is increased, the source component is increased, hence the balance is decreased, as per the balance equation: $Balance = Destination - Source$.
+Therefore, in the source/destination model, when an asset account is increased, the source component is increased, hence the balance is decreased, as per the balance equation: $Balance = Destination - Source$.
 
 ### Liabilities and Equity
 
 Liabilities and equity are also called credit normal accounts. They are increased by credits and decreased by debits.
 
-Therefore, in the source / destination model, when a liability account is increased, the destination component is increased, hence the balance is increased, as per the balance equation: $Balance = Destination - Source$.
+Therefore, in the source/destination model, when a liability account is increased, the destination component is increased, hence the balance is increased, as per the balance equation: $Balance = Destination - Source$.
 
-## Convertion example
+## Conversion example
 
-Now, let's convert common transactions from the credit / debit model to the source / destination model.
+Now, let's convert common transactions from the credit/debit model to the source/destination model.
 
 ### Topping-up a wallet with a bank transfer
 
 Let's consider a user topping-up their wallet with a bank transfer. To the business, the user wallet is a liability, and the bank account is an asset.
 
-In the credit / debit model, the transaction would be:
+In the credit/debit model, the transaction would be:
 
 Account | Debit | Credit
 --- | --- | ---
