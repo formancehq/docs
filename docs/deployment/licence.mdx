@@ -3,11 +3,11 @@ title: Licence
 description: Learn how to install the EE license.
 ---
 
-## Install the Licence using [Helm Global](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values)
+## To install the license using [Helm Global](https://helm.sh/docs/chart_template_guide/subcharts_and_globals/#global-chart-values) 
 
 > All [Formance charts](https://github.com/formancehq/helm/) follow the same convention as described below.
 
-Make sure to add your licence token and clusterID to the `values.yaml` file.
+Add your licence token and clusterID to the `values.yaml` file.
 
 ```yaml
 global:
@@ -29,7 +29,7 @@ global:
 
 ## Operator additional requirement
 
-You must add the label `formance.com/stack: any` to the licence secret in order for the operator to copy the secret in the stack namespace.
+As using Operator Resource Reference in order to copy the secret, add the label `formance.com/stack: any` to the licence secret in order for the Operator to copy the secret in the stack namespace.
 
 ### Debug
 
