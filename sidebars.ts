@@ -105,7 +105,7 @@ const sidebars = {
                 {
                   type: "doc",
                   id: "ledger/reference/concurrency-model",
-                  label: "Currency conversion",
+                  label: "Concurrency model",
                 },
                 {
                   type: "doc",
