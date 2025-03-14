@@ -126,20 +126,6 @@ const sidebars = {
             },
             "ledger/advanced/publisher",
             "ledger/reference/performance",
-            {
-              label: "Deployment",
-              type: "category",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                // "ledger/operations/installation",
-                "ledger/operations/env-vars",
-                // "ledger/operations/storages",
-                // "ledger/operations/upgrade",
-                "ledger/operations/metric_reference",
-                // 'ledger/api/sdks'
-              ],
-            },
           ],
         },
         {
