@@ -34,7 +34,7 @@ You can deploy Formance Operator using Helm:
 
 ```bash
 helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
---version v2.13.3 \
+--version 2.15.2 \
 --namespace formance-system \
 --create-namespace \
 --set operator.operator-crds.create=false
@@ -86,7 +86,7 @@ Then you will be able to disable `operator-crds.create: false` and install the o
 
 ```bash
 helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
---version v2.13.3 \
+--version 2.15.2 \
 --namespace $NAMESPACE \
 --create-namespace \
 --set operator.operator-crds.create=false
