@@ -97,24 +97,15 @@ const sidebars = {
               ],
             },
             {
-              label: "Features",
+              label: "Working with the Ledger",
               type: "category",
               collapsible: true,
               collapsed: true,
               items: [
                 {
                   type: "doc",
-                  id: "ledger/reference/concurrency-model",
-                  label: "Concurrency model",
-                },
-                {
-                  type: "doc",
                   id: "ledger/advanced/asset-conversion",
                   label: "Currency conversion",
-                },
-                {
-                  type: "doc",
-                  id: "ledger/advanced/scale",
                 },
                 {
                   type: "doc",
@@ -124,8 +115,18 @@ const sidebars = {
                 "ledger/advanced/buckets",
               ],
             },
+            "ledger/advanced/scale",
             "ledger/advanced/publisher",
-            "ledger/reference/performance",
+            {
+              label: "Advanced Topics",
+              type: "category",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                "ledger/reference/concurrency-model",
+                "ledger/reference/performance",
+              ],
+            },
           ],
         },
         {
