@@ -210,6 +210,7 @@ const sidebars = {
             {
               type: 'doc',
               id: 'numscript/embedding',
+              label: "Selecting an interpreter",
             },
             {
               type: 'category',
