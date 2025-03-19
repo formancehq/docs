@@ -2,8 +2,10 @@
 title: Embedding
 ---
 
-Historically, Numscript was being built in a tightly knit way to our Ledger service, an extensible system-of-record and querying layer for financial transactions.
+Numscript was originally built directly into our Ledger service. Now, it's portable and embeddable, meaning it can run on its own or enhance other ledgering systems.
 
-The new revision of Numscript is this time designed with portability and embeddability in mind. While Numscript is natively embedded in our Ledger service, you can also now run Numscript separately or bolt it on top of your existing ledgering system as a way to improve its programmability.
+The original interpreter is enabled by default but no longer evolving, while the new version is actively improving and must be manually enabled. 
 
-The standalone Numscript codebase can be found [here](https://github.com/formancehq/numscript).
+To enable the new interpreter, enable the `ledger.experimental-features` and `ledger.experimental-numscript` [settings](../operator/Configuration%20reference/Settings).
+
+Note that the [Numscript playground](https://playground.numscript.org/?template=simple-send) uses the new interpreter, so results there may differ from those in production.
