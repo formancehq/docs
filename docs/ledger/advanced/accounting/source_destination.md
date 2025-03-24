@@ -2,16 +2,16 @@
 sidebar_position: 2
 ---
 
-# The source / destination model
+# The source/destination accounting model
 
-The source / destination model is the accounting model used by the Formance Ledger. It has benn chosen over the classical double-entry accounting model for the following reasons:
+The source/destination model is the accounting model used by the Formance Ledger. It has benn chosen over the classical double-entry accounting model for the following reasons:
 - **Optimized for balance :** you make sure your pay-in is correct, then the ledger makes sure you don't use more than you have available.
 - **Inventory of funds**: this models store funds in such a way that the ledger can be treated as an inventory management system for cash on which you can build up complex flows of funds.
 - **Prevent cash creation**: the source / destination model prevents the creation of cash out of thin air, which is a common issue in double-entry accounting.
 
 ## Accounts
 
-An account in the source / destination model is a container for funds. An account can contain multiple assets, each with a different balance. For example, an account can contain a balance in USD, EUR, and BTC. 
+An account in the source/destination model is a container for funds. An account can contain multiple assets, each with a different balance. For example, an account can contain a balance in USD, EUR, and BTC. 
 
 For each asset, the account has a source and a destination components. The source component represents the amount of funds that have been added to the account, while the destination component represents the amount of funds that have been removed from the account. These two components are add-only, meaning that you can only add funds by increasing the source component and remove funds by increasing the destination component.
 
@@ -27,7 +27,7 @@ $$
 
 ## Transactions
 
-A transaction in the source / destination model is a set of modifications applied to a set of accounts at a specific time. 
+A transaction in the source/destination model is a set of modifications applied to a set of accounts at a specific time. 
 
 Transactions are composed of **postings**, which describe the modifications applied to the accounts. A posting is a triplet composed of an account, the component to modify (either source or destination), and the amount to add to the component.
 
@@ -58,7 +58,7 @@ After applying the transaction, the state of the accounts is as follows:
 
 ## Constraints
 
-The source / destination model enforces the following constraints to ensure the integrity of the system:
+The source/destination model enforces the following constraints to ensure the integrity of the system:
 
 - **Constraint 1:** The sum of the source components of all accounts must be equal to the sum of the destination components of all accounts. This ensures that no cash is created out of thin air. In other words, the ledger-wide balance must always be zero.
 - **Constraint 2:** Within a transaction, the sum of cash added to the source components must be equal to the sum of cash added to the destination components. This ensures that the transaction is balanced and that no cash is created or destroyed during the transaction.

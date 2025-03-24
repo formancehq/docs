@@ -3,6 +3,14 @@ title: Transactions
 ---
 # Transactions
 
+A transaction is a set of modifications applied to a set of accounts at a specific time. Transactions affect only the account components, not the balance, as the balance is derived from these components.
+
+By altering components such as ingresses and egresses from the example above, transactions change the underlying details that will, in turn, update the overall balance of the accounts involved. This structured approach ensures that each financial movement is accurately recorded and reflected in the corresponding account balances through their components.
+
+In a bank, customers can withdraw money from their accounts. This results in a transaction that decreases the customer's account balance. Since this account is composed of only one component, modifying this component is equivalent to manipulating the balance directly. For instance, if a customer withdraws \$100, the transaction reduces the balance by \$100, immediately reflecting this change in the account's overall balance.
+
+In a food delivery app, when a customer pays for an order, a transaction occurs that affects multiple accounts simultaneously. This transaction decreases the customer's wallet balance while increasing the restaurant's earnings account and the rider's earnings account. Additionally, the platform's fees and taxes accounts are also adjusted accordingly. The crucial point is that all these modifications happen at the exact same time and are not partially applied. This ensures that the financial records remain accurate and consistent, reflecting the complete and instantaneous impact of the transaction across all relevant accounts.
+
 An important distinction between ledger solutions is the transaction model they uses underneath.
 
 There are multiple options there, the key distinctions you'll find in the wild being the number of postings per transactions and the number of i/o per postings. Formance uses single i/o postings with multi-postings transactions.
