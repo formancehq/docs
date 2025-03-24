@@ -42,32 +42,4 @@ Most endpoints have been optimized for faster read operations, leading to a more
 
 #### Enhanced `_bulk` Endpoint
 
-The `_bulk` endpoint has been significantly improved with three major capabilities:
-
-**Streaming Support**
-
-Bulk requests can now be streamed, allowing large payloads to be processed efficiently without requiring the entire request to be loaded into memory.
-
-To enable streaming, use the `application/vnd.formance.ledger.api.v2.bulk+script-stream` content type.
-
-**Parallel vs. Sequential Processing**
-
-You can now specify whether bulk elements should be processed in parallel or sequentially using the parallel query parameter:
-
-- `parallel=true`: Elements are processed in parallel, improving throughput.
-- `parallel=false`: Elements are processed sequentially, maintaining order.
-
-#### Atomic Bulk Execution
-
-You can now decide whether bulk elements should be committed atomically using the atomic query parameter:
-
-- `atomic=true`: The entire batch is committed as a single transaction. If any element fails, the entire batch is rolled back.
-- `atomic=false`: Each element is processed independently. If one element fails, it does not affect the others.
-
-Usage Example:
-
-```
-curl -H "Authorization: Bearer $(fctl cloud generate-personal-token)" \ -X POST <stack-url>/api/ledger/v2/<ledger-name>/_bulk?parallel=true&atomic=false \ -H 'Content-Type: application/vnd.formance.ledger.api.v2.bulk+script-stream' \ --data-binary @<stream file location>
-```
-
-These improvements provide greater flexibility and control over bulk processing, optimizing for performance, consistency, and reliability.
+The `_bulk` endpoint now supports streaming, parallel processing, and atomic execution, providing greater flexibility and control over bulk processing, optimizing for performance, consistency, and reliability. For details, refer to [Bulk processing](./ledger/advanced/bulk-processing).
