@@ -111,6 +111,7 @@ const sidebars = {
                   type: "doc",
                   id: "ledger/advanced/temporality",
                 },
+                "ledger/advanced/bulk-processing",
                 "ledger/advanced/filtering",
                 "ledger/advanced/buckets",
               ],
