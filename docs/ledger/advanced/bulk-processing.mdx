@@ -8,17 +8,7 @@ The `_bulk` endpoint allows for efficient processing of multiple requests in a s
 
 Bulk requests can be streamed without requiring the entire request to be loaded into memory.
 
-To enable streaming, include one of the following content type headers in your HTTP request:
-
-- For a script stream, include content type `application/vnd.formance.ledger.api.v2.bulk+script-stream`
-- For a JSON stream, include content type `application/vnd.formance.ledger.api.v2.bulk+json-stream`
-
-For a JSON stream, elements should be sent one per line in the request body. Example:
-
-```
-{"action": "CREATE_TRANSACTION", "data": {"postings": [{"source": "world", "amount": 100, "asset": "USD", "destination": "bank"}]}}
-{"action": "CREATE_TRANSACTION", "data": {"postings": [{"source": "world", "amount": 200, "asset": "USD", "destination": "bank"}]}}
-```
+To enable script streaming, include the following content type headers in your HTTP request: `application/vnd.formance.ledger.api.v2.bulk+script-stream`
 
 ## Parallel v. Sequential Processing
 
@@ -33,6 +23,10 @@ Bulk elements can be committed atomically or independently using the `atomic` qu
 
 - `atomic=true`: The entire batch is committed as a single transaction. If any element fails, the entire batch is rolled back.
 - `atomic=false`: Each element is processed independently. If one element fails, it does not affect the others.
+
+:::note
+Since requests can be processed either in parallel or atomically, you cannot set `parallel=true` and `atomic=true` at the same time.
+:::
 
 ## Usage Example
 
