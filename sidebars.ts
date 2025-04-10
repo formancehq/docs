@@ -60,330 +60,336 @@ const sidebars = {
         },
       ],
     },
+  ],
+  ledger: [
     {
-      label: "Components",
+      label: "Ledger",
       type: "category",
       collapsible: true,
-      collapsed: false,
+      collapsed: true,
       items: [
         {
-          label: "Ledger",
+          type: "doc",
+          id: "ledger/index",
+          label: "Introduction",
+        },
+        {
+          type: "doc",
+          id: "ledger/ledger-tutorial",
+          label: "Tutorial",
+        },
+        {
+          label: "Accounting model",
+          type: "category",
+          link: { type: "doc", id: "ledger/advanced/accounting/accounting" },
+          collapsible: true,
+          collapsed: true,
+          items: [
+            "ledger/reference/accounts",
+            "ledger/reference/transactions",
+            "ledger/advanced/accounting/constraints",
+            "ledger/advanced/accounting/source_destination",
+            "ledger/advanced/accounting/credit-debit-to-src-dest",
+          ],
+        },
+        {
+          label: "Working with the Ledger",
           type: "category",
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: "doc",
-              id: "ledger/index",
-              label: "Introduction",
+              id: "ledger/advanced/asset-conversion",
+              label: "Currency conversion",
             },
             {
               type: "doc",
-              id: "ledger/ledger-tutorial",
-              label: "Tutorial",
+              id: "ledger/advanced/temporality",
+            },
+            "ledger/advanced/bulk-processing",
+            "ledger/advanced/filtering",
+            "ledger/advanced/buckets",
+          ],
+        },
+        "ledger/advanced/scale",
+        "ledger/advanced/publisher",
+        {
+          label: "Advanced Topics",
+          type: "category",
+          collapsible: true,
+          collapsed: true,
+          items: [
+            "ledger/reference/concurrency-model",
+            "ledger/reference/performance",
+          ],
+        },
+      ],
+    },
+  ],
+  numscript: [
+    {
+      label: "Numscript",
+      type: "category",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "numscript/index",
+          label: "Introduction",
+        },
+        {
+          type: 'doc',
+          id: 'numscript/structure',
+        },
+        {
+          type: 'doc',
+          id: 'numscript/embedding',
+          label: "Selecting an interpreter",
+        },
+        {
+          type: 'category',
+          label: 'Reference',
+          collapsible: true,
+          collapsed: true,
+          items: [
+            'numscript/reference/send',
+            'numscript/reference/sources',
+            'numscript/reference/destinations',
+            'numscript/reference/rounding',
+            'numscript/reference/save',
+            'numscript/reference/overdraft',
+            'numscript/reference/variables',
+            'numscript/reference/metadata',
+          ]
+        }
+      ],
+    },
+  ],
+  payments: [
+    {
+      label: "Connectivity (f.k.a: Payments)",
+      type: "category",
+      collapsible: true,
+      collapsed: true,
+      link: { type: "doc", id: "payments/index" },
+      items: [
+        {
+          type: "doc",
+          id: "payments/index",
+          label: "Introduction",
+        },
+        {
+          type: "category",
+          label: "Concepts",
+          collapsible: true,
+          collapsed: true,
+          link: {
+            type: "doc",
+            id: "payments/payments-concepts/index",
+          },
+          items: [
+            {
+              type: "doc",
+              id: "payments/payments-concepts/accounts",
+              label: "Accounts",
             },
             {
-              label: "Accounting model",
-              type: "category",
-              link: { type: "doc", id: "ledger/advanced/accounting/accounting" },
-              collapsible: true,
-              collapsed: true,
-              items: [
-                "ledger/reference/accounts",
-                "ledger/reference/transactions",
-                "ledger/advanced/accounting/constraints",
-                "ledger/advanced/accounting/source_destination",
-                "ledger/advanced/accounting/credit-debit-to-src-dest",
-              ],
+              type: "doc",
+              id: "payments/payments-concepts/payments",
+              label: "Payments",
             },
             {
-              label: "Working with the Ledger",
-              type: "category",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                {
-                  type: "doc",
-                  id: "ledger/advanced/asset-conversion",
-                  label: "Currency conversion",
-                },
-                {
-                  type: "doc",
-                  id: "ledger/advanced/temporality",
-                },
-                "ledger/advanced/bulk-processing",
-                "ledger/advanced/filtering",
-                "ledger/advanced/buckets",
-              ],
-            },
-            "ledger/advanced/scale",
-            "ledger/advanced/publisher",
-            {
-              label: "Advanced Topics",
-              type: "category",
-              collapsible: true,
-              collapsed: true,
-              items: [
-                "ledger/reference/concurrency-model",
-                "ledger/reference/performance",
-              ],
+              type: "doc",
+              id: "payments/payments-concepts/transfer-initiation",
+              label: "Transfer Initiation",
             },
           ],
         },
         {
-          label: "Numscript",
           type: "category",
-          collapsible: true,
-          collapsed: true,
+          label: "Connectors",
+          link: {
+            type: "doc",
+            id: "payments/connectors/index",
+          },
           items: [
-            {
-              type: "doc",
-              id: "numscript/index",
-              label: "Introduction",
-            },
-            {
-              type: 'doc',
-              id: 'numscript/structure',
-            },
-            {
-              type: 'doc',
-              id: 'numscript/embedding',
-              label: "Selecting an interpreter",
-            },
-            {
-              type: 'category',
-              label: 'Reference',
-              collapsible: true,
-              collapsed: true,
-              items: [
-                'numscript/reference/send',
-                'numscript/reference/sources',
-                'numscript/reference/destinations',
-                'numscript/reference/rounding',
-                'numscript/reference/save',
-                'numscript/reference/overdraft',
-                'numscript/reference/variables',
-                'numscript/reference/metadata',
-              ]
-            }
-          ],
-        },
-        {
-          label: "Connectivity (f.k.a: Payments)",
-          type: "category",
-          collapsible: true,
-          collapsed: true,
-          link: { type: "doc", id: "payments/index" },
-          items: [
-            {
-              type: "doc",
-              id: "payments/index",
-              label: "Introduction",
-            },
             {
               type: "category",
-              label: "Concepts",
-              collapsible: true,
-              collapsed: true,
+              label: "Generic",
               link: {
                 type: "doc",
-                id: "payments/payments-concepts/index",
+                id: "payments/connectors/generic/getting-started",
               },
               items: [
                 {
                   type: "doc",
-                  id: "payments/payments-concepts/accounts",
-                  label: "Accounts",
+                  id: "payments/connectors/generic/how_generic_connectors_work",
+                  label: "How it works",
                 },
                 {
                   type: "doc",
-                  id: "payments/payments-concepts/payments",
-                  label: "Payments",
-                },
-                {
-                  type: "doc",
-                  id: "payments/payments-concepts/transfer-initiation",
-                  label: "Transfer Initiation",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Connectors",
-              link: {
-                type: "doc",
-                id: "payments/connectors/index",
-              },
-              items: [
-                {
-                  type: "category",
-                  label: "Generic",
-                  link: {
-                    type: "doc",
-                    id: "payments/connectors/generic/getting-started",
-                  },
-                  items: [
-                    {
-                      type: "doc",
-                      id: "payments/connectors/generic/how_generic_connectors_work",
-                      label: "How it works",
-                    },
-                    {
-                      type: "doc",
-                      id: "payments/connectors/generic/api-reference",
-                      label: "API Reference",
-                    },
-                  ],
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/adyen",
-                  label: "Adyen",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/atlar",
-                  label: "Atlar",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/bankingcircle",
-                  label: "BankingCircle",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/currencycloud",
-                  label: "CurrencyCloud",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/mangopay",
-                  label: "Mangopay",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/modulr",
-                  label: "Modulr",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/moneycorp",
-                  label: "Moneycorp",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/stripe",
-                  label: "Stripe",
-                },
-                {
-                  type: "doc",
-                  id: "payments/connectors/wise",
-                  label: "Wise",
+                  id: "payments/connectors/generic/api-reference",
+                  label: "API Reference",
                 },
               ],
             },
             {
               type: "doc",
-              id: "payments/connectors/framework",
-              label: "Build a Connector",
+              id: "payments/connectors/adyen",
+              label: "Adyen",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/atlar",
+              label: "Atlar",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/bankingcircle",
+              label: "BankingCircle",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/currencycloud",
+              label: "CurrencyCloud",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/mangopay",
+              label: "Mangopay",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/modulr",
+              label: "Modulr",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/moneycorp",
+              label: "Moneycorp",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/stripe",
+              label: "Stripe",
+            },
+            {
+              type: "doc",
+              id: "payments/connectors/wise",
+              label: "Wise",
             },
           ],
         },
         {
-          label: "Wallets",
+          type: "doc",
+          id: "payments/connectors/framework",
+          label: "Build a Connector",
+        },
+      ],
+    },
+  ],
+  wallets: [
+    {
+      label: "Wallets",
+      type: "category",
+      collapsible: true,
+      collapsed: true,
+      link: { type: "doc", id: "wallets" },
+      items: [
+        {
+          type: "autogenerated",
+          dirName: "wallets",
+        },
+      ],
+    },
+  ],
+  flows: [
+    {
+      label: "Flows",
+      type: "category",
+      collapsible: true,
+      collapsed: true,
+      items: [
+        {
+          type: "doc",
+          id: "flows/index",
+          label: "Introduction",
+        },
+        {
+          type: "doc",
+          id: "flows/definition",
+          label: "Workflows definition",
+        },
+        {
+          type: "doc",
+          id: "flows/execution",
+          label: "Workflows execution",
+        },
+        {
           type: "category",
+          label: "Stages reference",
           collapsible: true,
-          collapsed: true,
-          link: { type: "doc", id: "wallets" },
+          collapsed: false,
           items: [
             {
-              type: "autogenerated",
-              dirName: "wallets",
+              type: "doc",
+              id: "flows/stages/send",
+              label: "Send",
+            },
+            {
+              type: "doc",
+              id: "flows/stages/wait-event",
+              label: "Waiting for events",
+            },
+            {
+              type: "doc",
+              id: "flows/stages/wait-delay",
+              label: "Waiting for a delay",
             },
           ],
         },
         {
-          label: "Flows",
           type: "category",
-          collapsible: true,
-          collapsed: true,
+          label: "Examples",
           items: [
             {
               type: "doc",
-              id: "flows/index",
-              label: "Introduction",
+              id: "flows/examples/ledger-to-ledger",
+              label: "Ledger to Ledger",
             },
             {
               type: "doc",
-              id: "flows/definition",
-              label: "Workflows definition",
+              id: "flows/examples/payment-to-wallet",
+              label: "Payment to Wallet",
             },
             {
               type: "doc",
-              id: "flows/execution",
-              label: "Workflows execution",
-            },
-            {
-              type: "category",
-              label: "Stages reference",
-              collapsible: true,
-              collapsed: false,
-              items: [
-                {
-                  type: "doc",
-                  id: "flows/stages/send",
-                  label: "Send",
-                },
-                {
-                  type: "doc",
-                  id: "flows/stages/wait-event",
-                  label: "Waiting for events",
-                },
-                {
-                  type: "doc",
-                  id: "flows/stages/wait-delay",
-                  label: "Waiting for a delay",
-                },
-              ],
-            },
-            {
-              type: "category",
-              label: "Examples",
-              items: [
-                {
-                  type: "doc",
-                  id: "flows/examples/ledger-to-ledger",
-                  label: "Ledger to Ledger",
-                },
-                {
-                  type: "doc",
-                  id: "flows/examples/payment-to-wallet",
-                  label: "Payment to Wallet",
-                },
-                {
-                  type: "doc",
-                  id: "flows/examples/stripe-payout",
-                  label: "Ledger to Payout",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: "Reconciliation",
-          type: "category",
-          collapsible: true,
-          collapsed: true,
-          link: { type: "doc", id: "reconciliation" },
-          items: [
-            {
-              type: "autogenerated",
-              dirName: "reconciliation",
+              id: "flows/examples/stripe-payout",
+              label: "Ledger to Payout",
             },
           ],
         },
       ],
     },
+  ],
+  reconciliation: [
+    {
+      label: "Reconciliation",
+      type: "category",
+      collapsible: true,
+      collapsed: true,
+      link: { type: "doc", id: "reconciliation" },
+      items: [
+        {
+          type: "autogenerated",
+          dirName: "reconciliation",
+        },
+      ],
+    },
+  ],
+  platform: [
     {
       type: "category",
       label: "Platform",
@@ -589,6 +595,8 @@ const sidebars = {
       id: "v3.x-changelog",
       label: "Changelog",
     },
+  ],
+  API: [
     {
       type: "doc",
       id: "api",
