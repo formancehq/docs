@@ -23,7 +23,7 @@ const sidebars = {
       label: "Getting Started",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -66,7 +66,7 @@ const sidebars = {
       label: "Ledger",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -133,7 +133,7 @@ const sidebars = {
       label: "Numscript",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -173,7 +173,7 @@ const sidebars = {
       label: "Connectivity (f.k.a: Payments)",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       link: { type: "doc", id: "payments/index" },
       items: [
         {
@@ -296,7 +296,7 @@ const sidebars = {
       label: "Wallets",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       link: { type: "doc", id: "wallets" },
       items: [
         {
@@ -311,7 +311,7 @@ const sidebars = {
       label: "Flows",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       items: [
         {
           type: "doc",
@@ -380,7 +380,7 @@ const sidebars = {
       label: "Reconciliation",
       type: "category",
       collapsible: true,
-      collapsed: true,
+      collapsed: false,
       link: { type: "doc", id: "reconciliation" },
       items: [
         {
@@ -394,6 +394,8 @@ const sidebars = {
     {
       type: "category",
       label: "Platform",
+      collapsible: true,
+      collapsed: true,
       items: [
         {
           type: "doc",

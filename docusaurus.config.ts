@@ -141,7 +141,7 @@ export default async function createConfig() {
           logo: {
             alt: 'Formance Logo',
             src: 'img/formance-logo.svg',
-            href: 'https://docs.formance.com/',
+            href: '/',
             srcDark: 'img/formance-logo-dark.svg',
           },
           items: [
