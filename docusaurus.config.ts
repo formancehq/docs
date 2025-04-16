@@ -146,19 +146,73 @@ export default async function createConfig() {
           },
           items: [
             {
+              type: "docSidebar",
+              sidebarId: "main",
+              position: "left",
+              label: "Start here",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "ledger",
+              position: "left",
+              label: "Ledger",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "numscript",
+              position: "left",
+              label: "Numscript",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "payments",
+              position: "left",
+              label: "Payments",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "wallets",
+              position: "left",
+              label: "Wallets",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "flows",
+              position: "left",
+              label: "Flows",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "reconciliation",
+              position: "left",
+              label: "Reconciliation",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "platform",
+              position: "left",
+              label: "Platform",
+            },
+            {
+              type: "docSidebar",
+              sidebarId: "API",
+              position: "left",
+              label: "API Docs",
+            },
+            {
               type: 'docsVersionDropdown',
-              position: 'left',
-            },
-            {
-              href: 'https://github.com/formancehq/stack',
-              label: 'GitHub',
               position: 'right',
             },
-            {
-              label: 'Go to Website',
-              position: 'right',
-              href: 'https://www.formance.com/',
-            },
+            // {
+            //   href: 'https://github.com/formancehq/stack',
+            //   label: 'GitHub',
+            //   position: 'right',
+            // },
+            //  {
+            //    label: 'Website',
+            //    position: 'right',
+            //    href: 'https://www.formance.com/',
+            //  },
           ],
         },
         footer: {
