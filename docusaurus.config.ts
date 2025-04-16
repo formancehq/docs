@@ -153,9 +153,9 @@ export default async function createConfig() {
             },
             {
               type: "docSidebar",
-              sidebarId: "products",
+              sidebarId: "ledger",
               position: "left",
-              label: "Products",
+              label: "Ledger",
             },
             {
               type: "docSidebar",
