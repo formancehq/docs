@@ -61,52 +61,76 @@ const sidebars = {
       ],
     },
   ],
-  ledger: [
+  products: [
     {
-      label: "Ledger",
+      label: "Products",
       type: "category",
       collapsible: true,
       collapsed: true,
       items: [
         {
-          type: "doc",
-          id: "ledger/index",
-          label: "Introduction",
-        },
-        {
-          type: "doc",
-          id: "ledger/ledger-tutorial",
-          label: "Tutorial",
-        },
-        {
-          label: "Accounting model",
-          type: "category",
-          link: { type: "doc", id: "ledger/advanced/accounting/accounting" },
-          collapsible: true,
-          collapsed: true,
-          items: [
-            "ledger/reference/accounts",
-            "ledger/reference/transactions",
-            "ledger/advanced/accounting/constraints",
-            "ledger/advanced/accounting/source_destination",
-            "ledger/advanced/accounting/credit-debit-to-src-dest",
-          ],
-        },
-        {
-          label: "Working with the Ledger",
+          label: "Ledger",
           type: "category",
           collapsible: true,
           collapsed: true,
           items: [
             {
               type: "doc",
-              id: "ledger/advanced/asset-conversion",
-              label: "Currency conversion",
+              id: "ledger/index",
+              label: "Introduction",
             },
             {
               type: "doc",
-              id: "ledger/advanced/temporality",
+              id: "ledger/ledger-tutorial",
+              label: "Tutorial",
             },
+            {
+              label: "Accounting model",
+              type: "category",
+              link: { type: "doc", id: "ledger/advanced/accounting/accounting" },
+              collapsible: true,
+              collapsed: true,
+              items: [
+                "ledger/reference/accounts",
+                "ledger/reference/transactions",
+                "ledger/advanced/accounting/constraints",
+                "ledger/advanced/accounting/source_destination",
+                "ledger/advanced/accounting/credit-debit-to-src-dest",
+              ],
+            },
+            {
+              label: "Working with the Ledger",
+              type: "category",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                {
+                  type: "doc",
+                  id: "ledger/advanced/asset-conversion",
+                  label: "Currency conversion",
+                },
+                {
+                  type: "doc",
+                  id: "ledger/advanced/temporality",
+                },
+                "ledger/advanced/buckets",
+                "ledger/advanced/filtering",
+                "ledger/advanced/buckets",
+              ],
+            },
+            "ledger/advanced/scale",
+            "ledger/advanced/publisher",
+            {
+              label: "Advanced Topics",
+              type: "category",
+              collapsible: true,
+              collapsed: true,
+              items: [
+                "ledger/reference/concurrency-model",
+                "ledger/reference/performance",
+              ],
+            },
+<<<<<<< HEAD
             "ledger/advanced/bulk-processing",
             "ledger/advanced/filtering",
             "ledger/advanced/buckets",
@@ -122,6 +146,8 @@ const sidebars = {
           items: [
             "ledger/reference/concurrency-model",
             "ledger/reference/performance",
+=======
+>>>>>>> f5c4beb (edits)
           ],
         },
       ],
