@@ -141,7 +141,7 @@ export default async function createConfig() {
           logo: {
             alt: 'Formance Logo',
             src: 'img/formance-logo.svg',
-            href: 'https://www.formance.com/',
+            href: 'https://docs.formance.com/',
             srcDark: 'img/formance-logo-dark.svg',
           },
           items: [
@@ -208,11 +208,11 @@ export default async function createConfig() {
             //   label: 'GitHub',
             //   position: 'right',
             // },
-             {
-               label: 'Go to Website',
-               position: 'right',
-               href: 'https://www.formance.com/',
-             },
+            //  {
+            //    label: 'Website',
+            //    position: 'right',
+            //    href: 'https://www.formance.com/',
+            //  },
           ],
         },
         footer: {
