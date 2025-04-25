@@ -1,90 +1,43 @@
 ---
-title: Column Connector
-description: Learn how to use the Column Connector to connect your Formance Platform with your Column account.
+title: Column
+description: Learn how to use the Column Connector to connect your Formance
+  Platform with your Column account.
 ---
+
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import Column from '@site/docs/payments/partials/connectors/_column.mdx';
+import ColumnPostSetup from '@site/docs/payments/partials/connectors/_column_post.mdx';
 
 ## Prerequisites
 
-Before you begin, you need to have a Column account. [Column](https://column.com) is a modern banking-as-a-service platform that provides access to banking infrastructure through a simple API. Make sure you have a Column API key with the least amount of permissions required to access the functionality of the Column Connector you plan to use. You can find more information about how to create an API key in the [Column API documentation](https://column.com/docs/api/).
+Before you begin, you need to have a Column account. Make sure you have a Column API key and secret, with the least amount of permissions required to access the functionality of the Column Connector you plan to use.
 
 <ApiWarning/>
 
 ## Setup
 
+<Column/>
+
 <StackCmd>
 
 ```shell
-fctl payments connectors install column column.json
+fctl payments connectors install column config.json
 ```
 
 ```shell
 curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/column" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d @column.json
+-d @config.json
 ```
 
 </StackCmd>
 
-With column.json containing:
+With config.json containing:
 
 ```json
-{
-    "name": "column",
-    "pollingPeriod": "30s",
-    "endpoint": "https://api.column.com",
-    "apiKey": "<your-column-api-key>",
-    "pageSize": 1
-}
+{"apiKey":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
 ```
 
-### Configuration Parameters
-
-| Parameter | Description | Required |
-| --------------- | ------------------------------------------------------ | -------- |
-| `name` | The name of the connector | Yes |
-| `pollingPeriod` | The frequency at which the connector polls for updates | Yes |
-| `endpoint` | The Column API endpoint | Yes |
-| `apiKey` | Your Column API key | Yes |
-| `pageSize` | The number of items to fetch per page | No |
-
-## Features
-
-The Column connector supports the following capabilities:
-
-- **Account Management**: Fetch accounts and balances, create bank accounts
-- **External Accounts**: Fetch and manage external counterparties
-- **Payments**: Fetch payment history and create various types of transfers
-- **Internal Transfers**: Transfer funds between Column accounts
-- **External Payouts**: Support for ACH, wire, international wire, and real-time transfers
-- **Reversals**: Reverse ACH transfers when needed
-- **Webhook Integration**: Real-time updates about transaction statuses
-
-## Supported Payment Types
-
-### Internal Transfers
-Transfer funds between Column accounts within your organization.
-
-### ACH Transfers
-Automated Clearing House transfers for domestic payments with support for different entry class codes (PPD, etc.).
-
-### Wire Transfers
-Domestic wire transfers for same-day settlement.
-
-### International Wire Transfers
-Cross-border wire transfers with support for SWIFT messaging.
-
-### Real-time Transfers
-Instant payment transfers for immediate settlement.
-
-## Metadata Support
-
-The Column connector uses metadata with the namespace `com.column.spec/` to provide additional configuration options for:
-
-- Bank account creation (routing numbers, account types, addresses)
-- Payout specifications (transfer types, overdraft settings)
-- ACH-specific settings (entry class codes, debit/credit types)
-- International wire details (charge bearer, beneficiary references)
-- Reversal reasons for transaction corrections
+<ColumnPostSetup/>

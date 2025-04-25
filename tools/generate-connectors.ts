@@ -9,7 +9,7 @@ import { constants } from 'fs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const TEMPLATE_DIR = path.join(__dirname, './templates/docusaurus/');
-const OUTPUT_DIR = path.join(__dirname, '../docs/generated');
+const OUTPUT_DIR = path.join(__dirname, '../docs/payments/connectors');
 const PARTIALS_DIR = path.join(__dirname, '../docs/payments/partials/connectors');
 const DATA_FILE = path.join(__dirname, './tmp/connector-configs.json');
 
@@ -73,7 +73,7 @@ async function generateConnectorPages() {
         await fs.writeFile(partialFile, '');
         console.log(`Created empty: ${partialFile}`);
       }
-      
+
       var postSetupFile = path.join(PARTIALS_DIR, `_${p.provider.toLowerCase()}_post.mdx`);
       const postSetupExists = await fileExists(postSetupFile);
       if (!postSetupExists) {
