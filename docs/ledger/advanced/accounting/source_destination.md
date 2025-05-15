@@ -4,7 +4,7 @@ sidebar_position: 2
 
 # The source/destination accounting model
 
-The source/destination model is the accounting model used by the Formance Ledger. It has benn chosen over the classical double-entry accounting model for the following reasons:
+The source/destination model is the accounting model used by the Formance Ledger. It has been chosen over the classical double-entry accounting model for the following reasons:
 - **Optimized for balance :** you make sure your pay-in is correct, then the ledger makes sure you don't use more than you have available.
 - **Inventory of funds**: this models store funds in such a way that the ledger can be treated as an inventory management system for cash on which you can build up complex flows of funds.
 - **Prevent cash creation**: the source / destination model prevents the creation of cash out of thin air, which is a common issue in double-entry accounting.
