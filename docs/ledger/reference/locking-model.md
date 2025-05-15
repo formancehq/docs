@@ -2,102 +2,65 @@
 title: Locking Model
 ---
 
-# Locking Model
+# Locking Model: Ensuring Transaction Reliability
 
-The Formance Ledger implements a robust locking model to ensure data consistency and prevent race conditions when multiple transactions are being processed concurrently. This document explains the locking mechanisms used in the ledger.
+## What is the Locking Model?
 
-## Balance Locking
+The Locking Model in Formance Ledger ensures that your financial transactions remain accurate and consistent, even when many operations happen at the same time. Think of it as a traffic control system that prevents financial data collisions and keeps your money movements orderly and predictable.
 
-When creating a transaction, the ledger uses a two-phase process to ensure consistency:
+## Why It Matters to You
 
-1. **Pre-commit Locking**: Before committing a transaction, the ledger locks the affected accounts to prevent concurrent modifications.
-2. **Optimistic Locking**: During the commit phase, the ledger uses optimistic locking to detect conflicts.
+When managing financial transactions, reliability is non-negotiable. The Locking Model provides:
 
-### PostgreSQL Row-Level Locking
+- **Data Integrity**: Ensures your balances are always accurate
+- **Consistent Results**: The same operation always produces the same outcome
+- **Conflict Prevention**: Prevents issues when multiple users or systems try to move funds simultaneously
+- **Regulatory Compliance**: Helps meet financial regulations that require accurate record-keeping
 
-The ledger uses PostgreSQL's row-level locking with the `FOR UPDATE` clause to lock balances during transaction processing. This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back.
+## How It Works for Your Business
 
-```sql
-SELECT * FROM balances WHERE account = $1 FOR UPDATE
-```
+### Guaranteed Transaction Safety
 
-### Transaction Writing Process
+When you initiate a transaction in Formance Ledger, the system automatically:
 
-The process of writing a transaction follows these steps:
+1. **Reserves the Accounts**: Temporarily marks the affected accounts as "in use"
+2. **Validates the Transaction**: Checks that all conditions are met (sufficient funds, valid accounts, etc.)
+3. **Applies the Changes**: Updates all balances atomically (all changes happen together or none at all)
+4. **Releases the Reservation**: Makes the accounts available for other transactions
 
-1. Begin a database transaction
-2. Lock all affected balances using `FOR UPDATE`
-3. Validate the transaction (check for constraints, etc.)
-4. Write the transaction to the database
-5. Update the balances
-6. Commit the database transaction
+This process happens in milliseconds and is completely transparent to you and your users.
 
-If any step fails, the entire database transaction is rolled back, ensuring data consistency.
+### Handling Busy Periods
 
-## Multi-Instance Deployments
+During high-traffic periods when many transactions occur simultaneously:
 
-For multi-instance deployments, the ledger provides additional locking mechanisms:
+- The system automatically queues and processes transactions in a way that maintains consistency
+- If two operations try to modify the same account at the exact same time, one will complete first while the other waits its turn
+- In rare cases where conflicts can't be resolved automatically, the system will notify your application so you can retry the operation
 
-1. **Redis-based Shared Pre-commit Lock**: This distributed lock prevents race conditions across multiple instances.
-2. **Optimistic Locking**: As a fallback, optimistic locking ensures that conflicts are detected and reported to the client.
+## Real-World Benefits
 
-## Conflict Resolution
+### For Financial Applications
 
-When a conflict is detected during transaction processing, the ledger returns a 409 Conflict response to the client. It is the responsibility of the client to retry the transaction.
+- **Payment Processing**: Ensure that customer payments are processed correctly even during high-volume periods
+- **Account Management**: Maintain accurate balances across multiple user actions
+- **Reconciliation**: Reduce the need for manual reconciliation by preventing data inconsistencies
 
-## Sequence Diagram
+### For Multi-Region Deployments
 
-The following sequence diagram illustrates the process of creating a transaction with balance locking:
+If your business operates across multiple regions or data centers, Formance Ledger provides:
 
-```
-┌─────┐          ┌──────────┐          ┌────────────┐          ┌─────────┐
-│ API │          │ Numscript │          │ Controller │          │ Storage │
-└──┬──┘          └─────┬────┘          └─────┬──────┘          └────┬────┘
-   │  CreateTransaction │                    │                      │
-   │ ──────────────────>│                    │                      │
-   │                    │                    │                      │
-   │                    │ Compile            │                      │
-   │                    │ ─────────────────> │                      │
-   │                    │                    │                      │
-   │                    │                    │ Begin Transaction    │
-   │                    │                    │ ────────────────────>│
-   │                    │                    │                      │
-   │                    │                    │ Lock Balances        │
-   │                    │                    │ ────────────────────>│
-   │                    │                    │                      │
-   │                    │                    │ Write Transaction    │
-   │                    │                    │ ────────────────────>│
-   │                    │                    │                      │
-   │                    │                    │ Update Balances      │
-   │                    │                    │ ────────────────────>│
-   │                    │                    │                      │
-   │                    │                    │ Commit Transaction   │
-   │                    │                    │ ────────────────────>│
-   │                    │                    │                      │
-   │                    │ Return Result      │                      │
-   │                    │ <─────────────────┐│                      │
-   │                    │                    │                      │
-   │ Return Result      │                    │                      │
-   │ <──────────────────│                    │                      │
-┌──┴──┐          ┌─────┴────┐          ┌─────┴──────┐          ┌────┴────┐
-│ API │          │ Numscript │          │ Controller │          │ Storage │
-└─────┘          └──────────┘          └────────────┘          └─────────┘
-```
+- **Distributed Consistency**: Maintains transaction integrity across your entire infrastructure
+- **Scalability**: Allows you to grow your transaction volume without sacrificing reliability
+- **Resilience**: Continues to function correctly even if parts of your system experience temporary issues
 
-## Advisory Locks
+## Best Practices
 
-In addition to row-level locking, the ledger also uses PostgreSQL advisory locks for certain operations:
+To get the most out of Formance Ledger's Locking Model:
 
-```sql
-SELECT pg_advisory_xact_lock(?)
-```
+1. **Design for Concurrency**: Structure your accounts and transactions to minimize contention on frequently used accounts
+2. **Implement Retry Logic**: For high-volume scenarios, include automatic retry mechanisms in your application
+3. **Monitor Performance**: Keep an eye on transaction throughput and response times to identify potential bottlenecks
+4. **Consider Sharding**: For very large deployments, distribute your data across multiple ledgers based on logical business divisions
 
-These locks are used to ensure that certain operations are performed atomically across the entire database, not just at the row level.
-
-## Recommendations
-
-For optimal performance in multi-instance deployments:
-
-1. Use the Redis-based shared pre-commit lock to reduce conflicts
-2. Implement retry logic in clients to handle 409 Conflict responses
-3. Consider sharding your data across multiple ledgers to reduce contention
+By leveraging these capabilities, your financial operations will remain reliable and consistent, even as your business scales.

@@ -1,53 +1,74 @@
 ---
-title: Concurrency model
+title: Concurrency Model
 ---
 
-Transactions committed to the ledger are fully atomic and serialized, supported by two separate and ordered concurrency-control mechanisms effectively preventing race-conditions:
+# Concurrency Model: Reliable Financial Transactions at Scale
 
-1. Pre-commit in-memory or Redis-based locking
-2. Optimistic locking
+## What is the Concurrency Model?
 
-## Transaction commit flow
+The Concurrency Model in Formance Ledger ensures that your financial transactions remain accurate and reliable even when hundreds or thousands of operations happen simultaneously. It's like having a sophisticated traffic management system that keeps all your financial data flowing smoothly without collisions or inconsistencies.
+
+## Why It Matters to Your Business
+
+In today's fast-paced financial world, your systems need to handle multiple transactions simultaneously without compromising accuracy. The Concurrency Model provides:
+
+- **Transaction Reliability**: Ensures every transaction completes correctly, even during peak loads
+- **Data Consistency**: Maintains accurate balances across all accounts at all times
+- **Scalable Operations**: Allows your business to grow without sacrificing transaction reliability
+- **Conflict Resolution**: Automatically manages competing transactions to prevent errors
+
+## How It Works for You
 
 ![flow](/img/advanced/concurrency-model.png)
 
-## Concurrency Control Mechanisms
+### Multi-Layer Protection
 
-### Pre-commit Locking
+The Concurrency Model uses a multi-layered approach to ensure transaction reliability:
 
-The pre-commit locking mechanism prevents race conditions by acquiring locks on affected accounts before a transaction is committed. This can be implemented in two ways:
+1. **Preventive Controls**: Temporarily reserves accounts during transactions to prevent conflicts
+2. **Verification Checks**: Confirms that no changes occurred during processing
+3. **Automatic Conflict Resolution**: Identifies and manages any competing transactions
 
-1. **In-memory Locking**: Used for single-instance deployments, this mechanism uses in-process locks to prevent concurrent modifications to the same accounts.
-2. **Redis-based Locking**: Used for multi-instance deployments, this mechanism uses Redis to coordinate locks across multiple instances.
+This layered approach works silently in the background, ensuring your financial operations remain reliable without requiring any special handling from your applications.
 
-The pre-commit locking mechanism is the first line of defense against race conditions and helps to reduce the number of conflicts that need to be handled by the optimistic locking mechanism.
+## Real-World Benefits
 
-### Optimistic Locking
+### For Payment Platforms
 
-The optimistic locking mechanism is used during the commit phase to detect conflicts that may have occurred despite the pre-commit locking. It works by:
+- **High-Volume Processing**: Reliably process thousands of payments per second
+- **Peak Period Handling**: Maintain consistent performance during high-traffic events like Black Friday
+- **Transaction Integrity**: Ensure that funds are never double-spent or lost in transit
 
-1. Reading the current state of the affected accounts
-2. Performing the transaction operations
-3. Verifying that the state hasn't changed before committing
+### For Financial Applications
 
-If the state has changed, the transaction is aborted and a 409 Conflict response is returned to the client.
+- **Account Management**: Keep customer account balances accurate even with concurrent withdrawals and deposits
+- **Marketplace Operations**: Process buyer and seller transactions simultaneously without conflicts
+- **Reporting Accuracy**: Generate financial reports with consistent point-in-time data
 
-## PostgreSQL Row-Level Locking
+## Scaling Your Business
 
-The ledger uses PostgreSQL's row-level locking with the `FOR UPDATE` clause to lock balances during transaction processing:
+As your business grows, the Concurrency Model scales with you:
 
-```sql
-SELECT * FROM balances WHERE account = $1 FOR UPDATE
-```
+### Single-Region Deployments
 
-This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back.
+For businesses operating in a single region, the system automatically:
+- Manages transaction ordering
+- Prevents conflicts between simultaneous operations
+- Ensures consistent results across all transactions
 
-## Recommendation for multi-instances deployments
+### Multi-Region Deployments
 
-Due to the sequential nature of the ledger, multiple instances deployments should be carefully configured.
+For global businesses operating across multiple regions, the system provides:
+- **Distributed Coordination**: Synchronizes transactions across all your deployment regions
+- **Consistent Performance**: Maintains reliable transaction processing regardless of location
+- **Regional Resilience**: Continues operating even if one region experiences issues
 
-We recommended to use the Redis-based shared pre-commit lock using the [redis flags](/operator/Configuration%20reference/Settings). While the optimistic lock will ultimately be there to prevent race-conditions on commit, using the shared lock will reduce such commit attempts in the first place, yielding better performance for write heavy workloads.
+## Best Practices
 
-Also, you can find a complete docker-compose example using 3 instances of the ledger, and a simple reverse proxy to handle traffic [there](https://github.com/formancehq/ledger/blob/main/examples/multi-node/docker-compose.yml).
+To maximize the benefits of the Concurrency Model:
 
-Should the optimistic locking prevent a conflict on commit, it will surface it to the API consumer with a ([Response 409](../api#tag/transactions/operation/createTransaction)) - it is the responsibility of the client to retry the transaction in this case.
+1. **Implement Retry Logic**: Configure your applications to automatically retry transactions that encounter conflicts
+2. **Monitor Transaction Volumes**: Keep an eye on your transaction patterns to identify potential bottlenecks
+3. **Consider Data Distribution**: For very large deployments, distribute your data strategically across multiple ledgers
+
+By leveraging these capabilities, your financial operations will remain reliable and consistent, even as your transaction volumes grow exponentially.

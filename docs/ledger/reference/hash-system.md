@@ -2,144 +2,78 @@
 title: Hash System
 ---
 
-# Hash System
+# Hash System: Your Financial Data's Security Guardian
 
-The Formance Ledger implements a hash system to ensure data integrity and provide an audit trail for all operations. This document explains how the hash system works and how it can be configured.
+## What is the Hash System?
 
-## Overview
+The Hash System in Formance Ledger is like a digital fingerprinting technology that protects your financial data from tampering and provides an unbreakable chain of evidence for all transactions. It creates a continuous, verifiable record that ensures the integrity of your financial information.
 
-The hash system creates a chain of cryptographic hashes for all logs in the ledger. Each log entry contains a hash that is computed based on the previous log's hash and the current log's data. This creates a tamper-evident chain of logs that can be verified for integrity.
+## Why It Matters to Your Business
 
-## Configuration
+In today's digital economy, the security and integrity of financial records are paramount. The Hash System provides:
 
-The hash system is controlled by the `HASH_LOGS` feature, which can be set to either `SYNC` or `DISABLED`:
+- **Tamper Protection**: Detects any unauthorized changes to your financial data
+- **Audit Readiness**: Provides irrefutable evidence for auditors and regulators
+- **Trust Building**: Demonstrates to partners and customers that your financial records are secure
+- **Fraud Prevention**: Makes it virtually impossible to alter transaction records without detection
 
-```json
-{
-  "features": {
-    "HASH_LOGS": "SYNC"
-  }
-}
-```
+## How It Works for You
 
-- `SYNC`: Enables the hash system, creating a chain of hashes for all logs
-- `DISABLED`: Disables the hash system
+### Continuous Protection
 
-By default, the hash system is enabled (`SYNC`).
+The Hash System works silently in the background, automatically:
 
-## Implementation
+1. **Creating Digital Fingerprints**: Each transaction and operation gets a unique cryptographic signature
+2. **Linking Records Together**: Each signature includes information from the previous record, creating an unbreakable chain
+3. **Verifying Integrity**: The system can instantly verify that no records have been altered
 
-The hash system is implemented in the following components:
+This process is completely transparent to users while providing enterprise-grade security.
 
-### Log Structure
+### Simple Configuration
 
-Each log entry in the ledger contains the following fields related to hashing:
+The Hash System is enabled by default because of its importance for data integrity. If needed, it can be easily configured:
 
-- `ID`: A unique identifier for the log
-- `Hash`: The cryptographic hash of the log
-- `Date`: The timestamp when the log was created
-- `Type`: The type of log (e.g., `NEW_TRANSACTION`, `SET_METADATA`, etc.)
-- `Data`: The payload of the log
+- **Enabled (Default)**: Provides maximum security and compliance readiness
+- **Disabled**: Available for specific high-throughput scenarios where performance is the absolute priority
 
-### Hash Computation
+## Real-World Benefits
 
-The hash of a log is computed using the SHA-256 algorithm and includes:
+### For Financial Compliance
 
-1. The hash of the previous log (if any)
-2. The type of the log
-3. The data payload of the log
-4. The timestamp of the log
-5. The idempotency key (if any)
+- **Regulatory Requirements**: Meet SOX, PCI-DSS, GDPR, and other regulations that require data integrity controls
+- **Audit Simplification**: Provide auditors with tamper-evident records that simplify verification
+- **Legal Protection**: Maintain legally defensible records of all financial transactions
 
-```go
-func (l *Log) ComputeHash(previous *Log) {
-    digest := sha256.New()
-    enc := json.NewEncoder(digest)
+### For Business Trust
 
-    if previous != nil {
-        if err := enc.Encode(previous.Hash); err != nil {
-            panic(err)
-        }
-    }
+- **Customer Confidence**: Assure customers that their financial data cannot be manipulated
+- **Partner Trust**: Demonstrate to business partners that shared financial records are secure
+- **Internal Controls**: Strengthen your financial governance with cryptographically verifiable records
 
-    // Encode the log data
-    if err := enc.Encode(struct {
-        Type           LogType   `json:"type"`
-        Data           any       `json:"data"`
-        Date           time.Time `json:"date"`
-        IdempotencyKey string    `json:"idempotencyKey"`
-        ID             int       `json:"id"`
-        Hash           []byte    `json:"hash"`
-    }{
-        Type:           l.Type,
-        Data:           payload,
-        Date:           l.Date,
-        IdempotencyKey: l.IdempotencyKey,
-        ID:             0,
-        Hash:           l.Hash,
-    }); err != nil {
-        panic(err)
-    }
+## Practical Applications
 
-    l.Hash = digest.Sum(nil)
-}
-```
+### Banking and Payments
 
-### Database Implementation
+For financial institutions and payment processors, the Hash System provides:
 
-When the hash system is enabled, the ledger uses a PostgreSQL trigger to compute the hash of each log entry before it is inserted into the database:
+- **Transaction Verification**: Ensure payment records remain unchanged from initiation to settlement
+- **Dispute Resolution**: Maintain verifiable records to resolve customer disputes
+- **Fraud Investigation**: Provide tamper-evident logs for investigating suspicious activities
 
-```sql
-create trigger "set_log_hash_{{.ID}}"
-before insert
-on "{{.Bucket}}"."logs"
-for each row
-when (
-    new.ledger = '{{.Name}}'
-)
-execute procedure "{{.Bucket}}".set_log_hash();
-```
+### Enterprise Finance
 
-The `set_log_hash()` function retrieves the previous log entry and computes the hash based on the previous hash and the current log data.
+For businesses managing complex financial operations:
 
-### Concurrency Control
-
-To ensure that the hash chain is consistent, the ledger uses advisory locks when inserting logs:
-
-```go
-if store.ledger.HasFeature(features.FeatureHashLogs, "SYNC") {
-    _, err := store.db.NewRaw(`select pg_advisory_xact_lock(?)`, store.ledger.ID).Exec(ctx)
-    if err != nil {
-        return postgres.ResolveError(err)
-    }
-}
-```
-
-This ensures that only one transaction at a time can insert logs, preventing race conditions that could break the hash chain.
-
-## Verification
-
-The hash chain can be verified by:
-
-1. Starting with the first log entry (which has no previous hash)
-2. Computing the hash of each log entry based on the previous hash and the log data
-3. Comparing the computed hash with the stored hash
-
-If any log entry has been tampered with, the computed hash will not match the stored hash, indicating a breach of data integrity.
-
-## Use Cases
-
-The hash system is useful for:
-
-1. **Audit Trails**: Providing a tamper-evident record of all operations
-2. **Data Integrity**: Ensuring that log data has not been modified
-3. **Compliance**: Meeting regulatory requirements for data integrity and audit trails
+- **Financial Reporting**: Ensure the data used in financial reports hasn't been altered
+- **Revenue Recognition**: Maintain verifiable records of when revenue was recognized
+- **Expense Tracking**: Create an immutable audit trail of all expense transactions
 
 ## Performance Considerations
 
-Enabling the hash system adds some overhead to log insertion operations due to:
+The Hash System is designed to balance security with performance:
 
-1. The computation of the hash
-2. The use of advisory locks to ensure consistency
+- For most businesses, the security benefits far outweigh the minimal performance impact
+- The system is optimized to handle thousands of transactions per second
+- For extremely high-volume applications, you can evaluate whether to temporarily disable this feature during peak processing times
 
-For high-throughput applications, consider the trade-off between data integrity and performance when deciding whether to enable the hash system.
+By leveraging the Hash System, your organization gains a powerful tool for maintaining the integrity of financial records while meeting compliance requirements and building trust with stakeholders.
