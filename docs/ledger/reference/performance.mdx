@@ -1,30 +1,82 @@
 ---
-title: Performance model
+title: Performance Model
 ---
 
-When building an application on top of Formance Ledger that is set out for scale, it is important to understand the performance characteristics of the ledger. This document summarizes the cost model for each type of ledger operation.
+# Performance Model: Scaling Your Financial Operations with Confidence
 
-### Costs breakdown
+## What is the Performance Model?
 
-| Request pattern (Ledger v1) | Complexity model |
-| --- | --- |
-| Transaction commit | O(N) + W |
-| Aggregation • balances | O(Log(N)*M) |
-| Point query • accounts | O(1) |
-| Range query • accounts | O(Log(N)) |
-| Point query • transactions | O(1) |
-| Range query • transactions | O(Log(N)) |
+The Performance Model in Formance Ledger helps you understand how your financial operations will perform as your business grows. It provides insights into how quickly transactions can be processed, how efficiently data can be queried, and what factors might affect your system's responsiveness as transaction volumes increase.
 
-:::info
-The complexity model is based on the in-process cost, and doesn't take into account the networking cost.
-:::
+## Why It Matters to Your Business
 
-### Data volume
+As your business grows, your financial infrastructure needs to keep pace. The Performance Model helps you:
 
-In the architecting for scale [section](../advanced/scale.mdx), we outline different strategies to handle a growing volume of ledger data, with a focus on efficient usage of multiple ledgers.
+- **Plan for Growth**: Understand how your system will perform as transaction volumes increase
+- **Optimize Operations**: Identify and address potential bottlenecks before they impact your customers
+- **Balance Features and Speed**: Make informed decisions about which features to enable based on your specific needs
+- **Meet Service Level Agreements (SLAs)**: Ensure your financial operations meet your promised response times
 
-## Benchmarking
+## Performance Characteristics
 
-Formance Ledger releases are tested against our load testing [suite](https://github.com/formancehq/stack/tree/main/tests/). The suite can be run locally by following the instruction in the repository.
+### Transaction Processing
 
-Should you venture out common patterns and ledger architectures, you can customize the suite to have it fit the best your use case and bring the ledger into the least favorable cost-wise conditions.
+When processing financial transactions, Formance Ledger is designed to:
+
+- **Scale Linearly**: Processing time increases predictably with the number of entries in a transaction
+- **Handle Peak Volumes**: Maintain consistent performance even during high-traffic periods
+- **Process in Parallel**: Utilize multiple processors to handle operations simultaneously
+
+### Data Queries
+
+When retrieving financial data, you can expect:
+
+- **Fast Single-Record Lookups**: Instantly access individual account or transaction information
+- **Efficient Range Queries**: Quickly retrieve sets of transactions or accounts that match specific criteria
+- **Optimized Aggregations**: Calculate balances and other summaries with minimal processing time
+
+## Real-World Performance Scenarios
+
+### Payment Processing Platforms
+
+For businesses processing thousands of payments per day:
+
+- **Batch Processing**: Process thousands of transactions in seconds
+- **Real-time Payments**: Maintain sub-second response times for individual transactions
+- **End-of-Day Reconciliation**: Generate comprehensive reports without impacting ongoing operations
+
+### Financial Applications
+
+For applications managing user accounts and transactions:
+
+- **Account Balance Queries**: Provide instant balance information to users
+- **Transaction History**: Quickly retrieve and display transaction history
+- **Financial Analytics**: Generate insights from transaction data without performance degradation
+
+## Optimizing for Your Needs
+
+### Balancing Features and Performance
+
+Formance Ledger allows you to fine-tune your system based on your specific requirements:
+
+- **Data Integrity Features**: Enable the Hash System for maximum security or disable it for maximum throughput
+- **Transaction Tracking**: Configure detailed movement tracking based on your audit requirements
+- **Query Optimization**: Structure your accounts and transactions to optimize for your most common queries
+
+### Scaling Strategies
+
+As your transaction volumes grow:
+
+- **Multiple Ledgers**: Distribute data across multiple ledgers based on logical business divisions
+- **Sharding**: Organize your data to minimize contention on frequently accessed accounts
+- **Caching**: Implement appropriate caching strategies for frequently accessed data
+
+## Performance Testing
+
+Formance provides comprehensive tools to help you understand and optimize performance:
+
+- **Benchmark Suite**: Test your specific transaction patterns to understand expected performance
+- **Load Testing**: Simulate high-volume scenarios to identify potential bottlenecks
+- **Performance Monitoring**: Track key metrics like transactions per second and response times
+
+By understanding and leveraging the Performance Model, you can ensure that your financial operations remain responsive and reliable as your business grows, providing a seamless experience for your customers and partners.
