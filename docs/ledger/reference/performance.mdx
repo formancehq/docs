@@ -4,7 +4,7 @@ title: Performance model
 
 When building an application on top of Formance Ledger that is set out for scale, it is important to understand the performance characteristics of the ledger. This document summarizes the cost model for each type of ledger operation.
 
-### Costs breakdown
+## Costs breakdown
 
 | Request pattern (Ledger v1) | Complexity model |
 | --- | --- |
@@ -19,6 +19,37 @@ When building an application on top of Formance Ledger that is set out for scale
 The complexity model is based on the in-process cost, and doesn't take into account the networking cost.
 :::
 
+### Transaction Commit Performance
+
+Transaction commit performance is primarily influenced by:
+
+1. **Number of Postings (N)**: The complexity increases linearly with the number of postings in a transaction.
+2. **Write Overhead (W)**: This includes database write operations, locking, and hash computation (if enabled).
+
+Factors that can affect transaction commit performance:
+
+- **Locking Contention**: When multiple transactions try to modify the same accounts simultaneously, locking contention can occur, reducing throughput.
+- **Hash System**: When the `HASH_LOGS` feature is enabled, each transaction requires additional computation and serialization due to advisory locks.
+- **Database Performance**: The underlying PostgreSQL database performance affects transaction throughput.
+
+### Query Performance
+
+Query performance depends on:
+
+1. **Index Usage**: The ledger uses various indexes to optimize queries.
+2. **Result Set Size**: Larger result sets require more processing and memory.
+3. **Filter Complexity**: Complex filters can reduce query performance.
+
+## Parallelism and Concurrency
+
+The ledger supports parallel processing for certain operations:
+
+```go
+b.SetParallelism(int(parallelismFlag))
+```
+
+This allows the ledger to process multiple operations concurrently, improving throughput on multi-core systems.
+
 ### Data volume
 
 In the architecting for scale [section](../advanced/scale.mdx), we outline different strategies to handle a growing volume of ledger data, with a focus on efficient usage of multiple ledgers.
@@ -28,3 +59,23 @@ In the architecting for scale [section](../advanced/scale.mdx), we outline diffe
 Formance Ledger releases are tested against our load testing [suite](https://github.com/formancehq/stack/tree/main/tests/). The suite can be run locally by following the instruction in the repository.
 
 Should you venture out common patterns and ledger architectures, you can customize the suite to have it fit the best your use case and bring the ledger into the least favorable cost-wise conditions.
+
+### Benchmark Metrics
+
+The benchmark suite measures the following metrics:
+
+1. **Transactions Per Second (TPS)**: The number of transactions the ledger can process per second.
+2. **Latency**: The time it takes to process a single transaction, measured in milliseconds.
+
+```go
+b.ReportMetric(report.TPS(), "t/s")
+b.ReportMetric(float64(result.Metrics.Time.Avg.Milliseconds()), "ms/transaction")
+```
+
+### Feature Configuration Impact
+
+The ledger's performance can be significantly affected by the enabled features:
+- Disabling `HASH_LOGS` can improve write performance by eliminating the need for advisory locks.
+- Disabling `MOVES_HISTORY` can reduce the overhead of tracking individual funds movements.
+
+For high-throughput applications, consider carefully which features you need and disable those you don't to maximize performance.

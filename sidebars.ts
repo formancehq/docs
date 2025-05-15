@@ -126,6 +126,8 @@ const sidebars = {
               items: [
                 "ledger/reference/concurrency-model",
                 "ledger/reference/performance",
+                "ledger/reference/locking-model",
+                "ledger/reference/hash-system",
               ],
             },
           ],
