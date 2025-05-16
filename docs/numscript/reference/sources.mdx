@@ -1,14 +1,23 @@
 ---
 title: Sources
-sidebar_position: 1
 description: Learn how to use sources in send statements
 ---
 
-There are several options when it comes to deciding _where_ should the money come from. The send statement makes it handy by providing the following possibilities:
+In Numscript, a "source" defines where funds originate from in a financial transaction. Numscript provides flexible options for specifying sources to accommodate various financial scenarios.
 
-## Single source
+## Source types
 
-The simplest way of sending a monetary value is from a single source. Here, we draw `COIN 100` from the `world` account:
+### Single source
+
+The simplest way to specify where funds come from is using a single source. This references one account that will provide the entire amount.
+
+Syntax:
+
+```numscript
+source = @source_account
+```
+
+Example:
 
 ```numscript
 send [COIN 100] (
@@ -17,51 +26,77 @@ send [COIN 100] (
 )
 ```
 
-## Ordered sources
+Account destinations can be specified using:
+- Account references: `@account`
+- Variables: `$account_variable`
 
-Using an ordered source block, you can defined several accounts to draw from sequentially until the desired monetary value is reached.
+### Accounts with overdraft
+
+Numscript allows accounts to go into overdraft in two ways:
+
+**Unbounded Overdraft**
+
+Syntax:
+
+```numscript
+source = @source_account allowing unbounded overdraft
+```
+
+Example:
 
 ```numscript
 send [COIN 100] (
-  source = {
-    @users:001:wallet
-    @payments:001
-  }
-  destination = @orders:001
+  source = @source_account allowing unbounded overdraft
+  destination = @users:001
 )
 ```
 
-In example above, if the balance of `COIN` on the account `users:001:wallet` is 30, another 70 will be drawn from the `payments:001` account.
+This permits the account to go into unlimited negative balance.
 
-Ordered sources can also be maxed to a monetary, preventing them from being drawn more than the amount specified:
+**Bounded overdraft**
+
+Syntax:
+
+```numscript
+source = @source_account allowing overdraft up to [ASSET AMOUNT]
+```
+
+Example:
 
 ```numscript
 send [COIN 100] (
-  source = {
-    max [COIN 10] from @users:001:wallet
-    @payments:001
-  }
-  destination = @orders:001
+  source = @source_account allowing overdraft up to [EUR 100]
+  destination = @users:001
 )
 ```
 
-## Portioned sources
+This allows the account to go into negative balance, but only up to the specified limit.
 
-In addition to sequential accounts, source blocks can also use fractions to split the expense onto multiple accounts.
+### Allotment sources
 
-In any case, the summed total of fractions in a block needs to be equal to 1 and the `remaining` keyword can be used to reach that total.
+In addition to sequential accounts, source blocks can use fractions or percentages to split the amount across multiple accounts. The summed total of fractions must equal 1, and the `remaining` keyword can be used to reach that total.
+
+Syntax:
+
+With fraction allocation:
 
 ```numscript
-send [COIN 100] (
-  source = {
-    10/100 from @platform:marketing
-    remaining from @users:001:wallet
+source = {
+    fraction from source_account1
+    remaining from source_account2
   }
-  destination = @orders:001
-)
 ```
 
-Out of convenience, percentage notation is also available:
+With percentage allocation:
+
+```numscript
+source = {
+    percentage% from source_account1
+    remaining from source_account2
+  }
+```
+
+Example:
 
 ```numscript
 send [COIN 100] (
@@ -73,10 +108,66 @@ send [COIN 100] (
 )
 ```
 
-## Nested sources
+### Ordered sources
 
-Source blocks can be nested with a combination of recursive ordered / portioned specifications:
+Using an ordered source block, you can define several accounts to draw from sequentially until the desired monetary value is reached.
 
+Syntax:
+
+```numscript
+{
+  source = {
+    source_account1
+    source_account2
+  ...
+  }
+}
+```
+
+Example:
+
+```numscript
+send [COIN 100] (
+  source = {
+    @users:001:wallet
+    @payments:001
+  }
+  destination = @orders:001
+)
+```
+
+In the example above, if the balance of `COIN` in the account `@users:001:wallet` is 30, another 70 will be drawn from the `@payments:001` account.
+
+### Capped sources
+
+Ordered sources can be capped with a maximum amount, preventing them from being drawn more than the specified value.
+
+Syntax:
+
+```numscript
+source = {
+      max [ASSET AMOUNT] from source_account1
+      source_account2
+    }
+```
+
+Example:
+
+```numscript
+send [COIN 100] (
+  source = {
+    max [COIN 10] from @users:001:wallet
+    @payments:001
+  }
+  destination = @orders:001
+)
+```
+
+### Nested sources
+
+Source blocks can be nested with any combination of ordered or portioned specifications.
+
+Example:
 ```numscript
 send [COIN 100] (
   source = {
@@ -92,3 +183,10 @@ send [COIN 100] (
   destination = @orders:001
 )
 ```
+
+In this example:
+1. First, 10% of the total amount is taken from `@platform:marketing`
+2. If that account has insufficient funds, the remainder of the 10% comes from `@world`
+3. The remaining 90% is first taken from `@users:001:wallet`
+4. If `@users:001:wallet` has insufficient funds, the remainder comes from `@users:001:credit`
+

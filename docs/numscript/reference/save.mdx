@@ -2,10 +2,35 @@
 title: Save
 ---
 
-It is sometimes helpful to prevent an account from going below a certain threshold balance. The `save` directive allows you to specify a minimum balance for an account, which will be deduced from the account available balance for the transaction.
+The `save` statement in Numscript allows you to specify a minimum balance for an account, effectively preventing the account from going below a certain threshold during a transaction. This reserved amount is deducted from the available balance for subsequent operations within the same script.
+
+## Syntax
+
+The `save` statement has two main forms:
+
+**Save a specific amount**:
+```
+save [ASSET AMOUNT] from @account
+```
+
+2. **Save all available balance**:
+```
+save [ASSET *] from @account
+```
+
+## Purpose
+
+The `save` statement allows you to:
+- Reserve funds in an account, preventing them from being used in subsequent transactions
+- Implement minimum balance requirements
+- Protect certain funds during multi-step financial operations
+
+## Examples
+
+### Basic usage
 
 ```numscript
-// Prevent the end balance foo is never less than [USD/2 100]
+// Prevent the end balance of @merchants:1234 from going below [USD/2 100]
 save [USD/2 100] from @merchants:1234
 
 send [USD/2 500] (
@@ -14,12 +39,12 @@ send [USD/2 500] (
 )
 ```
 
-In this transaction example, even if the account `@merchants:1234` has an initial balance of `[USD/2 500]`, the transaction will fail as the account post-transaction balance would otherwise be less than `[USD/2 100]`.
+In this example, if the account `@merchants:1234` has an initial balance of `[USD/2 500]`, the transaction will fail because the post-transaction balance would be `[USD/2 0]`, which is less than the saved amount `[USD/2 100]`.
 
-Should additional source of funds is provided, the account will act as if its balance is `[USD/2 100]` less than it actually is:
+### Using multiple sources
 
 ```numscript
-// Prevent the end balance foo is never less than [USD/2 100]
+// Prevent the end balance of @merchants:1234 from going below [USD/2 100]
 save [USD/2 100] from @merchants:1234
 
 send [USD/2 500] (
@@ -30,6 +55,8 @@ send [USD/2 500] (
   destination = @payouts:T1891G
 )
 ```
+
+This transaction results in the following transfers:
 
 ```json
 [
@@ -47,3 +74,38 @@ send [USD/2 500] (
   }
 ]
 ```
+
+In this case, only `[USD/2 400]` is taken from `@merchants:1234` (instead of the full `[USD/2 500]`), with the remaining `[USD/2 100]` drawn from the `@world` account.
+
+### Saving all available balance
+
+```numscript
+save [USD *] from @alice
+
+send [USD 30] (
+  source = {
+    @alice
+    @world
+  }
+  destination = @bob
+)
+```
+
+This example reserves all USD from the `@alice` account, meaning none will be taken from that account during the transaction. All funds will come from `@world`.
+
+### Using variables
+
+```numscript
+var $ass = USD
+save [$ass 10] from @alice
+
+send [$ass 30] (
+  source = {
+    @alice
+    @world
+  }
+  destination = @bob
+)
+```
+
+This examples uses a variable for the asset, where 10 units of the asset defined in `$ass` are saved from `@alice`.
