@@ -1,0 +1,43 @@
+---
+title: Column
+description: Learn how to use the Column Connector to connect your Formance
+  Platform with your Column account.
+---
+
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import Column from '@site/docs/payments/partials/connectors/_column.mdx';
+import ColumnPostSetup from '@site/docs/payments/partials/connectors/_column_post.mdx';
+
+## Prerequisites
+
+Before you begin, you need to have a Column account. Make sure you have a Column API key and secret, with the least amount of permissions required to access the functionality of the Column Connector you plan to use.
+
+<ApiWarning/>
+
+## Setup
+
+<Column/>
+
+<StackCmd>
+
+```shell
+fctl payments connectors install column config.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/column" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @config.json
+```
+
+</StackCmd>
+
+With config.json containing:
+
+```json
+{"apiKey":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
+```
+
+<ColumnPostSetup/>

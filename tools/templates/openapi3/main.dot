@@ -1,0 +1,7 @@
+{{? data.api.components && data.api.components.schemas }}{{ for (var k in data.components.schemas) { }}
+{{ var schema = data.api.components.schemas[k]; }}
+{{? k!=="V3GetConnectorConfigResponse" && k!=="V3ErrorResponse" && k!=="V3ErrorsEnum" && k!=="V3ConnectorConfig" }}
+{{=data.utils.safejson(data.utils.getSample(schema,data.options,{quiet:true},data.api),null,2)}}
+{{?}}
+{{ } /* of schemas */ }}
+{{?}}

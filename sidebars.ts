@@ -252,6 +252,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "payments/connectors/column",
+                  label: "Column",
+                },
+                {
+                  type: "doc",
                   id: "payments/connectors/currencycloud",
                   label: "CurrencyCloud",
                 },
