@@ -96,10 +96,13 @@ This example reserves all USD from the `@alice` account, meaning none will be ta
 ### Using variables
 
 ```numscript
-var $ass = USD
-save [$ass 10] from @alice
+vars {
+				asset $asset_var
+			}
 
-send [$ass 30] (
+save [$asset_var 10] from @alice
+
+send [$asset_var 30] (
   source = {
     @alice
     @world
@@ -108,4 +111,4 @@ send [$ass 30] (
 )
 ```
 
-This examples uses a variable for the asset, where 10 units of the asset defined in `$ass` are saved from `@alice`.
+This examples uses a variable for the asset, where 10 units of the asset defined in `$asset_var` are saved from `@alice`.
