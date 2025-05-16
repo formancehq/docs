@@ -1,12 +1,137 @@
 ---
 title: Variables
-sidebar_position: 4
 ---
 
-# Variables
-Hardcoded values are great for quick prototyping and iteration, but chances are that you will at some point need to inject some variables into your Numscript files.
+Variables are a key component of Numscript that allow you to store and manipulate different types of values throughout your scripts. 
 
-Here is an example using definitions of all the supported variable types:
+## Variable declaration
+
+In Numscript, variables must be declared in a `vars` block at the beginning of a script. The basic syntax for variable declaration is:
+
+```numscript
+vars {
+    type $variable_name
+}
+```
+
+Variables can also be initialized at declaration time:
+
+```numscript
+vars {
+    type $variable_name = value
+}
+```
+
+## Variable naming rules
+
+Variables in Numscript follow these naming conventions:
+
+- Must start with a `$` symbol
+- The name itself (after the `$`) must start with at least one letter or underscore
+- Can contain lowercase letters, numbers, and underscores
+- Cannot contain uppercase letters or special characters
+
+Examples:
+
+- `$price`
+- `$user_id`
+- `$trade_reference_123`
+- `$_internal`
+
+## Variable types
+
+Numscript supports several variable types, summarized in the table below:
+
+| Type | Description | Format | Examples |
+|------|-------------|--------|----------|
+| `account` | References to ledger accounts | Account names must start with `@` followed by at least one letter or underscore. Can contain letters, digits, underscores, and colons. | `@users:001`, `@platform`, `@trades:123456`, `@world` |
+| `asset` | Currencies or tokens | Can contain uppercase letters, digits, and forward slashes. | `USD/2`, `BTC/8`, `EUR/2`,`TOKEN1` |
+| `number` | Numeric values | Integer or decimal values. | `100`, `3.14`, `0`, `-42` |
+| `monetary` | Combines an asset and an amount | `[ASSET AMOUNT]` or `"ASSET AMOUNT"` when provided in JSON. | `[USD/2 100]`, `[BTC/8 0.5]`, In JSON: `"USD/2 100"` |
+| `portion` | Percentages or fractions | Can be expressed as a percentage (`X%`) or as a fraction (`X/Y`). The computed value must be between 0 and 1 (inclusive). | `2.5%`,`15%`, `1/4`, `3/10` |
+| `string` | Text data | Text enclosed in double quotes. | `"Payment"`, `"Invoice #12345"`, `"Transfer to savings account"` |
+
+## Variable initialization
+
+Variables can be initialized in several ways:
+
+### At declaration
+
+```numscript
+vars {
+    monetary $price = [USD/2 100]
+    account $recipient = @users:001
+    string $description = "Monthly payment"
+}
+```
+
+### From account balances
+
+You can initialize a monetary variable with the current balance of an account for a specific asset:
+
+```numscript
+vars {
+    monetary $initial = balance(@A, USD/2)
+}
+```
+
+The balance pulled needs to be non-negative, or the script will fail to execute.
+
+### From account metadata
+
+You can initialize variables from account metadata:
+
+```numscript
+vars {
+    string $user_name = meta(@users:001, "name")
+}
+```
+
+## Setting variable values from external sources
+
+When executing a Numscript file, you can inject variable values using the API:
+
+```json
+{
+    "script": {
+        "vars": {
+            "price": "USD/2 100",
+            "trade": "trades:108391999",
+            "commission": "15%",
+            "pair": "EUR/2",
+            "id": "108391999",
+            "reference": "USD/EUR:108391999"
+        }
+    }
+}
+```
+
+## Variable usage in expressions
+
+Variables can be used in expressions throughout the script:
+
+```numscript
+vars {
+    monetary $price = [USD/2 100]
+    portion $commission = 2.5%
+}
+
+// Using variables in send operation
+send $price (
+    source = @world
+    destination = {
+        $commission to @platform
+        remaining to @user:123
+    }
+)
+
+// Using variables in metadata
+set_tx_meta("payment_amount", $price)
+```
+
+## Examples
+
+### Basic transaction with variables
 
 ```numscript
 vars {
@@ -26,77 +151,23 @@ send $price (
   }
 )
 
-set_tx_meta("asset", $asset)
+set_tx_meta("asset", $pair)
 set_tx_meta("id", $id)
 set_tx_meta("reference", $reference)
 ```
 
-Injections of variables can be done at execution, by using the `POST /{ledger}/transactions` endpoint.
-The `script.vars` field in the request body is used to inject variable values:
-
-```json
-{
-    "script": {
-        "vars": {
-            "price": "USD/2 100",
-            "trade": "trades:108391999",
-            "commission": "15%",
-            "pair": "EUR/2",
-            "id": "108391999",
-            "reference": "USD/EUR:108391999"
-        }
-    }
-}
-```
-
-Variable names must be lowercase and start with at least one letter or `_`.
-They can contain letters, digits, and `_`.
-
-## Account type
-
-This type represents account names. They must start with at least one letter or `_`.
-They can contain letters, digits, `_`, and `:`.
-
-## Asset type
-
-This type represents asset names. They can contain uppercase letters, digits and `/`.
-
-## Monetary type
-
-This type represents a positive integer amount associated with an asset.
-```json
-"USD/2 100"
-```
-
-It is possible to pull the balance of an account and inject it in a monetary variable by using the `balance(_account_, _asset_)` statement.
-The balance pulled needs to be non-negative, or the script will fail to execute. Here is an example:
+### Account balance usage
 
 ```numscript
 vars {
-    monetary $initial = balance(@A, USD/2)
+    monetary $available = balance(@savings, USD/2)
+    portion $transfer_portion = 50%
 }
 
-send [USD/2 100] (
-    source = {
-        @A
-        @C
-    }
-    destination = {
-        max $initial to @B
-        remaining to @D
-    }
+send ($available * $transfer_portion) (
+    source = @savings
+    destination = @checking
 )
+
+set_tx_meta("transfer_amount", ($available * $transfer_portion))
 ```
-
-## Portion type
-
-This type represents portions of monetary values.
-They can be expressed in 2 different ways:
-* As a percentage: `15%`
-* As a fraction: `15/100`
-
-Their computed values must be between 0 and 1 (inclusive).
-
-:::info
-Variables can also be pulled from account metadata, as per described in the [metadata](./metadata.mdx) section in the next page.
-:::

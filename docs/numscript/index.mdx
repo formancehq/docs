@@ -2,38 +2,31 @@
 title: Introduction
 ---
 
-Numscript is a Domain-Specific Language (DSL) designed to help you model complex financial transactions, replacing complex and error-prone custom code with easy-to-read, declarative scripts.
+Numscript is a Domain-Specific Language (DSL) designed to help you define complex financial transactions with easy-to-read, declarative scripts. 
 
-## Financial transactions
+Numscript allows you to:
 
-We define a financial transaction as a series of discrete value movements between abstract accounts. Each movement represents transfer of value from one account to another, with an associated amount and asset denomination.
+- Define and execute financial transactions
+- Transfer assets between accounts
+- Set metadata on transactions and accounts
+- Handle complex allocation scenarios
+- Enforce constraints on transactions
 
-Assets being transferred can represent any kind of value, from traditional currencies like USD or JPY to custom tokens or commodities.
+The language prioritizes type safety, explicit account references, and deterministic execution to ensure financial operations are performed correctly and reliably.
 
-Accounts involved in a transaction can represent anything, from a bank account to a voucher, a virtual wallet or an order that has yet to be paid out.
+## Program Structure
 
-You can read more about the structure of programs and transactions in the following [section](/numscript/structure).
+A Numscript program describes financial transactions as a series of `send` statements, each representing the transfer of assets (such as currency, tokens, or commodities) between accounts. These accounts can represent anything from bank accounts to vouchers, wallets, or pending orders.
 
-## Design principles
+A Numscript program typically includes:
 
-### Readability
-
-The intent of a Numscript program should always be clear and easy to understand. Numscript programs should be readable by both developers and non-technical financial users, providing a shared, executable definition of money movements.
-
-
-### Correctness
-
-Monetary computations in Numscript should always yield correct results, avoiding common currency rounding errors and accidental money creation or destruction. Execution is atomic, ensuring that either all modeled transactions are committed or none.
-
-### Finiteness
-
-Numscript programs are deterministic, always terminating with a predictable output. This ensures that the behavior of Numscript programs can be reliably predicted and controlled.
-
-These principles are the guiding light behind Numscript, and they are reflected in the design of the language itself. By using Numscript, you can model complex financial transactions in a way that is clear, accurate, and predictable.
+- Statements: The core logic, mainly "send" statements for moving value.
+- Variable Declarations: Optional, for reusable values.
+- Metadata Statements: Optional, for adding metadata to accounts or transactions
 
 ## Example
 
-Here is a simple transaction example of what a Numscript transaction can look like. We use multiple `send` statements, moving USD through a series of accounts, and splitting the final amount between a driver, a charity, and platform fees:
+Here is a Numscript transaction that moves funds through several accounts and splits the final amount:
 
 ```numscript
 send [USD/2 599] (
@@ -58,41 +51,16 @@ send [USD/2 599] (
 )
 ```
 
-Executed by the Numscript interpreter, the above script will result in the following transaction:
+This script describes a flow where money is introduced from the outside world, routed through payment and ride accounts, and then distributed between a driver, a charity, and platform fees. 
 
-```json
-{
-  "postings": [
-      {
-          "source": "world",
-          "destination": "payments:001",
-          "amount": 599,
-          "asset": "USD/2"
-      },
-      {
-          "source": "payments:001",
-          "destination": "rides:0234",
-          "amount": 599,
-          "asset": "USD/2"
-      },
-      {
-          "source": "rides:0234",
-          "destination": "drivers:042",
-          "amount": 510,
-          "asset": "USD/2"
-      },
-      {
-          "source": "rides:0234",
-          "destination": "charity",
-          "amount": 9,
-          "asset": "USD/2"
-      },
-      {
-          "source": "rides:0234",
-          "destination": "platform:fees",
-          "amount": 80,
-          "asset": "USD/2"
-      }
-  ]
-}
-```
+You can experiment with this script in the [Numscript playground](https://playground.numscript.org/?template=new) to see how the funds are routed and split.
+
+## Selecting a Numscript interpreter
+
+Since Ledger v2.2, two versions of the Numscript interpreter are available: the original, built directly into our Ledger service, and a new portable and embeddable interpreter that can run independently or enhance other ledgering systems.
+
+The original interpreter is enabled by default but is no longer evolving, while the new version will receive ongoing updates and must be manually enabled.
+
+To enable the new interpreter, enable the `ledger.experimental-features` and `ledger.experimental-numscript` [settings](../operator/Configuration%20reference/Settings).
+
+Note that the [Numscript playground](https://playground.numscript.org/?template=new) uses the new interpreter, so results there may differ from those in production.
