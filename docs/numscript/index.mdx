@@ -57,10 +57,10 @@ You can experiment with this script in the [Numscript playground](https://playgr
 
 ## Selecting a Numscript interpreter
 
-Since Ledger v2.2, two versions of the Numscript interpreter are available: the original, built directly into our Ledger service, and a new portable and embeddable interpreter that can run independently or enhance other ledgering systems.
+Since Ledger v2.2, two versions of the Numscript interpreter are available: the original interpreter, built directly into the Ledger, and a new portable and embeddable interpreter that can run independently or enhance other ledgering systems.
 
-The original interpreter is enabled by default but is no longer evolving, while the new version will receive ongoing updates and must be manually enabled.
+The original interpreter is enabled by default for the Ledger but is no longer evolving, while the new version will receive ongoing updates and must be manually enabled.
 
 To enable the new interpreter, enable the `ledger.experimental-features` and `ledger.experimental-numscript` [settings](../operator/Configuration%20reference/Settings).
 
-Note that the [Numscript playground](https://playground.numscript.org/?template=new) uses the new interpreter, so results there may differ from those in production.
+Note that the [Numscript playground](https://playground.numscript.org/?template=new) uses the new interpreter, so results there may differ from those in production if you use the built-in interpreter.

@@ -2,28 +2,23 @@
 title: Save
 ---
 
-The `save` statement in Numscript allows you to specify a minimum balance for an account, effectively preventing the account from going below a certain threshold during a transaction. This reserved amount is deducted from the available balance for subsequent operations within the same script.
-
-## Syntax
-
-The `save` statement has two main forms:
-
-**Save a specific amount**:
-```
-save [ASSET AMOUNT] from @account
-```
-
-2. **Save all available balance**:
-```
-save [ASSET *] from @account
-```
-
-## Purpose
+The `save` statement is used to reserve funds within a transaction, preventing them from being used in subsequent operations. It effectively sets aside a specified amount of an asset from a source account, making those funds unavailable for other operations within the same script. 
 
 The `save` statement allows you to:
 - Reserve funds in an account, preventing them from being used in subsequent transactions
 - Implement minimum balance requirements
 - Protect certain funds during multi-step financial operations
+
+## Syntax
+
+```numscript
+save [asset amount] from @account
+```
+
+Where:
+- `asset` is the asset type (like USD/2, EUR/2, etc.)
+- `amount` is the numeric amount to save
+- `@account` is the source account
 
 ## Examples
 
@@ -41,7 +36,7 @@ send [USD/2 500] (
 
 In this example, if the account `@merchants:1234` has an initial balance of `[USD/2 500]`, the transaction will fail because the post-transaction balance would be `[USD/2 0]`, which is less than the saved amount `[USD/2 100]`.
 
-### Using multiple sources
+### Use multiple sources
 
 ```numscript
 // Prevent the end balance of @merchants:1234 from going below [USD/2 100]
@@ -77,38 +72,38 @@ This transaction results in the following transfers:
 
 In this case, only `[USD/2 400]` is taken from `@merchants:1234` (instead of the full `[USD/2 500]`), with the remaining `[USD/2 100]` drawn from the `@world` account.
 
-### Saving all available balance
+### Save all available balance
 
 ```numscript
-save [USD *] from @alice
+save [USD/2 *] from @merchants:1234
 
-send [USD 30] (
-  source = {
-    @alice
-    @world
-  }
-  destination = @bob
+send [USD/2 30] (
+   source = {
+      @merchants:1234
+      @world
+   }
+   destination = @payouts:T1891G
 )
 ```
 
-This example reserves all USD from the `@alice` account, meaning none will be taken from that account during the transaction. All funds will come from `@world`.
+In this example, all USD from the merchant's account is saved. The subsequent `send` operation would need to source all 30 USD from the `@world` account since the merchant's funds are unavailable.
 
-### Using variables
+### Save with variables
 
 ```numscript
 vars {
-				asset $asset_var
-			}
+    monetary $amount = [USD/2 15]
+}
 
-save [$asset_var 10] from @alice
+save $amount from @merchants:1234
 
-send [$asset_var 30] (
-  source = {
-    @alice
-    @world
-  }
-  destination = @bob
+send [USD/2 30] (
+   source = {
+      @merchants:1234
+      @world
+   }
+   destination = @payouts:T1891G
 )
 ```
 
-This examples uses a variable for the asset, where 10 units of the asset defined in `$asset_var` are saved from `@alice`.
+This example demonstrates using a monetary variable with the `save` statement. It saves 15 USD from the merchant's account, making that amount unavailable for the following `send` operation.

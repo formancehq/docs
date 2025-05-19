@@ -1,14 +1,30 @@
 ---
 title: Rounding
-sidebar_position: 7
 ---
 
-# Rounding
-There is no support for floating point or decimal numbers in Numscript, which will always make sure non integer values resulting from monetary computations are balanced.
+Numscript only works with integers for monetary values. There is no support for floating point or decimal numbers in the language. However, when performing operations like divisions or applying percentages, non-integer results can mathematically occur. 
 
-Practically, this means appropriately distributing the non integer allocation remainder to accounts. Numscript works by flooring any computed amount and subsequently spreading the remaining amount as fairly as possible starting from top to bottom.
+When non-integer values result from monetary computations, Numscript implements a specific rounding strategy to ensure all amounts are balanced properly:
 
-In the example below:
+1. **Round down all values first**: Numscript initially rounds down any computed non-integer amount.
+2. **Distribute the remainder**: Any remaining amount is then distributed as fairly as possible among the accounts, starting from top to bottom.
+
+This approach ensures that:
+- All monetary amounts remain integers
+- The total sum always equals the original amount
+- Fractional units are distributed in the most equitable way possible
+
+Understanding Numscript's rounding behavior has important implications for financial calculations:
+
+- **Destination Order Matters**: The order in which you list destinations affects how remainders are distributed.
+- **Design for Fairness**: For the most equitable distribution, consider placing accounts that should receive less priority at the bottom of the list.
+- **Predictable Results**: This deterministic approach ensures consistent results when executing the same script multiple times.
+
+## Examples
+
+### Simple 50/50 Split with Odd Amount
+
+When dividing an odd amount evenly, the first account listed receives the extra unit:
 
 ```numscript
 send [COIN 99] (
@@ -20,7 +36,13 @@ send [COIN 99] (
 )
 ```
 
-The `@rider` account will receive `COIN 50` and the `@taxes` account `COIN 49`. The opposite can be achieved by reversing the order of destinations:
+Result:
+- `@rider` receives `COIN 50` (50% of 99 = 49.5, rounded down to 49, then +1 from remainder)
+- `@taxes` receives `COIN 49` (50% of 99 = 49.5, rounded down to 49)
+
+### Order Impacts Distribution
+
+The order of destinations affects how the remainder is distributed:
 
 ```numscript
 send [COIN 99] (
@@ -32,7 +54,13 @@ send [COIN 99] (
 )
 ```
 
-In a more complex example below, we are splitting 99 into 5 which would result in 19.8 allocated to each account. Numscript will first allocate 19 to every account, then attempt to distribute the remaining 4 evenly starting from `@a`
+Result:
+- `@taxes` receives `COIN 50` (first in order, gets the extra unit)
+- `@rider` receives `COIN 49`
+
+### Complex Distribution
+
+When dividing into multiple parts, the remainder is distributed from top to bottom:
 
 ```numscript
 send [COIN 99] (
@@ -47,39 +75,45 @@ send [COIN 99] (
 )
 ```
 
-Which will resolve into the following postings:
+Mathematical calculation:
+- Each account should get 99 ÷ 5 = 19.8 coins
+- Round down all values: 19 coins each
+- Remaining 4 coins (99 - (19×5) = 4) distributed from top to bottom
 
+Result:
 ```json
 [
-	{
-		source: "world",
-		destination: "a",
-		amount: 20,
-		asset: "COIN"
-	},
-	{
-		source: "world",
-		destination: "b",
-		amount: 20,
-		asset: "COIN"
-	},
-	{
-		source: "world",
-		destination: "c",
-		amount: 20,
-		asset: "COIN"
-	},
-	{
-		source: "world",
-		destination: "d",
-		amount: 20,
-		asset: "COIN"
-	},
-	{
-		source: "world",
-		destination: "e",
-		amount: 19,
-		asset: "COIN"
-	}
+  {
+    "source": "world",
+    "destination": "a",
+    "amount": 20,
+    "asset": "COIN"
+  },
+  {
+    "source": "world",
+    "destination": "b",
+    "amount": 20,
+    "asset": "COIN"
+  },
+  {
+    "source": "world",
+    "destination": "c",
+    "amount": 20,
+    "asset": "COIN"
+  },
+  {
+    "source": "world",
+    "destination": "d",
+    "amount": 20,
+    "asset": "COIN"
+  },
+  {
+    "source": "world",
+    "destination": "e",
+    "amount": 19,
+    "asset": "COIN"
+  }
 ]
 ```
+
+The first four accounts receive an extra coin from the remainder, while the last account only gets the rounded down amount.

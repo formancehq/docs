@@ -2,7 +2,7 @@
 title: Send
 ---
 
-The `send` statement is a core instruction in Numscript used to transfer assets (such as currencies or tokens) between accounts. It supports complex financial flows including percentage-based distributions, overdraft handling, and multi-party transfers.
+The `send` statement is a core instruction in Numscript used to transfer assets (such as currencies or tokens) between accounts. It supports complex financial flows such as percentage-based distributions, overdraft handling, and multi-party transfers.
 
 ## Basic syntax
 
@@ -31,7 +31,7 @@ Specifies where the funds come from. Commonly-used source expressions include:
 
 - Single account: `source = @account_name`
 - Variable reference: `source = @user:$userId`
-- Account with overdraft: `source = @account allowing overdraft up to [USD 100]`
+- Account with overdraft: `source = @account allowing overdraft up to [asset amount]`
 
 For complete details on source options, including multiple sources, capped sources, and allotment sources, refer to the [Sources  documentation](sources.mdx).
 
