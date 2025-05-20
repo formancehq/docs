@@ -2,29 +2,159 @@
 title: Performance model
 ---
 
-When building an application on top of Formance Ledger that is set out for scale, it is important to understand the performance characteristics of the ledger. This document summarizes the cost model for each type of ledger operation.
+# Performance model
 
-### Costs breakdown
+This document explains the performance characteristics of Formance Ledger and provides guidance on optimizing your deployment for better performance.
 
-| Request pattern (Ledger v1) | Complexity model |
-| --- | --- |
-| Transaction commit | O(N) + W |
-| Aggregation • balances | O(Log(N)*M) |
-| Point query • accounts | O(1) |
-| Range query • accounts | O(Log(N)) |
-| Point query • transactions | O(1) |
-| Range query • transactions | O(Log(N)) |
+## Performance characteristics
 
-:::info
-The complexity model is based on the in-process cost, and doesn't take into account the networking cost.
-:::
+The ledger's performance is affected by various factors, with different operations having different complexity models:
 
-### Data volume
+| Operation | Complexity model | Description |
+| --- | --- | --- |
+| Transaction commit | O(N) + W | Linear scaling with number of postings (N) plus write overhead (W) |
+| Balance aggregation | O(Log(N)*M) | Logarithmic scaling with number of accounts (N) times number of assets (M) |
+| Point query (accounts/transactions) | O(1) | Constant time lookup using primary keys |
+| Range query (accounts/transactions) | O(Log(N)) | Logarithmic scaling with size of data set |
 
-In the architecting for scale [section](../advanced/scale.mdx), we outline different strategies to handle a growing volume of ledger data, with a focus on efficient usage of multiple ledgers.
+### Transaction processing performance
 
-## Benchmarking
+Transaction processing performance is primarily influenced by:
 
-Formance Ledger releases are tested against our load testing [suite](https://github.com/formancehq/stack/tree/main/tests/). The suite can be run locally by following the instruction in the repository.
+1. **Number of postings**: Performance scales linearly with the number of postings in a transaction.
+2. **Feature configuration**: Enabled features add processing overhead (see [Feature impact](#feature-impact)).
+3. **Database performance**: The underlying PostgreSQL database affects transaction throughput.
+4. **Concurrency**: Multiple transactions attempting to modify the same accounts can cause locking contention.
 
-Should you venture out common patterns and ledger architectures, you can customize the suite to have it fit the best your use case and bring the ledger into the least favorable cost-wise conditions.
+### Query performance
+
+Query performance depends on:
+
+1. **Index usage**: The ledger uses PostgreSQL indexes to optimize queries.
+2. **Result set size**: Larger result sets require more processing time and memory.
+3. **Filter complexity**: Complex query filters can reduce performance.
+
+## Feature impact
+
+The ledger's performance can be significantly affected by the enabled features:
+
+### Hash system
+
+When the `HASH_LOGS` feature is enabled:
+- Each log is cryptographically linked to the previous log
+- Advisory locks are used to ensure hash chain integrity
+- This can become a bottleneck for high write throughput
+
+```mermaid
+sequenceDiagram
+    actor Ledger
+    actor Store
+    actor Database
+    Ledger->>Store: Insert log
+    Store->>Database: SELECT pg_advisory_xact_lock(<ledger id>)
+    Database-->>Store: OK
+    note right of Database: The ledger is locked until the end of the transaction
+    Store->>Database: Get last log
+    Database-->>Store: Last log
+    Store->>Store: Compute hash of new log
+    Store->>Database: Write log
+    Database-->>Store: Log written
+    Store-->>Ledger: Updated log
+```
+
+### Movement tracking
+
+When the `MOVES_HISTORY` feature is enabled:
+- Individual fund movements are tracked in the database
+- This adds overhead for transaction processing
+- The `MOVES_HISTORY_POST_COMMIT_EFFECTIVE_VOLUMES` feature adds further overhead for updating effective volumes
+
+## Scaling strategies
+
+As your transaction volumes grow, consider these scaling approaches:
+
+### Multiple ledgers
+
+Distribute data across multiple ledgers based on logical business divisions:
+- Each ledger operates independently
+- Data can be queried across ledgers if needed
+- Reduces contention on single ledger resources
+
+### Buckets
+
+Ledgers use PostgreSQL schemas (buckets) for data isolation:
+- Default bucket is named `_default`
+- Custom buckets can be created for different data sets
+- Allows for physical data separation
+
+### Parallelism
+
+The ledger supports parallel processing for certain operations:
+```go
+b.SetParallelism(int(parallelismFlag))
+```
+This improves throughput on multi-core systems by processing multiple operations concurrently.
+
+## Performance testing
+
+Formance provides tools to benchmark your specific deployment:
+
+### Benchmark suite
+
+The benchmark suite measures:
+1. **Transactions Per Second (TPS)**: How many transactions the ledger can process per second
+2. **Latency**: Time to process a single transaction (milliseconds)
+
+### Running benchmarks
+
+To run benchmarks against your deployment:
+
+```shell
+# Run locally
+earthly +run
+
+# Run against a remote stack
+earthly +run --args="--stack.url=XXX --client.id=XXX --client.secret=XXX"
+
+# Run against a remote ledger
+earthly +run --args="--ledger.url=XXX --auth.url=XXX --client.id=XXX --client.secret=XXX"
+```
+
+### Custom benchmarks
+
+You can customize the benchmark suite to test your specific transaction patterns:
+- Test scripts are located in the `/test/performance/scripts` directory
+- Each script defines a transaction pattern to benchmark
+- Available patterns include transfers between world and specific accounts, bounded and unbounded transactions
+
+## Performance optimization recommendations
+
+### For high-throughput applications
+
+1. Disable features you don't need:
+   - `HASH_LOGS`: Disable if audit trails are not critical
+   - `MOVES_HISTORY`: Disable if individual fund movement tracking is not required
+
+2. Optimize transaction structure:
+   - Group related operations into single transactions
+   - Minimize the number of postings per transaction
+   - Avoid modifying the same accounts in concurrent transactions
+
+3. Configure your database:
+   - Ensure adequate CPU and memory resources
+   - Optimize PostgreSQL for your workload (connection pooling, memory settings)
+   - Use SSDs for storage
+
+### For multi-instance deployments
+
+1. Implement proper load balancing across instances
+2. Add retry logic for 409 Conflict responses
+3. Consider using Redis-based shared locks to reduce conflicts
+
+## Monitoring performance
+
+Monitor these key metrics:
+1. **Transaction throughput**: Transactions per second
+2. **Transaction latency**: Time to process individual transactions
+3. **Conflict rate**: Frequency of 409 Conflict responses
+4. **Database metrics**: CPU, memory, disk I/O, connection count
