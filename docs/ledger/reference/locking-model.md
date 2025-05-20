@@ -2,65 +2,106 @@
 title: Locking Model
 ---
 
-# Locking Model: Ensuring Transaction Reliability
+The locking model in Formance Ledger ensures data consistency when multiple transactions attempt to modify the same accounts simultaneously. This document explains how the locking model works and how to configure it for your deployment.
 
-## What is the Locking Model?
+## How the locking model works
 
-The Locking Model in Formance Ledger ensures that your financial transactions remain accurate and consistent, even when many operations happen at the same time. Think of it as a traffic control system that prevents financial data collisions and keeps your money movements orderly and predictable.
+Formance Ledger implements database-level locking to ensure transaction consistency:
 
-## Why It Matters to You
+1. **Pre-commit locking**: Before processing a transaction, the ledger locks the balance rows in the database for bounded source accounts (accounts with defined balance limits).
+2. **Row-level database locks**: The ledger uses PostgreSQL's row-level locking with the `FOR UPDATE` clause to prevent concurrent modifications to the same account balances.
 
-When managing financial transactions, reliability is non-negotiable. The Locking Model provides:
+### Bounded source accounts
 
-- **Data Integrity**: Ensures your balances are always accurate
-- **Consistent Results**: The same operation always produces the same outcome
-- **Conflict Prevention**: Prevents issues when multiple users or systems try to move funds simultaneously
-- **Regulatory Compliance**: Helps meet financial regulations that require accurate record-keeping
+The ledger only locks balances for bounded source accounts - these are accounts used as transaction sources that have defined bottom limits. For example:
 
-## How It Works for Your Business
+```
+send [USD/2 100] {
+  source = @bank
+  destination = @user:1
+}
+```
 
-### Guaranteed Transaction Safety
+In this example, `bank` is considered a bounded source account because it has an implicit bottom limit of zero (cannot go negative).
 
-When you initiate a transaction in Formance Ledger, the system automatically:
+Accounts with unbounded overdraft or the special `world` account are not locked because they have no balance constraints:
 
-1. **Reserves the Accounts**: Temporarily marks the affected accounts as "in use"
-2. **Validates the Transaction**: Checks that all conditions are met (sufficient funds, valid accounts, etc.)
-3. **Applies the Changes**: Updates all balances atomically (all changes happen together or none at all)
-4. **Releases the Reservation**: Makes the accounts available for other transactions
+```
+send [USD/2 100] {
+  source = @bank allowing unbounded overdraft
+  destination = @user:1
+}
+```
 
-This process happens in milliseconds and is completely transparent to you and your users.
+### Locking strategies
 
-### Handling Busy Periods
+The ledger supports two locking strategies:
 
-During high-traffic periods when many transactions occur simultaneously:
+#### Memory-based locking (default)
 
-- The system automatically queues and processes transactions in a way that maintains consistency
-- If two operations try to modify the same account at the exact same time, one will complete first while the other waits its turn
-- In rare cases where conflicts can't be resolved automatically, the system will notify your application so you can retry the operation
+- Fast and efficient for single-instance deployments
+- Locks are held in memory within a single ledger instance
+- No external dependencies required
+- Not suitable for multi-instance deployments (each instance has its own lock memory)
 
-## Real-World Benefits
+#### Redis-based locking
 
-### For Financial Applications
+- Distributed locking mechanism for multi-instance deployments
+- Uses Redis as a centralized lock manager
+- Ensures locks are respected across all ledger instances
+- Requires additional Redis infrastructure
 
-- **Payment Processing**: Ensure that customer payments are processed correctly even during high-volume periods
-- **Account Management**: Maintain accurate balances across multiple user actions
-- **Reconciliation**: Reduce the need for manual reconciliation by preventing data inconsistencies
+## Configuration options
 
-### For Multi-Region Deployments
+You can configure the locking strategy in your deployment settings:
 
-If your business operates across multiple regions or data centers, Formance Ledger provides:
+### Memory-based locking (default)
 
-- **Distributed Consistency**: Maintains transaction integrity across your entire infrastructure
-- **Scalability**: Allows you to grow your transaction volume without sacrificing reliability
-- **Resilience**: Continues to function correctly even if parts of your system experience temporary issues
+No additional configuration is required for memory-based locking as it's the default.
 
-## Best Practices
+### Redis-based locking
 
-To get the most out of Formance Ledger's Locking Model:
+For multi-instance deployments, configure Redis-based locking:
 
-1. **Design for Concurrency**: Structure your accounts and transactions to minimize contention on frequently used accounts
-2. **Implement Retry Logic**: For high-volume scenarios, include automatic retry mechanisms in your application
-3. **Monitor Performance**: Keep an eye on transaction throughput and response times to identify potential bottlenecks
-4. **Consider Sharding**: For very large deployments, distribute your data across multiple ledgers based on logical business divisions
+```yaml
+ledger:
+  lockingStrategy:
+    type: redis
+    uri: redis://redis:6379
+    tls: false
+    lockDuration: 10s
+    retryStrategy:
+      attempts: 10
+      delay: 10ms
+      maxDelay: 500ms
+```
 
-By leveraging these capabilities, your financial operations will remain reliable and consistent, even as your business scales.
+## Performance considerations
+
+The locking model has performance implications you should be aware of:
+
+1. **Account contention**: Frequently modified accounts can become bottlenecks
+   - Consider distributing transactions across multiple accounts when possible
+   - For high-volume accounts, batch operations when appropriate
+
+2. **Transaction size**: Larger transactions may lock more accounts
+   - Keep transactions focused on related operations
+   - Split unrelated operations into separate transactions
+
+## Handling conflicts
+
+When a conflict occurs during transaction processing, the ledger returns a 409 Conflict response. Your application should:
+
+1. Catch the 409 response
+2. Wait briefly (using exponential backoff for repeated conflicts)
+3. Retry the transaction
+
+## Best practices
+
+When configuring your locking model:
+
+1. **For single-instance deployments**: Use the default memory-based locking
+2. **For multi-instance deployments**: Configure Redis-based locking
+3. **Implement retry logic**: Handle 409 Conflict responses in your application
+4. **Monitor lock contention**: Watch for frequent conflicts on specific accounts
+5. **Distribute workload**: Design your account structure to minimize contention
