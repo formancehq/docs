@@ -17,13 +17,7 @@ Transactions in the ledger are fully atomic and serialized through two ordered c
 
 ### Pre-commit locking
 
-The pre-commit locking mechanism acquires locks on affected accounts before a transaction is committed. This prevents multiple transactions from modifying the same accounts simultaneously. The ledger implements this using PostgreSQL's row-level locking with the `FOR UPDATE` clause:
-
-```sql
-SELECT * FROM balances WHERE account = $1 FOR UPDATE
-```
-
-This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back.
+The pre-commit locking mechanism acquires locks on affected accounts before a transaction is committed. This prevents multiple transactions from modifying the same accounts simultaneously. This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back.
 
 ### Optimistic locking
 
@@ -37,7 +31,7 @@ If another transaction modified the same accounts during processing, the transac
 
 ## Handling conflicts
 
-When a conflict occurs during transaction processing, the ledger returns a [409 Conflict response](../api#tag/transactions/operation/createTransaction). Your application should:
+When a conflict occurs during transaction processing, the ledger returns a 409 Conflict response. Your application should:
 
 1. Catch the 409 response
 2. Wait briefly (using exponential backoff for repeated conflicts)
@@ -77,8 +71,6 @@ For deployments with multiple ledger instances, you should:
 
 1. Use a load balancer to distribute traffic across instances
 2. Implement retry logic in your client applications to handle 409 Conflict responses
-
-A complete example using three ledger instances with a reverse proxy is available in the [multi-node example](https://github.com/formancehq/ledger/blob/main/examples/multi-node/docker-compose.yml).
 
 ## Performance considerations
 
