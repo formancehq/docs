@@ -1,79 +1,80 @@
 ---
-title: Hash System
+title: Hash system
 ---
 
-# Hash System: Your Financial Data's Security Guardian
+# Hash system
 
-## What is the Hash System?
+The hash system in Formance Ledger provides a cryptographic audit trail that ensures the integrity of your financial data. This document explains what the hash system is, how it works, and how to configure it for your needs.
 
-The Hash System in Formance Ledger is like a digital fingerprinting technology that protects your financial data from tampering and provides an unbreakable chain of evidence for all transactions. It creates a continuous, verifiable record that ensures the integrity of your financial information.
+## What is the hash system?
 
-## Why It Matters to Your Business
+The hash system creates a cryptographic chain of transaction logs where each entry is mathematically linked to all previous entries. This creates an immutable record of all transactions that:
 
-In today's digital economy, the security and integrity of financial records are paramount. The Hash System provides:
+- Prevents tampering with historical data
+- Enables verification of the complete transaction history
+- Provides cryptographic proof that data hasn't been altered
 
-- **Tamper Protection**: Detects any unauthorized changes to your financial data
-- **Audit Readiness**: Provides irrefutable evidence for auditors and regulators
-- **Trust Building**: Demonstrates to partners and customers that your financial records are secure
-- **Fraud Prevention**: Makes it virtually impossible to alter transaction records without detection
+The system works by calculating a SHA-256 hash for each new log entry that includes both the log's data and the previous log's hash, creating a continuous chain.
 
-## How It Works for You
+## When to use the hash system
 
-### Continuous Protection
+The hash system is particularly valuable when:
 
-The Hash System works silently in the background, automatically:
+- You need to maintain regulatory compliance with audit requirements
+- You want cryptographic proof of transaction integrity
+- You need to detect any unauthorized modifications to historical data
+- You're building financial applications where data immutability is critical
 
-1. **Creating Digital Fingerprints**: Each transaction and operation gets a unique cryptographic signature
-2. **Linking Records Together**: Each signature includes information from the previous record, creating an unbreakable chain
-3. **Verifying Integrity**: The system can instantly verify that no records have been altered
+## Configuration options
 
-This process is completely transparent to users while providing enterprise-grade security.
+The hash system is controlled by the `HASH_LOGS` feature flag:
 
-### Simple Configuration
+- **Enabled by default**: The hash system is active unless explicitly disabled
+- **Can be disabled**: For performance-critical applications where audit trails are less important
 
-The Hash System is enabled by default because of its importance for data integrity. If needed, it can be easily configured:
+You can disable the hash system at the bucket level when creating a new bucket:
 
-- **Enabled (Default)**: Provides maximum security and compliance readiness
-- **Disabled**: Available for specific high-throughput scenarios where performance is the absolute priority
+```json
+POST /api/ledger/_buckets
+{
+  "name": "high_throughput",
+  "features": {
+    "HASH_LOGS": false
+  }
+}
+```
 
-## Real-World Benefits
+## Performance considerations
 
-### For Financial Compliance
+The hash system has performance implications you should be aware of:
 
-- **Regulatory Requirements**: Meet SOX, PCI-DSS, GDPR, and other regulations that require data integrity controls
-- **Audit Simplification**: Provide auditors with tamper-evident records that simplify verification
-- **Legal Protection**: Maintain legally defensible records of all financial transactions
+1. **Write throughput**: The hash system adds overhead to each transaction commit
+   - Each log requires computing a new hash
+   - PostgreSQL advisory locks are used to ensure hash chain integrity
+   - This can become a bottleneck for high-volume write operations
 
-### For Business Trust
+2. **Read operations**: The hash system has minimal impact on read operations
+   - Querying transactions or balances is not significantly affected
+   - Verification operations may add some overhead
 
-- **Customer Confidence**: Assure customers that their financial data cannot be manipulated
-- **Partner Trust**: Demonstrate to business partners that shared financial records are secure
-- **Internal Controls**: Strengthen your financial governance with cryptographically verifiable records
+For high-throughput applications where audit trails are not critical, consider disabling this feature to improve performance.
 
-## Practical Applications
+## Verifying the hash chain
 
-### Banking and Payments
+While the ledger automatically maintains the hash chain integrity, you can verify it through the API:
 
-For financial institutions and payment processors, the Hash System provides:
+1. Retrieve a transaction log with its hash
+2. Retrieve the previous log with its hash
+3. Independently calculate the hash using the log data and previous hash
+4. Compare your calculated hash with the stored hash
 
-- **Transaction Verification**: Ensure payment records remain unchanged from initiation to settlement
-- **Dispute Resolution**: Maintain verifiable records to resolve customer disputes
-- **Fraud Investigation**: Provide tamper-evident logs for investigating suspicious activities
+If they match, the chain is intact up to that point. This verification can be performed on any segment of the chain.
 
-### Enterprise Finance
+## Best practices
 
-For businesses managing complex financial operations:
+When using the hash system:
 
-- **Financial Reporting**: Ensure the data used in financial reports hasn't been altered
-- **Revenue Recognition**: Maintain verifiable records of when revenue was recognized
-- **Expense Tracking**: Create an immutable audit trail of all expense transactions
-
-## Performance Considerations
-
-The Hash System is designed to balance security with performance:
-
-- For most businesses, the security benefits far outweigh the minimal performance impact
-- The system is optimized to handle thousands of transactions per second
-- For extremely high-volume applications, you can evaluate whether to temporarily disable this feature during peak processing times
-
-By leveraging the Hash System, your organization gains a powerful tool for maintaining the integrity of financial records while meeting compliance requirements and building trust with stakeholders.
+1. **Consider your performance needs**: Disable the feature if you prioritize throughput over audit trails
+2. **Implement periodic verification**: Regularly verify the hash chain integrity for critical data
+3. **Document hash verification**: Include hash verification in your compliance documentation
+4. **Balance with other features**: Consider the combined impact of enabled features on performance
