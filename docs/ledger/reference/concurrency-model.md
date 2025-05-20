@@ -1,74 +1,105 @@
 ---
-title: Concurrency Model
+title: Concurrency model
 ---
 
-# Concurrency Model: Reliable Financial Transactions at Scale
+# Concurrency model
 
-## What is the Concurrency Model?
+The Formance Ledger uses a concurrency model that ensures transactions remain accurate and consistent even when multiple operations happen simultaneously. This document explains how this model works and how to configure it for your deployment.
 
-The Concurrency Model in Formance Ledger ensures that your financial transactions remain accurate and reliable even when hundreds or thousands of operations happen simultaneously. It's like having a sophisticated traffic management system that keeps all your financial data flowing smoothly without collisions or inconsistencies.
+## How the concurrency model works
 
-## Why It Matters to Your Business
+Transactions in the ledger are fully atomic and serialized through two ordered concurrency-control mechanisms that prevent race conditions:
 
-In today's fast-paced financial world, your systems need to handle multiple transactions simultaneously without compromising accuracy. The Concurrency Model provides:
-
-- **Transaction Reliability**: Ensures every transaction completes correctly, even during peak loads
-- **Data Consistency**: Maintains accurate balances across all accounts at all times
-- **Scalable Operations**: Allows your business to grow without sacrificing transaction reliability
-- **Conflict Resolution**: Automatically manages competing transactions to prevent errors
-
-## How It Works for You
+1. Pre-commit locking: Locks account balances before transaction processing
+2. Optimistic locking: Verifies no changes occurred during processing
 
 ![flow](/img/advanced/concurrency-model.png)
 
-### Multi-Layer Protection
+### Pre-commit locking
 
-The Concurrency Model uses a multi-layered approach to ensure transaction reliability:
+The pre-commit locking mechanism acquires locks on affected accounts before a transaction is committed. This prevents multiple transactions from modifying the same accounts simultaneously. The ledger implements this using PostgreSQL's row-level locking with the `FOR UPDATE` clause:
 
-1. **Preventive Controls**: Temporarily reserves accounts during transactions to prevent conflicts
-2. **Verification Checks**: Confirms that no changes occurred during processing
-3. **Automatic Conflict Resolution**: Identifies and manages any competing transactions
+```sql
+SELECT * FROM balances WHERE account = $1 FOR UPDATE
+```
 
-This layered approach works silently in the background, ensuring your financial operations remain reliable without requiring any special handling from your applications.
+This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back.
 
-## Real-World Benefits
+### Optimistic locking
 
-### For Payment Platforms
+Even with pre-commit locking, the ledger uses optimistic locking during the commit phase as an additional safeguard. This mechanism:
 
-- **High-Volume Processing**: Reliably process thousands of payments per second
-- **Peak Period Handling**: Maintain consistent performance during high-traffic events like Black Friday
-- **Transaction Integrity**: Ensure that funds are never double-spent or lost in transit
+1. Reads the current state of affected accounts
+2. Performs transaction operations
+3. Verifies the state hasn't changed before committing
 
-### For Financial Applications
+If another transaction modified the same accounts during processing, the transaction is aborted and a 409 Conflict response is returned. Your application should handle these conflicts by implementing retry logic.
 
-- **Account Management**: Keep customer account balances accurate even with concurrent withdrawals and deposits
-- **Marketplace Operations**: Process buyer and seller transactions simultaneously without conflicts
-- **Reporting Accuracy**: Generate financial reports with consistent point-in-time data
+## Handling conflicts
 
-## Scaling Your Business
+When a conflict occurs during transaction processing, the ledger returns a [409 Conflict response](../api#tag/transactions/operation/createTransaction). Your application should:
 
-As your business grows, the Concurrency Model scales with you:
+1. Catch the 409 response
+2. Wait briefly (using exponential backoff for repeated conflicts)
+3. Retry the transaction
 
-### Single-Region Deployments
+Example retry logic in pseudocode:
 
-For businesses operating in a single region, the system automatically:
-- Manages transaction ordering
-- Prevents conflicts between simultaneous operations
-- Ensures consistent results across all transactions
+```
+function executeTransaction(transaction) {
+  maxRetries = 3
+  retryCount = 0
+  
+  while (retryCount < maxRetries) {
+    try {
+      response = ledgerAPI.createTransaction(transaction)
+      return response
+    } catch (error) {
+      if (error.status === 409) {
+        retryCount++
+        if (retryCount >= maxRetries) {
+          throw new Error("Max retries exceeded")
+        }
+        // Exponential backoff
+        waitTime = 100 * Math.pow(2, retryCount)
+        sleep(waitTime)
+      } else {
+        throw error
+      }
+    }
+  }
+}
+```
 
-### Multi-Region Deployments
+## Multi-instance deployments
 
-For global businesses operating across multiple regions, the system provides:
-- **Distributed Coordination**: Synchronizes transactions across all your deployment regions
-- **Consistent Performance**: Maintains reliable transaction processing regardless of location
-- **Regional Resilience**: Continues operating even if one region experiences issues
+For deployments with multiple ledger instances, you should:
 
-## Best Practices
+1. Use a load balancer to distribute traffic across instances
+2. Implement retry logic in your client applications to handle 409 Conflict responses
 
-To maximize the benefits of the Concurrency Model:
+A complete example using three ledger instances with a reverse proxy is available in the [multi-node example](https://github.com/formancehq/ledger/blob/main/examples/multi-node/docker-compose.yml).
 
-1. **Implement Retry Logic**: Configure your applications to automatically retry transactions that encounter conflicts
-2. **Monitor Transaction Volumes**: Keep an eye on your transaction patterns to identify potential bottlenecks
-3. **Consider Data Distribution**: For very large deployments, distribute your data strategically across multiple ledgers
+## Performance considerations
 
-By leveraging these capabilities, your financial operations will remain reliable and consistent, even as your transaction volumes grow exponentially.
+The concurrency model has performance implications you should be aware of:
+
+1. **Account contention**: Frequently modified accounts can become bottlenecks
+   - Consider distributing transactions across multiple accounts when possible
+   - For high-volume accounts, batch operations when appropriate
+
+2. **Transaction size**: Larger transactions lock more accounts
+   - Keep transactions focused on related operations
+   - Split unrelated operations into separate transactions
+
+## Monitoring and troubleshooting
+
+To ensure your concurrency model is working effectively:
+
+1. Monitor the rate of 409 Conflict responses
+   - A high rate may indicate excessive contention on specific accounts
+   - Consider restructuring your account hierarchy or transaction patterns
+
+2. Track transaction latency
+   - Increasing latency may indicate locking contention
+   - Analyze which accounts are most frequently involved in conflicts
