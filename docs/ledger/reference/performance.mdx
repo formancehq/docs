@@ -1,82 +1,160 @@
 ---
-title: Performance Model
+title: Performance model
 ---
 
-# Performance Model: Scaling Your Financial Operations with Confidence
+# Performance model
 
-## What is the Performance Model?
+This document explains the performance characteristics of Formance Ledger and provides guidance on optimizing your deployment for better performance.
 
-The Performance Model in Formance Ledger helps you understand how your financial operations will perform as your business grows. It provides insights into how quickly transactions can be processed, how efficiently data can be queried, and what factors might affect your system's responsiveness as transaction volumes increase.
+## Performance characteristics
 
-## Why It Matters to Your Business
+The ledger's performance is affected by various factors, with different operations having different complexity models:
 
-As your business grows, your financial infrastructure needs to keep pace. The Performance Model helps you:
+| Operation | Complexity model | Description |
+| --- | --- | --- |
+| Transaction commit | O(N) + W | Linear scaling with number of postings (N) plus write overhead (W) |
+| Balance aggregation | O(Log(N)*M) | Logarithmic scaling with number of accounts (N) times number of assets (M) |
+| Point query (accounts/transactions) | O(1) | Constant time lookup using primary keys |
+| Range query (accounts/transactions) | O(Log(N)) | Logarithmic scaling with size of data set |
 
-- **Plan for Growth**: Understand how your system will perform as transaction volumes increase
-- **Optimize Operations**: Identify and address potential bottlenecks before they impact your customers
-- **Balance Features and Speed**: Make informed decisions about which features to enable based on your specific needs
-- **Meet Service Level Agreements (SLAs)**: Ensure your financial operations meet your promised response times
+### Transaction processing performance
 
-## Performance Characteristics
+Transaction processing performance is primarily influenced by:
 
-### Transaction Processing
+1. **Number of postings**: Performance scales linearly with the number of postings in a transaction.
+2. **Feature configuration**: Enabled features add processing overhead (see [Feature impact](#feature-impact)).
+3. **Database performance**: The underlying PostgreSQL database affects transaction throughput.
+4. **Concurrency**: Multiple transactions attempting to modify the same accounts can cause locking contention.
 
-When processing financial transactions, Formance Ledger is designed to:
+### Query performance
 
-- **Scale Linearly**: Processing time increases predictably with the number of entries in a transaction
-- **Handle Peak Volumes**: Maintain consistent performance even during high-traffic periods
-- **Process in Parallel**: Utilize multiple processors to handle operations simultaneously
+Query performance depends on:
 
-### Data Queries
+1. **Index usage**: The ledger uses PostgreSQL indexes to optimize queries.
+2. **Result set size**: Larger result sets require more processing time and memory.
+3. **Filter complexity**: Complex query filters can reduce performance.
 
-When retrieving financial data, you can expect:
+## Feature impact
 
-- **Fast Single-Record Lookups**: Instantly access individual account or transaction information
-- **Efficient Range Queries**: Quickly retrieve sets of transactions or accounts that match specific criteria
-- **Optimized Aggregations**: Calculate balances and other summaries with minimal processing time
+The ledger's performance can be significantly affected by the enabled features:
 
-## Real-World Performance Scenarios
+### Hash system
 
-### Payment Processing Platforms
+When the `HASH_LOGS` feature is enabled:
+- Each log is cryptographically linked to the previous log
+- Advisory locks are used to ensure hash chain integrity
+- This can become a bottleneck for high write throughput
 
-For businesses processing thousands of payments per day:
+```mermaid
+sequenceDiagram
+    actor Ledger
+    actor Store
+    actor Database
+    Ledger->>Store: Insert log
+    Store->>Database: SELECT pg_advisory_xact_lock(<ledger id>)
+    Database-->>Store: OK
+    note right of Database: The ledger is locked until the end of the transaction
+    Store->>Database: Get last log
+    Database-->>Store: Last log
+    Store->>Store: Compute hash of new log
+    Store->>Database: Write log
+    Database-->>Store: Log written
+    Store-->>Ledger: Updated log
+```
 
-- **Batch Processing**: Process thousands of transactions in seconds
-- **Real-time Payments**: Maintain sub-second response times for individual transactions
-- **End-of-Day Reconciliation**: Generate comprehensive reports without impacting ongoing operations
+### Movement tracking
 
-### Financial Applications
+When the `MOVES_HISTORY` feature is enabled:
+- Individual fund movements are tracked in the database
+- This adds overhead for transaction processing
+- The `MOVES_HISTORY_POST_COMMIT_EFFECTIVE_VOLUMES` feature adds further overhead for updating effective volumes
 
-For applications managing user accounts and transactions:
+## Scaling strategies
 
-- **Account Balance Queries**: Provide instant balance information to users
-- **Transaction History**: Quickly retrieve and display transaction history
-- **Financial Analytics**: Generate insights from transaction data without performance degradation
+As your transaction volumes grow, consider these scaling approaches:
 
-## Optimizing for Your Needs
+### Multiple ledgers
 
-### Balancing Features and Performance
+Distribute data across multiple ledgers based on logical business divisions:
+- Each ledger operates independently
+- Data can be queried across ledgers if needed
+- Reduces contention on single ledger resources
 
-Formance Ledger allows you to fine-tune your system based on your specific requirements:
+### Buckets
 
-- **Data Integrity Features**: Enable the Hash System for maximum security or disable it for maximum throughput
-- **Transaction Tracking**: Configure detailed movement tracking based on your audit requirements
-- **Query Optimization**: Structure your accounts and transactions to optimize for your most common queries
+Ledgers use PostgreSQL schemas (buckets) for data isolation:
+- Default bucket is named `_default`
+- Custom buckets can be created for different data sets
+- Allows for physical data separation
 
-### Scaling Strategies
+### Parallelism
 
-As your transaction volumes grow:
+The ledger supports parallel processing for certain operations:
+```go
+b.SetParallelism(int(parallelismFlag))
+```
+This improves throughput on multi-core systems by processing multiple operations concurrently.
 
-- **Multiple Ledgers**: Distribute data across multiple ledgers based on logical business divisions
-- **Sharding**: Organize your data to minimize contention on frequently accessed accounts
-- **Caching**: Implement appropriate caching strategies for frequently accessed data
+## Performance testing
 
-## Performance Testing
+Formance provides tools to benchmark your specific deployment:
 
-Formance provides comprehensive tools to help you understand and optimize performance:
+### Benchmark suite
 
-- **Benchmark Suite**: Test your specific transaction patterns to understand expected performance
-- **Load Testing**: Simulate high-volume scenarios to identify potential bottlenecks
-- **Performance Monitoring**: Track key metrics like transactions per second and response times
+The benchmark suite measures:
+1. **Transactions Per Second (TPS)**: How many transactions the ledger can process per second
+2. **Latency**: Time to process a single transaction (milliseconds)
 
-By understanding and leveraging the Performance Model, you can ensure that your financial operations remain responsive and reliable as your business grows, providing a seamless experience for your customers and partners.
+### Running benchmarks
+
+To run benchmarks against your deployment:
+
+```shell
+# Run locally
+earthly +run
+
+# Run against a remote stack
+earthly +run --args="--stack.url=XXX --client.id=XXX --client.secret=XXX"
+
+# Run against a remote ledger
+earthly +run --args="--ledger.url=XXX --auth.url=XXX --client.id=XXX --client.secret=XXX"
+```
+
+### Custom benchmarks
+
+You can customize the benchmark suite to test your specific transaction patterns:
+- Test scripts are located in the `/test/performance/scripts` directory
+- Each script defines a transaction pattern to benchmark
+- Available patterns include transfers between world and specific accounts, bounded and unbounded transactions
+
+## Performance optimization recommendations
+
+### For high-throughput applications
+
+1. Disable features you don't need:
+   - `HASH_LOGS`: Disable if audit trails are not critical
+   - `MOVES_HISTORY`: Disable if individual fund movement tracking is not required
+
+2. Optimize transaction structure:
+   - Group related operations into single transactions
+   - Minimize the number of postings per transaction
+   - Avoid modifying the same accounts in concurrent transactions
+
+3. Configure your database:
+   - Ensure adequate CPU and memory resources
+   - Optimize PostgreSQL for your workload (connection pooling, memory settings)
+   - Use SSDs for storage
+
+### For multi-instance deployments
+
+1. Implement proper load balancing across instances
+2. Add retry logic for 409 Conflict responses
+3. Consider using Redis-based shared locks to reduce conflicts
+
+## Monitoring performance
+
+Monitor these key metrics:
+1. **Transaction throughput**: Transactions per second
+2. **Transaction latency**: Time to process individual transactions
+3. **Conflict rate**: Frequency of 409 Conflict responses
+4. **Database metrics**: CPU, memory, disk I/O, connection count
