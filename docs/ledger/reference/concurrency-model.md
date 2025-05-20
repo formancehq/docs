@@ -17,7 +17,13 @@ Transactions in the ledger are fully atomic and serialized through two ordered c
 
 ### Pre-commit locking
 
-The pre-commit locking mechanism acquires locks on affected accounts before a transaction is committed. This prevents multiple transactions from modifying the same accounts simultaneously. This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back.
+The pre-commit locking mechanism acquires locks on affected accounts before a transaction is committed. This prevents multiple transactions from modifying the same accounts simultaneously. The ledger implements this using PostgreSQL's row-level locking with the `FOR UPDATE` clause:
+
+```sql
+SELECT * FROM balances WHERE account = $1 FOR UPDATE
+```
+
+This ensures that no other transaction can modify the same balances until the current transaction is committed or rolled back. For accounts emitting funds, this locking is particularly important to prevent overdrafts and ensure balance consistency.
 
 ### Optimistic locking
 
