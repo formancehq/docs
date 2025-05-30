@@ -280,6 +280,11 @@ const sidebars = {
                   id: "payments/connectors/wise",
                   label: "Wise",
                 },
+                {
+                  type: "doc",
+                  id: "payments/connectors/column",
+                  label: "Column",
+                },
               ],
             },
             {
