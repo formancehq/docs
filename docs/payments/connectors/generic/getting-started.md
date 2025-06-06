@@ -20,7 +20,7 @@ graph LR
   subgraph Formance Connectivity
     Connectivity <--> connector
   end
-  subgraph Your insfrastucture
+  subgraph Your infrastucture
     connector <-- HTTP --> service
   end
   service <-- PSP specific protocol --> psp
