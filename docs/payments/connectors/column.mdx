@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Column from '@site/docs/payments/partials/connectors/_column.mdx';
 import ColumnPostInstall from '@site/docs/payments/partials/connectors/_column_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import ColumnConfig from '@site/docs/payments/partials/connectors/_column_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Column account. Make sure you have a Column
 
 <ApiWarning/>
 
-## Setup
-
 <Column/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/column" \
 
 With config.json containing:
 
-```json
-{"apiKey":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={ColumnConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <ColumnPostInstall/>

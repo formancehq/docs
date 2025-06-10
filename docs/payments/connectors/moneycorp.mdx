@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Moneycorp from '@site/docs/payments/partials/connectors/_moneycorp.mdx';
 import MoneycorpPostInstall from '@site/docs/payments/partials/connectors/_moneycorp_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import MoneycorpConfig from '@site/docs/payments/partials/connectors/_moneycorp_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Moneycorp account. Make sure you have a Mon
 
 <ApiWarning/>
 
-## Setup
-
 <Moneycorp/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/moneycorp" \
 
 With config.json containing:
 
-```json
-{"apiKey":"string","clientID":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={MoneycorpConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <MoneycorpPostInstall/>

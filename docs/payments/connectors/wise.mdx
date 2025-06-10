@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Wise from '@site/docs/payments/partials/connectors/_wise.mdx';
 import WisePostInstall from '@site/docs/payments/partials/connectors/_wise_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import WiseConfig from '@site/docs/payments/partials/connectors/_wise_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Wise account. Make sure you have a Wise API
 
 <ApiWarning/>
 
-## Setup
-
 <Wise/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/wise" \
 
 With config.json containing:
 
-```json
-{"apiKey":"string","name":"string","pageSize":"25","pollingPeriod":"2m","webhookPublicKey":"string"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={WiseConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <WisePostInstall/>

@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Increase from '@site/docs/payments/partials/connectors/_increase.mdx';
 import IncreasePostInstall from '@site/docs/payments/partials/connectors/_increase_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import IncreaseConfig from '@site/docs/payments/partials/connectors/_increase_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Increase account. Make sure you have a Incr
 
 <ApiWarning/>
 
-## Setup
-
 <Increase/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/increase" \
 
 With config.json containing:
 
-```json
-{"apiKey":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m","webhookSharedSecret":"string"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={IncreaseConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <IncreasePostInstall/>

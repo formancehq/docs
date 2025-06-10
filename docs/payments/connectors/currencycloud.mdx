@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Currencycloud from '@site/docs/payments/partials/connectors/_currencycloud.mdx';
 import CurrencycloudPostInstall from '@site/docs/payments/partials/connectors/_currencycloud_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import CurrencycloudConfig from '@site/docs/payments/partials/connectors/_currencycloud_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Currencycloud account. Make sure you have a
 
 <ApiWarning/>
 
-## Setup
-
 <Currencycloud/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/currencyclou
 
 With config.json containing:
 
-```json
-{"apiKey":"string","endpoint":"string","loginID":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={CurrencycloudConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <CurrencycloudPostInstall/>

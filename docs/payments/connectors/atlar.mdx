@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Atlar from '@site/docs/payments/partials/connectors/_atlar.mdx';
 import AtlarPostInstall from '@site/docs/payments/partials/connectors/_atlar_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import AtlarConfig from '@site/docs/payments/partials/connectors/_atlar_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Atlar account. Make sure you have a Atlar A
 
 <ApiWarning/>
 
-## Setup
-
 <Atlar/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/atlar" \
 
 With config.json containing:
 
-```json
-{"accessKey":"string","baseUrl":"string","name":"string","pageSize":"25","pollingPeriod":"2m","secret":"string"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={AtlarConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <AtlarPostInstall/>

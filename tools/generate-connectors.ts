@@ -80,6 +80,13 @@ async function generateConnectorPages() {
         await fs.writeFile(postSetupFile, '');
         console.log(`Created empty: ${postSetupFile}`);
       }
+      
+      var configFile = path.join(PARTIALS_DIR, `_${p.provider.toLowerCase()}_config.json`);
+      const configFileExists = await fileExists(configFile);
+      if (!configFileExists) {
+        await fs.writeFile(configFile, JSON.stringify(modifiedObject));
+        console.log(`Created connector config ${configFile}`);
+      }
     }
 
     console.log('✅ Page generation completed');

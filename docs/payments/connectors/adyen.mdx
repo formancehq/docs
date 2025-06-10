@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Adyen from '@site/docs/payments/partials/connectors/_adyen.mdx';
 import AdyenPostInstall from '@site/docs/payments/partials/connectors/_adyen_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import AdyenConfig from '@site/docs/payments/partials/connectors/_adyen_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Adyen account. Make sure you have a Adyen A
 
 <ApiWarning/>
 
-## Setup
-
 <Adyen/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/adyen" \
 
 With config.json containing:
 
-```json
-{"apiKey":"string","companyID":"string","liveEndpointPrefix":"string","name":"string","pageSize":"25","pollingPeriod":"2m","webhookPassword":"string","webhookUsername":"string"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={AdyenConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <AdyenPostInstall/>

@@ -2,7 +2,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import <%= provider %> from '@site/docs/payments/partials/connectors/_<%= providerLower %>.mdx';
 import <%= provider %>PostInstall from '@site/docs/payments/partials/connectors/_<%= providerLower %>_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import <%= provider %>Config from '@site/docs/payments/partials/connectors/_<%= providerLower %>_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -10,11 +11,9 @@ Before you begin, you need to have a <%= provider %> account. Make sure you have
 
 <ApiWarning/>
 
-## Setup
-
 <<%= provider %>/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -33,14 +32,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/<%= provider
 
 With config.json containing:
 
-```json
-<%- rawData %>
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={<%= provider %>Config}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <<%= provider %>PostInstall/>

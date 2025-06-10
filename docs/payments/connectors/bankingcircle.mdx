@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Bankingcircle from '@site/docs/payments/partials/connectors/_bankingcircle.mdx';
 import BankingcirclePostInstall from '@site/docs/payments/partials/connectors/_bankingcircle_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import BankingcircleConfig from '@site/docs/payments/partials/connectors/_bankingcircle_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Bankingcircle account. Make sure you have a
 
 <ApiWarning/>
 
-## Setup
-
 <Bankingcircle/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/bankingcircl
 
 With config.json containing:
 
-```json
-{"authorizationEndpoint":"string","endpoint":"string","name":"string","pageSize":"25","password":"string","pollingPeriod":"2m","userCertificate":"string","userCertificateKey":"string","username":"string"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={BankingcircleConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <BankingcirclePostInstall/>

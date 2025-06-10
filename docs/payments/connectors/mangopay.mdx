@@ -8,7 +8,8 @@ import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Mangopay from '@site/docs/payments/partials/connectors/_mangopay.mdx';
 import MangopayPostInstall from '@site/docs/payments/partials/connectors/_mangopay_post.mdx';
-import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+import MangopayConfig from '@site/docs/payments/partials/connectors/_mangopay_config.json';
+import ReactJson from 'react-json-view'
 
 ## Prerequisites
 
@@ -16,11 +17,9 @@ Before you begin, you need to have a Mangopay account. Make sure you have a Mang
 
 <ApiWarning/>
 
-## Setup
-
 <Mangopay/>
 
-## Install
+## Installation
 
 <StackCmd>
 
@@ -39,14 +38,13 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/mangopay" \
 
 With config.json containing:
 
-```json
-{"apiKey":"string","clientID":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
-```
-
-Schema viewer:
-
-<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
-
-## Post-Install
+<ReactJson
+  src={MangopayConfig}
+  theme="ocean"
+  displayDataTypes={false}
+  collapsed={1}
+  name={false}
+  indentWidth={2}
+/>
 
 <MangopayPostInstall/>
