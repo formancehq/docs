@@ -7,7 +7,8 @@ description: Learn how to use the Bankingcircle Connector to connect your
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Bankingcircle from '@site/docs/payments/partials/connectors/_bankingcircle.mdx';
-import BankingcirclePostSetup from '@site/docs/payments/partials/connectors/_bankingcircle_post.mdx';
+import BankingcirclePostInstall from '@site/docs/payments/partials/connectors/_bankingcircle_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
 
 ## Prerequisites
 
@@ -18,6 +19,8 @@ Before you begin, you need to have a Bankingcircle account. Make sure you have a
 ## Setup
 
 <Bankingcircle/>
+
+## Install
 
 <StackCmd>
 
@@ -40,4 +43,10 @@ With config.json containing:
 {"authorizationEndpoint":"string","endpoint":"string","name":"string","pageSize":"25","password":"string","pollingPeriod":"2m","userCertificate":"string","userCertificateKey":"string","username":"string"}
 ```
 
-<BankingcirclePostSetup/>
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<BankingcirclePostInstall/>

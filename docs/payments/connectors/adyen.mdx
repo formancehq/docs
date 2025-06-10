@@ -7,7 +7,8 @@ description: Learn how to use the Adyen Connector to connect your Formance
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Adyen from '@site/docs/payments/partials/connectors/_adyen.mdx';
-import AdyenPostSetup from '@site/docs/payments/partials/connectors/_adyen_post.mdx';
+import AdyenPostInstall from '@site/docs/payments/partials/connectors/_adyen_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
 
 ## Prerequisites
 
@@ -18,6 +19,8 @@ Before you begin, you need to have a Adyen account. Make sure you have a Adyen A
 ## Setup
 
 <Adyen/>
+
+## Install
 
 <StackCmd>
 
@@ -40,4 +43,10 @@ With config.json containing:
 {"apiKey":"string","companyID":"string","liveEndpointPrefix":"string","name":"string","pageSize":"25","pollingPeriod":"2m","webhookPassword":"string","webhookUsername":"string"}
 ```
 
-<AdyenPostSetup/>
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<AdyenPostInstall/>

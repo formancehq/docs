@@ -1,0 +1,52 @@
+---
+title: Increase
+description: Learn how to use the Increase Connector to connect your Formance
+  Platform with your Increase account.
+---
+
+import {StackCmd} from '@site/src/components/StackCmd';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import Increase from '@site/docs/payments/partials/connectors/_increase.mdx';
+import IncreasePostInstall from '@site/docs/payments/partials/connectors/_increase_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
+
+## Prerequisites
+
+Before you begin, you need to have a Increase account. Make sure you have a Increase API key and secret, with the least amount of permissions required to access the functionality of the Increase Connector you plan to use.
+
+<ApiWarning/>
+
+## Setup
+
+<Increase/>
+
+## Install
+
+<StackCmd>
+
+```shell
+fctl payments connectors install increase config.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/increase" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @config.json
+```
+
+</StackCmd>
+
+With config.json containing:
+
+```json
+{"apiKey":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m","webhookSharedSecret":"string"}
+```
+
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<IncreasePostInstall/>

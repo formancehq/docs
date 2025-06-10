@@ -24,7 +24,7 @@ export default async function createConfig() {
     markdown: {
       mermaid: true
     },
-    themes: ['@docusaurus/theme-mermaid', 'docusaurus-theme-redoc'],
+    themes: ['@docusaurus/theme-mermaid', 'docusaurus-theme-redoc', 'docusaurus-json-schema-plugin'],
     webpack: {
       jsLoader: (isServer) => ({
         loader: require.resolve('swc-loader'),

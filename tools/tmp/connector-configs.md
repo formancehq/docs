@@ -1,0 +1,141 @@
+
+
+{
+  "apiKey": "string",
+  "companyID": "string",
+  "liveEndpointPrefix": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Adyen",
+  "webhookPassword": "string",
+  "webhookUsername": "string"
+}
+
+{
+  "accessKey": "string",
+  "baseUrl": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Atlar",
+  "secret": "string"
+}
+
+{
+  "authorizationEndpoint": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "password": "string",
+  "pollingPeriod": "2m",
+  "provider": "Bankingcircle",
+  "userCertificate": "string",
+  "userCertificateKey": "string",
+  "username": "string"
+}
+
+{
+  "apiKey": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Column"
+}
+
+{
+  "apiKey": "string",
+  "endpoint": "string",
+  "loginID": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Currencycloud"
+}
+
+{
+  "directory": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Dummypay"
+}
+
+{
+  "apiKey": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Generic"
+}
+
+{
+  "apiKey": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Increase",
+  "webhookSharedSecret": "string"
+}
+
+{
+  "apiKey": "string",
+  "clientID": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Mangopay"
+}
+
+{
+  "apiKey": "string",
+  "apiSecret": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Modulr"
+}
+
+{
+  "apiKey": "string",
+  "clientID": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Moneycorp"
+}
+
+{
+  "apiKey": "string",
+  "clientID": "string",
+  "endpoint": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Qonto",
+  "stagingToken": "string"
+}
+
+{
+  "apiKey": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Stripe"
+}
+
+{
+  "apiKey": "string",
+  "name": "string",
+  "pageSize": "25",
+  "pollingPeriod": "2m",
+  "provider": "Wise",
+  "webhookPublicKey": "string"
+}
+

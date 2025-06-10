@@ -7,7 +7,8 @@ description: Learn how to use the Currencycloud Connector to connect your
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Currencycloud from '@site/docs/payments/partials/connectors/_currencycloud.mdx';
-import CurrencycloudPostSetup from '@site/docs/payments/partials/connectors/_currencycloud_post.mdx';
+import CurrencycloudPostInstall from '@site/docs/payments/partials/connectors/_currencycloud_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
 
 ## Prerequisites
 
@@ -18,6 +19,8 @@ Before you begin, you need to have a Currencycloud account. Make sure you have a
 ## Setup
 
 <Currencycloud/>
+
+## Install
 
 <StackCmd>
 
@@ -40,4 +43,10 @@ With config.json containing:
 {"apiKey":"string","endpoint":"string","loginID":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
 ```
 
-<CurrencycloudPostSetup/>
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<CurrencycloudPostInstall/>

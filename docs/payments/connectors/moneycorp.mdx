@@ -7,7 +7,8 @@ description: Learn how to use the Moneycorp Connector to connect your Formance
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Moneycorp from '@site/docs/payments/partials/connectors/_moneycorp.mdx';
-import MoneycorpPostSetup from '@site/docs/payments/partials/connectors/_moneycorp_post.mdx';
+import MoneycorpPostInstall from '@site/docs/payments/partials/connectors/_moneycorp_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
 
 ## Prerequisites
 
@@ -18,6 +19,8 @@ Before you begin, you need to have a Moneycorp account. Make sure you have a Mon
 ## Setup
 
 <Moneycorp/>
+
+## Install
 
 <StackCmd>
 
@@ -40,4 +43,10 @@ With config.json containing:
 {"apiKey":"string","clientID":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
 ```
 
-<MoneycorpPostSetup/>
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<MoneycorpPostInstall/>

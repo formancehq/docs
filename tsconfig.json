@@ -2,6 +2,7 @@
     "extends": "@docusaurus/tsconfig",
     "compilerOptions": {
         "baseUrl": ".",
+        "types": ["docusaurus-json-schema-plugin","node"],
         "paths": {
           "*": ["node_modules/*"]
         }

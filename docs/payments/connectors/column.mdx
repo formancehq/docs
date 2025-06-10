@@ -7,7 +7,8 @@ description: Learn how to use the Column Connector to connect your Formance
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Column from '@site/docs/payments/partials/connectors/_column.mdx';
-import ColumnPostSetup from '@site/docs/payments/partials/connectors/_column_post.mdx';
+import ColumnPostInstall from '@site/docs/payments/partials/connectors/_column_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
 
 ## Prerequisites
 
@@ -18,6 +19,8 @@ Before you begin, you need to have a Column account. Make sure you have a Column
 ## Setup
 
 <Column/>
+
+## Install
 
 <StackCmd>
 
@@ -40,4 +43,10 @@ With config.json containing:
 {"apiKey":"string","endpoint":"string","name":"string","pageSize":"25","pollingPeriod":"2m"}
 ```
 
-<ColumnPostSetup/>
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<ColumnPostInstall/>

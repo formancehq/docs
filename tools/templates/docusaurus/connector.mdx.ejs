@@ -1,7 +1,8 @@
 import {StackCmd} from '@site/src/components/StackCmd';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import <%= provider %> from '@site/docs/payments/partials/connectors/_<%= providerLower %>.mdx';
-import <%= provider %>PostSetup from '@site/docs/payments/partials/connectors/_<%= providerLower %>_post.mdx';
+import <%= provider %>PostInstall from '@site/docs/payments/partials/connectors/_<%= providerLower %>_post.mdx';
+import JSONSchemaViewer from '@theme/JSONSchemaViewer';
 
 ## Prerequisites
 
@@ -12,6 +13,8 @@ Before you begin, you need to have a <%= provider %> account. Make sure you have
 ## Setup
 
 <<%= provider %>/>
+
+## Install
 
 <StackCmd>
 
@@ -34,4 +37,10 @@ With config.json containing:
 <%- rawData %>
 ```
 
-<<%= provider %>PostSetup/>
+Schema viewer:
+
+<CodeBlock language="json-schema">{JSON.stringify(rawData, null, 2)}</CodeBlock>
+
+## Post-Install
+
+<<%= provider %>PostInstall/>
