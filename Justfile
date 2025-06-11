@@ -13,7 +13,7 @@ connectors: connectors-capabilities connectors-generate-pages
 
 [group('connectors')]
 connectors-capabilities:
-  @curl https://raw.githubusercontent.com/formancehq/payments/refs/heads/poc/capabilities/docs/other/connector-capabilities.json -s --output {{components_dir}}/connector-capabilities.json
+  @curl https://raw.githubusercontent.com/formancehq/payments/refs/heads/main/docs/other/connector-capabilities.json -s --output {{components_dir}}/connector-capabilities.json
 
 [group('connectors')]
 connectors-generate-pages:
