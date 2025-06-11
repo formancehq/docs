@@ -3,6 +3,8 @@ title: Connectors
 description: Available connectors for the Connectivity Service
 ---
 
+import {Capabilities} from '@site/src/components/ConnectorCapabilities';
+
 The Connectivity Service provides a connector framework that allows you to integrate
 with any payment provider. It pre-packages the integration logic for some of
 the most popular payment providers, as per the table below, with the goal of
@@ -30,15 +32,7 @@ polling. Stay tuned for future updates and developments in this area.
 
 ## Supported processors
 
-| Capabilities                 | Adyen                | Atlar | BankingCircle | CurrencyCloud | Mangopay | Modulr | Moneycorp | Stripe | Wise | Generic |
-| ---------------------------- | -------------------- | ----- | ------------- | ------------- | -------- | ------ | --------- | ------ | ---- | ------- |
-| Accounts Data Layer          | ✅                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
-| External Accounts Data Layer | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
-| Accounts Balances Data Layer | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
-| Transactions Data Layer      | ✅ (without history) | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ✅      |
-| Bank Account Creation        | ❌                   | ✅     | ✅            | ❌            | ✅        | ❌     | ❌        | ❌     | ❌    | ❌      |
-| Transfer Initiation          | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ❌      |
-| Payout Initiation            | ❌                   | ✅     | ✅            | ✅            | ✅        | ✅     | ✅        | ✅     | ✅    | ❌      |
+<Capabilities />
 
 ## Capabilities definitions
 
