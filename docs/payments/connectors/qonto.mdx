@@ -5,11 +5,11 @@ description: Learn how to use the Qonto Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Qonto from '@site/docs/payments/partials/connectors/_qonto.mdx';
 import QontoPostInstall from '@site/docs/payments/partials/connectors/_qonto_post.mdx';
 import QontoConfig from '@site/docs/payments/partials/connectors/_qonto_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/qonto" \
 
 With config.json containing:
 
-<ReactJson
-  src={QontoConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={QontoConfig} theme='ocean' />
 
 <QontoPostInstall/>

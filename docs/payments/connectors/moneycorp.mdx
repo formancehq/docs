@@ -5,11 +5,11 @@ description: Learn how to use the Moneycorp Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Moneycorp from '@site/docs/payments/partials/connectors/_moneycorp.mdx';
 import MoneycorpPostInstall from '@site/docs/payments/partials/connectors/_moneycorp_post.mdx';
 import MoneycorpConfig from '@site/docs/payments/partials/connectors/_moneycorp_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/moneycorp" \
 
 With config.json containing:
 
-<ReactJson
-  src={MoneycorpConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={MoneycorpConfig} theme='ocean' />
 
 <MoneycorpPostInstall/>

@@ -5,11 +5,11 @@ description: Learn how to use the Increase Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Increase from '@site/docs/payments/partials/connectors/_increase.mdx';
 import IncreasePostInstall from '@site/docs/payments/partials/connectors/_increase_post.mdx';
 import IncreaseConfig from '@site/docs/payments/partials/connectors/_increase_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/increase" \
 
 With config.json containing:
 
-<ReactJson
-  src={IncreaseConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={IncreaseConfig} theme='ocean' />
 
 <IncreasePostInstall/>

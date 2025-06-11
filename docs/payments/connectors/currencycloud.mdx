@@ -5,11 +5,11 @@ description: Learn how to use the Currencycloud Connector to connect your
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Currencycloud from '@site/docs/payments/partials/connectors/_currencycloud.mdx';
 import CurrencycloudPostInstall from '@site/docs/payments/partials/connectors/_currencycloud_post.mdx';
 import CurrencycloudConfig from '@site/docs/payments/partials/connectors/_currencycloud_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/currencyclou
 
 With config.json containing:
 
-<ReactJson
-  src={CurrencycloudConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={CurrencycloudConfig} theme='ocean' />
 
 <CurrencycloudPostInstall/>

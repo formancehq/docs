@@ -5,11 +5,11 @@ description: Learn how to use the Atlar Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Atlar from '@site/docs/payments/partials/connectors/_atlar.mdx';
 import AtlarPostInstall from '@site/docs/payments/partials/connectors/_atlar_post.mdx';
 import AtlarConfig from '@site/docs/payments/partials/connectors/_atlar_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/atlar" \
 
 With config.json containing:
 
-<ReactJson
-  src={AtlarConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={AtlarConfig} theme='ocean' />
 
 <AtlarPostInstall/>

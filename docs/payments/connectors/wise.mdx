@@ -5,11 +5,11 @@ description: Learn how to use the Wise Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Wise from '@site/docs/payments/partials/connectors/_wise.mdx';
 import WisePostInstall from '@site/docs/payments/partials/connectors/_wise_post.mdx';
 import WiseConfig from '@site/docs/payments/partials/connectors/_wise_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/wise" \
 
 With config.json containing:
 
-<ReactJson
-  src={WiseConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={WiseConfig} theme='ocean' />
 
 <WisePostInstall/>

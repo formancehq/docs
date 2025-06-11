@@ -5,11 +5,11 @@ description: Learn how to use the Column Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Column from '@site/docs/payments/partials/connectors/_column.mdx';
 import ColumnPostInstall from '@site/docs/payments/partials/connectors/_column_post.mdx';
 import ColumnConfig from '@site/docs/payments/partials/connectors/_column_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/column" \
 
 With config.json containing:
 
-<ReactJson
-  src={ColumnConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={ColumnConfig} theme='ocean' />
 
 <ColumnPostInstall/>

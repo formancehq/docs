@@ -5,11 +5,11 @@ description: Learn how to use the Adyen Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Adyen from '@site/docs/payments/partials/connectors/_adyen.mdx';
 import AdyenPostInstall from '@site/docs/payments/partials/connectors/_adyen_post.mdx';
 import AdyenConfig from '@site/docs/payments/partials/connectors/_adyen_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/adyen" \
 
 With config.json containing:
 
-<ReactJson
-  src={AdyenConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={AdyenConfig} theme='ocean' />
 
 <AdyenPostInstall/>

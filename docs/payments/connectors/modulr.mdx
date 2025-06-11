@@ -5,11 +5,11 @@ description: Learn how to use the Modulr Connector to connect your Formance
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Modulr from '@site/docs/payments/partials/connectors/_modulr.mdx';
 import ModulrPostInstall from '@site/docs/payments/partials/connectors/_modulr_post.mdx';
 import ModulrConfig from '@site/docs/payments/partials/connectors/_modulr_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/modulr" \
 
 With config.json containing:
 
-<ReactJson
-  src={ModulrConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={ModulrConfig} theme='ocean' />
 
 <ModulrPostInstall/>

@@ -5,11 +5,11 @@ description: Learn how to use the Bankingcircle Connector to connect your
 ---
 
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
 import Bankingcircle from '@site/docs/payments/partials/connectors/_bankingcircle.mdx';
 import BankingcirclePostInstall from '@site/docs/payments/partials/connectors/_bankingcircle_post.mdx';
 import BankingcircleConfig from '@site/docs/payments/partials/connectors/_bankingcircle_config.json';
-import ReactJson from 'react-json-view';
 
 ## Prerequisites
 
@@ -38,13 +38,6 @@ curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/bankingcircl
 
 With config.json containing:
 
-<ReactJson
-  src={BankingcircleConfig}
-  theme="ocean"
-  displayDataTypes={false}
-  collapsed={1}
-  name={false}
-  indentWidth={2}
-/>
+<JsonViewer data={BankingcircleConfig} theme='ocean' />
 
 <BankingcirclePostInstall/>
