@@ -262,6 +262,11 @@ const sidebars = {
                 },
                 {
                   type: "doc",
+                  id: "payments/connectors/increase",
+                  label: "Increase",
+                },
+                {
+                  type: "doc",
                   id: "payments/connectors/mangopay",
                   label: "Mangopay",
                 },
@@ -279,6 +284,11 @@ const sidebars = {
                   type: "doc",
                   id: "payments/connectors/stripe",
                   label: "Stripe",
+                },
+                {
+                  type: "doc",
+                  id: "payments/connectors/qonto",
+                  label: "Qonto",
                 },
                 {
                   type: "doc",

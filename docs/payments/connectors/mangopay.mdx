@@ -1,41 +1,43 @@
 ---
-title: Mangopay Connector
-description: Learn how to use the Mangopay Connector to connect your Formance Stack with your Mangopay account.
+title: Mangopay
+description: Learn how to use the Mangopay Connector to connect your Formance
+  Platform with your Mangopay account.
 ---
+
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import Mangopay from '@site/docs/payments/partials/connectors/_mangopay.mdx';
+import MangopayPostInstall from '@site/docs/payments/partials/connectors/_mangopay_post.mdx';
+import MangopayConfig from '@site/docs/payments/partials/connectors/_mangopay_config.json';
 
 ## Prerequisites
 
-Before you begin, you need to have a Mangopay account. If you don't have one, you can [sign up for a Mangopay account](https://mangopay.com/contact) here. Make sure you have a Mangopay clientID and API key, with the least amount of permissions required to access the functionality of the Mangopay Connector you plan to use.
+Before you begin, you need to have a Mangopay account. Make sure you have a Mangopay API key and secret, with the least amount of permissions required to access the functionality of the Mangopay Connector you plan to use.
 
 <ApiWarning/>
 
-## Setup
+<Mangopay/>
+
+## Installation
 
 <StackCmd>
 
 ```shell
-fctl payments connectors install mangopay mangopay.json
+fctl payments connectors install mangopay config.json
 ```
 
 ```shell
 curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/mangopay" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d @mangopay.json
+-d @config.json
 ```
 
 </StackCmd>
 
-With mangopay.json containing:
+With config.json containing:
 
-```json
-{
-    "name": "mangopay",
-    "clientID": "<clientID>",
-    "apiKey": "<apiKey>",
-    "endpoint": "<endpoint>",
-    "pollingPeriod": "2m"
-}
-```
+<JsonViewer data={MangopayConfig} theme='ocean' />
+
+<MangopayPostInstall/>

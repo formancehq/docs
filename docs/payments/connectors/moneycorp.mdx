@@ -1,41 +1,43 @@
 ---
-title: Moneycorp Connector
-description: Learn how to use the Moneycorp Connector to connect your Formance Stack with your Moneycorp account.
+title: Moneycorp
+description: Learn how to use the Moneycorp Connector to connect your Formance
+  Platform with your Moneycorp account.
 ---
+
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import Moneycorp from '@site/docs/payments/partials/connectors/_moneycorp.mdx';
+import MoneycorpPostInstall from '@site/docs/payments/partials/connectors/_moneycorp_post.mdx';
+import MoneycorpConfig from '@site/docs/payments/partials/connectors/_moneycorp_config.json';
 
 ## Prerequisites
 
-Before you begin, you need to have a Moneycorp account. If you don't have one, you can [sign up for a Moneycorp account](https://Moneycorp.com/contact) here. Make sure you have a Moneycorp clientID and API key, with the least amount of permissions required to access the functionality of the Moneycorp Connector you plan to use.
+Before you begin, you need to have a Moneycorp account. Make sure you have a Moneycorp API key and secret, with the least amount of permissions required to access the functionality of the Moneycorp Connector you plan to use.
 
 <ApiWarning/>
 
-## Setup
+<Moneycorp/>
+
+## Installation
 
 <StackCmd>
 
 ```shell
-fctl payments connectors install moneycorp moneycorp.json
+fctl payments connectors install moneycorp config.json
 ```
 
 ```shell
 curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/moneycorp" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d @moneycorp.json
+-d @config.json
 ```
 
 </StackCmd>
 
-With moneycorp.json containing:
+With config.json containing:
 
-```json
-{
-    "name": "moneycorp",
-    "clientID": "<clientID>",
-    "apiKey": "<apiKey>",
-    "endpoint": "<endpoint>",
-    "pollingPeriod": "2m"   
-}
-```
+<JsonViewer data={MoneycorpConfig} theme='ocean' />
+
+<MoneycorpPostInstall/>

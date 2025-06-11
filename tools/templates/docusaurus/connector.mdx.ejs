@@ -1,0 +1,37 @@
+import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
+import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import <%= provider %> from '@site/docs/payments/partials/connectors/_<%= providerLower %>.mdx';
+import <%= provider %>PostInstall from '@site/docs/payments/partials/connectors/_<%= providerLower %>_post.mdx';
+import <%= provider %>Config from '@site/docs/payments/partials/connectors/_<%= providerLower %>_config.json';
+
+## Prerequisites
+
+Before you begin, you need to have a <%= provider %> account. Make sure you have a <%= provider %> API key and secret, with the least amount of permissions required to access the functionality of the <%= provider %> Connector you plan to use.
+
+<ApiWarning/>
+
+<<%= provider %>/>
+
+## Installation
+
+<StackCmd>
+
+```shell
+fctl payments connectors install <%= providerLower %> config.json
+```
+
+```shell
+curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/<%= providerLower %>" \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer $TOKEN" \
+-d @config.json
+```
+
+</StackCmd>
+
+With config.json containing:
+
+<JsonViewer data={<%= provider %>Config} theme='ocean' />
+
+<<%= provider %>PostInstall/>

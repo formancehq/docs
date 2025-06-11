@@ -1,67 +1,43 @@
 ---
-title: Adyen Connector
-description: Learn how to use the Adyen Connector to connect your Formance Stack with your Adyen account.
+title: Adyen
+description: Learn how to use the Adyen Connector to connect your Formance
+  Platform with your Adyen account.
 ---
+
 import {StackCmd} from '@site/src/components/StackCmd';
+import JsonViewer from '@site/src/components/JsonViewer';
 import ApiWarning from '@site/docs/payments/partials/_api_key.mdx';
+import Adyen from '@site/docs/payments/partials/connectors/_adyen.mdx';
+import AdyenPostInstall from '@site/docs/payments/partials/connectors/_adyen_post.mdx';
+import AdyenConfig from '@site/docs/payments/partials/connectors/_adyen_config.json';
 
 ## Prerequisites
 
-Before you begin, you need to have a Adyen account. If you don't have one, you can [sign up for a Adyen account](https://www.adyen.com/) here.
+Before you begin, you need to have a Adyen account. Make sure you have a Adyen API key and secret, with the least amount of permissions required to access the functionality of the Adyen Connector you plan to use.
 
 <ApiWarning/>
 
-## Setup
+<Adyen/>
 
-In order to use the adyen connector, you will have to create a webhook in
-your Adyen account. You need to go to Developers > Webhooks in your Adyen
-account and click on the button to add a new standard webhook.
-
-![Webhook Creation](./adyen_screenshot_1.png)
-
-Then, on the webhook creation page, you need to first generate a new HMAC key.
-
-![HMAC Key Generation](./adyen_screenshot_2.png)
-
-Copy the HMAC key and paste it in the `hmacKey` field in the JSON configuration
-for the formance connector. You can now create the connector on the Formance
-platform using the following command:
+## Installation
 
 <StackCmd>
 
 ```shell
-fctl payments connectors install adyen adyen.json
+fctl payments connectors install adyen config.json
 ```
 
 ```shell
 curl -X POST "https://$STACK.formance.cloud/api/payments/connectors/adyen" \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer $TOKEN" \
--d @adyen.json
+-d @config.json
 ```
 
 </StackCmd>
 
-With adyen.json containing:
+With config.json containing:
 
-```json
-{
-    "name": "adyen",
-    "apiKey": "<apiKey>",
-    "hmacKey": "<hmacKey>",
-    "liveEndpointPrefix": "<liveEndpointPrefix>",
-    "pollingPeriod": "2m"
-}
-```
+<JsonViewer data={AdyenConfig} theme='ocean' />
 
-Retrieve the connector ID after creation, you will need it to link the connector
-to the webhook in Adyen.
-
-Finally, you can add the URL in the server configuration in the webhook creation
-page on Adyen. The URL must have the following format:
-
-```
-https://$STACK.formance.cloud/api/payments/connectors/webhooks/adyen/<connectorID>/
-```
-
-You can now save the configuration and wait for webhooks to start coming in.
+<AdyenPostInstall/>

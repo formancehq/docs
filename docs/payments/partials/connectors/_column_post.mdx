@@ -1,0 +1,38 @@
+### Configuration Parameters
+
+| Parameter | Description | Required |
+| --------------- | ------------------------------------------------------ | -------- |
+| `name` | The name of the connector | Yes |
+| `pollingPeriod` | The frequency at which the connector polls for updates | Yes |
+| `endpoint` | The Column API endpoint | Yes |
+| `apiKey` | Your Column API key | Yes |
+| `pageSize` | The number of items to fetch per page | No |
+
+## Features
+
+The Column connector supports the following capabilities:
+
+- **Account Management**: Fetch accounts and balances, create bank accounts
+- **External Accounts**: Fetch and manage external counterparties
+- **Payments**: Fetch payment history and create various types of transfers
+- **Internal Transfers**: Transfer funds between Column accounts
+- **External Payouts**: Support for ACH, wire, international wire, and real-time transfers
+- **Reversals**: Reverse ACH transfers when needed
+- **Webhook Integration**: Real-time updates about transaction statuses
+
+## Supported Payment Types
+
+### Internal Transfers
+Transfer funds between Column accounts within your organization.
+
+### ACH Transfers
+Automated Clearing House transfers for domestic payments with support for different entry class codes (PPD, etc.).
+
+### Wire Transfers
+Domestic wire transfers for same-day settlement.
+
+### International Wire Transfers
+Cross-border wire transfers with support for SWIFT messaging.
+
+### Real-time Transfers
+Instant payment transfers for immediate settlement.
