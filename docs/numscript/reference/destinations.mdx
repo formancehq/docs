@@ -1,12 +1,20 @@
 ---
 title: Destinations
-sidebar_position: 2
 ---
 
-# Destinations
-As with sources, there are several options when it comes to deciding where should funds in a financial transaction comes from. The send statement provides the following ways of defining destinations:
+In Numscript, a "destination" specifies where funds go in a financial transaction. Numscript provides flexible options for specifying destinations to accommodate various financial scenarios.
 
-## Single destination
+### Single destinations
+
+The most basic destination is a direct reference to an account:
+
+Syntax:
+
+```numscript
+destination = @destination_account
+```
+
+Example:
 
 ```numscript
 send [COIN 100] (
@@ -15,11 +23,37 @@ send [COIN 100] (
 )
 ```
 
-## Allocation destinations
+Account destinations can be specified using:
+- Account references: `@account`
+- Variables: `$account_variable`
 
-Similar to portioned sources, destination can be defined as a sequence of fractions to split the monetary onto multiple accounts.
+### Allotment destinations
 
-In any case, the summed total of fractions in a block needs to be equal to 1 and the remaining keyword can be used to reach that total:
+In addition to sequential accounts, destination blocks can use fractions or percentages to split the amount across multiple accounts. The summed total of fractions must equal 1, and the `remaining` keyword can be used to reach that total.
+
+Syntax:
+
+Using fractions: 
+
+```numscript
+destination = {
+    fraction to destination_account1
+    remaining to destination_account2
+  }
+```
+
+Using percentages:
+
+```numscript
+destination = {
+    percentage% to destination_account1
+    remaining to destination_account2
+  }
+```
+
+Examples:
+
+With fraction allocation:
 
 ```numscript
 send [COIN 100] (
@@ -30,8 +64,8 @@ send [COIN 100] (
   }
 )
 ```
-
-Out of convenience, percentage notation is also available:
+ 
+With percentage allocation:
 
 ```numscript
 send [COIN 100] (
@@ -43,9 +77,72 @@ send [COIN 100] (
 )
 ```
 
-## Nested destinations
+### Kept destinations
 
-Finally, as with sources, destination blocks can be nested:
+Instead of transferring all funds to new accounts, you can specify that some portion should be "kept" (remain in the source account):
+
+Syntax:
+
+```numscript
+destination = kept
+```
+
+or
+
+```numscript
+destination = {
+    fraction or percentage to destination_account1
+    remaining kept
+  }
+```
+
+Example:
+
+```numscript
+send [COIN 100] (
+  source = @world
+  destination = {
+    50% to @users:001
+    remaining kept
+  }
+)
+```
+
+This is useful when you only want to transfer a portion of the funds.
+
+### Ordered destinations with maximum caps
+
+Ordered destinations route funds to multiple destinations in sequence, with maximum caps for each destination:
+
+Syntax:
+
+```numscript
+{
+  destination = {
+    max [value] to @destination_account1
+    remaining to @destination_account2
+  }
+}
+```
+
+```numscript
+send [COIN 100] (
+  source = @world
+  destination = {
+    max [COIN 20] to @users:001
+    max [COIN 50] to @users:002
+    remaining to @users:003
+  }
+)
+```
+
+This sends up to the specified maximum to each destination in order, with any remaining amount going to the final destination.
+
+### Nested destinations
+
+You can nest destination structures to create complex distribution patterns:
+
+Example:
 
 ```numscript
 send [COIN 100] (
@@ -60,3 +157,10 @@ send [COIN 100] (
   }
 )
 ```
+
+In this example:
+- 80% of the funds go to `@users:001`
+- Of the remaining 20%:
+  - 70% (14% of total) goes to `@platform`
+  - 15% (3% of total) goes to `@taxes`
+  - 15% (3% of total) goes to `@charity`
