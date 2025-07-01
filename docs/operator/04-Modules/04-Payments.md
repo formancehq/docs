@@ -4,7 +4,6 @@ Formance Payments is a unified API that abstracts over multiple different paymen
 
 Formance Payments requires:
 - **PostgreSQL**: See configuration guide [here](../05-Infrastructure%20services/01-PostgreSQL.md).
-- **Temporal**: See configuration guide [here](../05-Infrastructure%20services/04-Temporal.md).
 - (Optional) **Broker**: See configuration guide [here](../05-Infrastructure%20services/02-Message%20broker.md).
 
 ## Payments Object

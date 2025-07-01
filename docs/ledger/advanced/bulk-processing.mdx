@@ -37,5 +37,3 @@ curl -H "Authorization: Bearer $(fctl cloud generate-personal-token)" \
      -X POST <stack-url>/api/ledger/v2/<ledger-name>/_bulk?parallel=true&atomic=false \
      -H 'Content-Type: application/vnd.formance.ledger.api.v2.bulk+script-stream' \
      --data-binary @<stream file location>
-
-
