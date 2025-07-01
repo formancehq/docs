@@ -2,6 +2,7 @@
   "redirects": [
     { "source": "/next/:path*", "destination": "/:path*", "permanent": false},
     { "source": "/docs/payments/get-started/connectors", "destination": "/docs/payments/connectors"},
-    { "source": "/docs/payments/basic-guides", "destination": "/docs/payments/payments-concepts"}
+    { "source": "/docs/payments/basic-guides", "destination": "/docs/payments/payments-concepts"},
+    { "source": "https://docs.formance.com/(.*)", "destination": "https://formance-d105fefb.mintlify.app/$1" }
   ]
 }
