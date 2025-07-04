@@ -19,7 +19,7 @@ To install the Formance Operator CRDs, you can use the following command:
 
 ```bash
 helm upgrade --install operator-crds oci://ghcr.io/formancehq/helm/operator-crds \
---version v2.8.0 \
+--version v2.5.1 \
 --namespace formance-system \
 --create-namespace
 ```
@@ -28,7 +28,7 @@ As noticed above, the version will always be the same as the operator version. C
 
 ### Operator Deployment
 
-From version v2.2.0, CRDs are now packaged with `helm.sh/resource-policy: keep` to avoid deletion of the CRDs when the operator is uninstalled.
+From version v2.5.1, CRDs are now packaged with `helm.sh/resource-policy: keep` to avoid deletion of the CRDs when the operator is uninstalled.
 
 You can deploy Formance Operator using Helm:
 
@@ -46,7 +46,7 @@ First make **sure** you've already upgraded the operator chart with crds `operat
 You can verify this by running:
 
 ```bash
-kubectl get crds authclients.formance.com -o json | jq .metadata.annotations                                                                                                         
+kubectl get crds authclients.formance.com -o json | jq .metadata.annotations
 {
   "controller-gen.kubebuilder.io/version": "v0.14.0",
   "helm.sh/resource-policy": "keep", <---- This should be present
@@ -97,7 +97,7 @@ helm upgrade --install regions oci://ghcr.io/formancehq/helm/regions \
 
 ```bash
 helm upgrade --install $RELEASE_NAME oci://ghcr.io/formancehq/helm/operator-crds \
---version v2.8.0 \
+--version v2.5.1 \
 --namespace $NAMESPACE \
 --create-namespace
 ```
