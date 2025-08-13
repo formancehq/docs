@@ -104,6 +104,11 @@ export default async function createConfig() {
               spec: './openapi/generic-connector.yaml',
               route: '/api/generic-connector',
               id: 'api-generic-connector',
+            },
+            {
+              spec: './openapi/membership.yaml',
+              route: '/cloud/membership',
+              id: 'api-membership',
             }
           ],
         }
