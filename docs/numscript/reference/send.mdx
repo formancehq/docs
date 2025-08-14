@@ -1,29 +1,110 @@
 ---
 title: Send
-sidebar_position: 6
 ---
 
-In Numscript, a [posting](../../ledger/reference/transactions#postings) models the movement of an amount of an asset from one account to another. Postings are wrapped in a [transaction](../../ledger/reference/transactions) to ensure that they are applied atomically.
+The `send` statement is a core instruction in Numscript used to transfer assets (such as currencies or tokens) between accounts. It supports complex financial flows such as percentage-based distributions, overdraft handling, and multi-party transfers.
 
-## Defining a posting
-
-A posting is defined as followed:
+## Basic syntax
 
 ```numscript
-send [COIN 100] (
-  source = @world
-  destination = @users:001
+send [asset amount] (
+  source = @source_account
+  destination = @destination_account
 )
 ```
 
-Square brackets describe the asset being moved using the Formance's [Unambiguous Monetary Notation (UMN)](../../stack/unambiguous-monetary-notation.md). It is composed of the asset type optionally followed by a scaling value, and the amount. In this case, the asset type is `COIN` with no scaling value, and the amount is `100`.
+## Components 
 
-## Postings with balance
+Following are the key components of the `send` statement:
 
-You can omit the amount of an asset in a posting and replace it with a `*`. This is used when you want to move all of the assets of the accounts in the source block to the ones destination block.
+### Monetary value
+
+The asset and amount to be transferred, written in square brackets using Formance's [Unambiguous Monetary Notation (UMN)](../../stack/unambiguous-monetary-notation.md).
+
+Examples:
+- `[EUR 100]` is equivalent to 100 Euros
+- `[USD/2 30]` is equivalent to USD 30*1E-2, that is, USD 0.30.
+
+### Source
+
+Specifies where the funds come from. Commonly used source expressions include:
+
+- Single account: `source = @account_name`
+- Variable reference: `source = @user:$userId`
+- Account with overdraft: `source = @account allowing overdraft up to [asset amount]`
+
+For complete details on source options, including multiple sources, capped sources, and allotment sources, refer to the [Sources  documentation](sources.mdx).
+
+### Destination
+
+Specifies where the funds go to. Basic destination expressions include:
+
+- Single account: `destination = @account_name`
+- Variable reference: `destination = @merchant:$merchantId`
+- Percentage-based allocation:
+  ```numscript
+      destination = {
+      70% to @seller:123
+      remaining to @platform:fees
+    }
+  ```
+
+
+For complete details on destination options, including nested allocations and maximum caps, refer to the [Destinations documentation](destinations.mdx).
+
+## Account addresses
+
+Account addresses are prefixed with `@` and can include variables in their path.
+
+Examples:
+- `@user:alice`
+- `@user:$userId`
+- `@accounts:savings:personal`
+
+## Examples
+
+### Simple transfer
+
+```numscript
+send [USD 50] (
+  source = @customer:123
+  destination = @merchant:456
+)
+```
+
+### Transfer all available balance
+
+Instead of specifying an exact amount, you can use the `*` wildcard to send all available balance of a specific asset:
 
 ```numscript
 send [USD/2 *] (
+  source = @order:1234
+  destination = @merchant:5678
+)
+```
+
+### Transfer using variables
+
+```numscript
+send [USD/2 100] (
+  source = @customer:$customerId
+  destination = @merchant:$merchantId
+)
+```
+
+### Transfer with overdraft
+
+```numscript
+send [USD/2 100] (
+  source = @users:1234 allowing overdraft up to [USD/2 20]
+  destination = @payments:4567
+)
+```
+
+### Transfer with percentage-based allocation
+
+```numscript
+send [EUR/2 120] (
   source = @order:1234
   destination = {
     10% to @platform:fees
@@ -31,5 +112,3 @@ send [USD/2 *] (
   }
 )
 ```
-
-Here, we are moving all of the `USD/2` asset from the `@order:1234` account. 10% of the `@order:1234` balance is moved to the `@platform:fees` account, and the remaining 90% is moved to the `@merchant:5678` account.

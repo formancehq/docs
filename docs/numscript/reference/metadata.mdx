@@ -1,17 +1,31 @@
 ---
 title: Metadata
-sidebar_position: 5
 ---
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 
-Numscript transactions can interact with metadata, both on transactions and accounts.
+Numscript provides functionality to work with metadata, which allows you to attach additional information to transactions and accounts.
 
-## Accounts metadata
+Numscript supports two main types of metadata operations:
+
+1. **Account Metadata**: Adding metadata to accounts using `set_account_meta` or reading it with `meta()`
+2. **Transaction Metadata**: Adding metadata to transactions using `set_tx_meta`
+
+## Metadata value types
+
+NumScript allows you to set metadata with following value types:
+
+- Strings: `set_account_meta(@alice, "aaa", "string meta")`
+- Numbers: `set_account_meta(@alice, "bbb", 42)`
+- Assets: `set_account_meta(@alice, "ccc", COIN)`
+- Monetary values: `set_account_meta(@alice, "ddd", [COIN 30])`
+- Account references: `set_account_meta(@alice, "eee", @bob)`
+- Portions/Percentages: `set_account_meta(@platform, "fff", 15%)`
+
+## Account metadata
 
 ### Reading metadata to initialize a variable
 
-Structured account metadata can be injected in Numscript variables during initialization.
+Structured account metadata can be injected in Numscript variables during initialization. The `meta()` function allows you to read metadata values from accounts.
+
 In the example below, we inject the monetary value stored under the metadata key `"coupon_value"` from the `coupon` account:
 
 ```numscript
@@ -27,128 +41,78 @@ send $value (
 )
 ```
 
-Metadata injected in variables need to be typed, and its type is directly read from the value of the key `type` of the object stored under the metadata key.
-Its value is read from the value of the key `value`. Here are all the available types:
+Metadata injected in variables need to be typed, and its [type](#metadata-value-types) is directly read from the value of the key `type` of the object stored under the metadata key. Its value is read from the value of the key `value`.
 
-<Tabs>
-  <TabItem value="number" label="Number">
+Numscript also allows you to use the `meta` function to create dynamic scripts that respond to account properties:
 
-  ```json
-  {
-    "amount": "100"
+```numscript
+account $seller = meta($sale, "seller")
+portion $commission = meta($seller, "commission")
+```
+
+Example:
+
+```numscript
+vars {
+  account $sale
+  account $seller = meta($sale, "seller")
+  portion $commission = meta($seller, "commission")
+}
+
+send [USD 100] (
+  source = $sale
+  destination = {
+    $commission to @platform:fees
+    remaining to $seller
   }
-  ```
+)
+```
 
-  </TabItem>
-
-  <TabItem value="string" label="String">
-
-  ```json
-  {
-    "reference": "82HHON80ILP"
-  }
-  ```
-
-  </TabItem>
-
-  <TabItem value="asset" label="Asset">
-
-  ```json
-  {
-    "currency": "USD/2"
-  }
-  ```
-
-  </TabItem>
-
-  <TabItem value="monetary" label="Monetary">
-
-  ```json
-  {
-    "coupon_value": "USD/2 1000"
-  }
-  ```
-
-  </TabItem>
-
-  <TabItem value="account" label="Account">
-
-  ```json
-  {
-    "merchant": "platform:merchant"
-  }
-  ```
-
-  </TabItem>
-
-  <TabItem value="portion" label="Portion">
-
-  ```json
-  {
-    "commission": "15.5%"
-  }
-  ```
-
-  </TabItem>
-</Tabs>
+In this example:
+1. The script reads the "seller" metadata from the `$sale` account
+2. It then reads the "commission" metadata from the seller account
+3. Finally, it uses this information to distribute funds according to the commission percentage
 
 ### Writing account metadata during a transaction
 
-Metadata can be written to an account using the `set_account_meta(_account_, "key", _value_)` statement.
+Metadata can be written to an account using the `set_account_meta(@account, "key", value)` statement.
 The statement takes a string-type key and a value which can be of any type, either as a variable or a literal.
 
+Example:
+
+```numscript
+set_account_meta(@user, "clientType", "silver") 
+set_account_meta(@user, "status", "active")
+set_account_meta(@user, "balance", 500)
+set_account_meta(@user, "currency", USD)
+set_account_meta(@user, "deposit", [USD 1000])
+set_account_meta(@user, "linked_account", @user1)
+```
+
+This example shows setting multiple metadata values on the account `@user`, including string values, numbers, assets, monetary values, and account references.
 
 ## Writing metadata to a transaction
 
-Metadata can be written to a transaction using the `set_tx_meta("key", _value_)` statement.
+Metadata can be written to a transaction using the `set_tx_meta("key", value)` statement.
 The statement takes a string-type key and a value which can be of any type, either as a variable or a literal.
+
+Example:
+```numscript
+set_tx_meta("priority", "low")
+
+send [USD 100] (
+  source = @world
+  destination = @user
+)
+```
+
+In this example, the script sets a transaction metadata key "priority" with the value "low" and then performs a transaction.
+
+Here's another example with various value types:
 
 ```numscript
 set_tx_meta("order_fee", [USD/2 100])
 set_tx_meta("tax", 20/100)
 set_tx_meta("collection_account", @platform:commission)
 set_tx_meta("commission", $commission)
-```
-
-## Wrap-up example
-
-```numscript
-vars {
-  account $order
-  account $merchant = meta($order, "merchant")
-  monetary $fee
-  portion $commission
-  string $ref
-}
-
-send $fee (
-  source = @orders:1234
-  destination = @platform:fees
-)
-
-send [USD/2 *] (
-  source = @orders:1234
-  destination = {
-    $commission to @platform:fees
-    remaining to $merchant
-  }
-)
-
-set_account_meta($order, "reference", $ref)
-set_tx_meta("order_fee", $fee)
-set_tx_meta("tax", 20/100)
-set_tx_meta("commission", $commission)
-```
-
-```json
-{
-  "script": {
-    "vars": {
-      "order": "orders:186HH78UH",
-      "fee": "USD/2 1000",
-      "commission": "15.5%",
-      "reference": "108IUYGI",
-    }
-  }
-}
 ```

@@ -141,31 +141,31 @@ const sidebars = {
               id: "numscript/index",
               label: "Introduction",
             },
-            {
-              type: 'doc',
-              id: 'numscript/structure',
-            },
-            {
-              type: 'doc',
-              id: 'numscript/embedding',
-              label: "Selecting an interpreter",
-            },
+            // {
+            //   type: 'doc',
+            //   id: 'numscript/structure',
+            // },
+            // {
+            //   type: 'doc',
+            //   id: 'numscript/embedding',
+            //   label: "Selecting an interpreter",
+            // },
             {
               type: 'category',
-              label: 'Reference',
+              label: 'Grammar',
               collapsible: true,
               collapsed: true,
               items: [
                 'numscript/reference/send',
                 'numscript/reference/sources',
                 'numscript/reference/destinations',
-                'numscript/reference/rounding',
-                'numscript/reference/save',
-                'numscript/reference/overdraft',
+                //'numscript/reference/overdraft',
                 'numscript/reference/variables',
                 'numscript/reference/metadata',
+                'numscript/reference/save',
               ]
-            }
+            },
+            'numscript/reference/rounding',
           ],
         },
         {
